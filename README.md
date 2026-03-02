@@ -54,7 +54,7 @@ Ollama supports AMD GPUs via ROCm. To enable hardware acceleration on an RX 7800
 4. **Environment variables:**
    | Variable | Purpose |
    |----------|---------|
-   | `HSA_OVERRIDE_GFX_VERSION` | Override GPU architecture string (use `11.0.0` for RDNA3) |
+   | `HSA_OVERRIDE_GFX_VERSION` | Override GPU architecture string (use `11.0.2` for RX 7800 XT / gfx1101 RDNA3) |
    | `OLLAMA_GPU_OVERHEAD` | Reserved VRAM in bytes (tune if OOM) |
    | `OLLAMA_NUM_GPU` | Number of GPU layers to offload |
 
