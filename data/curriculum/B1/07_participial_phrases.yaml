@@ -1,0 +1,156 @@
+id: "B1-GRM-007"
+level: "B1"
+category: "grammar"
+title: "Participial Phrases — Present and Past Participles as Modifiers"
+prerequisites: ["A2-GRM-004", "A2-GRM-001", "A2-GRM-014"]
+estimated_minutes: 28
+tags:
+  - participial-phrases
+  - present-participle
+  - past-participle
+  - adjective
+  - extended-modifier
+  - laufend
+  - gebrochen
+  - attribute
+
+explanation:
+  concept: |
+    German allows both the PRESENT PARTICIPLE and the PAST PARTICIPLE to function
+    as adjectives — modifying nouns with full adjective declension endings.
+    This is more compressed and formal than relative clauses.
+
+    ─────────────────────────────────────────────
+    PRESENT PARTICIPLE (Partizip I / Präsenspartizip)
+    ─────────────────────────────────────────────
+    FORMATION: Infinitive + -d
+    laufen → laufend   (running)
+    schlafen → schlafend  (sleeping)
+    singen → singend   (singing)
+    wachsen → wachsend  (growing)
+    lächeln → lächelnd  (smiling)
+    steigen → steigend  (rising)
+    fallen → fallend   (falling)
+
+    AS AN ADJECTIVE (before a noun):
+    Add regular adjective endings (strong/weak/mixed — same as other adjectives):
+    "das laufende Kind" (the running child — neut nom, weak: -e)
+    "ein schlafendes Baby" (a sleeping baby — neut nom, mixed: -es)
+    "die lachenden Kinder" (the laughing children — plural, weak: -en)
+    "der wachsende Baum" (the growing tree — masc nom, weak: -e)
+
+    PRESENT PARTICIPLE = ACTIVE + ONGOING:
+    It describes something/someone ACTIVELY DOING the action RIGHT NOW.
+    "der schlafende Hund" = the dog that is sleeping / the sleeping dog
+
+    ─────────────────────────────────────────────
+    PAST PARTICIPLE (Partizip II) as adjective
+    ─────────────────────────────────────────────
+    The past participle already exists (from Perfekt formation):
+    brechen → gebrochen  (broken)
+    öffnen → geöffnet   (opened)
+    schließen → geschlossen (closed)
+    erschöpfen → erschöpft (exhausted)
+    verbessern → verbessert (improved)
+    benutzen → benutzt   (used)
+
+    AS AN ADJECTIVE (before a noun):
+    Add regular adjective endings:
+    "ein gebrochener Arm" (a broken arm — masc nom, mixed: -er)
+    "das geöffnete Fenster" (the opened window — neut nom, weak: -e)
+    "die geschlossene Tür" (the closed door — fem nom, weak: -e)
+    "die erschöpften Sportler" (the exhausted athletes — plural, weak: -en)
+
+    PAST PARTICIPLE AS ADJECTIVE = PASSIVE + COMPLETED:
+    It describes the RESULT of an action being done TO the noun.
+    "das geöffnete Fenster" = the window that has been opened / the open window
+    "der reparierte Computer" = the repaired computer
+
+    ─────────────────────────────────────────────
+    EXTENDED PARTICIPIAL PHRASES (Erweitertes Partizipialattribut)
+    ─────────────────────────────────────────────
+    The participle can have its own modifiers — creating an EXTENDED attribute
+    placed entirely BETWEEN the article and the noun.
+
+    Structure: [article] + [modifier(s)] + [participle with endings] + [NOUN]
+
+    EXAMPLES:
+    Simple: "der schlafende Hund" (the sleeping dog)
+    Extended: "der auf der Couch schlafende Hund" (the dog sleeping on the couch)
+                         ↑ phrase goes between article and noun
+
+    "das von meiner Mutter gekochte Essen" (the food cooked by my mother)
+    "die seit Jahren leer stehende Wohnung" (the apartment that has been empty for years)
+    "der schwierig zu lösende Konflikt" (the conflict difficult to resolve)
+    "ein gut bezahlter Job" (a well-paid job)
+    "die kürzlich renovierte Bibliothek" (the recently renovated library)
+
+    EQUIVALENT RELATIVE CLAUSE:
+    "der auf der Couch schlafende Hund" =
+    "der Hund, der auf der Couch schläft" (relative clause — more conversational)
+
+    Extended participial phrases are VERY common in formal and written German —
+    newspapers, academic texts, official documents. Spoken German prefers relative clauses.
+
+    ─────────────────────────────────────────────
+    ADJECTIVE ENDINGS QUICK REFERENCE
+    ─────────────────────────────────────────────
+    After definite article (der/die/das):
+    Nom: -e (all genders), -en (plural)
+    Acc masc: -en; others: -e
+    Dat: -en (all)
+    Gen: -en (all)
+
+    After indefinite article (ein/eine):
+    Strong endings where article doesn't show gender:
+    Nom masc: -er; nom/acc neut: -es; others: -en or -e
+  english_comparison: |
+    English present participle adjectives: "the running man", "a sleeping child"
+    German: "der laufende Mann", "ein schlafendes Kind"
+    — very similar usage! Add participle before noun.
+
+    English past participle adjectives: "a broken window", "the repaired car"
+    German: "ein gebrochenes Fenster", "das reparierte Auto"
+    — again similar, but German adds case endings to the participle.
+
+    The BIG difference is German EXTENDED participial phrases:
+    English: "the dog sleeping on the couch" — adjective phrase AFTER the noun
+    German: "der auf der Couch schlafende Hund" — everything goes BEFORE the noun
+    English speakers find this word order very unnatural at first.
+
+    German newspapers and formal texts are FULL of extended participial attributes.
+    You'll see sentences like:
+    "die vom Senat verabschiedete und vom Präsidenten unterzeichnete Gesetzgebung"
+    (the legislation passed by the Senate and signed by the President)
+    — everything before "Gesetzgebung" is an extended participial phrase!
+
+    The rule of thumb: if you can say it with a relative clause in German,
+    you can usually compress it into a participial phrase for formal writing.
+    Comprehension of these forms is essential at B1; active production at B2+.
+
+  table:
+    headers: ["Type", "Formation", "Meaning", "Example"]
+    rows:
+      - ["Partizip I", "Infinitive + -d + endings", "active, ongoing", "das weinende Kind (the crying child)"]
+      - ["Partizip II (weak)", "ge- + stem + -t + endings", "passive, completed", "das reparierte Auto (the repaired car)"]
+      - ["Partizip II (strong)", "ge- + stem + -en + endings", "passive, completed", "das gebrochene Bein (the broken leg)"]
+      - ["Extended phrase", "[art] + phrase + participle + noun", "compressed relative clause", "der schon lange wartende Patient"]
+
+example_sentences:
+  - german: "Der weinende Mann auf der Bank ist mein Nachbar."
+    english: "The crying man on the bench is my neighbor."
+    breakdown_focus: "weinend = Partizip I (weinen → weinend); masc nom: der weinende Mann"
+  - german: "Das kaputte Fenster muss repariert werden."
+    english: "The broken window must be repaired."
+    breakdown_focus: "kaputtmachen → kaputt (adjective here) + gebrochen; here: kaputte = adj. with endings (neut, weak -e)"
+  - german: "Die gut ausgebildeten Fachkräfte sind sehr gefragt."
+    english: "The well-trained specialists are in great demand."
+    breakdown_focus: "ausgebildet = Partizip II of ausbilden; gut = adverb modifying participle; plural -en ending"
+  - german: "Das von langen Verhandlungen geprägte Ergebnis überraschte alle."
+    english: "The result marked by lengthy negotiations surprised everyone."
+    breakdown_focus: "extended Partizip II phrase: von langen Verhandlungen geprägt; all between 'Das' and 'Ergebnis'"
+  - german: "Sie öffnete das lange verschlossene Paket."
+    english: "She opened the long-sealed package."
+    breakdown_focus: "verschlossen = Partizip II of verschließen; lange = adverb; neut acc: das...verschlossene Paket"
+
+quiz: null

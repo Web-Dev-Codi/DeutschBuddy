@@ -1,0 +1,147 @@
+id: "B1-GRM-003"
+level: "B1"
+category: "grammar"
+title: "Konjunktiv II — Full Forms, Polite Requests, and Hypotheticals"
+prerequisites: ["A2-GRM-012", "A2-GRM-005"]
+estimated_minutes: 30
+tags:
+  - konjunktiv-II
+  - conditional
+  - hypothetical
+  - polite
+  - würde
+  - wäre
+  - hätte
+  - könnte
+  - müsste
+  - subjunctive
+
+explanation:
+  concept: |
+    KONJUNKTIV II expresses hypothetical situations, polite requests, wishes,
+    and unreal conditions. At B1, you must know both the "würde" construction
+    AND the direct Konjunktiv II forms of key verbs.
+
+    THE WÜRDE CONSTRUCTION (most verbs):
+    würde + infinitive (at end)
+    "Ich würde gern reisen." (I would like to travel.)
+    "Er würde kommen, wenn er Zeit hätte." (He would come if he had time.)
+
+    WÜRDE CONJUGATION:
+    ich würde        wir würden
+    du würdest       ihr würdet
+    er/sie/es würde  sie/Sie würden
+
+    DIRECT KONJUNKTIV II FORMS — essential verbs to memorize:
+
+    SEIN (to be):
+    ich wäre / du wärst / er wäre / wir wären / ihr wärt / sie wären
+
+    HABEN (to have):
+    ich hätte / du hättest / er hätte / wir hätten / ihr hättet / sie hätten
+
+    KÖNNEN (can → could):
+    ich könnte / du könntest / er könnte / wir könnten / ihr könntet / sie könnten
+
+    MÜSSEN (must → would have to):
+    ich müsste / du müsstest / er müsste / wir müssten / ihr müsstet / sie müssten
+
+    DÜRFEN (may → might/would be allowed):
+    ich dürfte / du dürftest / er dürfte / wir dürften / ihr dürftet / sie dürften
+
+    SOLLEN (should → ought to in hypothetical):
+    ich sollte / du solltest / er sollte / wir sollten / ihr solltet / sie sollten
+
+    WOLLEN (want → would want):
+    ich wollte / du wolltest / er wollte / wir wollten / ihr wolltet / sie wollten
+
+    WERDEN (become → would become):
+    ich würde / du würdest / er würde / wir würden / ihr würdet / sie würden
+
+    RULE: Use the DIRECT FORM (not würde) for haben, sein, and modals.
+    Using "würde haben" or "würde sein" is considered incorrect.
+    WRONG: "Ich würde gern mehr Zeit haben." (OK in very informal speech only)
+    BETTER: "Ich hätte gern mehr Zeit." (standard)
+
+    FORMATION RULE for regular/irregular verbs (reference):
+    Konjunktiv II is based on Präteritum + umlaut where possible + Konjunktiv endings
+    kommen → kam → käme (ich käme, du kämst...)
+    gehen → ging → ginge (ich ginge...)
+    These are rare in modern speech — use würde + infinitive instead.
+
+    USAGE 1 — Polite requests and wishes:
+    "Könntest du mir helfen?" (Could you help me?)
+    "Dürfte ich kurz stören?" (Might I briefly interrupt?)
+    "Hätten Sie einen Moment Zeit?" (Would you have a moment? — formal)
+    "Ich hätte gern einen Kaffee." (I would like a coffee. — ordering)
+
+    USAGE 2 — Hypothetical conditions with wenn:
+    "Wenn ich mehr Zeit hätte, würde ich mehr lesen."
+    (If I had more time, I would read more.)
+    "Wenn er fleißiger wäre, würde er bessere Noten bekommen."
+    (If he were more diligent, he would get better grades.)
+    STRUCTURE: wenn + Konjunktiv II ... , würde + infinitive
+
+    USAGE 3 — Advice with "an deiner/Ihrer Stelle":
+    "An deiner Stelle würde ich das nicht tun." (If I were you, I wouldn't do that.)
+    "An Ihrer Stelle würde ich einen Arzt aufsuchen." (formal — I would see a doctor)
+
+    USAGE 4 — Wishes with "ich wünschte":
+    "Ich wünschte, ich wäre schon zu Hause." (I wish I were already home.)
+    "Ich wünschte, wir hätten mehr Zeit." (I wish we had more time.)
+
+    PAST KONJUNKTIV II — hätte/wäre + Partizip II:
+    Expresses regret about past events (something that didn't happen):
+    "Wenn ich das gewusst hätte, wäre ich früher gekommen."
+    (If I had known that, I would have come earlier.)
+    "Das hätte ich nicht sagen sollen." (I shouldn't have said that.)
+  english_comparison: |
+    English Konjunktiv II equivalents:
+    - "would + infinitive" for hypothetical actions → würde + infinitive
+    - "could" → könnte
+    - "should" → sollte / müsste
+    - "might" → könnte / dürfte
+    - "were" (subjunctive) → wäre
+
+    The English subjunctive "If I WERE you" = German "Wenn ich du WÄRE" —
+    both use a special subjunctive/conditional form, not the indicative "bin/am".
+
+    A key pitfall: in English you can say "would have" to express past hypotheticals:
+    "I would have come." German uses hätte/wäre + Partizip II instead:
+    English: "I would have come" → German: "Ich wäre gekommen" (NOT "würde gekommen haben")
+    English: "I would have done it" → German: "Ich hätte es gemacht"
+
+    German modals in Konjunktiv II have clean single-word forms (könnte, müsste)
+    that directly replace "could" and "should" — this is often more elegant than
+    English which must use modal + base form every time.
+
+  table:
+    headers: ["Verb", "Infinitive", "Konjunktiv II (ich)", "Meaning"]
+    rows:
+      - ["sein", "to be", "wäre", "I would be / If I were"]
+      - ["haben", "to have", "hätte", "I would have / If I had"]
+      - ["können", "can", "könnte", "I could / would be able to"]
+      - ["müssen", "must", "müsste", "I would have to / should"]
+      - ["dürfen", "may/allowed", "dürfte", "I might / would be allowed to"]
+      - ["sollen", "should", "sollte", "I should / was supposed to"]
+      - ["wollen", "want", "wollte", "I would want / wanted to"]
+      - ["werden", "will/become", "würde", "I would"]
+
+example_sentences:
+  - german: "Könntest du mir bitte das Salz geben?"
+    english: "Could you please pass me the salt?"
+    breakdown_focus: "könnte du → könntest; polite request, inversion for question"
+  - german: "Wenn ich reich wäre, würde ich eine Weltreise machen."
+    english: "If I were rich, I would travel around the world."
+    breakdown_focus: "wenn + wäre (Konj.II of sein); würde + infinitive in main clause"
+  - german: "An deiner Stelle hätte ich anders reagiert."
+    english: "If I were you, I would have reacted differently."
+    breakdown_focus: "past Konjunktiv II: hätte + reagiert (Partizip II) — past hypothetical"
+  - german: "Ich wünschte, ich müsste heute nicht arbeiten."
+    english: "I wish I didn't have to work today."
+    breakdown_focus: "müsste = Konjunktiv II of müssen; expressing an unreal wish"
+  - german: "Das wäre wirklich sehr nett von Ihnen."
+    english: "That would be really very kind of you."
+    breakdown_focus: "wäre = Konjunktiv II of sein; polite/formal register"
+
+quiz: null

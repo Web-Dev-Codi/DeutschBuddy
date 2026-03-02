@@ -1,0 +1,130 @@
+id: "B1-GRM-002"
+level: "B1"
+category: "grammar"
+title: "Passive Voice — All Tenses of Vorgangspassiv"
+prerequisites: ["A2-GRM-014", "A2-GRM-001", "A2-GRM-008"]
+estimated_minutes: 30
+tags:
+  - passive
+  - vorgangspassiv
+  - werden
+  - past-participle
+  - tenses
+  - von
+  - agent
+  - konjunktiv
+
+explanation:
+  concept: |
+    The VORGANGSPASSIV (process passive) uses WERDEN + PAST PARTICIPLE.
+    At B1, you need to form the passive in ALL major tenses.
+
+    PASSIVE ACROSS ALL TENSES:
+
+    PRESENT (Präsens):
+    werden (conjugated) + Partizip II
+    "Das Haus wird gebaut." (The house is being built.)
+
+    SIMPLE PAST (Präteritum):
+    wurden (conjugated) + Partizip II
+    "Das Haus wurde gebaut." (The house was built.)
+
+    PRESENT PERFECT (Perfekt):
+    sein (conjugated) + Partizip II + worden
+    "Das Haus ist gebaut worden." (The house has been built.)
+    IMPORTANT: werden's participle in passive Perfekt = WORDEN (not geworden!)
+
+    PAST PERFECT (Plusquamperfekt):
+    war/waren + Partizip II + worden
+    "Das Haus war gebaut worden." (The house had been built.)
+
+    FUTURE (Futur I):
+    werden (conjugated) + Partizip II + werden (infinitive)
+    "Das Haus wird gebaut werden." (The house will be built.)
+
+    KONJUNKTIV II of passive:
+    würde + Partizip II + werden
+    "Das Haus würde gebaut werden." (The house would be built.)
+
+    FULL CONJUGATION TABLE — "bauen" (to build):
+
+    Tense          | Active                  | Passive
+    Präsens        | Er baut das Haus.       | Das Haus wird gebaut.
+    Präteritum     | Er baute das Haus.      | Das Haus wurde gebaut.
+    Perfekt        | Er hat gebaut.          | Das Haus ist gebaut worden.
+    Plusquamperfekt| Er hatte gebaut.        | Das Haus war gebaut worden.
+    Futur I        | Er wird bauen.          | Das Haus wird gebaut werden.
+
+    NAMING THE AGENT — von + dative:
+    "Das Auto wird von dem Mechaniker repariert."
+    (The car is being repaired BY the mechanic.)
+    "Der Brief wurde von meiner Mutter geschrieben."
+    (The letter was written BY my mother.)
+
+    DURCH + accusative for means/instrument (not a person):
+    "Die Stadt wurde durch ein Erdbeben zerstört."
+    (The city was destroyed BY/THROUGH an earthquake.)
+    Use "durch" for causes, instruments, and impersonal forces.
+    Use "von" for agents (people performing the action).
+
+    IMPERSONAL PASSIVE (no subject, intransitive verbs):
+    "Es wird hier viel gearbeitet." (There is a lot of working going on here.)
+    "Hier wird nicht geraucht." (No smoking here. / Smoking is not done here.)
+    "Gestern wurde bis Mitternacht gefeiert." (Yesterday there was celebrating until midnight.)
+    The dummy subject "es" can be omitted when something else fills position 1.
+
+    PASSIVE with MODAL VERBS:
+    Modal + Partizip II + werden (infinitive)
+    "Das muss gemacht werden." (That must be done.)
+    "Das kann nicht repariert werden." (That cannot be repaired.)
+    "Die Hausaufgaben sollen bis Montag abgegeben werden." (The homework should be handed in by Monday.)
+  english_comparison: |
+    English passive: "is built", "was built", "has been built", "will be built"
+    German passive: "wird gebaut", "wurde gebaut", "ist gebaut worden", "wird gebaut werden"
+
+    The tense mapping is mostly parallel — the main difference is that German
+    passive Perfekt uses "worden" (not "geworden"):
+    English: "has been built" → German: "ist gebaut WORDEN" (NOT "ist gebaut geworden")
+    "Worden" is the special passive-only participle of werden.
+
+    English "by" (the agent) = German "von + dative":
+    "repaired BY the mechanic" = "von dem Mechaniker repariert"
+
+    English uses "by" for both agents (people) and instruments (tools, forces).
+    German distinguishes: "von" = agent/person, "durch" = means/instrument/cause.
+    "destroyed by an earthquake" = "durch ein Erdbeben zerstört" (not "von")
+
+    Passive with modals — English: "must be done", "can be repaired"
+    German: "muss gemacht werden", "kann repariert werden"
+    The word order trips up English speakers: in German the modal comes second,
+    and "werden" (the passive infinitive) goes to the very end.
+
+  table:
+    headers: ["Tense", "Passive Form", "Example"]
+    rows:
+      - ["Präsens", "wird + Partizip II", "Das Buch wird gelesen."]
+      - ["Präteritum", "wurde + Partizip II", "Das Buch wurde gelesen."]
+      - ["Perfekt", "ist + Partizip II + worden", "Das Buch ist gelesen worden."]
+      - ["Plusquamperfekt", "war + Partizip II + worden", "Das Buch war gelesen worden."]
+      - ["Futur I", "wird + Partizip II + werden", "Das Buch wird gelesen werden."]
+      - ["Konjunktiv II", "würde + Partizip II + werden", "Das Buch würde gelesen werden."]
+      - ["Modal + Passiv", "Modal + Partizip II + werden", "Das Buch muss gelesen werden."]
+
+example_sentences:
+  - german: "Der Bericht wird jeden Montag von der Abteilung erstellt."
+    english: "The report is compiled by the department every Monday."
+    breakdown_focus: "present passive: wird + erstellt; von der Abteilung = agent (von + dative)"
+  - german: "Das alte Theater wurde letztes Jahr abgerissen."
+    english: "The old theater was torn down last year."
+    breakdown_focus: "Präteritum passive: wurde + abgerissen (separable verb: ab|reißen)"
+  - german: "Die neuen Regeln sind bereits eingeführt worden."
+    english: "The new rules have already been introduced."
+    breakdown_focus: "Perfekt passive: ist...worden; NOT geworden — passive-only form"
+  - german: "Das Projekt muss bis Freitag abgeschlossen werden."
+    english: "The project must be completed by Friday."
+    breakdown_focus: "modal passive: muss + abgeschlossen + werden (infinitive at end)"
+  - german: "Die Straße wird durch Bauarbeiten gesperrt."
+    english: "The road is being closed due to construction work."
+    breakdown_focus: "durch = instrument/cause (not person): durch Bauarbeiten (accusative)"
+
+quiz: null

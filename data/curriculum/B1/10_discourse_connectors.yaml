@@ -1,0 +1,189 @@
+id: "B1-GRM-010"
+level: "B1"
+category: "grammar"
+title: "Discourse Connectors — dennoch, jedoch, daher, trotzdem, and More"
+prerequisites: ["A2-GRM-015", "A2-GRM-006"]
+estimated_minutes: 25
+tags:
+  - discourse-connectors
+  - conjunctions
+  - adverbs
+  - dennoch
+  - jedoch
+  - allerdings
+  - daher
+  - deshalb
+  - trotzdem
+  - außerdem
+  - einerseits
+  - andererseits
+  - text-coherence
+  - word-order
+
+explanation:
+  concept: |
+    Discourse connectors (Konjunktionaladverbien / Satzadverbien) link sentences
+    and ideas logically. Unlike subordinating conjunctions, most are ADVERBS that
+    can appear in various positions and affect word order differently.
+
+    ─────────────────────────────────────────────
+    WORD ORDER RULE — Critical!
+    ─────────────────────────────────────────────
+    When a discourse connector STARTS a sentence, the VERB must immediately follow
+    (V2 word order — the connector counts as position 1):
+    "Jedoch [1] müssen [V] wir [S] die Risiken beachten."
+    (However, we must consider the risks.)
+
+    When placed NOT at position 1 (e.g., after the subject or later), it's more flexible:
+    "Wir müssen jedoch die Risiken beachten." (We must, however, consider the risks.)
+
+    ─────────────────────────────────────────────
+    CONTRAST AND CONCESSION
+    ─────────────────────────────────────────────
+
+    JEDOCH (however, yet):
+    Formal contrast. Can be placed at position 1 (inverts) or after verb/subject.
+    "Er war müde. Jedoch arbeitete er weiter." (He was tired. However, he continued working.)
+    "Er arbeitete jedoch weiter." (He continued working, however.)
+
+    DENNOCH (nevertheless, yet, still):
+    Stronger concession than jedoch — emphasizes that something happens DESPITE a contrast.
+    "Es regnete stark. Dennoch gingen sie spazieren." (It was raining hard. Nevertheless they walked.)
+    "Er hatte keine Erfahrung. Dennoch bekam er den Job." (He had no experience. Nevertheless he got the job.)
+
+    TROTZDEM (despite that, nonetheless):
+    Very similar to dennoch, slightly more colloquial. Very common in spoken German.
+    "Das Essen war teuer. Trotzdem haben wir viel bestellt."
+    (The food was expensive. Nonetheless we ordered a lot.)
+    DIFFERENCE: trotzdem is more spoken/informal; dennoch is more formal/written.
+
+    ALLERDINGS (however, mind you, that said):
+    Introduces a qualifying statement — "but I should mention..." or "admittedly..."
+    "Das Konzert war gut. Allerdings war es sehr laut." (The concert was good. Mind you, it was very loud.)
+    "Ich helfe gerne. Allerdings habe ich wenig Zeit." (I'm happy to help. However, I have little time.)
+
+    ─────────────────────────────────────────────
+    CAUSE AND CONSEQUENCE
+    ─────────────────────────────────────────────
+
+    DAHER / DESHALB / DESWEGEN (therefore, that's why):
+    All three mean roughly the same — consequence follows from what came before.
+    DAHER: slightly more formal.
+    DESHALB / DESWEGEN: both common, neutral register.
+    "Es schneite. Daher blieb er zu Hause." (It was snowing. Therefore he stayed home.)
+    "Ich bin krank. Deshalb komme ich nicht." (I am sick. That's why I'm not coming.)
+    "Das Geschäft war geschlossen. Deswegen kauften wir woanders." (The shop was closed. That's why we bought elsewhere.)
+
+    DENN (because — but as coordinating conjunction):
+    NOTE: denn is a COORDINATING conjunction — NO word order change (unlike weil):
+    "Ich bleibe zu Hause, denn ich bin krank." (I stay home, because I am sick.)
+    denn does NOT send verb to end. weil DOES send verb to end.
+    "...denn ich BIN krank." (denn — normal order)
+    "...weil ich krank BIN." (weil — verb-final)
+
+    ─────────────────────────────────────────────
+    ADDITION
+    ─────────────────────────────────────────────
+
+    AUßERDEM (moreover, furthermore, in addition, besides):
+    Adds another point. Very common in both spoken and written German.
+    "Das Hotel ist günstig. Außerdem liegt es zentral." (The hotel is affordable. Moreover it's centrally located.)
+    "Er kann kochen. Außerdem singt er sehr gut." (He can cook. Besides, he sings very well.)
+
+    ZUDEM / DARÜBER HINAUS (in addition, furthermore — more formal):
+    "Das Produkt ist hochwertig. Zudem ist es günstig." (The product is high quality. In addition it is affordable.)
+    "Die Studie war umfangreich. Darüber hinaus war sie sehr präzise." (formal)
+
+    EBENFALLS / GLEICHZEITIG (also / at the same time):
+    "Er ist Musiker. Ebenfalls ist er Lehrer." (He's a musician. He's also a teacher.)
+    "Sie arbeitete. Gleichzeitig kümmerte sie sich um die Kinder." (She worked. At the same time she took care of the children.)
+
+    ─────────────────────────────────────────────
+    CONTRAST PAIRS — EINERSEITS … ANDERERSEITS
+    ─────────────────────────────────────────────
+    einerseits = on the one hand
+    andererseits = on the other hand
+    These work together to present two contrasting aspects:
+
+    "Einerseits möchte ich reisen. Andererseits habe ich kein Geld."
+    (On the one hand I want to travel. On the other hand I have no money.)
+
+    "Einerseits ist die Stelle gut bezahlt. Andererseits bedeutet sie viel Stress."
+    (On the one hand the job is well paid. On the other hand it means a lot of stress.)
+
+    Both can appear at position 1 (inversion) or embedded within the sentence.
+
+    ─────────────────────────────────────────────
+    SUMMARY TABLE
+    ─────────────────────────────────────────────
+    Connector       | Type        | Meaning                | Register
+    jedoch          | adverb      | however, yet           | formal/neutral
+    dennoch         | adverb      | nevertheless           | formal
+    trotzdem        | adverb      | despite that, still    | spoken/neutral
+    allerdings      | adverb      | however, mind you      | neutral
+    daher           | adverb      | therefore              | formal
+    deshalb         | adverb      | that's why             | neutral
+    deswegen        | adverb      | because of that        | neutral
+    denn            | coord. conj.| because (no V-final)   | neutral
+    außerdem        | adverb      | moreover, besides      | neutral
+    zudem           | adverb      | furthermore            | formal
+    einerseits      | adverb      | on the one hand        | neutral
+    andererseits    | adverb      | on the other hand      | neutral
+    gleichzeitig    | adverb      | at the same time       | neutral
+    darüber hinaus  | adverb      | beyond that, moreover  | formal
+  english_comparison: |
+    English discourse connectors mostly work the same way — "however", "therefore",
+    "moreover", etc. can appear at the start or middle of sentences.
+
+    The key GRAMMATICAL difference in German: these adverbs trigger V2 word order
+    when placed at position 1. English connectors do NOT affect word order:
+    "However, he continued." — no inversion in English
+    "Jedoch arbeitete er weiter." — INVERSION in German (arbeitete before er)
+
+    DENN vs WEIL — a critical distinction:
+    English "because" = German denn OR weil, but with different word order:
+    "because he is sick" (English — normal order)
+    "denn er IST krank" (coordinating — normal order)
+    "weil er krank IST" (subordinating — verb-final)
+    English learners sometimes use denn and weil interchangeably — they cannot.
+
+    TROTZDEM vs OBWOHL — both translate as "despite/although" but work differently:
+    "obwohl er müde WAR, arbeitete er." (obwohl = subordinating conj. — verb-final)
+    "Er war müde. TROTZDEM arbeitete er." (trotzdem = adverb — starts new sentence or clause)
+    Trotzdem cannot replace obwohl within the same sentence structure.
+
+    The FORMAL vs INFORMAL distinction matters:
+    dennoch/jedoch/darüber hinaus = formal, written (essays, news, reports)
+    trotzdem/deshalb/außerdem = neutral to informal, spoken and written
+
+  table:
+    headers: ["German", "English", "Example"]
+    rows:
+      - ["jedoch", "however", "Er war müde. Jedoch machte er weiter."]
+      - ["dennoch", "nevertheless", "Es war teuer. Dennoch kaufte er es."]
+      - ["trotzdem", "despite that / still", "Sie war krank. Trotzdem kam sie."]
+      - ["allerdings", "however / mind you", "Es ist schön. Allerdings ist es teuer."]
+      - ["daher", "therefore (formal)", "Er kam zu spät. Daher verpasste er es."]
+      - ["deshalb", "that's why", "Ich bin müde. Deshalb gehe ich früh."]
+      - ["deswegen", "because of that", "Er fuhr zu schnell. Deswegen bekam er Strafe."]
+      - ["außerdem", "moreover / besides", "Es ist günstig. Außerdem liegt es zentral."]
+      - ["einerseits...andererseits", "on one hand...on the other", "Einerseits will ich. Andererseits kann ich nicht."]
+
+example_sentences:
+  - german: "Das Wetter war schlecht. Dennoch fuhren wir ans Meer."
+    english: "The weather was bad. Nevertheless, we drove to the sea."
+    breakdown_focus: "dennoch at position 1 → V2 inversion: fuhren (V) wir (S)"
+  - german: "Er hat lange gearbeitet. Deshalb ist er jetzt sehr erschöpft."
+    english: "He worked for a long time. That's why he is very exhausted now."
+    breakdown_focus: "deshalb = consequence connector; V2: ist (V) er (S) — inversion"
+  - german: "Das Hotel ist komfortabel. Außerdem ist es sehr günstig gelegen."
+    english: "The hotel is comfortable. Moreover, it is very conveniently located."
+    breakdown_focus: "außerdem adds a supporting point; V2 inversion: ist (V) es (S)"
+  - german: "Einerseits wäre ein Urlaub sehr schön. Andererseits haben wir gerade wenig Geld."
+    english: "On the one hand, a vacation would be very nice. On the other hand, we don't have much money right now."
+    breakdown_focus: "einerseits...andererseits pair; wäre = Konjunktiv II; haben = indicative"
+  - german: "Die Maßnahme war umstritten. Jedoch unterstützte die Mehrheit der Bevölkerung sie."
+    english: "The measure was controversial. However, the majority of the population supported it."
+    breakdown_focus: "jedoch at position 1 → V2: unterstützte (V) die Mehrheit (S); formal register"
+
+quiz: null

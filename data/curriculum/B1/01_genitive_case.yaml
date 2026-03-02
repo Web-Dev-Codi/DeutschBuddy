@@ -1,0 +1,109 @@
+id: "B1-GRM-001"
+level: "B1"
+category: "grammar"
+title: "Genitive Case — Possession and Genitive Prepositions"
+prerequisites: ["A2-GRM-003", "A2-GRM-004"]
+estimated_minutes: 25
+tags:
+  - genitive
+  - case
+  - possession
+  - prepositions
+  - des
+  - der
+  - declension
+
+explanation:
+  concept: |
+    The GENITIVE CASE expresses possession and association (like English "'s" or "of").
+    It is required after certain prepositions and in formal written German.
+
+    GENITIVE ARTICLES:
+
+              Masculine   Feminine   Neuter    Plural
+    Definite:   des         der        des       der
+    Indefinite: eines       einer      eines     —
+
+    NOUN ENDINGS in genitive:
+    - Masculine and neuter singular: add -s (or -es for one-syllable words)
+      der Mann → des Mannes
+      das Kind → des Kindes
+      der Tisch → des Tisches
+      das Auto → des Autos
+    - Feminine and plural: no ending change
+      die Frau → der Frau
+      die Kinder → der Kinder
+
+    POSSESSIVE STRUCTURE — "des/der + noun":
+    "Das Buch des Mannes" = The man's book (literally: the book of the man)
+    "Die Tasche der Frau" = The woman's bag
+    "Das Zimmer des Kindes" = The child's room
+    "Die Farbe des Autos" = The color of the car
+
+    ADJECTIVES in the genitive add -en in all cases:
+    "das Haus des alten Mannes" (the old man's house)
+    "die Meinung der jungen Frau" (the young woman's opinion)
+
+    GENITIVE PREPOSITIONS (always followed by genitive):
+    wegen    = because of, due to
+    trotz    = despite, in spite of
+    während  = during
+    statt / anstatt = instead of
+    außerhalb = outside of
+    innerhalb = inside of, within
+    aufgrund  = due to, on account of
+
+    EXAMPLES with prepositions:
+    "Wegen des Regens blieb er zu Hause." (Because of the rain he stayed home.)
+    "Trotz des schlechten Wetters gingen wir spazieren." (Despite the bad weather we walked.)
+    "Während des Unterrichts war es ruhig." (During class it was quiet.)
+    "Statt des Kaffees trank sie Tee." (Instead of coffee she drank tea.)
+
+    SPOKEN German note: In informal speech, "von + dative" often replaces genitive:
+    "Das Buch von dem Mann" (instead of "des Mannes") — acceptable in speech,
+    but the genitive form is required in formal writing and B2+ exams.
+  english_comparison: |
+    English uses apostrophe-s ('s) or "of" to show possession:
+    "the man's book" or "the book of the man"
+    German uses genitive case articles and noun endings: "das Buch des Mannes"
+
+    The biggest trap for English speakers: German adds -s/-es to masculine and neuter
+    NOUNS (not just the article): "des ManneS" — there's an -s on the noun itself!
+    English: "the man's" (apostrophe before the s)
+    German: "des Mannes" (-s at the end of the noun, -s added to article too)
+
+    English speakers often use "von + dative" in all contexts because it feels more
+    natural (like "of the man"), but formal German requires the genitive:
+    INFORMAL: "das Buch von dem Mann" (acceptable in speech)
+    FORMAL: "das Buch des Mannes" (required in writing, exams, newspapers)
+
+    Genitive prepositions have NO English counterpart pattern — you must memorize
+    that wegen/trotz/während/statt require genitive, not dative or accusative.
+    Common error: "wegen dem Regen" (dative — WRONG in formal German)
+    Correct: "wegen des Regens" (genitive)
+
+  table:
+    headers: ["Case", "Masculine", "Feminine", "Neuter", "Plural"]
+    rows:
+      - ["Genitive (def.)", "des Mannes", "der Frau", "des Kindes", "der Kinder"]
+      - ["Genitive (indef.)", "eines Mannes", "einer Frau", "eines Kindes", "— (no pl.)"]
+      - ["Example", "das Auto des Mannes", "die Tasche der Frau", "das Zimmer des Kindes", "die Namen der Kinder"]
+
+example_sentences:
+  - german: "Das Auto des alten Mannes steht vor dem Haus."
+    english: "The old man's car is parked in front of the house."
+    breakdown_focus: "des alten Mannes — genitive masculine with adjective ending -en; Mannes gets -es"
+  - german: "Trotz des starken Regens fuhr sie mit dem Fahrrad."
+    english: "Despite the heavy rain, she rode her bicycle."
+    breakdown_focus: "trotz + genitive: des starken Regens (masc. genitive, Regen + s)"
+  - german: "Während des Konzerts war ihr Telefon ausgeschaltet."
+    english: "During the concert, her phone was turned off."
+    breakdown_focus: "während + genitive: des Konzerts (neuter, Konzert + s)"
+  - german: "Statt eines Kuchens brachte er Pralinen mit."
+    english: "Instead of a cake, he brought chocolates."
+    breakdown_focus: "statt + genitive indefinite: eines Kuchens (masculine)"
+  - german: "Die Qualität der neuen Produkte hat sich verbessert."
+    english: "The quality of the new products has improved."
+    breakdown_focus: "der neuen Produkte — genitive plural, feminine article der, adjective + -en"
+
+quiz: null

@@ -1,0 +1,137 @@
+id: "B1-GRM-004"
+level: "B1"
+category: "grammar"
+title: "Indirect Speech — Konjunktiv I and Reported Speech"
+prerequisites: ["B1-GRM-003", "A2-GRM-006"]
+estimated_minutes: 30
+tags:
+  - konjunktiv-I
+  - indirect-speech
+  - reported-speech
+  - konjunktiv-II
+  - dass
+  - questions
+  - journalism
+
+explanation:
+  concept: |
+    INDIRECT SPEECH (Indirekte Rede) reports what someone said without quoting
+    them directly. German uses KONJUNKTIV I to signal that you are reporting
+    rather than stating your own opinion.
+
+    KONJUNKTIV I FORMATION:
+    Take the infinitive stem + Konjunktiv I endings:
+    -e, -est, -e, -en, -et, -en
+
+    SEIN (most important — very irregular):
+    ich sei / du sei(e)st / er sei / wir seien / ihr sei(e)t / sie seien
+
+    REGULAR PATTERN (e.g., sagen → to say):
+    ich sage    (same as indicative — often replaced by Konj. II)
+    du sagest   (rare)
+    er sage     ← this is the KEY form — 3rd person singular is most used
+    wir sagen   (same as indicative — often replaced by Konj. II)
+    ihr saget   (rare)
+    sie sagen   (same as indicative — often replaced by Konj. II)
+
+    KEY FORMS to memorize:
+    Verb      | Infinitive | Konj. I (er/sie) | Notes
+    sein      | sein       | sei              | completely irregular
+    haben     | haben      | habe             | er habe
+    werden    | werden     | werde            | er werde
+    können    | können     | könne            | er könne
+    müssen    | müssen     | müsse            | er müsse
+    sagen     | sagen      | sage             | er sage
+    kommen    | kommen     | komme            | er komme
+    gehen     | gehen      | gehe             | er gehe
+    wissen    | wissen     | wisse            | er wisse
+
+    HOW TO USE — Structure with "dass":
+    Direct: Er sagte: "Ich bin krank."
+    Indirect: Er sagte, dass er krank sei.
+    (or without dass): Er sagte, er sei krank.
+
+    TENSE SHIFT — present → present Konj. I:
+    Direct: "Ich lerne Deutsch." (I am learning German.)
+    Indirect: Er sagte, er lerne Deutsch. (He said he was learning German.)
+
+    Direct past → past Konj. I (Perfekt form):
+    Direct: "Ich habe das Buch gelesen." (I read the book.)
+    Indirect: Er sagte, er habe das Buch gelesen.
+
+    WHEN KONJUNKTIV I EQUALS INDICATIVE — use KONJUNKTIV II instead:
+    Problem: "wir sagen" (indicative) = "wir sagen" (Konj. I) — identical!
+    Solution: Use Konjunktiv II when Konjunktiv I is ambiguous:
+    "Sie sagten, sie seien (= Konj.I of sein) sehr müde." ✓ (sei/seien are distinct)
+    "Sie sagten, sie kämen (= Konj.II) morgen." ✓ (kommen: wir kämen ≠ wir kommen)
+    "Sie sagten, sie würden morgen kommen." ✓ (würden = Konj.II, clearly marked)
+
+    RULE: Use Konj. II or "würde + infinitive" whenever Konj. I is not clearly
+    distinct from the indicative form.
+
+    INDIRECT QUESTIONS:
+    YES/NO questions → use ob (whether):
+    Direct: "Kommst du morgen?" (Are you coming tomorrow?)
+    Indirect: Er fragte, ob ich morgen käme/kommen würde.
+
+    WH-questions → keep the question word:
+    Direct: "Wo wohnst du?" (Where do you live?)
+    Indirect: Er fragte, wo ich wohne/wohnen würde.
+
+    INDIRECT COMMANDS:
+    Use sollen in Konjunktiv I:
+    Direct: "Mach die Tür zu!" (Close the door!)
+    Indirect: Er sagte, ich solle die Tür zumachen.
+
+    JOURNALISTIC USE:
+    Konjunktiv I is very common in news reporting to signal that the journalist
+    is reporting claims, not confirming truth:
+    "Der Minister erklärte, die Situation sei unter Kontrolle."
+    (The minister stated the situation was under control. — reporter not confirming this)
+  english_comparison: |
+    English reported speech shifts tenses back: "I am tired" → "he said he WAS tired"
+    German Konjunktiv I does NOT shift tenses — it keeps the same tense and
+    marks everything with the Konjunktiv I form instead:
+    "Ich bin müde" → "Er sagte, er sei müde" (sei = Konj. I of sein, present)
+
+    English has no direct equivalent to Konjunktiv I — we use tense backshifting.
+    German marks reported speech with a special verb form (Konjunktiv I) and
+    optionally a "dass" clause.
+
+    The distinction between Konjunktiv I and II matters:
+    Konjunktiv I = neutral reporting (I'm just passing on information)
+    Konjunktiv II = distancing from content (I'm skeptical, or I'm adding a condition)
+    Both are common in written German — newspapers use Konjunktiv I constantly.
+
+    English speakers often just use indicative in reported speech structures,
+    which sounds like you are confirming the statement as true:
+    "Er sagte, er IST krank." (sounds like you believe and confirm it)
+    "Er sagte, er SEI krank." (neutral reporting — standard German)
+
+  table:
+    headers: ["Direct Quote", "Indirect Speech (Konj. I)", "English"]
+    rows:
+      - ["'Ich bin müde.'", "Er sagte, er sei müde.", "He said he was tired."]
+      - ["'Ich habe geschlafen.'", "Er sagte, er habe geschlafen.", "He said he had slept."]
+      - ["'Ich komme morgen.'", "Er sagte, er komme morgen.", "He said he was coming tomorrow."]
+      - ["'Wir kommen.'", "Sie sagten, sie kämen. (Konj.II!)", "They said they were coming."]
+      - ["'Kannst du helfen?'", "Er fragte, ob ich helfen könne.", "He asked if I could help."]
+
+example_sentences:
+  - german: "Die Politikerin erklärte, die Wirtschaft wachse wieder."
+    english: "The politician stated that the economy was growing again."
+    breakdown_focus: "wachse = Konjunktiv I of wachsen (er/sie form); journalistic reported speech"
+  - german: "Er sagte, er habe das Problem nicht verstanden."
+    english: "He said he had not understood the problem."
+    breakdown_focus: "habe...verstanden = Konj. I Perfekt of verstehen; past event in indirect speech"
+  - german: "Sie fragte, ob ich ihr helfen könne."
+    english: "She asked whether I could help her."
+    breakdown_focus: "ob = indirect yes/no question; könne = Konj. I of können (er/sie form)"
+  - german: "Der Sprecher teilte mit, die Verhandlungen seien erfolgreich gewesen."
+    english: "The spokesperson announced that the negotiations had been successful."
+    breakdown_focus: "seien...gewesen = Konj. I Perfekt of sein (plural); formal reported speech"
+  - german: "Er fragte mich, warum ich so früh gegangen sei."
+    english: "He asked me why I had left so early."
+    breakdown_focus: "warum = indirect question word; sei gegangen = Konj. I Perfekt"
+
+quiz: null

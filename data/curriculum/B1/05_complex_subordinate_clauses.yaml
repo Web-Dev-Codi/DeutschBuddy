@@ -1,0 +1,158 @@
+id: "B1-GRM-005"
+level: "B1"
+category: "grammar"
+title: "Complex Subordinate Clauses — obwohl, während, nachdem"
+prerequisites: ["A2-GRM-006", "A2-GRM-001", "A2-GRM-008"]
+estimated_minutes: 25
+tags:
+  - subordinate-clauses
+  - obwohl
+  - concession
+  - während
+  - simultaneous
+  - nachdem
+  - sequence
+  - tense-shift
+  - plusquamperfekt
+  - verb-final
+
+explanation:
+  concept: |
+    B1 subordinate clauses build on A2 foundations with three key conjunctions
+    that express concession, simultaneous action, and sequential action — each
+    with specific tense and meaning requirements.
+
+    ─────────────────────────────────────────────
+    OBWOHL — concession (although, even though)
+    ─────────────────────────────────────────────
+    Introduces a clause that is UNEXPECTED or CONTRARY TO EXPECTATION.
+    The main clause states what happens despite the subordinate circumstance.
+    Verb goes to the END of the obwohl clause.
+
+    "Obwohl es regnete, gingen wir spazieren."
+    (Although it was raining, we went for a walk.)
+
+    "Er bestand die Prüfung, obwohl er wenig gelernt hatte."
+    (He passed the exam even though he had studied little.)
+
+    "Obwohl sie müde war, arbeitete sie bis Mitternacht."
+    (Although she was tired, she worked until midnight.)
+
+    FRONTED OBWOHL → main clause starts with verb (V2 inversion):
+    "Obwohl er krank war, [V] kam [S] er zur Arbeit."
+                                ↑ verb first in main clause after fronted sub-clause
+
+    ─────────────────────────────────────────────
+    WÄHREND — simultaneous action (while)
+    ─────────────────────────────────────────────
+    Two actions happen AT THE SAME TIME. Both clauses typically use the SAME tense.
+
+    "Während sie kochte, las er die Zeitung."
+    (While she was cooking, he was reading the newspaper.)
+
+    "Ich höre Musik, während ich lerne."
+    (I listen to music while I study.)
+
+    "Während ich schlief, schickte er mir eine Nachricht."
+    (While I was sleeping, he sent me a message.)
+
+    NOTE: während is also a genitive preposition (see B1-GRM-001):
+    As a preposition: "Während des Unterrichts..." (During class...)
+    As a conjunction: "Während wir lernten..." (While we were learning...)
+
+    CONTRAST use of während (less common but exists):
+    "Während er sport treibt, sitzt sie lieber zu Hause."
+    (While/whereas he does sports, she prefers to stay at home.)
+    Context and content clarify whether it means "while" or "whereas."
+
+    ─────────────────────────────────────────────
+    NACHDEM — sequence with TENSE SHIFT
+    ─────────────────────────────────────────────
+    NACHDEM = after. ONE action is COMPLETED before the other begins.
+    This requires a TENSE SHIFT between the clauses:
+
+    Main clause in PRESENT → nachdem clause in PERFEKT:
+    "Nachdem sie das Buch gelesen hat, gibt sie es zurück."
+    (After she has read the book, she will return it.)
+
+    Main clause in PRÄTERITUM → nachdem clause in PLUSQUAMPERFEKT:
+    "Nachdem er gegessen hatte, ging er schlafen."
+    (After he had eaten, he went to sleep.)
+
+    THE RULE:
+    nachdem clause = ONE TENSE FURTHER BACK than the main clause
+
+    Main: Präsens  → Sub: Perfekt
+    Main: Perfekt  → Sub: Plusquamperfekt
+    Main: Präteritum → Sub: Plusquamperfekt
+
+    PLUSQUAMPERFEKT FORMATION (for nachdem):
+    hatte/war (Präteritum) + Partizip II
+    "hatte gegessen" — had eaten
+    "war gekommen" — had come
+    "hatte geschlafen" — had slept
+    "war eingeschlafen" — had fallen asleep
+
+    FRONTED nachdem clause:
+    "Nachdem er gegessen hatte, [V] legte [S] er sich hin."
+    (After he had eaten, he lay down. — inversion in main clause)
+
+    ─────────────────────────────────────────────
+    RELATED CONJUNCTIONS FOR COMPARISON
+    ─────────────────────────────────────────────
+    bevor  = before (no tense shift required — can use same tense)
+    "Bevor er schläft, liest er." (Before he sleeps, he reads.)
+
+    seitdem / seit = since (a point in time, ongoing)
+    "Seitdem er das weiß, ist er ruhiger." (Since he knows that, he's calmer.)
+
+    sobald = as soon as
+    "Sobald sie ankommt, rufe ich dich an." (As soon as she arrives, I'll call you.)
+  english_comparison: |
+    OBWOHL: English "although/even though" — similar usage but English speakers
+    often use "but" (aber) when they mean "although" (obwohl).
+    "He is tired BUT he works." = He is tired, AND STILL he works (aber — contrast)
+    "He works ALTHOUGH he is tired." = the tiredness makes the working unexpected (obwohl)
+    The key test: can you say "despite the fact that"? → use obwohl.
+
+    WÄHREND: English "while" — the simultaneous meaning maps well.
+    The contrast meaning ("whereas") exists in both languages:
+    "While he loves sports, I prefer reading." (= whereas)
+    Both meanings are possible in German too. Context determines which.
+
+    NACHDEM: The tense shift is the hardest part for English speakers!
+    English often skips the shift: "After he ate, he slept." (both simple past)
+    German REQUIRES the shift: "Nachdem er gegessen HATTE, schlief er."
+    (nachdem clause = Plusquamperfekt; main clause = Präteritum)
+    The Plusquamperfekt (hatte + Partizip II) signals "completed before the main action."
+    Skipping this shift is a very common B1 error:
+    WRONG: "Nachdem er aß, schlief er." (aß = Präteritum — same level as schlief)
+    RIGHT: "Nachdem er gegessen hatte, schlief er." (hatte gegessen = earlier)
+
+  table:
+    headers: ["Conjunction", "Meaning", "Tense Rule", "Example"]
+    rows:
+      - ["obwohl", "although / even though", "Any tense — matches main clause", "Obwohl es regnete, gingen wir raus."]
+      - ["während", "while / whereas", "Same tense in both clauses", "Während sie kochte, las er."]
+      - ["nachdem", "after (sequence)", "Sub-clause = one tense back", "Nachdem er gegessen hatte, schlief er."]
+      - ["bevor", "before", "Usually same tense", "Bevor er geht, sagt er Tschüss."]
+      - ["sobald", "as soon as", "Usually same tense or future", "Sobald sie ankommt, essen wir."]
+
+example_sentences:
+  - german: "Obwohl er gestern spät ins Bett gegangen war, stand er um sechs Uhr auf."
+    english: "Even though he had gone to bed late the night before, he got up at six o'clock."
+    breakdown_focus: "obwohl + Plusquamperfekt (war...gegangen); main clause Präteritum"
+  - german: "Während meine Eltern im Urlaub waren, passte ich auf das Haus auf."
+    english: "While my parents were on vacation, I looked after the house."
+    breakdown_focus: "während + Präteritum; main clause also Präteritum — simultaneous"
+  - german: "Nachdem sie die Hausaufgaben gemacht hatte, durfte sie fernsehen."
+    english: "After she had done her homework, she was allowed to watch TV."
+    breakdown_focus: "nachdem + Plusquamperfekt (hatte...gemacht); main clause Präteritum — sequential"
+  - german: "Er bestand die Prüfung, obwohl er kaum gelernt hatte."
+    english: "He passed the exam even though he had barely studied."
+    breakdown_focus: "obwohl clause at end; hatte gelernt = Plusquamperfekt for past context"
+  - german: "Nachdem wir gegessen hatten, machten wir einen langen Spaziergang."
+    english: "After we had eaten, we went for a long walk."
+    breakdown_focus: "fronted nachdem clause → inversion: machten wir (verb before subject)"
+
+quiz: null

@@ -1,0 +1,148 @@
+id: "B1-GRM-006"
+level: "B1"
+category: "grammar"
+title: "Relative Clauses — All Four Cases and 'was'"
+prerequisites: ["A2-GRM-009", "B1-GRM-001"]
+estimated_minutes: 28
+tags:
+  - relative-clauses
+  - relative-pronouns
+  - nominative
+  - accusative
+  - dative
+  - genitive
+  - was
+  - verb-final
+  - preposition-plus-relative
+
+explanation:
+  concept: |
+    Relative clauses add information about a noun using a RELATIVE PRONOUN.
+    At B1, you must master all 4 cases plus the pronoun "was" and preposition
+    combinations with relative pronouns.
+
+    COMPLETE RELATIVE PRONOUN TABLE:
+
+               Masc     Fem      Neut     Plural
+    Nominative: der      die      das      die
+    Accusative: den      die      das      die
+    Dative:     dem      der      dem      denen
+    Genitive:   dessen   deren    dessen   deren
+
+    RULES:
+    1. The pronoun GENDER and NUMBER match the noun it refers to (the antecedent).
+    2. The pronoun CASE is determined by its grammatical role INSIDE the relative clause.
+    3. The conjugated verb goes to the END of the relative clause.
+    4. Always use a COMMA before the relative clause.
+
+    ─────────────────────────────────────────────
+    NOMINATIVE relative pronouns — pronoun is the SUBJECT of the relative clause
+    ─────────────────────────────────────────────
+    "Der Mann, der dort steht, ist mein Vater." (masc nom — der Mann → der)
+    "Die Frau, die singt, ist Lehrerin." (fem nom — die Frau → die)
+    "Das Kind, das spielt, heißt Max." (neut nom — das Kind → das)
+    "Die Leute, die lachen, sind meine Freunde." (plural nom — die Leute → die)
+
+    ─────────────────────────────────────────────
+    ACCUSATIVE relative pronouns — pronoun is the DIRECT OBJECT
+    ─────────────────────────────────────────────
+    "Der Mann, den ich kenne, wohnt hier." (masc acc — den)
+    "Die Frau, die ich sehe, ist meine Kollegin." (fem acc — die, same form)
+    "Das Buch, das er liest, ist interessant." (neut acc — das, same as nom)
+    "Die Bücher, die er empfiehlt, sind gut." (plural acc — die)
+
+    ─────────────────────────────────────────────
+    DATIVE relative pronouns — pronoun is the INDIRECT OBJECT or after dative verb/prep
+    ─────────────────────────────────────────────
+    "Der Mann, dem ich helfe, ist alt." (masc dat — dem; helfen takes dative)
+    "Die Frau, der ich schreibe, lebt in München." (fem dat — der)
+    "Das Kind, dem sie gibt, ist dankbar." (neut dat — dem)
+    "Die Kinder, denen ich vorlese, schlafen bald." (plural dat — denen!)
+
+    DATIVE PREPOSITIONS inside relative clauses:
+    "Das Haus, in dem er wohnt, ist groß." (in + dative dem; neuter)
+    "Die Stadt, in der sie lebt, ist schön." (in + dative der; feminine)
+    "Die Leute, mit denen er arbeitet, sind nett." (mit + dative denen; plural)
+
+    ─────────────────────────────────────────────
+    GENITIVE relative pronouns — pronoun shows POSSESSION within the clause
+    ─────────────────────────────────────────────
+    Pattern: [article of owned thing] + [genitive relative pronoun]
+    "Der Mann, dessen Auto kaputt ist, braucht Hilfe."
+    (The man whose car is broken needs help. — masc gen: dessen)
+    "Die Frau, deren Tochter ich kenne, heißt Müller."
+    (The woman whose daughter I know is named Müller. — fem gen: deren)
+    "Das Unternehmen, dessen Produkte bekannt sind, ist groß."
+    (The company whose products are well-known is large. — neut gen: dessen)
+    "Die Kinder, deren Eltern arbeiten, gehen in die KiTa."
+    (The children whose parents work go to daycare. — plural gen: deren)
+
+    NOTE: After dessen/deren, the owned noun has NO article (or indefinite article):
+    "dessen Auto" — NOT "dessen das Auto"
+    "deren Mutter" — NOT "deren die Mutter"
+
+    ─────────────────────────────────────────────
+    WAS as a relative pronoun
+    ─────────────────────────────────────────────
+    Use "was" (not der/die/das) after:
+    1. Indefinites: alles, nichts, etwas, vieles, das Beste, das Schönste, etc.
+       "Alles, was er sagt, stimmt." (Everything he says is true.)
+       "Es gibt nichts, was ich nicht mag." (There's nothing I don't like.)
+       "Das ist das Beste, was ich je gegessen habe." (That's the best I've ever eaten.)
+
+    2. An entire previous clause (when the antecedent is a whole idea):
+       "Er hat die Prüfung bestanden, was mich sehr gefreut hat."
+       (He passed the exam, which pleased me greatly.)
+       "Sie kam zu spät, was gar nicht zu ihr passt."
+       (She arrived late, which doesn't suit her at all.)
+
+    WAS with prepositions — use wo(r)- compound:
+    "Das ist alles, worüber wir gesprochen haben." (That's everything we talked about.)
+    "Es gibt vieles, womit ich nicht einverstanden bin." (There's much I don't agree with.)
+  english_comparison: |
+    English relative pronouns: who (people), which (things), that (either), whose (possession)
+    German uses der/die/das forms that change for CASE — this is the main challenge.
+
+    English "whom" = German dative/accusative forms (den, dem, der, etc.)
+    Most English speakers now use "who" for all cases; German maintains case distinction:
+    "the man WHO I help" = English (who = subject feeling)
+    "der Mann, DEM ich helfe" = German (dem = dative because helfen + dative)
+
+    GENITIVE relative pronouns are where English speakers struggle most:
+    English: "the man WHOSE car is broken"
+    German: "der Mann, DESSEN Auto kaputt ist"
+    "dessen" replaces "the man's" — the owned noun (Auto) needs no article after it.
+
+    English "which" after a whole clause = German "was":
+    "He passed the exam, WHICH pleased me." → "Er bestand, WAS mich freute."
+
+    DATIVE plural "denen" is a common error — English speakers use "die":
+    WRONG: "Die Leute, die ich helfe..." (die = nominative/accusative plural)
+    RIGHT: "Die Leute, denen ich helfe..." (denen = dative plural — helfen takes dative)
+
+  table:
+    headers: ["Case", "Masc", "Fem", "Neut", "Plural", "Use case"]
+    rows:
+      - ["Nominative", "der", "die", "das", "die", "Subject of relative clause"]
+      - ["Accusative", "den", "die", "das", "die", "Direct object in relative clause"]
+      - ["Dative", "dem", "der", "dem", "denen", "Indirect obj / after dative preposition"]
+      - ["Genitive", "dessen", "deren", "dessen", "deren", "Possession ('whose')"]
+
+example_sentences:
+  - german: "Der Kollege, dem ich täglich schreibe, wohnt in Hamburg."
+    english: "The colleague I write to daily lives in Hamburg."
+    breakdown_focus: "dative relative: dem (masc) — schreiben + dative; fronted adverb täglich"
+  - german: "Die Studentin, deren Doktorarbeit sehr bekannt ist, hält heute einen Vortrag."
+    english: "The student whose doctoral thesis is very well known is giving a lecture today."
+    breakdown_focus: "genitive relative: deren (fem) — Doktorarbeit belongs to die Studentin"
+  - german: "Das ist alles, was ich dir sagen kann."
+    english: "That is everything that I can tell you."
+    breakdown_focus: "was after 'alles' (indefinite); kann at end of relative clause (modal)"
+  - german: "Die Städte, in denen ich gelebt habe, sind alle sehr verschieden."
+    english: "The cities I have lived in are all very different."
+    breakdown_focus: "dative plural: denen after in; plural noun Städte → denen"
+  - german: "Er hatte endlich die Stelle bekommen, auf die er so lange gewartet hatte."
+    english: "He had finally gotten the position he had been waiting so long for."
+    breakdown_focus: "auf + accusative relative: auf die (fem acc); warten auf + acc"
+
+quiz: null

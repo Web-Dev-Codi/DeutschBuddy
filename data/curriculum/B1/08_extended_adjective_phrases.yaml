@@ -1,0 +1,163 @@
+id: "B1-GRM-008"
+level: "B1"
+category: "grammar"
+title: "Extended Adjective Phrases — Complex Noun Phrase Compression"
+prerequisites: ["B1-GRM-007", "A2-GRM-004"]
+estimated_minutes: 28
+tags:
+  - extended-adjective-phrases
+  - noun-phrases
+  - participial-attributes
+  - clause-compression
+  - adjective-chains
+  - formal-writing
+  - nominalization
+
+explanation:
+  concept: |
+    Extended adjective phrases (Erweiterte Nominalphrasen / Linksattribute) allow
+    complex information to be packed into the noun phrase BEFORE the noun.
+    This is a hallmark of formal German writing and essential for B1-B2 reading.
+
+    ─────────────────────────────────────────────
+    BASIC ADJECTIVE STACKING
+    ─────────────────────────────────────────────
+    Multiple adjectives can precede a noun. ALL take appropriate case endings.
+    The last adjective before the noun gets the most specific/important ending.
+
+    "ein langer, schwieriger Test" (a long, difficult test)
+    "das große, alte, rote Haus" (the big, old, red house)
+    "ein interessanter, gut geschriebener Roman" (an interesting, well-written novel)
+
+    COMMAS between adjectives: used when adjectives are of equal rank.
+    No comma when a preceding adjective modifies the following one:
+    "ein kleines rotes Auto" (a small red car — rotes modifies Auto; klein modifies rotes Auto)
+    "ein interessantes deutsches Buch" (an interesting German book)
+
+    ─────────────────────────────────────────────
+    PARTICIPIAL ATTRIBUTES (Partizipialattribute)
+    ─────────────────────────────────────────────
+    Participial phrases used as pre-noun modifiers (covered in B1-GRM-007).
+    At B1+, these become more complex:
+
+    SIMPLE:
+    "die bestellte Pizza" (the ordered pizza)
+    "der laufende Motor" (the running engine)
+
+    WITH ADVERB:
+    "die kürzlich bestellte Pizza" (the recently ordered pizza)
+    "der noch laufende Motor" (the still-running engine)
+
+    WITH PREPOSITIONAL PHRASE:
+    "die von meinem Bruder bestellte Pizza" (the pizza ordered by my brother)
+    "der seit Stunden laufende Motor" (the engine running for hours)
+
+    NESTED ATTRIBUTES:
+    "die gestern von einem unbekannten Absender erhaltene E-Mail"
+    (the email received yesterday from an unknown sender)
+    Reading strategy: find the NOUN first, then work backwards to find the article.
+
+    ─────────────────────────────────────────────
+    NOMINALIZATION (Nominalisierung)
+    ─────────────────────────────────────────────
+    German formal writing frequently turns verbs and adjectives into nouns.
+    Nominalizations are neuter and take the definite article "das":
+
+    VERB → NOMINALIZATION:
+    fahren → das Fahren (driving)
+    lernen → das Lernen (learning)
+    schreiben → das Schreiben (writing)
+    laufen → das Laufen (running)
+
+    ADJECTIVE → NOMINALIZATION:
+    alt → der/die Alte (the old person — masc/fem)
+    gut → das Gute (the good thing/aspect)
+    neu → das Neue (the new thing)
+    schön → das Schöne (the beautiful thing)
+
+    INFINITIVE AS NOUN:
+    "Das Lesen macht mir Spaß." (Reading is fun for me.)
+    "Das schnelle Fahren ist gefährlich." (Driving fast is dangerous.)
+
+    ─────────────────────────────────────────────
+    READING COMPLEX NOUN PHRASES — STRATEGY
+    ─────────────────────────────────────────────
+    Step 1: Identify the article (der/die/das/ein/eine).
+    Step 2: Skip to the NOUN (it comes just before the main verb or as topic).
+    Step 3: Everything between article and noun = the extended modifier.
+    Step 4: Read the modifier from right to left to build up meaning.
+
+    Example:
+    "Die seit Jahren von vielen Experten diskutierte Frage bleibt offen."
+    Step 1: Die (fem, nom) → the question
+    Step 2: Noun = Frage
+    Step 3: Modifier = "seit Jahren von vielen Experten diskutierte"
+    Step 4: diskutiert (discussed) ← von vielen Experten (by many experts) ← seit Jahren (for years)
+    Full meaning: "The question discussed by many experts for years remains open."
+
+    ─────────────────────────────────────────────
+    COMMON PATTERNS IN FORMAL WRITING
+    ─────────────────────────────────────────────
+    Newspapers: "der im Bundestag verabschiedete Gesetzentwurf"
+    (the bill passed in the Bundestag)
+
+    Academic: "die in der Studie beschriebenen Methoden"
+    (the methods described in the study)
+
+    Business: "die neu eingestellten Mitarbeiter"
+    (the newly hired employees)
+
+    Legal: "das vom Gericht bestellte Gutachten"
+    (the expert report commissioned by the court)
+  english_comparison: |
+    English and German handle complex noun phrases VERY differently:
+
+    English: pre-noun modifiers are SHORT (just adjectives); everything else goes AFTER:
+    "the question discussed by many experts for years" (long modifier AFTER noun)
+
+    German: the ENTIRE modifier, however long, goes BEFORE the noun:
+    "die seit Jahren von vielen Experten diskutierte Frage"
+    (everything before "Frage" — including the prepositional phrases!)
+
+    This is one of the biggest processing challenges for English speakers reading German.
+    German text can be DENSE with information packed before the noun.
+
+    English solution: convert to relative clause → "the question that has been discussed..."
+    German spoken equivalent: "die Frage, die seit Jahren von vielen Experten diskutiert wird"
+
+    Nominalization is also much more common in German than English:
+    English: "We need to improve the process of evaluation."
+    German: "Die Verbesserung des Evaluierungsprozesses ist notwendig."
+    German prefers turning verbs into nouns (Verbesserung = improvement, das Lernen = learning).
+
+    Key tip for B1 learners: When reading, ALWAYS find the article + noun bracket first,
+    then decode the extended phrase. Don't try to read linearly in complex sentences.
+
+  table:
+    headers: ["Structure", "German Example", "English Equivalent"]
+    rows:
+      - ["Simple adj", "das rote Auto", "the red car"]
+      - ["Multiple adjs", "das große, alte Haus", "the big, old house"]
+      - ["Adverb + Partizip II", "das kürzlich renovierte Hotel", "the recently renovated hotel"]
+      - ["Prep phrase + Partizip II", "der von Experten empfohlene Arzt", "the doctor recommended by experts"]
+      - ["Complex extended", "die seit 2020 geplante Reform", "the reform planned since 2020"]
+      - ["Nominalization", "das schnelle Fahren", "driving fast (fast driving)"]
+
+example_sentences:
+  - german: "Das seit Wochen angekündigte Konzert wurde abgesagt."
+    english: "The concert that had been announced for weeks was cancelled."
+    breakdown_focus: "extended Partizip II: seit Wochen angekündigte; neut nom: das...Konzert"
+  - german: "Die neu eingestellten Mitarbeiter werden nächste Woche eingeführt."
+    english: "The newly hired employees will be introduced next week."
+    breakdown_focus: "neu (adverb) + eingestellt (Partizip II) + -en (plural weak ending)"
+  - german: "Das Lernen einer neuen Sprache erfordert viel Geduld."
+    english: "Learning a new language requires a lot of patience."
+    breakdown_focus: "Lernen = nominalized infinitive (das Lernen); followed by genitive attribute"
+  - german: "Die von der Regierung beschlossenen Maßnahmen treten im Januar in Kraft."
+    english: "The measures decided upon by the government take effect in January."
+    breakdown_focus: "von der Regierung beschlossen → extended Partizip II before Maßnahmen (plural)"
+  - german: "Er suchte eine gut bezahlte, interessante Stelle in seiner Heimatstadt."
+    english: "He was looking for a well-paid, interesting position in his hometown."
+    breakdown_focus: "two participial adjectives coordinated with comma: gut bezahlte + interessante"
+
+quiz: null
