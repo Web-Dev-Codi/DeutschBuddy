@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datetime import datetime
+
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
@@ -118,7 +120,6 @@ class ResultsScreen(Screen):
 
     async def _update_progress(self) -> None:
         """Update mastery score and spaced repetition schedule."""
-        from datetime import datetime
         from german_tutor.curriculum.spaced_repetition import (
             CardState,
             calculate_next_review,
@@ -160,7 +161,6 @@ class ResultsScreen(Screen):
 
     async def _update_streak(self) -> None:
         """Update learner streak after session save."""
-        from datetime import datetime
         from german_tutor.curriculum.streak import calculate_streak
 
         state = getattr(self.app, "_state", None)
@@ -176,9 +176,15 @@ class ResultsScreen(Screen):
             self.learner.last_session_date, self.learner.streak_days
         )
         now = datetime.now()
-        await learner_repo.update_streak(self.learner.id, new_streak, now)
+        try:
+            await learner_repo.update_streak(self.learner.id, new_streak, now)
+        except Exception as e:
+            self.app.log.error(f"Failed to update streak: {e}")
+            return  # don't update in-memory if DB failed
 
-        # Update in-memory state so HomeScreen reflects the new streak
+        # Update both self.learner and state.current_learner so they stay consistent
+        self.learner.streak_days = new_streak
+        self.learner.last_session_date = now
         if state.current_learner is not None:
             state.current_learner.streak_days = new_streak
             state.current_learner.last_session_date = now
