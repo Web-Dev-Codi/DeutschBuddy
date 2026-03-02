@@ -1,0 +1,17 @@
+[app]
+name = "GermanTutor"
+version = "0.1.0"
+
+[ollama]
+host = "http://localhost:11434"
+curriculum_model = "llama3.1:8b-instruct"
+interaction_model = "mistral:7b-instruct"
+num_ctx = 4096
+num_gpu = 1
+
+[db]
+path = "data/db/learner.db"
+
+[curriculum]
+data_path = "data/curriculum"
+default_level = "A1"
