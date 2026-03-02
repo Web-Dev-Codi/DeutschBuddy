@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 from german_tutor.llm.client import OllamaClient
 from german_tutor.llm.prompts import PROMPTS
 from german_tutor.models.learner import Learner
@@ -15,8 +17,6 @@ class QuizAgent:
 
     async def generate_quiz(self, lesson: Lesson, learner: Learner) -> dict:
         """Generate a 10-question quiz for the given lesson."""
-        import json
-
         vocab_list = [s.get("german", "") for s in lesson.example_sentences]
 
         template = PROMPTS["quiz_gen"]

@@ -51,12 +51,12 @@ class CurriculumAgent:
                     available_lessons_json=json.dumps(
                         [
                             {
-                                "id": l.id,
-                                "title": l.title,
-                                "category": l.category.value,
-                                "prerequisites": l.prerequisites,
+                                "id": lesson.id,
+                                "title": lesson.title,
+                                "category": lesson.category.value,
+                                "prerequisites": lesson.prerequisites,
                             }
-                            for l in available_lessons
+                            for lesson in available_lessons
                         ],
                         indent=2,
                     ),
