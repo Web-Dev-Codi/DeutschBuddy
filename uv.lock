@@ -335,11 +335,11 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "aiosqlite", specifier = ">=0.20.0" },
-    { name = "ollama", specifier = ">=0.3.0" },
+    { name = "ollama", specifier = ">=0.6.1" },
     { name = "pydantic", specifier = ">=2.0.0" },
     { name = "pyyaml", specifier = ">=6.0" },
     { name = "rich", specifier = ">=13.0.0" },
-    { name = "textual", specifier = ">=0.60.0" },
+    { name = "textual", specifier = ">=8.0.1" },
 ]
 
 [package.metadata.requires-dev]

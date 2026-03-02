@@ -1,6 +1,34 @@
-@import "theme.tcss";
+/* GermanTutor theme — dark terminal aesthetic */
+$primary: #4A90D9;
+$primary-darken-1: #3A7BC8;
+$primary-darken-2: #2A6AB7;
 
-/* Import theme variables */
+$secondary: #9B59B6;
+
+$accent: #3498DB;
+
+$background: #1A1A2E;
+$background-darken-1: #16213E;
+$background-darken-2: #0F3460;
+
+$panel: #16213E;
+$panel-darken-1: #0F3460;
+
+$surface: #1A1A2E;
+
+$text: #E8E8E8;
+$text-muted: #888888;
+
+/* Semantic colors for grammar case display */
+$nominative: #E74C3C;
+$accusative: #F39C12;
+$dative: #3498DB;
+$genitive: #27AE60;
+
+/* Semantic aliases */
+$error: #E74C3C;
+$warning: #F39C12;
+$success: #27AE60;
 
 Screen {
     layout: grid;
