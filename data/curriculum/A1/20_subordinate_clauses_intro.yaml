@@ -1,0 +1,103 @@
+id: "A1-GRM-020"
+level: "A1"
+category: "grammar"
+title: "Subordinate Clauses — Verb Goes to End"
+prerequisites: ["A1-GRM-018"]
+estimated_minutes: 20
+tags: ["subordinate-clauses", "weil", "dass", "wenn", "verb-final", "word-order"]
+
+explanation:
+  concept: |
+    In a SUBORDINATE (dependent) clause, the conjugated verb moves to the VERY END.
+
+    Common subordinating conjunctions:
+    weil  = because   "Ich lerne Deutsch, weil ich es interessant finde."
+    dass  = that      "Ich denke, dass Deutsch schwer ist."
+    wenn  = when/if   "Wenn ich Zeit habe, lerne ich Deutsch."
+    ob    = whether   "Ich weiß nicht, ob er kommt."
+
+    STRUCTURE:
+    Main clause: Subject (1) Verb (2) Object
+    + Comma
+    + Subordinate clause: conjunction Subject ... VERB-AT-END
+
+    Example:
+    "Ich lerne Deutsch," = main clause (verb at position 2)
+    "weil es interessant ist." = subordinate clause (verb 'ist' at END)
+
+    With SEPARABLE verbs in subordinate clause:
+    The prefix RE-ATTACHES to the verb at the end:
+    "Er steht um 6 Uhr auf." (main) → "..., weil er um 6 Uhr aufsteht." (sub)
+
+    With MODAL verbs in subordinate clause:
+    Modal moves to end, AFTER the infinitive:
+    "Er kann Deutsch sprechen." → "..., weil er Deutsch sprechen kann."
+  english_comparison: |
+    English keeps the verb in the same position in subordinate clauses:
+    "I learn German BECAUSE it IS interesting." (verb stays after subject)
+
+    German moves the verb to the END:
+    "Ich lerne Deutsch, weil es interessant IST." (ist at end!)
+
+    This is one of the hardest things for English speakers — the verb disappears
+    to the end of the sentence and you must wait for it!
+
+    Modal in subordinate clauses — German is very different from English:
+    English: "because he CAN speak German"
+    German: "weil er Deutsch sprechen KANN" (modal goes to the very end!)
+
+example_sentences:
+  - german: "Ich bin müde, weil ich nicht geschlafen habe."
+    english: "I am tired because I didn't sleep."
+    breakdown_focus: "weil clause: subject (ich) + object (nicht geschlafen) + VERB (habe) at end"
+  - german: "Sie sagt, dass er sehr nett ist."
+    english: "She says that he is very nice."
+    breakdown_focus: "dass clause: er + sehr nett + ist (verb at end)"
+  - german: "Wenn du Zeit hast, können wir essen gehen."
+    english: "If you have time, we can go eat."
+    breakdown_focus: "Wenn clause: du + Zeit + hast (verb at end); then main clause inverts"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Ich kaufe das Buch, weil es ___. (I buy the book because it is good.)"
+      options: ["ist gut", "gut ist", "gut sein", "ist es gut"]
+      correct_answer: "gut ist"
+      correct_answer_index: 1
+      answer_explanation: "In a 'weil' clause, the verb moves to the END. 'ist' (is) goes after the adjective 'gut': weil es gut IST."
+      grammar_rule_tested: "verb-final in weil clause"
+      english_comparison: "English: because it IS good (verb stays in middle). German: weil es gut IST (verb goes to end!)"
+      hint: "After 'weil', the verb goes to the END of the clause. Where does 'ist' go?"
+      points: 10
+    - type: "fill_blank"
+      question: "Er sagt, dass er morgen ___. (He says that he is coming tomorrow.)"
+      context: "kommen = to come, er kommt = he comes"
+      options: null
+      correct_answer: "kommt"
+      correct_answer_index: null
+      answer_explanation: "In a 'dass' clause, the conjugated verb goes to the end: dass er morgen KOMMT. kommt = he comes (er + kommen = kommt)."
+      grammar_rule_tested: "verb-final in dass clause"
+      english_comparison: "English: that he IS COMING tomorrow. German: dass er morgen KOMMT (verb at end)"
+      hint: "After 'dass', the verb goes to the END. Conjugate kommen for er: er kommt."
+      points: 10
+    - type: "multiple_choice"
+      question: "Correct the word order: 'Ich bleibe zu Hause, weil ich bin krank.'"
+      options: ["Ich bleibe zu Hause, weil ich krank bin.", "Ich bleibe zu Hause, weil bin ich krank.", "Ich bleibe zu Hause, weil krank ich bin.", "Ich bleibe zu Hause, weil ich krank ist."]
+      correct_answer: "Ich bleibe zu Hause, weil ich krank bin."
+      correct_answer_index: 0
+      answer_explanation: "In the 'weil' clause, 'bin' (the verb) must go to the END: weil ich krank BIN. The adjective 'krank' comes before the verb."
+      grammar_rule_tested: "verb-final correction in subordinate clause"
+      english_comparison: "English: because I am sick (verb stays in middle). German: weil ich krank BIN (verb at end!)"
+      hint: "In the 'weil' clause, the verb must be LAST. Move 'bin' to the end."
+      points: 10
+    - type: "translation"
+      question: "Translate: I know that he can speak German."
+      context: "wissen = to know, können = can, Deutsch sprechen = speak German"
+      options: null
+      correct_answer: "Ich weiß, dass er Deutsch sprechen kann."
+      correct_answer_index: null
+      answer_explanation: "dass clause with modal: 'kann' goes to the very end, AFTER the infinitive 'sprechen'. Word order in dass clause: er + Deutsch + sprechen + kann."
+      grammar_rule_tested: "modal verb at end of subordinate clause"
+      english_comparison: "English: that he CAN speak German (modal before infinitive). German: dass er Deutsch sprechen KANN (modal at end!)"
+      hint: "In a dass clause with a modal, the modal goes to the very end AFTER the infinitive. weiß = knows (ich weiß)."
+      points: 15

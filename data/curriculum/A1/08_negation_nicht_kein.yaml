@@ -1,0 +1,92 @@
+id: "A1-GRM-008"
+level: "A1"
+category: "grammar"
+title: "Negation: nicht vs kein"
+prerequisites: ["A1-GRM-007"]
+estimated_minutes: 18
+tags: ["negation", "nicht", "kein", "sentence-structure"]
+
+explanation:
+  concept: |
+    German has TWO words for negation. Choosing the right one depends on WHAT
+    you are negating:
+
+    Use KEIN (kein/keine/kein) to negate:
+    - Nouns with indefinite articles: "Ich habe kein Buch."
+    - Nouns with no article: "Ich habe keine Zeit." (I have no time.)
+
+    Use NICHT to negate:
+    - Verbs: "Ich schlafe nicht." (I am not sleeping.)
+    - Adjectives: "Er ist nicht groß." (He is not tall.)
+    - Adverbs: "Sie kommt nicht heute." (She's not coming today.)
+    - Proper nouns: "Das ist nicht Berlin." (That is not Berlin.)
+    - Definite nouns (with der/die/das): "Ich mag den Film nicht." (I don't like the film.)
+
+    Position of nicht:
+    - At the end of the clause in simple sentences: "Ich schlafe nicht."
+    - Directly before the word/phrase it negates: "nicht heute", "nicht groß"
+    - Before the verb in two-part verbs: "Ich gehe nicht schlafen."
+  english_comparison: |
+    English uses "not" + "don't/doesn't/didn't" for everything:
+    "I don't have a book" = Ich habe kein Buch. (not: Ich habe nicht ein Buch)
+    "I am not sleeping" = Ich schlafe nicht.
+    "He is not tall" = Er ist nicht groß.
+
+    The most common English-speaker error: using "nicht" for nouns.
+    WRONG: Ich habe nicht ein Buch.
+    RIGHT: Ich habe kein Buch.
+
+example_sentences:
+  - german: "Ich trinke nicht."
+    english: "I am not drinking."
+    breakdown_focus: "nicht at end — negates the verb"
+  - german: "Er hat keine Geschwister."
+    english: "He has no siblings."
+    breakdown_focus: "keine Geschwister — kein negates the noun (plural)"
+  - german: "Das ist nicht gut."
+    english: "That is not good."
+    breakdown_focus: "nicht before adjective 'gut'"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Ich habe ___ Auto. (I have no car.)"
+      options: ["nicht", "kein", "keine", "keinen"]
+      correct_answer: "kein"
+      correct_answer_index: 1
+      answer_explanation: "Auto is a neuter noun. To negate a noun, use kein/keine/kein. Neuter accusative = kein."
+      grammar_rule_tested: "kein for noun negation"
+      english_comparison: "English: 'I have no car' or 'I don't have a car' — German uses 'kein Auto'"
+      hint: "Auto is a noun. Which word negates nouns in German?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Er schläft ___. (He is not sleeping.)"
+      options: ["nicht", "kein", "keine", "keinen"]
+      correct_answer: "nicht"
+      correct_answer_index: 0
+      answer_explanation: "schlafen is a verb. Verbs are negated with 'nicht', placed at the end of the clause."
+      grammar_rule_tested: "nicht for verb negation"
+      english_comparison: "English: 'He is not sleeping' — German: 'Er schläft nicht' (nicht at the end)"
+      hint: "Is 'schläft' a verb or a noun? Which negation word is used for verbs?"
+      points: 10
+    - type: "fill_blank"
+      question: "Das Essen ist ___ gut. (The food is not good.)"
+      context: "gut = good (adjective)"
+      options: null
+      correct_answer: "nicht"
+      correct_answer_index: null
+      answer_explanation: "gut is an adjective. Adjectives are negated with 'nicht', placed directly before the adjective."
+      grammar_rule_tested: "nicht before adjective"
+      english_comparison: "English: 'not good' — German: 'nicht gut' (same word order here)"
+      hint: "Is 'gut' a verb or an adjective? Use nicht for adjectives."
+      points: 10
+    - type: "multiple_choice"
+      question: "Which sentence is CORRECT?"
+      options: ["Ich habe nicht eine Schwester.", "Ich habe keine Schwester.", "Ich habe nicht Schwester.", "Ich habe kein Schwester."]
+      correct_answer: "Ich habe keine Schwester."
+      correct_answer_index: 1
+      answer_explanation: "Schwester is feminine. To negate a noun, use kein. Feminine accusative = keine. Never 'nicht ein/eine'."
+      grammar_rule_tested: "kein vs nicht ein for noun negation"
+      english_comparison: "English: 'I don't have a sister' — German: 'Ich habe keine Schwester' (kein, not nicht)"
+      hint: "Schwester is a noun. Which word negates nouns? What's the feminine form?"
+      points: 10

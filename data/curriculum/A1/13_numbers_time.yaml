@@ -1,0 +1,99 @@
+id: "A1-GRM-013"
+level: "A1"
+category: "vocabulary"
+title: "Numbers 1-100 and Telling Time"
+prerequisites: ["A1-GRM-001"]
+estimated_minutes: 25
+tags: ["numbers", "time", "uhr", "vocabulary", "counting"]
+
+explanation:
+  concept: |
+    NUMBERS 1-20 (must be memorized — many are irregular):
+    1 ein  2 zwei  3 drei  4 vier  5 fünf
+    6 sechs  7 sieben  8 acht  9 neun  10 zehn
+    11 elf  12 zwölf  13 dreizehn  14 vierzehn  15 fünfzehn
+    16 sechzehn  17 siebzehn  18 achtzehn  19 neunzehn  20 zwanzig
+
+    NUMBERS 21-100 (pattern: ones + und + tens):
+    21 = einundzwanzig  (one-and-twenty)
+    22 = zweiundzwanzig
+    30 = dreißig  40 = vierzig  50 = fünfzig
+    60 = sechzig  70 = siebzig  80 = achtzig  90 = neunzig  100 = hundert
+
+    TELLING TIME:
+    "Es ist ... Uhr" = It is ... o'clock
+    Es ist drei Uhr. = It is 3 o'clock.
+    Es ist halb vier. = It is half past three. (HALF TO four, NOT half past!)
+    Es ist Viertel nach zwei. = It is quarter past two.
+    Es ist Viertel vor fünf. = It is quarter to five.
+    Es ist zehn nach sechs. = It is ten past six.
+    Es ist zwanzig vor acht. = It is twenty to eight.
+
+    CRITICAL: "halb vier" = 3:30 (half WAY TO four, not half past four!)
+  english_comparison: |
+    Numbers 13-19: German adds "-zehn" (ten): drei-zehn (three-ten = 13)
+    English: thir-teen, four-teen — same concept, different irregular forms!
+
+    21-99: German reverses the order! "einundzwanzig" = one-and-twenty
+    English: twenty-one (tens first). German: einundzwanzig (ones first, then tens)
+
+    TIME — the biggest trap:
+    English: "half past three" = 3:30
+    German: "halb vier" = 3:30 (half TO four = halfway to the NEXT hour)
+    Germans think of the approaching hour, not the past hour!
+
+example_sentences:
+  - german: "Es ist halb neun."
+    english: "It is half past eight. (8:30)"
+    breakdown_focus: "halb + NEXT hour: halb neun = halfway to nine = 8:30"
+  - german: "Ich habe dreiundzwanzig Euro."
+    english: "I have 23 euros."
+    breakdown_focus: "dreiundzwanzig = drei + und + zwanzig (ones-and-tens order)"
+  - german: "Der Zug kommt um Viertel vor drei."
+    english: "The train comes at quarter to three. (2:45)"
+    breakdown_focus: "Viertel vor drei = quarter before three = 2:45"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "What time is 'halb sieben' in German?"
+      options: ["7:30", "6:30", "7:00", "6:15"]
+      correct_answer: "6:30"
+      correct_answer_index: 1
+      answer_explanation: "'halb sieben' = half way to seven = 6:30. German thinks of the APPROACHING hour, not the one that just passed."
+      grammar_rule_tested: "halb + next hour = half past previous hour"
+      english_comparison: "English 'half past six' = halb sieben in German (Germans say the NEXT hour, not the past hour)"
+      hint: "halb sieben means halfway TO seven. So it's 30 minutes BEFORE seven."
+      points: 10
+    - type: "fill_blank"
+      question: "What is 35 in German? (Write the number as a word)"
+      context: "Use the pattern: ones + und + tens"
+      options: null
+      correct_answer: "fünfunddreißig"
+      correct_answer_index: null
+      answer_explanation: "35 = fünf (5) + und + dreißig (30) = fünfunddreißig. Note: 30 is 'dreißig' (not 'dreizig'!) — a special spelling."
+      grammar_rule_tested: "number formation ones-und-tens order"
+      english_comparison: "English: thirty-five (tens first). German: fünfunddreißig (ones first, then tens)"
+      hint: "German puts ONES first: 5 + und + 30. What is 5 in German? What is 30? (Note: 30 = dreißig, not dreizig)"
+      points: 10
+    - type: "multiple_choice"
+      question: "How do you say 'It is quarter past four' in German?"
+      options: ["Es ist Viertel vor vier.", "Es ist halb vier.", "Es ist Viertel nach vier.", "Es ist vier Viertel."]
+      correct_answer: "Es ist Viertel nach vier."
+      correct_answer_index: 2
+      answer_explanation: "Quarter past = Viertel NACH (after) four. Viertel VOR = quarter TO (before). halb vier = 3:30."
+      grammar_rule_tested: "Viertel nach vs vor for quarter hours"
+      english_comparison: "English: 'quarter past' = German 'Viertel nach'. English 'quarter to' = German 'Viertel vor'."
+      hint: "nach = after/past. vor = before/to. Quarter PAST = Viertel...?"
+      points: 10
+    - type: "translation"
+      question: "Translate: It is twenty to nine. (8:40)"
+      context: null
+      options: null
+      correct_answer: "Es ist zwanzig vor neun."
+      correct_answer_index: null
+      answer_explanation: "Twenty to nine = 20 minutes before nine = zwanzig VOR neun. Es ist = It is."
+      grammar_rule_tested: "minutes vor (to) the hour"
+      english_comparison: "English 'twenty to nine' = German 'zwanzig vor neun' — same structure: minutes + vor + hour"
+      hint: "vor = before/to. Twenty = zwanzig. Nine = neun. It is = Es ist."
+      points: 15

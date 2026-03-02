@@ -1,0 +1,104 @@
+id: "A2-GRM-003"
+level: "A2"
+category: "grammar"
+title: "Dative Deep Dive — Pronouns and Full Case Table"
+prerequisites: ["A1-GRM-014", "A1-GRM-005"]
+estimated_minutes: 25
+tags: ["dative", "pronouns", "case-table", "mir", "dir", "ihm", "ihr"]
+
+explanation:
+  concept: |
+    FULL CASE TABLE for definite articles:
+
+                 Masc    Fem     Neut    Plural
+    Nominative:  der     die     das     die
+    Accusative:  den     die     das     die
+    Dative:      dem     der     dem     den
+
+    PERSONAL PRONOUNS — all three cases:
+
+                 Nominative  Accusative  Dative
+    1st sg:      ich         mich        mir
+    2nd sg inf:  du          dich        dir
+    3rd sg m:    er          ihn         ihm
+    3rd sg f:    sie         sie         ihr
+    3rd sg n:    es          es          ihm
+    1st pl:      wir         uns         uns
+    2nd pl inf:  ihr         euch        euch
+    3rd pl/Sie:  sie/Sie     sie/Sie     ihnen/Ihnen
+
+    KEY DATIVE PRONOUNS TO MASTER:
+    mir = to me / me (dative)     "Kannst du MIR helfen?" (Can you help ME?)
+    dir = to you / you (dative)   "Ich gebe DIR das Buch." (I give YOU the book.)
+    ihm = to him / him (dative)   "Es geht IHM gut." (He is doing well. lit: It goes well to him.)
+    ihr = to her / her (dative)   "Ich helfe IHR." (I help HER.)
+    uns = to us / us (dative)     "Er erklärt UNS die Aufgabe."
+    ihnen = to them (dative)      "Ich danke IHNEN." (I thank them.)
+  english_comparison: |
+    English dative pronouns: me, you, him, her, us, them
+    These are the same as English accusative pronouns!
+    "I give HIM the book" — him works for both to him and accusative.
+
+    German distinguishes:
+    Accusative: ich sehe IHN (I see him — direct object)
+    Dative: ich gebe IHM das Buch (I give him the book — indirect object)
+
+    "Es geht mir gut" = I am doing well (lit: it goes well TO ME)
+    This is a FIXED PHRASE. Learn it as one unit.
+    "Wie geht es Ihnen?" → "Es geht mir gut, danke."
+
+example_sentences:
+  - german: "Kannst du mir bitte helfen?"
+    english: "Can you please help me?"
+    breakdown_focus: "mir = dative of ich; helfen (to help) takes dative"
+  - german: "Ich zeige dir die Stadt."
+    english: "I'll show you the city."
+    breakdown_focus: "dir = dative of du (indirect object), die Stadt = accusative direct object"
+  - german: "Es geht ihm heute nicht gut."
+    english: "He is not doing well today."
+    breakdown_focus: "ihm = dative of er; fixed phrase 'es geht + dative + gut'"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Ich gebe ___ das Buch. (I give you the book.) — Use the dative of 'du'."
+      options: ["dich", "dir", "du", "dein"]
+      correct_answer: "dir"
+      correct_answer_index: 1
+      answer_explanation: "du in the dative = dir. The book (das Buch) is the direct object (accusative). 'you' = indirect object (dative) = dir."
+      grammar_rule_tested: "dative pronoun dir (du → dir)"
+      english_comparison: "English: I give YOU the book — 'you' works for both. German: ich gebe DIR — must use dative form dir"
+      hint: "du → dich (accusative) → dir (dative). This is the dative/indirect object."
+      points: 10
+    - type: "multiple_choice"
+      question: "Wie geht es ___? (How are you? — formal)"
+      options: ["Sie", "Ihnen", "ihr", "euch"]
+      correct_answer: "Ihnen"
+      correct_answer_index: 1
+      answer_explanation: "'Wie geht es Ihnen?' uses the formal dative pronoun 'Ihnen' (capital I). The fixed phrase 'es geht + dative' requires the dative case."
+      grammar_rule_tested: "formal dative pronoun Ihnen"
+      english_comparison: "English: How are YOU? — German: Wie geht es IHNEN? (dative, formal)"
+      hint: "The phrase 'Wie geht es ___?' takes dative. Formal 'you' in dative = ?"
+      points: 10
+    - type: "fill_blank"
+      question: "Es geht ___ gut. (I am doing well.)"
+      context: "The fixed phrase 'es geht + dative + gut' = to be doing well"
+      options: null
+      correct_answer: "mir"
+      correct_answer_index: null
+      answer_explanation: "'ich' in the dative = 'mir'. The phrase 'es geht mir gut' literally means 'it goes well for me'."
+      grammar_rule_tested: "dative pronoun mir (ich → mir)"
+      english_comparison: "English: I am doing well. German: Es geht mir gut. (dative mir, not nominative ich)"
+      hint: "I = ich → accusative mich → dative mir. The phrase takes dative."
+      points: 10
+    - type: "translation"
+      question: "Translate: He is showing her the way."
+      context: "zeigen = to show, der Weg = the way (masculine)"
+      options: null
+      correct_answer: "Er zeigt ihr den Weg."
+      correct_answer_index: null
+      answer_explanation: "zeigen = to show. er zeigt = he shows. ihr = dative of sie (her, indirect object). den Weg = accusative (masculine direct object, der → den). Word order: dative before accusative when both are nouns."
+      grammar_rule_tested: "dative pronoun ihr + accusative object"
+      english_comparison: "English: He shows HER the way. German: Er zeigt IHR den Weg (ihr = dative of sie)"
+      hint: "her (dative) = ihr. the way = den Weg (masculine accusative). zeigen → er zeigt."
+      points: 15

@@ -1,0 +1,97 @@
+id: "A1-GRM-016"
+level: "A1"
+category: "grammar"
+title: "Dative Prepositions"
+prerequisites: ["A1-GRM-014"]
+estimated_minutes: 20
+tags: ["prepositions", "dative", "aus", "bei", "mit", "nach", "seit", "von", "zu", "contractions"]
+
+explanation:
+  concept: |
+    DATIVE PREPOSITIONS (always take dative case):
+    aus   = from / out of     "aus Deutschland" (from Germany)
+    bei   = at / with / near  "bei der Arbeit" (at work)
+    mit   = with              "mit dem Bus" (by bus)
+    nach  = after / to (cities/countries) "nach Berlin" (to Berlin)
+    seit  = since / for (duration) "seit zwei Jahren" (for two years)
+    von   = from / of / by    "von der Schule" (from school)
+    zu    = to (people/places) "zu Hause" (at home)
+    gegenüber = opposite / across from (usually follows noun) "dem Bahnhof gegenüber"
+
+    Memory: "Aus bei mit nach — seit von zu" (8 dative prepositions)
+
+    CONTRACTIONS (very common, often required):
+    zu + dem = zum     "Ich gehe zum Bahnhof." (to the train station)
+    zu + der = zur     "Ich fahre zur Schule." (to school)
+    bei + dem = beim   "Er ist beim Arzt." (at the doctor's)
+    von + dem = vom    "vom Supermarkt" (from the supermarket)
+
+    SEIT: expresses ongoing action starting in the past:
+    "Ich lerne seit drei Monaten Deutsch."
+    (I have been learning German for three months — and still am!)
+  english_comparison: |
+    English "since" and "for" differ: "since 2020" vs "for 3 years"
+    German 'seit' covers BOTH: "seit 2020" AND "seit drei Jahren"
+    — and it uses PRESENT tense (not perfect like English!)
+
+    English: "I HAVE BEEN learning for 3 years" (perfect continuous)
+    German: "Ich lerne seit 3 Jahren" (simple present!) ← common error to avoid
+
+    Contractions: English has no equivalents
+    zum, zur, beim, vom are COMMON and often preferred over full forms.
+
+example_sentences:
+  - german: "Ich fahre mit dem Zug nach München."
+    english: "I am traveling to Munich by train."
+    breakdown_focus: "mit dem Zug (mit + dative), nach München (nach + city, no article needed)"
+  - german: "Sie kommt aus der Türkei."
+    english: "She comes from Turkey."
+    breakdown_focus: "aus der Türkei — aus + dative, Türkei is feminine"
+  - german: "Er wohnt seit einem Jahr in Berlin."
+    english: "He has been living in Berlin for a year."
+    breakdown_focus: "seit einem Jahr — seit + dative, einem (neuter dative indefinite)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Ich gehe ___ Arzt. (I am going to the doctor.) — Use the contraction."
+      options: ["zu den", "zum", "zur", "bei dem"]
+      correct_answer: "zum"
+      correct_answer_index: 1
+      answer_explanation: "zu + dem = zum. Arzt (doctor) is masculine: zu dem Arzt → zum Arzt. The contraction is required in standard German."
+      grammar_rule_tested: "zu + dem = zum contraction"
+      english_comparison: "English: 'to the doctor' — German: 'zum Arzt' (zu contracts with dem for masculine)"
+      hint: "Arzt is masculine. zu + dem = ? (Use the contraction!)"
+      points: 10
+    - type: "fill_blank"
+      question: "Er kommt ___ Schule. (He is coming from school.)"
+      context: "Schule = school (feminine)"
+      options: null
+      correct_answer: "von der"
+      correct_answer_index: null
+      answer_explanation: "von (from) + dative. Schule is feminine. Feminine dative definite article = 'der'. So: von der Schule."
+      grammar_rule_tested: "von + feminine dative"
+      english_comparison: "English: from school (no article needed) — German: von der Schule (article required, dative feminine = der)"
+      hint: "von takes dative. Schule is feminine. What is the dative feminine definite article?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Which sentence correctly says 'I have been living here for 5 years'?"
+      options: ["Ich habe hier seit 5 Jahren gewohnt.", "Ich wohne hier seit 5 Jahren.", "Ich wohnte hier für 5 Jahre.", "Ich habe hier für 5 Jahren gelebt."]
+      correct_answer: "Ich wohne hier seit 5 Jahren."
+      correct_answer_index: 1
+      answer_explanation: "'seit' with present tense expresses an ongoing action that started in the past and continues now. Do NOT use perfect tense — that would imply it's finished!"
+      grammar_rule_tested: "seit + present tense for ongoing actions"
+      english_comparison: "English uses PERFECT CONTINUOUS: 'I have been living' — German uses PRESENT TENSE: 'ich wohne' with 'seit'"
+      hint: "seit + present tense = ongoing action. German doesn't use perfect tense with seit for ongoing actions."
+      points: 10
+    - type: "translation"
+      question: "Translate: She is traveling to school by bus."
+      context: "fahren = to travel/drive, Schule = school (feminine), Bus = bus (masculine)"
+      options: null
+      correct_answer: "Sie fährt mit dem Bus zur Schule."
+      correct_answer_index: null
+      answer_explanation: "mit dem Bus (mit + dative masculine). zu + der Schule = zur Schule (contraction). fährt = she travels (fahren is irregular: du fährst, er fährt)."
+      grammar_rule_tested: "mit + dative and zu + contraction"
+      english_comparison: "English: by bus to school — German: mit dem Bus zur Schule (both need dative prepositions)"
+      hint: "mit dem Bus (by bus), zu der Schule → zur Schule (use contraction!). fährt = she travels."
+      points: 15

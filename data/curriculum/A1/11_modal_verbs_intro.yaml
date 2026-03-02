@@ -1,0 +1,100 @@
+id: "A1-GRM-011"
+level: "A1"
+category: "grammar"
+title: "Modal Verbs: können, müssen, wollen"
+prerequisites: ["A1-GRM-009"]
+estimated_minutes: 22
+tags: ["modal-verbs", "können", "müssen", "wollen", "infinitive", "verb-position"]
+
+explanation:
+  concept: |
+    Modal verbs express ABILITY, NECESSITY, or DESIRE. They work with a second
+    verb (infinitive) that goes to the END of the clause.
+
+    Structure: Subject + MODAL (position 2) + ... + INFINITIVE (end)
+
+    KÖNNEN (can / to be able to):
+    ich kann      wir können
+    du kannst     ihr könnt
+    er/sie/es kann  sie/Sie können
+
+    MÜSSEN (must / to have to):
+    ich muss      wir müssen
+    du musst      ihr müsst
+    er/sie/es muss  sie/Sie müssen
+
+    WOLLEN (to want to):
+    ich will      wir wollen
+    du willst     ihr wollt
+    er/sie/es will  sie/Sie wollen
+
+    Important: Modal verbs look irregular because they change their vowel
+    in singular forms. The ich and er/sie/es forms are IDENTICAL (no endings!).
+  english_comparison: |
+    English modals also use an infinitive: "I can swim", "She must go"
+    German works the same way — but the infinitive goes to the END:
+
+    English: I can swim.       German: Ich kann schwimmen.
+    English: She must go.      German: Sie muss gehen.
+    English: We want to eat.   German: Wir wollen essen.
+
+    Note: German wollen = "to want to" (not "will" for future!)
+    "Ich will essen" = "I want to eat" (NOT "I will eat")
+
+    Modal verbs do NOT add endings for ich and er/sie/es — unlike regular verbs!
+
+example_sentences:
+  - german: "Ich kann Deutsch sprechen."
+    english: "I can speak German."
+    breakdown_focus: "kann = can (modal), sprechen = infinitive at end"
+  - german: "Er muss heute arbeiten."
+    english: "He has to work today."
+    breakdown_focus: "muss = must (modal), arbeiten = infinitive at end"
+  - german: "Wir wollen Pizza essen."
+    english: "We want to eat pizza."
+    breakdown_focus: "wollen = want to (modal), essen = infinitive at end"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Ich ___ Gitarre spielen. (I can play guitar.) — Choose the correct modal form."
+      options: ["kann", "kannst", "können", "könnt"]
+      correct_answer: "kann"
+      correct_answer_index: 0
+      answer_explanation: "ich + können = ich kann. Modal verbs are irregular — 'ich kann' has no ending (not 'kanne')."
+      grammar_rule_tested: "können conjugation for ich"
+      english_comparison: "English: I CAN play — German: Ich KANN spielen (modal takes position 2, infinitive at end)"
+      hint: "What is the ich form of können? Remember: modal verbs have no -e ending for ich."
+      points: 10
+    - type: "fill_blank"
+      question: "Du ___ jetzt schlafen. (You have to sleep now.)"
+      context: "müssen = must / have to"
+      options: null
+      correct_answer: "musst"
+      correct_answer_index: null
+      answer_explanation: "du + müssen = du musst. The du form takes -st: muss + t = musst."
+      grammar_rule_tested: "müssen conjugation for du"
+      english_comparison: "English: You MUST sleep — German: Du MUSST schlafen (infinitive at end)"
+      hint: "du form of müssen: take the stem muss- and add -t. But watch out for the spelling."
+      points: 10
+    - type: "multiple_choice"
+      question: "Where does the infinitive go in a sentence with a modal verb?"
+      options: ["Position 2 (after subject)", "At the beginning", "At the end of the clause", "Right after the modal verb"]
+      correct_answer: "At the end of the clause"
+      correct_answer_index: 2
+      answer_explanation: "In a main clause with a modal, the conjugated modal goes to position 2 and the infinitive goes to the very end. This creates the 'sentence bracket' (Satzklammer)."
+      grammar_rule_tested: "infinitive position with modal verbs"
+      english_comparison: "English: I want TO EAT — the infinitive follows directly. German: Ich will ... ESSEN — the infinitive goes to the end!"
+      hint: "Think: modal verb 'brackets' the sentence. Conjugated modal at position 2, infinitive at...?"
+      points: 10
+    - type: "translation"
+      question: "Translate: She wants to learn German."
+      context: "wollen = to want to, lernen = to learn, Deutsch = German (language)"
+      options: null
+      correct_answer: "Sie will Deutsch lernen."
+      correct_answer_index: null
+      answer_explanation: "sie + wollen = sie will. Deutsch lernen: infinitive 'lernen' goes to the end. Note: wollen means 'want to', not 'will'."
+      grammar_rule_tested: "wollen conjugation and infinitive at end"
+      english_comparison: "English: She WANTS TO LEARN German — German: Sie WILL Deutsch LERNEN (want=will, infinitive at end)"
+      hint: "wollen for sie = sie will. Then Deutsch (object), then lernen at the end."
+      points: 15

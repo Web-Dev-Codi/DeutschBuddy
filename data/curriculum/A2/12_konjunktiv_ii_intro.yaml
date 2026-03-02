@@ -1,0 +1,107 @@
+id: "A2-GRM-012"
+level: "A2"
+category: "grammar"
+title: "Konjunktiv II — Conditional Sentences"
+prerequisites: ["A2-GRM-005"]
+estimated_minutes: 22
+tags: ["konjunktiv-II", "conditional", "würde", "hypothetical", "if-clauses"]
+
+explanation:
+  concept: |
+    Konjunktiv II expresses hypothetical, unreal, or polite situations.
+    The most common way to form it uses WÜRDE + INFINITIVE:
+
+    WÜRDE CONJUGATION (= would):
+    ich würde        wir würden
+    du würdest       ihr würdet
+    er/sie/es würde  sie/Sie würden
+
+    USAGE:
+    "Ich würde gern reisen." (I would like to travel.)
+    "Er würde kommen, wenn er Zeit hätte." (He would come if he had time.)
+    "Was würdest du machen?" (What would you do?)
+
+    IMPORTANT EXCEPTIONS — these verbs use their own Konjunktiv II forms
+    (NOT würde + infinitive) because they are very common:
+
+    sein:   ich wäre / du wärst / er wäre / wir wären / ihr wärt / sie wären
+    haben:  ich hätte / du hättest / er hätte / wir hätten / ihr hättet / sie hätten
+    können: ich könnte / er könnte (could)
+    müssen: ich müsste / er müsste (would have to)
+    wollen: ich wollte / er wollte (would want)
+    dürfen: ich dürfte / er dürfte (might/would be allowed)
+
+    CONDITIONAL SENTENCES with wenn (if):
+    "Wenn ich reich wäre, würde ich ein Haus kaufen."
+    (If I were rich, I would buy a house.)
+    — wenn clause: Konjunktiv II (wäre)
+    — main clause: würde + infinitive
+  english_comparison: |
+    English conditional: "If I WERE rich, I WOULD buy a house."
+    German: "Wenn ich reich WÄRE, WÜRDE ich ein Haus kaufen."
+    The structure is nearly identical!
+
+    English uses "were" (not "was") in formal conditionals — German also uses wäre.
+    Both languages have this subjunctive/conditional mood marker.
+
+    "I would..." in English = "Ich würde..." in German (very direct translation!)
+
+    Common mistake: Using indicative in both clauses:
+    WRONG: "Wenn ich reich bin, kaufe ich ein Haus." (This means: When I am rich...)
+    RIGHT: "Wenn ich reich wäre, würde ich kaufen." (hypothetical)
+
+example_sentences:
+  - german: "Ich würde gern nach Japan reisen."
+    english: "I would like to travel to Japan."
+    breakdown_focus: "würde + gern + infinitive (reisen at end)"
+  - german: "Wenn ich du wäre, würde ich das nicht tun."
+    english: "If I were you, I wouldn't do that."
+    breakdown_focus: "wenn + wäre (Konj.II of sein); main clause: würde...nicht...tun"
+  - german: "Hättest du Zeit für mich?"
+    english: "Would you have time for me?"
+    breakdown_focus: "hättest = Konj. II of haben for du; question by inversion"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Ich ___ gern mehr schlafen. (I would like to sleep more.)"
+      options: ["will", "werde", "würde", "wäre"]
+      correct_answer: "würde"
+      correct_answer_index: 2
+      answer_explanation: "'würde' = Konjunktiv II of werden (would). 'Ich würde gern...' = I would like to... Note: 'gern' makes it polite."
+      grammar_rule_tested: "würde for conditional/polite hypothetical"
+      english_comparison: "English: I WOULD like to sleep more. German: Ich WÜRDE gern mehr schlafen."
+      hint: "The English equivalent is 'would'. What is the German word for 'would'?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Wenn ich mehr Geld ___, würde ich ein Auto kaufen. (If I had more money, I would buy a car.)"
+      options: ["habe", "hätte", "haben", "hatte"]
+      correct_answer: "hätte"
+      correct_answer_index: 1
+      answer_explanation: "In a conditional 'wenn' clause, use Konjunktiv II. hätte = Konjunktiv II of haben (would have). 'Wenn ich hätte' = if I had (hypothetical)."
+      grammar_rule_tested: "hätte in wenn conditional clause"
+      english_comparison: "English: If I HAD more money... (uses 'had' not 'have'). German: Wenn ich HÄTTE... (hätte, not hatte)"
+      hint: "Conditional when clause: use Konjunktiv II of haben = hätte (not 'hatte' which is Präteritum)."
+      points: 10
+    - type: "fill_blank"
+      question: "An deiner Stelle ___ ich das anders machen. (In your position/If I were you, I would do that differently.)"
+      context: "an deiner Stelle = in your place/position, anders = differently, machen = to do"
+      options: null
+      correct_answer: "würde"
+      correct_answer_index: null
+      answer_explanation: "'würde' + infinitive for hypothetical. An deiner Stelle (in your position) is like saying 'if I were you'. würde ich...machen = would do."
+      grammar_rule_tested: "würde for hypothetical recommendation"
+      english_comparison: "English: I WOULD do that differently. German: Ich WÜRDE das anders machen."
+      hint: "würde + infinitive = would do. The infinitive 'machen' goes to the end."
+      points: 10
+    - type: "translation"
+      question: "Translate: If the weather were better, we would go for a walk."
+      context: "Wetter = weather (neuter), besser = better, spazieren gehen = to go for a walk"
+      options: null
+      correct_answer: "Wenn das Wetter besser wäre, würden wir spazieren gehen."
+      correct_answer_index: null
+      answer_explanation: "wenn clause: wäre (Konj.II of sein, verb at end of wenn clause). Main clause after wenn clause: würden (V1 after fronted clause) wir (subject) spazieren gehen."
+      grammar_rule_tested: "conditional sentence with wenn + wäre and würden"
+      english_comparison: "English: If the weather WERE better, we WOULD go for a walk. German structure is very similar!"
+      hint: "wenn + wäre (verb at end). Then main clause inverts: würden wir spazieren gehen."
+      points: 15

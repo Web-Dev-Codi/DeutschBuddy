@@ -1,0 +1,113 @@
+id: "A2-GRM-010"
+level: "A2"
+category: "grammar"
+title: "Comparative and Superlative"
+prerequisites: ["A1-GRM-017"]
+estimated_minutes: 22
+tags: ["comparative", "superlative", "adjectives", "als", "am", "irregular-forms"]
+
+explanation:
+  concept: |
+    COMPARATIVE (more... / -er):
+    Add -er to the adjective: schnell → schneller, alt → älter, groß → größer
+
+    Common umlaut changes in comparative (a→ä, o→ö, u→ü):
+    alt → älter (old → older)
+    groß → größer (big → bigger)
+    jung → jünger (young → younger)
+    lang → länger (long → longer)
+    kalt → kälter (cold → colder)
+    kurz → kürzer (short → shorter)
+    warm → wärmer (warm → warmer)
+
+    Comparative used predicatively (after sein): NO EXTRA ENDING
+    "Er ist größer." (He is taller.)
+    "Das Auto ist schneller." (The car is faster.)
+
+    COMPARING with als (than):
+    "Er ist größer als sie." (He is taller THAN her.)
+    "Deutsch ist schwieriger als Englisch." (German is harder than English.)
+    Note: NEVER use "wie" for comparisons — that is for equality!
+    "Er ist so groß wie sie." (He is AS tall AS she.)
+
+    SUPERLATIVE (most... / -est):
+    Predicative: am + adjective + -sten
+    "Er ist am größten." (He is the tallest.)
+    "Das ist am besten." (That is the best.)
+
+    Attributive (before noun): der/die/das + adjective + -ste/-sten
+    "der schnellste Zug" (the fastest train)
+    "die beste Lösung" (the best solution)
+
+    IRREGULAR FORMS (must memorize):
+    gut → besser → am besten  (good → better → best)
+    viel → mehr → am meisten  (much → more → most)
+    gern → lieber → am liebsten (gladly → preferably → most preferably)
+    hoch → höher → am höchsten (high → higher → highest)
+    nah → näher → am nächsten (near → nearer → nearest)
+  english_comparison: |
+    English comparatives: add -er (taller) OR use "more" (more interesting)
+    German almost always uses -er: interessanter, intelligenter (no "mehr interessant")
+
+    "Than" = als (NOT wie!)
+    "as ... as" = so ... wie (equality comparison)
+    "taller THAN" = größer ALS (not "größer wie" — common error!)
+
+    Superlatives: English "the tallest" = German "der/die/das größte" (attributive)
+    or "am größten" (predicative).
+
+example_sentences:
+  - german: "München ist größer als Nürnberg, aber Berlin ist am größten."
+    english: "Munich is bigger than Nuremberg, but Berlin is the biggest."
+    breakdown_focus: "größer als (comparative), am größten (superlative predicative)"
+  - german: "Dieses Restaurant ist besser als das andere."
+    english: "This restaurant is better than the other one."
+    breakdown_focus: "besser = irregular comparative of gut"
+  - german: "Er trinkt am liebsten Kaffee."
+    english: "He most likes to drink coffee. / Coffee is his favorite drink."
+    breakdown_focus: "am liebsten = superlative of gern (gladly)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Sein Auto ist ___ als meins. (His car is faster than mine.) — schnell = fast"
+      options: ["schnell", "schneller", "am schnellsten", "mehr schnell"]
+      correct_answer: "schneller"
+      correct_answer_index: 1
+      answer_explanation: "Comparative of schnell = schneller (add -er). Use 'als' for 'than'. 'mehr schnell' is WRONG — German uses -er, not 'mehr' for one-syllable adjectives."
+      grammar_rule_tested: "comparative -er formation"
+      english_comparison: "English: faster. German: schneller (add -er). Never 'mehr schnell'."
+      hint: "Comparative = adjective + -er. schnell + er = ?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Was ist das Gegenteil von 'schlechter'? (What is the opposite of 'worse'?)"
+      options: ["guterer", "mehr gut", "besser", "am besten"]
+      correct_answer: "besser"
+      correct_answer_index: 2
+      answer_explanation: "gut → besser → am besten. This is an IRREGULAR comparative. 'besser' = better (comparative of gut)."
+      grammar_rule_tested: "irregular comparative besser (gut → besser)"
+      english_comparison: "English: good → better → best. German: gut → besser → am besten. Same irregular pattern!"
+      hint: "gut (good) has an irregular comparative. What is the German word for 'better'?"
+      points: 10
+    - type: "fill_blank"
+      question: "Er ist ___ groß wie sein Bruder. (He is as tall as his brother.)"
+      context: "Expressing equal height/size"
+      options: null
+      correct_answer: "so"
+      correct_answer_index: null
+      answer_explanation: "The structure for equality is 'so + adjective + wie' = as ... as. 'Er ist so groß wie sein Bruder.'"
+      grammar_rule_tested: "so...wie for equality comparison"
+      english_comparison: "English: as tall as. German: so groß wie. Remember: als = than (not equal), wie = as."
+      hint: "Equality comparison: ___ + adjective + wie. What fills the blank?"
+      points: 10
+    - type: "translation"
+      question: "Translate: Berlin is the biggest city in Germany."
+      context: "Stadt = city (feminine), Deutschland = Germany, groß = big"
+      options: null
+      correct_answer: "Berlin ist die größte Stadt in Deutschland."
+      correct_answer_index: null
+      answer_explanation: "Superlative attributive: die + größte (groß → größt- + -e for feminine nominative). größt- = superlative stem of groß. Feminine nominative ending = -e after die."
+      grammar_rule_tested: "superlative attributive with adjective ending"
+      english_comparison: "English: the biggest city. German: die größte Stadt (superlative + adjective ending)"
+      hint: "groß → am größten (pred.) → größte (attr. after die, feminine nominative). die + größ-t + e = die größte."
+      points: 15

@@ -1,0 +1,107 @@
+id: "A2-GRM-002"
+level: "A2"
+category: "grammar"
+title: "Perfekt with sein: Movement and Change of State"
+prerequisites: ["A2-GRM-001"]
+estimated_minutes: 22
+tags: ["perfekt", "sein", "past-tense", "movement-verbs", "change-of-state"]
+
+explanation:
+  concept: |
+    Most verbs form Perfekt with HABEN, but a group uses SEIN instead.
+
+    Verbs that use SEIN in Perfekt:
+    1. MOVEMENT verbs (that imply going from A to B):
+       gehen → ist gegangen     (to go → went)
+       fahren → ist gefahren    (to drive/travel → drove/traveled)
+       fliegen → ist geflogen   (to fly → flew)
+       kommen → ist gekommen    (to come → came)
+       laufen → ist gelaufen    (to run → ran)
+       reisen → ist gereist     (to travel → traveled)
+       reiten → ist geritten    (to ride a horse → rode)
+
+    2. CHANGE OF STATE verbs:
+       werden → ist geworden    (to become → became)
+       aufwachen → ist aufgewacht (to wake up → woke up)
+       einschlafen → ist eingeschlafen (to fall asleep → fell asleep)
+       sterben → ist gestorben  (to die → died)
+       wachsen → ist gewachsen  (to grow → grew)
+
+    3. Two special verbs:
+       sein → ist gewesen       (to be → was/were)
+       bleiben → ist geblieben  (to stay → stayed)
+
+    Structure: sein (conjugated) + PAST PARTICIPLE (at end)
+    "Ich bin nach Berlin gefahren." (I drove/traveled to Berlin.)
+    "Er ist aufgewacht." (He woke up.)
+  english_comparison: |
+    English uses "have" for ALL verbs: "I have gone", "She has come"
+    German splits: haben for most, sein for movement/change verbs.
+
+    Memory trick: ASK YOURSELF — Does the verb describe:
+    1. Movement from one place to another? → sein
+    2. A change in physical/mental state? → sein
+    3. Anything else (doing, making, working, playing...)? → haben
+
+    "fahren" (to drive): takes SEIN because it means going from A to B
+    "kaufen" (to buy): takes HABEN because buying is an action, not movement
+
+    NOTE: fahren CAN take haben when there IS a direct object:
+    "Ich habe das Auto gefahren" (I drove THE CAR — object present → haben)
+    "Ich bin nach Berlin gefahren" (I drove to Berlin — movement → sein)
+
+example_sentences:
+  - german: "Ich bin gestern ins Kino gegangen."
+    english: "I went to the cinema yesterday."
+    breakdown_focus: "bin (sein auxiliary) + gegangen (past participle of gehen) — movement verb"
+  - german: "Sie ist in Berlin geblieben."
+    english: "She stayed in Berlin."
+    breakdown_focus: "ist geblieben — bleiben uses sein (special verb)"
+  - german: "Er ist schnell eingeschlafen."
+    english: "He fell asleep quickly."
+    breakdown_focus: "ist eingeschlafen — change of state, separable: ein+ge+schlafen"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Wir ___ gestern nach München ___. (We traveled to Munich yesterday.) — fahren → gefahren"
+      options: ["haben ... gefahren", "sind ... gefahren", "haben ... fahren", "sind ... fahren"]
+      correct_answer: "sind ... gefahren"
+      correct_answer_index: 1
+      answer_explanation: "fahren (to travel) is a movement verb → uses SEIN. wir + sein = sind. Past participle = gefahren at end."
+      grammar_rule_tested: "Perfekt with sein for movement verbs"
+      english_comparison: "English: we have traveled / we traveled. German: wir SIND gefahren (sein not haben for movement)"
+      hint: "fahren means going from A to B — it's a movement verb. Does movement take haben or sein?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Which verb uses HABEN in the Perfekt (not sein)?"
+      options: ["gehen", "kommen", "kaufen", "fliegen"]
+      correct_answer: "kaufen"
+      correct_answer_index: 2
+      answer_explanation: "kaufen (to buy) is an action — not movement or change of state → takes HABEN. gehen, kommen, fliegen are all movement verbs → take sein."
+      grammar_rule_tested: "haben vs sein selection for Perfekt"
+      english_comparison: "English uses 'have' for all: I have bought, I have gone. German: kaufen → haben, gehen → sein."
+      hint: "Movement/change-of-state = sein. Which verb is NOT a movement or change-of-state verb?"
+      points: 10
+    - type: "fill_blank"
+      question: "Das Baby ___ um 3 Uhr aufgewacht. (The baby woke up at 3 o'clock.)"
+      context: "aufwachen = to wake up (change of state verb); aufgewacht = past participle"
+      options: null
+      correct_answer: "ist"
+      correct_answer_index: null
+      answer_explanation: "aufwachen is a change-of-state verb → uses sein. das Baby = singular neuter → ist."
+      grammar_rule_tested: "sein auxiliary with change-of-state verb"
+      english_comparison: "English: the baby HAS woken up / woke up. German: das Baby IST aufgewacht (sein for change of state)"
+      hint: "aufwachen = waking up is a change of state. Does it use haben or sein? Then conjugate for das Baby."
+      points: 10
+    - type: "translation"
+      question: "Translate: Have you (du) ever been to Germany?"
+      context: "jemals/schon mal = ever, sein = to be → gewesen, Deutschland = Germany"
+      options: null
+      correct_answer: "Bist du schon mal in Deutschland gewesen?"
+      correct_answer_index: null
+      answer_explanation: "sein → ist gewesen (sein uses sein as auxiliary). du + sein = bist. Question inversion: bist du. 'schon mal' = ever (in questions). in Deutschland = in Germany (location, dative)."
+      grammar_rule_tested: "Perfekt of sein itself"
+      english_comparison: "English: Have you ever BEEN to Germany? German: Bist du schon mal in Deutschland GEWESEN? (sein's past participle is gewesen)"
+      hint: "sein → past participle: gewesen. sein uses sein as its auxiliary. du + sein = bist. It's a question, so invert."
+      points: 15

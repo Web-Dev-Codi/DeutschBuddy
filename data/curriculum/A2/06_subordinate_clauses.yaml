@@ -1,0 +1,109 @@
+id: "A2-GRM-006"
+level: "A2"
+category: "grammar"
+title: "Subordinate Clauses — Deep Dive"
+prerequisites: ["A1-GRM-020", "A1-GRM-010"]
+estimated_minutes: 25
+tags: ["subordinate-clauses", "weil", "obwohl", "wenn", "dass", "ob", "verb-final", "separable-verbs"]
+
+explanation:
+  concept: |
+    EXTENDED SUBORDINATE CLAUSE RULES:
+
+    Common subordinating conjunctions:
+    weil   = because     "..., weil er müde ist."
+    obwohl = although    "..., obwohl er müde ist."
+    wenn   = when / if   "..., wenn es regnet."
+    dass   = that        "..., dass sie kommt."
+    ob     = whether/if  "..., ob er kommen wird."
+    als    = when (single past event)  "..., als ich jung war."
+    bevor  = before      "..., bevor er schläft."
+    nachdem = after      "..., nachdem sie gegessen hat."
+
+    WORD ORDER RULE: In a subordinate clause, the CONJUGATED VERB goes LAST.
+
+    SEPARABLE VERBS in subordinate clauses:
+    Main clause: "Er macht das Fenster auf."
+    Sub clause:  "..., weil er das Fenster aufmacht." ← prefix stays attached!
+
+    MODAL + INFINITIVE in subordinate clauses:
+    Main clause: "Er kann Deutsch sprechen."
+    Sub clause:  "..., weil er Deutsch sprechen kann." ← modal at very end!
+
+    PERFEKT in subordinate clauses:
+    Main clause: "Sie hat gegessen."
+    Sub clause:  "..., nachdem sie gegessen hat." ← haben/sein at very END!
+
+    WENN starting a sentence (fronted subordinate clause):
+    "Wenn es regnet, bleibe ich zu Hause."
+    ↑ Sub clause first → Main clause starts with VERB (inversion!)
+  english_comparison: |
+    English subordinate clauses keep the verb in the same position.
+    German always moves it to the end — no exceptions.
+
+    "although he is tired" — English: verb stays after subject
+    "obwohl er müde IST" — German: ist moves to the end
+
+    OBWOHL (although) is a classic error source because English speakers
+    often try to use "aber" (but) for "although":
+    WRONG: Er ist müde, aber er arbeitet. (This means: He is tired, BUT he works)
+    RIGHT: Er arbeitet, obwohl er müde IST. (He works, ALTHOUGH he is tired)
+
+    "aber" = but (coordinating — no word order change)
+    "obwohl" = although (subordinating — verb goes to end)
+
+example_sentences:
+  - german: "Sie geht nicht schlafen, obwohl sie sehr müde ist."
+    english: "She doesn't go to sleep even though she is very tired."
+    breakdown_focus: "obwohl + verb-final; ist at end of obwohl clause"
+  - german: "Ich weiß nicht, ob er morgen ankommt."
+    english: "I don't know whether he is arriving tomorrow."
+    breakdown_focus: "ob clause; ankommen is separable: ankommt (stays together in sub clause)"
+  - german: "Wenn ich mehr Zeit hätte, würde ich mehr lesen."
+    english: "If I had more time, I would read more."
+    breakdown_focus: "wenn clause fronted; main clause inverts (würde before ich)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Er bleibt zu Hause, ___ er krank ist. (He stays at home because he is sick.)"
+      options: ["aber", "weil", "obwohl", "und"]
+      correct_answer: "weil"
+      correct_answer_index: 1
+      answer_explanation: "'weil' = because (reason). 'obwohl' = although (contrast). 'aber' and 'und' are coordinating conjunctions and don't cause verb-final order."
+      grammar_rule_tested: "weil for reason in subordinate clause"
+      english_comparison: "English: because he IS sick. German: weil er krank IST (verb at end with weil)"
+      hint: "The sentence gives a REASON (he stays home because...). Which conjunction expresses reason?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Ich frage ihn, ___ er kommen ___. (I ask him whether he can come.) — ob + können"
+      options: ["ob ... kann", "ob ... kommen kann", "ob ... kann kommen", "ob ... kommen"]
+      correct_answer: "ob ... kommen kann"
+      correct_answer_index: 1
+      answer_explanation: "In an 'ob' clause with a modal, the MODAL goes to the very end, after the infinitive: ob er kommen KANN."
+      grammar_rule_tested: "modal verb at end of ob clause"
+      english_comparison: "English: whether he CAN come. German: ob er kommen KANN (modal at very end)"
+      hint: "ob clause: modal goes to end, after the infinitive. kommen (infinitive) then kann (modal) at end."
+      points: 10
+    - type: "fill_blank"
+      question: "Sie kauft das Auto, obwohl es sehr teuer ___. (She buys the car although it is very expensive.)"
+      context: "obwohl = although, teuer = expensive, sein = to be"
+      options: null
+      correct_answer: "ist"
+      correct_answer_index: null
+      answer_explanation: "In the obwohl clause, the verb 'ist' goes to the end: obwohl es sehr teuer IST."
+      grammar_rule_tested: "verb-final in obwohl clause"
+      english_comparison: "English: although it IS very expensive. German: obwohl es sehr teuer IST (ist at end)"
+      hint: "obwohl introduces a subordinate clause where the verb goes to the END. es + sein = ist."
+      points: 10
+    - type: "translation"
+      question: "Translate: When I was a child, I spoke German."
+      context: "als = when (single past event), Kind = child, sprechen = to speak, war = was (simple past of sein)"
+      options: null
+      correct_answer: "Als ich ein Kind war, habe ich Deutsch gesprochen."
+      correct_answer_index: null
+      answer_explanation: "als = when (single past event). 'Als ich ein Kind war' = fronted subordinate clause (war at end). Then main clause inverts: habe ich Deutsch gesprochen (verb first in main clause after fronted sub clause)."
+      grammar_rule_tested: "als clause fronted with inversion in main clause"
+      english_comparison: "English: When I was a child, I spoke German. German: Als ich ein Kind war, HABE ich Deutsch gesprochen (main clause inverts after fronted sub clause)"
+      hint: "als clause fronted: als ich ein Kind war (war at end). Then main clause: habe (verb) ich (subject) — inversion!"
+      points: 15

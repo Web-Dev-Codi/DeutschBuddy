@@ -1,0 +1,98 @@
+id: "A1-GRM-012"
+level: "A1"
+category: "grammar"
+title: "Question Words (W-Fragen)"
+prerequisites: ["A1-GRM-005"]
+estimated_minutes: 18
+tags: ["questions", "question-words", "w-fragen", "word-order"]
+
+explanation:
+  concept: |
+    German question words all begin with W — hence "W-Fragen" (W-questions).
+
+    wer    = who       (Wer ist das? — Who is that?)
+    was    = what      (Was machst du? — What are you doing?)
+    wo     = where     (Wo wohnst du? — Where do you live?)
+    wann   = when      (Wann kommst du? — When are you coming?)
+    warum  = why       (Warum lernst du Deutsch? — Why are you learning German?)
+    wie    = how       (Wie heißt du? — What is your name? / How are you called?)
+    woher  = from where (Woher kommst du? — Where are you from?)
+    wohin  = to where  (Wohin gehst du? — Where are you going to?)
+    wie viel = how much (Wie viel kostet das? — How much does that cost?)
+    wie viele = how many (Wie viele Kinder hast du? — How many children do you have?)
+
+    WORD ORDER in W-questions:
+    The question word takes POSITION 1, the conjugated verb takes POSITION 2:
+    Wer (1) kommt (2) heute?
+    Wo (1) wohnst (2) du?
+
+    Note: wo = where (location); wohin = where to (direction); woher = where from
+  english_comparison: |
+    English question words: who, what, where, when, why, how
+    German adds the distinction: wo (where-location) vs wohin (where-to) vs woher (where-from)
+
+    English: "Where are you going?" — doesn't distinguish direction
+    German: "Wohin gehst du?" — wohin specifies you are going TO somewhere
+
+    English: "Where do you come from?" or "Where are you from?"
+    German: "Woher kommst du?" — woher specifically means "from where"
+
+    Word order: In English questions, auxiliary verbs appear: "Where DO you live?"
+    In German, the main verb simply moves to position 2: "Wo WOHNST du?"
+    No "do-support" needed in German!
+
+example_sentences:
+  - german: "Warum lernst du Deutsch?"
+    english: "Why are you learning German?"
+    breakdown_focus: "warum = why (position 1), lernst = verb (position 2), du = subject (position 3)"
+  - german: "Woher kommt sie?"
+    english: "Where does she come from?"
+    breakdown_focus: "woher = from where, verb at position 2"
+  - german: "Wie viel kostet das Buch?"
+    english: "How much does the book cost?"
+    breakdown_focus: "wie viel = how much, kostet at position 2"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Which question word means 'where TO' (indicating direction/destination)?"
+      options: ["wo", "woher", "wohin", "wann"]
+      correct_answer: "wohin"
+      correct_answer_index: 2
+      answer_explanation: "'wohin' = where to / to where (direction). 'wo' = where (location). 'woher' = from where."
+      grammar_rule_tested: "wo vs wohin vs woher distinction"
+      english_comparison: "English uses 'where' for all three — German distinguishes location (wo), destination (wohin), and origin (woher)"
+      hint: "The suffix -hin means 'toward/to', -her means 'from'. Which one indicates going TO somewhere?"
+      points: 10
+    - type: "multiple_choice"
+      question: "___ heißt du? (What is your name?)"
+      options: ["Was", "Wer", "Wie", "Wo"]
+      correct_answer: "Wie"
+      correct_answer_index: 2
+      answer_explanation: "'Wie heißt du?' literally means 'How are you called?' — 'wie' = how. This is the standard way to ask for a name in German."
+      grammar_rule_tested: "wie heißt du = what is your name"
+      english_comparison: "English: 'What is your name?' — German: 'Wie heißt du?' (literally: How are you called?)"
+      hint: "The verb 'heißen' means 'to be called'. What question word goes with 'How are you called?'"
+      points: 10
+    - type: "fill_blank"
+      question: "___ kommst du? (Where are you from?)"
+      context: "Asking about origin/birthplace"
+      options: null
+      correct_answer: "Woher"
+      correct_answer_index: null
+      answer_explanation: "'woher' = from where (origin). 'Woher kommst du?' is the standard question for asking someone's origin."
+      grammar_rule_tested: "woher for origin"
+      english_comparison: "English: 'Where are you from?' or 'Where do you come from?' — German uses the specific word 'woher'"
+      hint: "You want to know WHERE FROM. The German word for 'from where' starts with wo-her."
+      points: 10
+    - type: "translation"
+      question: "Translate: Why is he not coming?"
+      context: "kommen = to come, nicht = not"
+      options: null
+      correct_answer: "Warum kommt er nicht?"
+      correct_answer_index: null
+      answer_explanation: "warum = why (position 1). kommt = verb (position 2). er = subject (position 3). nicht = negation at end."
+      grammar_rule_tested: "question word order with negation"
+      english_comparison: "English: 'Why is he NOT coming?' — German: 'Warum kommt er NICHT?' (verb moves to position 2, no auxiliary needed)"
+      hint: "warum = why. Then verb (kommt), then subject (er), then nicht at the end."
+      points: 15

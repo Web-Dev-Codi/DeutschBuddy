@@ -1,0 +1,103 @@
+id: "A1-GRM-019"
+level: "A1"
+category: "vocabulary"
+title: "Common Conversational Phrases"
+prerequisites: ["A1-GRM-001"]
+estimated_minutes: 15
+tags: ["phrases", "conversation", "politeness", "survival-german", "vocabulary"]
+
+explanation:
+  concept: |
+    Essential survival phrases every German learner needs:
+
+    POLITENESS:
+    Bitte             = please / you're welcome (context-dependent!)
+    Danke             = thank you
+    Danke schön       = thank you very much
+    Bitte schön       = here you are / you're welcome (response to Danke)
+    Gern (geschehen)  = my pleasure / you're welcome (warmer than Bitte)
+    Entschuldigung    = excuse me / I'm sorry
+    Es tut mir leid   = I am sorry (for something your fault)
+
+    UNDERSTANDING PROBLEMS:
+    Wie bitte?        = Pardon? / Could you repeat that? (lit: How please?)
+    Ich verstehe nicht.      = I don't understand.
+    Ich verstehe kein Deutsch. = I don't understand German.
+    Können Sie langsamer sprechen? = Can you speak more slowly? (formal)
+    Kannst du langsamer sprechen?  = Can you speak more slowly? (informal)
+    Was bedeutet...?  = What does... mean?
+    Wie sagt man... auf Deutsch? = How do you say... in German?
+
+    ASKING FOR HELP / DIRECTIONS:
+    Wo ist...?        = Where is...?
+    Wie komme ich zu...? = How do I get to...?
+    Ich suche...      = I am looking for...
+  english_comparison: |
+    BITTE is multi-functional — watch the context:
+    - "Bitte!" alone = please (asking for something)
+    - "Bitte schön!" = here you are (handing something over)
+    - "Bitte!" as response to Danke = you're welcome
+    - "Wie bitte?" = Pardon? (not "What please?")
+
+    "Entschuldigung" vs "Es tut mir leid":
+    - Entschuldigung: interrupting someone, bumping into someone (minor excuse)
+    - Es tut mir leid: genuine apology for something you did wrong
+
+    Note: "Wie bitte?" is the polite way to ask for repetition.
+    Saying just "Was?" sounds rude — like "What?" in English.
+
+example_sentences:
+  - german: "Wie bitte? Können Sie das wiederholen?"
+    english: "Pardon? Can you repeat that?"
+    breakdown_focus: "Wie bitte? = polite request to repeat; wiederholen = to repeat"
+  - german: "Entschuldigung, wo ist der Bahnhof?"
+    english: "Excuse me, where is the train station?"
+    breakdown_focus: "Entschuldigung to get attention, wo ist = where is"
+  - german: "Wie sagt man 'apple' auf Deutsch?"
+    english: "How do you say 'apple' in German?"
+    breakdown_focus: "wie sagt man = how does one say, auf Deutsch = in German"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Someone says 'Danke schön!' to you. What is the BEST response?"
+      options: ["Entschuldigung!", "Wie bitte?", "Bitte schön!", "Es tut mir leid."]
+      correct_answer: "Bitte schön!"
+      correct_answer_index: 2
+      answer_explanation: "'Bitte schön' is the standard response to 'Danke schön' — equivalent to 'you're welcome' / 'don't mention it'."
+      grammar_rule_tested: "Danke schön → Bitte schön exchange"
+      english_comparison: "English: 'Thank you very much' → 'You're welcome'. German: 'Danke schön' → 'Bitte schön'"
+      hint: "What do you say in response to someone thanking you?"
+      points: 10
+    - type: "multiple_choice"
+      question: "You accidentally bump into someone on the street. What do you say?"
+      options: ["Es tut mir leid.", "Entschuldigung.", "Wie bitte?", "Gern geschehen."]
+      correct_answer: "Entschuldigung."
+      correct_answer_index: 1
+      answer_explanation: "'Entschuldigung' is used for minor incidents — bumping into someone, interrupting someone. 'Es tut mir leid' is for more serious apologies."
+      grammar_rule_tested: "Entschuldigung for minor apologies"
+      english_comparison: "English: 'Excuse me' for minor bumps. German: 'Entschuldigung'. 'Es tut mir leid' = I'm sorry (more serious)."
+      hint: "Is this a minor accident or a serious offense? Which apology fits a quick bump?"
+      points: 10
+    - type: "fill_blank"
+      question: "You didn't hear what someone said. Ask politely for repetition: '___ bitte?'"
+      context: "A polite German way to say 'Pardon?'"
+      options: null
+      correct_answer: "Wie"
+      correct_answer_index: null
+      answer_explanation: "'Wie bitte?' = Pardon? (literally 'How please?'). It is the standard polite response when you didn't hear or understand something."
+      grammar_rule_tested: "Wie bitte for pardon/repetition"
+      english_comparison: "English 'Pardon?' = German 'Wie bitte?' (not 'Was bitte?' — that sounds rude)"
+      hint: "The phrase is ___ bitte? It starts with a W-question word meaning 'how'."
+      points: 10
+    - type: "translation"
+      question: "Translate: Can you speak more slowly, please? (Use formal 'Sie')"
+      context: "sprechen = to speak, langsam = slowly, langsamer = more slowly"
+      options: null
+      correct_answer: "Können Sie langsamer sprechen, bitte?"
+      correct_answer_index: null
+      answer_explanation: "können + Sie = Können Sie (formal, position 2 for modal). langsamer = more slowly (comparative). sprechen = infinitive at end. bitte = please (can go at end or start)."
+      grammar_rule_tested: "polite request with modal können + formal Sie"
+      english_comparison: "English: 'Can you speak more slowly?' — German: 'Können Sie langsamer sprechen?' (modal verb at position 2, infinitive at end)"
+      hint: "Use können (can) + Sie (formal you). langsamer = more slowly. sprechen goes to the end."
+      points: 15

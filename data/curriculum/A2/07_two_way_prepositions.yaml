@@ -1,0 +1,100 @@
+id: "A2-GRM-007"
+level: "A2"
+category: "grammar"
+title: "Two-Way Prepositions — Accusative vs Dative"
+prerequisites: ["A1-GRM-015", "A1-GRM-016"]
+estimated_minutes: 25
+tags: ["two-way-prepositions", "accusative", "dative", "location", "direction", "wo", "wohin"]
+
+explanation:
+  concept: |
+    NINE PREPOSITIONS can take either ACCUSATIVE or DATIVE depending on meaning:
+    an, auf, in, vor, hinter, neben, über, unter, zwischen
+
+    THE KEY QUESTION:
+    DATIVE  → location (WHERE? Wo?) — something is staying somewhere
+    ACCUSATIVE → direction (WHERE TO? Wohin?) — something is moving somewhere
+
+    Examples with "in":
+    "Das Buch liegt IN DEM Schrank." (DATIVE — where is the book? IN the cupboard)
+    "Ich lege das Buch IN DEN Schrank." (ACCUSATIVE — where am I putting it? INTO the cupboard)
+
+    Examples with "an" (at/on — vertical surfaces):
+    "Das Bild hängt AN DER Wand." (DATIVE — where is the picture? ON the wall)
+    "Ich hänge das Bild AN DIE Wand." (ACCUSATIVE — I'm hanging it ONTO the wall)
+
+    LOCATION VERBS (use dative): liegen, stehen, hängen, sitzen, sein
+    MOVEMENT VERBS (use accusative): legen, stellen, hängen, setzen, gehen, fahren
+
+    COMMON CONTRACTIONS with two-way prepositions:
+    in + dem = im    "im Zimmer" (in the room — location)
+    in + das = ins   "ins Zimmer" (into the room — direction)
+    an + dem = am    "am Tisch" (at the table)
+    an + das = ans   "ans Fenster" (to/onto the window)
+  english_comparison: |
+    English doesn't change prepositions for location vs direction:
+    "in the room" = both location AND direction
+    German: IM Zimmer (location) vs INS Zimmer (direction) — different article!
+
+    "on the table" (location) → auf dem Tisch
+    "onto the table" (direction/movement) → auf den Tisch
+    English "on" covers both — German must choose based on movement vs location.
+
+    Memory trick: Two-way prepositions use WO? → Dative, WOHIN? → Accusative
+    Just ask: Is something SITTING somewhere? (D) Or GOING somewhere? (A)
+
+example_sentences:
+  - german: "Die Katze sitzt auf dem Sofa."
+    english: "The cat is sitting on the sofa."
+    breakdown_focus: "auf + dative (dem Sofa) — location, no movement"
+  - german: "Die Katze springt auf das Sofa."
+    english: "The cat jumps onto the sofa."
+    breakdown_focus: "auf + accusative (das Sofa) — direction, movement onto"
+  - german: "Ich hänge das Bild an die Wand."
+    english: "I am hanging the picture on the wall."
+    breakdown_focus: "an + accusative (die Wand) — movement verb hängen (to hang up)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Das Buch liegt ___ Tisch. (The book is lying on the table.) — Tisch = masculine"
+      options: ["auf dem", "auf den", "auf der", "auf das"]
+      correct_answer: "auf dem"
+      correct_answer_index: 0
+      answer_explanation: "'liegen' = to be lying (location, no movement) → dative. Tisch is masculine. Masculine dative = dem. So: auf dem Tisch."
+      grammar_rule_tested: "two-way preposition auf + dative for location"
+      english_comparison: "English: on THE table. German: auf DEM Tisch (dative because it's a location, not direction)"
+      hint: "liegen = location (where IS the book?). Location → dative. Tisch is masculine: masculine dative = dem."
+      points: 10
+    - type: "multiple_choice"
+      question: "Er legt das Buch ___ Tisch. (He puts the book on the table.) — Tisch = masculine"
+      options: ["auf dem", "auf den", "auf der", "auf das"]
+      correct_answer: "auf den"
+      correct_answer_index: 1
+      answer_explanation: "'legen' = to place/put (movement, direction) → accusative. Tisch is masculine. Masculine accusative = den. So: auf den Tisch."
+      grammar_rule_tested: "two-way preposition auf + accusative for direction"
+      english_comparison: "English: on the table. German: auf DEN Tisch (accusative because it's a direction/movement)"
+      hint: "legen = movement (putting ONTO). Direction → accusative. Tisch is masculine: masculine accusative = den."
+      points: 10
+    - type: "fill_blank"
+      question: "Wir gehen ___ Kino. (We are going to the cinema.) — Kino = neuter"
+      context: "ins or im? gehen = to go (movement)"
+      options: null
+      correct_answer: "ins"
+      correct_answer_index: null
+      answer_explanation: "gehen = movement (direction) → accusative. in + das (neuter accusative) = ins. So: ins Kino."
+      grammar_rule_tested: "in + das = ins for direction with neuter"
+      english_comparison: "English: to the cinema. German: ins Kino (in + das, accusative because we're going TO/INTO)"
+      hint: "gehen = direction. in + das (neuter) = ins (contraction for direction). Compare: im Kino = location."
+      points: 10
+    - type: "translation"
+      question: "Translate: The car is in the garage, but he is driving it into the street."
+      context: "Auto = car (neuter), Garage = garage (feminine), Straße = street (feminine), fahren = to drive"
+      options: null
+      correct_answer: "Das Auto steht in der Garage, aber er fährt es in die Straße."
+      correct_answer_index: null
+      answer_explanation: "in der Garage = location (dative, feminine der). in die Straße = direction (accusative, feminine die — no change for feminine acc). stehen = to stand/be (location). fahren = movement."
+      grammar_rule_tested: "two-way preposition location vs direction in one sentence"
+      english_comparison: "English uses 'in' for both. German: in DER Garage (location/dative) vs in DIE Straße (direction/accusative)"
+      hint: "steht in der Garage (location = dative, feminine: der). fährt...in die Straße (direction = accusative, feminine: die)."
+      points: 15

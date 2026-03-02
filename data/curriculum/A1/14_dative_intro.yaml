@@ -1,0 +1,101 @@
+id: "A1-GRM-014"
+level: "A1"
+category: "grammar"
+title: "The Dative Case — Indirect Object"
+prerequisites: ["A1-GRM-006"]
+estimated_minutes: 22
+tags: ["dative", "case", "indirect-object", "articles", "prepositions"]
+
+explanation:
+  concept: |
+    The DATIVE case marks the INDIRECT OBJECT — the person or thing FOR WHOM
+    or TO WHOM the action is done.
+
+    Question: "TO whom?" or "FOR whom?" is the action directed?
+
+    Dative DEFINITE article changes:
+    - Masculine: dem  (der → dem)
+    - Feminine:  der  (die → der) ← feminine becomes "der"!
+    - Neuter:    dem  (das → dem)
+    - Plural:    den  (die → den) + noun often gets -n suffix
+
+    Dative INDEFINITE articles:
+    - Masculine: einem
+    - Feminine:  einer
+    - Neuter:    einem
+
+    Example: "Ich gebe dem Mann das Buch."
+    (I give the man the book.)
+    dem Mann = dative (indirect object = to whom)
+    das Buch = accusative (direct object = what)
+
+    DATIVE PREPOSITIONS (always dative):
+    aus, bei, mit, nach, seit, von, zu, gegenüber
+    "Ich fahre mit dem Bus." (I travel by bus.)
+    "Sie kommt aus der Schweiz." (She comes from Switzerland.)
+  english_comparison: |
+    English uses word order or "to/for" to show dative:
+    "I give HIM the book" or "I give the book TO HIM"
+    German changes the ARTICLE: ich gebe DEM Mann das Buch.
+
+    The trickiest change: feminine "die" becomes "der" in dative.
+    This looks like masculine nominative — but context makes it clear!
+
+    Memory trick for dative endings: "dem, der, dem, den"
+    (masculine, feminine, neuter, plural)
+
+example_sentences:
+  - german: "Ich helfe dem Lehrer."
+    english: "I am helping the teacher."
+    breakdown_focus: "dem Lehrer — masculine dative (helfen takes dative)"
+  - german: "Er gibt seiner Mutter Blumen."
+    english: "He gives his mother flowers."
+    breakdown_focus: "seiner Mutter — feminine dative (to his mother)"
+  - german: "Wir fahren mit dem Auto."
+    english: "We travel by car."
+    breakdown_focus: "mit dem Auto — mit is a dative preposition, Auto is neuter"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Ich gebe ___ Frau die Tasche. (I give the woman the bag.) — What is the dative feminine article?"
+      options: ["die", "der", "dem", "den"]
+      correct_answer: "der"
+      correct_answer_index: 1
+      answer_explanation: "Feminine dative definite article = 'der'. This is confusing because 'der' also = masculine nominative! Context determines which it is."
+      grammar_rule_tested: "dative feminine article der"
+      english_comparison: "English: I give THE woman the bag — German changes 'die' to 'der' in dative: ich gebe DER Frau"
+      hint: "Dative feminine: die → ? Remember: dem(m), der(f), dem(n), den(pl)"
+      points: 10
+    - type: "fill_blank"
+      question: "Er wohnt bei ___ Eltern. (He lives with his parents.)"
+      context: "Eltern = parents (plural), bei = with/at (dative preposition)"
+      options: null
+      correct_answer: "den"
+      correct_answer_index: null
+      answer_explanation: "Eltern is plural. Dative plural definite article = 'den'. 'bei' always takes dative."
+      grammar_rule_tested: "dative plural article and dative preposition bei"
+      english_comparison: "English: with HIS parents — German: bei DEN Eltern (plural dative = den)"
+      hint: "Eltern is plural. What is the dative plural definite article? (Remember: den Eltern)"
+      points: 10
+    - type: "multiple_choice"
+      question: "Which preposition ALWAYS takes the dative case?"
+      options: ["für", "durch", "mit", "gegen"]
+      correct_answer: "mit"
+      correct_answer_index: 2
+      answer_explanation: "'mit' (with) always takes dative. 'für', 'durch', 'gegen' always take accusative."
+      grammar_rule_tested: "dative prepositions"
+      english_comparison: "In English, prepositions don't change the article. In German, 'mit' always signals dative."
+      hint: "Remember the dative prepositions: aus, bei, mit, nach, seit, von, zu. Which one is in the list?"
+      points: 10
+    - type: "translation"
+      question: "Translate: She is giving the child a book."
+      context: "Kind = child (neuter), Buch = book (neuter), geben = to give"
+      options: null
+      correct_answer: "Sie gibt dem Kind ein Buch."
+      correct_answer_index: null
+      answer_explanation: "dem Kind = dative (to whom? to the child). Kind is neuter → dative = dem. ein Buch = accusative (what? the book). gibt = she gives."
+      grammar_rule_tested: "dative indirect object with neuter noun"
+      english_comparison: "English: she gives THE child a book — German: sie gibt DEM Kind ein Buch (dem = dative neuter)"
+      hint: "Kind (neuter) as indirect object = dative → dem Kind. Buch (neuter) as direct object = accusative → ein Buch."
+      points: 15

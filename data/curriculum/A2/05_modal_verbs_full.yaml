@@ -1,0 +1,106 @@
+id: "A2-GRM-005"
+level: "A2"
+category: "grammar"
+title: "All Six Modal Verbs and Konjunktiv II Forms"
+prerequisites: ["A1-GRM-011"]
+estimated_minutes: 25
+tags: ["modal-verbs", "können", "müssen", "wollen", "sollen", "dürfen", "mögen", "konjunktiv-II", "möchte"]
+
+explanation:
+  concept: |
+    The SIX MODAL VERBS:
+
+    können  = can / to be able to    "Ich kann schwimmen."
+    müssen  = must / to have to      "Du musst lernen."
+    wollen  = to want to             "Er will schlafen."
+    sollen  = should / to be supposed to  "Sie soll anrufen." (told by someone else)
+    dürfen  = may / to be allowed to  "Darf ich rauchen?"
+    mögen   = to like                "Ich mag Kaffee." (without infinitive = to like a noun)
+
+    CONJUGATION TABLE (ich / du / er-sie-es / wir / ihr / sie):
+    können:  kann / kannst / kann / können / könnt / können
+    müssen:  muss / musst / muss / müssen / müsst / müssen
+    wollen:  will / willst / will / wollen / wollt / wollen
+    sollen:  soll / sollst / soll / sollen / sollt / sollen
+    dürfen:  darf / darfst / darf / dürfen / dürft / dürfen
+    mögen:   mag / magst / mag / mögen / mögt / mögen
+
+    KONJUNKTIV II (polite/hypothetical) forms — used very often:
+    könnte  = could             "Könntest du mir helfen?" (Could you help me?)
+    müsste  = would have to     "Ich müsste früher kommen."
+    sollte  = should            "Du solltest mehr schlafen."
+    dürfte  = might / would be allowed  "Das dürfte richtig sein."
+    möchte  = would like        "Ich möchte Kaffee, bitte." (very common!)
+
+    IMPORTANT: möchte (would like) is treated like a modal:
+    "Ich möchte einen Kaffee." (I would like a coffee.)
+    "Ich möchte Deutsch lernen." (I would like to learn German.)
+  english_comparison: |
+    SOLLEN vs MÜSSEN:
+    müssen = must (internal obligation: I must, I need to)
+    sollen = should/supposed to (external obligation: someone told me to, it is expected)
+    "Du musst essen" = You MUST eat (you need to for your health)
+    "Du sollst essen" = You SHOULD eat / You are supposed to eat (mom said so)
+
+    DÜRFEN — polite requests:
+    "Darf ich...?" = May I...? (more polite than "Kann ich...?")
+    "Darf ich das Fenster öffnen?" = May I open the window?
+
+    MÖCHTE is actually the Konjunktiv II of mögen but functions as a separate modal.
+    Always use möchte for "would like" — it is the most polite way to order or request.
+
+example_sentences:
+  - german: "Darf ich hier sitzen?"
+    english: "May I sit here?"
+    breakdown_focus: "darf = may/am allowed to; question formed by V1"
+  - german: "Du solltest mehr Wasser trinken."
+    english: "You should drink more water."
+    breakdown_focus: "solltest = Konjunktiv II of sollen; advice/recommendation"
+  - german: "Ich möchte bitte ein Glas Wasser."
+    english: "I would like a glass of water, please."
+    breakdown_focus: "möchte = would like (Konj. II of mögen); very common in requests"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Which modal verb means 'to be allowed to / may'?"
+      options: ["müssen", "wollen", "sollen", "dürfen"]
+      correct_answer: "dürfen"
+      correct_answer_index: 3
+      answer_explanation: "'dürfen' = may / to be allowed to. 'Darf ich...?' = May I...? It expresses PERMISSION."
+      grammar_rule_tested: "meaning of dürfen"
+      english_comparison: "English: 'May I' / 'am allowed to'. German: 'darf / dürfen'. Asking permission = dürfen."
+      hint: "Which modal is used to ask for permission? 'May I...?' in German = Darf ich...?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Ich ___ einen Kaffee, bitte. (I would like a coffee, please.)"
+      options: ["will", "mag", "möchte", "soll"]
+      correct_answer: "möchte"
+      correct_answer_index: 2
+      answer_explanation: "'möchte' = would like (polite request). 'will' = want to (less polite, implies strong desire). Always use 'möchte' when ordering or making polite requests."
+      grammar_rule_tested: "möchte for polite requests"
+      english_comparison: "English: 'I would like' — the politest form. German: 'Ich möchte' — never say 'Ich will' in a restaurant!"
+      hint: "The politest form of 'to want' in German. Used in restaurants and polite requests."
+      points: 10
+    - type: "fill_blank"
+      question: "Du ___ mehr schlafen. (You should sleep more.) — Use Konjunktiv II of sollen."
+      context: "sollen Konjunktiv II = sollte-; du form adds -st"
+      options: null
+      correct_answer: "solltest"
+      correct_answer_index: null
+      answer_explanation: "Konjunktiv II of sollen = sollte-. du + sollte- + st = solltest. Used for advice/recommendations."
+      grammar_rule_tested: "sollte- Konjunktiv II formation"
+      english_comparison: "English: you SHOULD sleep more. German: du SOLLTEST mehr schlafen. Both express advice."
+      hint: "Konjunktiv II stem of sollen = sollte. Add du-ending -st: sollte + st = ?"
+      points: 10
+    - type: "translation"
+      question: "Translate: Could you please help me? (Use könnte, formal Sie)"
+      context: "helfen = to help, bitte = please"
+      options: null
+      correct_answer: "Könnten Sie mir bitte helfen?"
+      correct_answer_index: null
+      answer_explanation: "Konjunktiv II of können = könnte. Sie form = könnten. Question inversion: könnten Sie. mir = dative (help ME). bitte = please. helfen at end."
+      grammar_rule_tested: "könnte Konjunktiv II polite request"
+      english_comparison: "English: Could you please help me? German: Könnten Sie mir bitte helfen? (könnte = could)"
+      hint: "könnte-Sie form = könnten. It's a question (invert). mir = dative of ich. helfen goes to end."
+      points: 15

@@ -1,0 +1,96 @@
+id: "A1-GRM-009"
+level: "A1"
+category: "grammar"
+title: "Regular -en Verb Conjugation"
+prerequisites: ["A1-GRM-003"]
+estimated_minutes: 20
+tags: ["verbs", "conjugation", "regular-verbs", "present-tense", "endings"]
+
+explanation:
+  concept: |
+    Most German verbs end in -en in the infinitive (dictionary form).
+    To conjugate, remove -en to get the STEM, then add personal endings:
+
+    spielen (to play) → stem: spiel-
+
+    ich   spiel-e     (I play)
+    du    spiel-st    (you play — informal)
+    er/sie/es spiel-t (he/she/it plays)
+    wir   spiel-en    (we play)
+    ihr   spiel-t     (you all play)
+    sie/Sie spiel-en  (they/you formal play)
+
+    More examples:
+    lernen (to learn) → lern-: lerne, lernst, lernt, lernen, lernt, lernen
+    wohnen (to live/reside) → wohn-: wohne, wohnst, wohnt, wohnen, wohnt, wohnen
+    kaufen (to buy) → kauf-: kaufe, kaufst, kauft, kaufen, kauft, kaufen
+
+    Special spelling rules:
+    - Stems ending in -t or -d add an extra -e before -st and -t:
+      arbeiten (to work): arbeit-est (du), arbeit-et (er), arbeit-et (ihr)
+    - Stems ending in -s, -ß, -z: du form drops the s: heißen → du heißt (not heißst)
+  english_comparison: |
+    English adds only -s for third-person singular: "he plays".
+    German adds a DIFFERENT ending for EVERY person/number combination.
+
+    English: I play, you play, he plays, we play, you play, they play
+    German:  ich spiele, du spielst, er spielt, wir spielen, ihr spielt, sie spielen
+
+    Note: German present tense covers both English present simple AND present continuous:
+    "Ich lerne" = "I learn" AND "I am learning" — there is no separate -ing form!
+
+example_sentences:
+  - german: "Wir lernen Deutsch."
+    english: "We are learning German."
+    breakdown_focus: "lernen → wir lernen (wir ending = -en, same as infinitive)"
+  - german: "Du spielst Fußball."
+    english: "You play football."
+    breakdown_focus: "spielen → du spielst (du ending = -st)"
+  - german: "Er arbeitet im Büro."
+    english: "He works in the office."
+    breakdown_focus: "arbeiten → er arbeitet (stem ends in -t, extra e inserted)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "What is the correct form of 'lernen' for 'er' (he)?"
+      options: ["lernen", "lernst", "lernt", "lerne"]
+      correct_answer: "lernt"
+      correct_answer_index: 2
+      answer_explanation: "er/sie/es always takes the -t ending. lernen → lern- + t = lernt"
+      grammar_rule_tested: "third person singular -t ending"
+      english_comparison: "English: he learn-S — German: er lern-T (different letter but same concept)"
+      hint: "Remove -en from lernen to get the stem 'lern-'. Which ending goes with er/sie/es?"
+      points: 10
+    - type: "fill_blank"
+      question: "Ich ___ in Berlin. (I live in Berlin.)"
+      context: "wohnen = to live/reside"
+      options: null
+      correct_answer: "wohne"
+      correct_answer_index: null
+      answer_explanation: "wohnen → stem wohn- + ich ending -e = wohne"
+      grammar_rule_tested: "first person singular -e ending"
+      english_comparison: "English: I live (no ending change) — German: ich wohn-e (adds -e)"
+      hint: "wohnen → stem wohn-. What ending does 'ich' take?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Ihr ___ Fußball. (You all play football.) — Choose the correct form."
+      options: ["spielen", "spielst", "spielt", "spiele"]
+      correct_answer: "spielt"
+      correct_answer_index: 2
+      answer_explanation: "ihr (you plural) takes the -t ending. spielen → spiel- + t = spielt. Note: ihr and er/sie/es share the same -t ending!"
+      grammar_rule_tested: "ihr form -t ending"
+      english_comparison: "English has no distinction between 'you' singular and plural — German has 'du' vs 'ihr'"
+      hint: "ihr takes the same ending as er/sie/es. What is that ending?"
+      points: 10
+    - type: "translation"
+      question: "Translate: We are buying a car."
+      context: "kaufen = to buy, Auto = car (neuter)"
+      options: null
+      correct_answer: "Wir kaufen ein Auto."
+      correct_answer_index: null
+      answer_explanation: "kaufen → wir kaufen (wir ending = -en). Auto is neuter indefinite accusative = ein Auto."
+      grammar_rule_tested: "wir conjugation and accusative article"
+      english_comparison: "German present tense covers both 'we buy' and 'we are buying'"
+      hint: "wir + kaufen ending = -en. Auto is neuter, as object it takes ein."
+      points: 15

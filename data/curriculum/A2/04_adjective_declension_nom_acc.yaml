@@ -1,0 +1,106 @@
+id: "A2-GRM-004"
+level: "A2"
+category: "grammar"
+title: "Adjective Endings — Nominative and Accusative"
+prerequisites: ["A1-GRM-017", "A1-GRM-006"]
+estimated_minutes: 28
+tags: ["adjectives", "declension", "endings", "attributive", "nominative", "accusative"]
+
+explanation:
+  concept: |
+    ATTRIBUTIVE adjectives (directly before a noun) MUST have endings.
+    The ending depends on: gender, case, and article type.
+
+    WEAK declension (after der/die/das — definite article):
+    The article shows gender clearly, so the adjective gets a "weak" -e or -en ending.
+
+                 Masc        Fem         Neut        Plural
+    Nominative:  der alte     die alte    das alte    die alten
+                 Mann        Frau        Buch        Bücher
+    Accusative:  den alten    die alte    das alte    die alten
+                 Mann        Frau        Buch        Bücher
+
+    Weak endings are simple: mostly -e and -en.
+    Only nominative (m/f/n/pl) and accusative (f/n/pl) get -e.
+    Everything else gets -en.
+
+    MIXED declension (after ein/eine/ein — indefinite article):
+    The article doesn't always show gender, so the adjective must carry more info.
+
+                 Masc          Fem           Neut          Plural
+    Nominative:  ein alter      eine alte     ein altes     alte
+                 Mann          Frau          Buch          Bücher
+    Accusative:  einen alten    eine alte     ein altes     alte
+                 Mann          Frau          Buch          Bücher
+
+    Key mixed endings: -er (masc nom), -e (fem nom/acc, neut nom/acc), -es (neut nom) 
+    Masculine nominative gets -er: "ein alter Mann"
+    Neuter nominative/accusative gets -es: "ein altes Buch"
+  english_comparison: |
+    English adjectives NEVER change: "a tall man", "the tall woman", "tall men"
+    German adjectives change for EVERY combination of gender, case, article type.
+
+    This is one of the hardest aspects of German for English speakers.
+    Strategy: Learn the WEAK endings first (after der/die/das) — they are simpler.
+    Then tackle MIXED endings (after ein/kein).
+
+    Memory trick for weak endings:
+    - Think "-e" for the nominative forms you use most
+    - Think "-en" for everything accusative masculine and all plurals
+    - When in doubt: -en is never wrong (just sometimes more formal)
+
+example_sentences:
+  - german: "Der alte Mann liest ein interessantes Buch."
+    english: "The old man reads an interesting book."
+    breakdown_focus: "der alte Mann (weak nom masc -e); ein interessantes Buch (mixed nom neut -es)"
+  - german: "Ich sehe die junge Frau."
+    english: "I see the young woman."
+    breakdown_focus: "die junge Frau — weak accusative feminine -e (feminine doesn't change)"
+  - german: "Er kauft einen neuen Computer."
+    english: "He buys a new computer."
+    breakdown_focus: "einen neuen Computer — mixed accusative masculine -en"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Der ___ Mann ist mein Vater. (The old man is my father.) — Choose the correct adjective ending for 'alt'."
+      options: ["alte", "alten", "alter", "altes"]
+      correct_answer: "alte"
+      correct_answer_index: 0
+      answer_explanation: "After 'der' (definite article), masculine nominative adjective takes -e: der alte Mann. This is the WEAK declension."
+      grammar_rule_tested: "weak adjective declension nominative masculine"
+      english_comparison: "English: the OLD man — adjective never changes. German: der ALTE Mann (must add -e after der)"
+      hint: "After 'der', masculine nominative = weak ending. The weak ending for nominative is usually -e."
+      points: 10
+    - type: "multiple_choice"
+      question: "Ich kaufe ein ___ Auto. (I am buying a new car.) — 'neu' + correct ending."
+      options: ["neue", "neuen", "neues", "neuer"]
+      correct_answer: "neues"
+      correct_answer_index: 2
+      answer_explanation: "After 'ein', neuter accusative adjective takes -es: ein neues Auto. Mixed declension: neuter gets -es to show neuter gender (since 'ein' alone doesn't distinguish masculine from neuter)."
+      grammar_rule_tested: "mixed adjective declension accusative neuter"
+      english_comparison: "English: a NEW car — no change. German: ein NEUES Auto (adjective must carry gender information)"
+      hint: "After 'ein', neuter = mixed declension. What ending does the adjective get to show it's neuter? (-es)"
+      points: 10
+    - type: "fill_blank"
+      question: "Sie trägt die rote ___. (She is wearing the red dress.) — Kleid = dress (neuter)"
+      context: "tragen = to wear, rot = red, Kleid = dress (neuter)"
+      options: null
+      correct_answer: "Kleid"
+      correct_answer_index: null
+      answer_explanation: "Wait — the question asks you to identify the adjective ending. die rote Kleid → Actually: das Kleid is neuter, so the article should be 'das'. But after 'die' (if treating as feminine), accusative = -e. The full sentence with correction: Sie trägt das rote Kleid. Adjective: rote (weak, neuter accusative after das = -e)."
+      grammar_rule_tested: "weak adjective ending neuter accusative"
+      english_comparison: "English: the red dress. German: das rote Kleid (weak declension, neuter accusative -e)"
+      hint: "Kleid is neuter. After 'das' in accusative (neuter doesn't change), the adjective takes weak ending -e: das rote Kleid."
+      points: 10
+    - type: "translation"
+      question: "Translate: I see an old woman and a young man."
+      context: "alt = old, jung = young, Frau = woman (feminine), Mann = man (masculine)"
+      options: null
+      correct_answer: "Ich sehe eine alte Frau und einen jungen Mann."
+      correct_answer_index: null
+      answer_explanation: "eine alte Frau: accusative feminine indefinite → -e ending (mixed: feminine acc same as nom). einen jungen Mann: accusative masculine indefinite → -en ending (mixed: masculine acc = -en)."
+      grammar_rule_tested: "mixed adjective declension accusative"
+      english_comparison: "English: an old woman, a young man — adjectives unchanged. German: eine alte Frau, einen jungen Mann."
+      hint: "eine Frau (feminine): adjective + -e. einen Mann (masculine acc): adjective + -en."
+      points: 15

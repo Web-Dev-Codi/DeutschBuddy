@@ -1,0 +1,119 @@
+id: "A2-GRM-015"
+level: "A2"
+category: "grammar"
+title: "Complex Word Order — TeKaMoLo and Satzklammer"
+prerequisites: ["A1-GRM-018", "A1-GRM-011", "A1-GRM-010"]
+estimated_minutes: 25
+tags: ["word-order", "TeKaMoLo", "Satzklammer", "time-manner-place", "sentence-bracket", "adverbs"]
+
+explanation:
+  concept: |
+    TWO IMPORTANT WORD ORDER RULES FOR ADVANCED SENTENCES:
+
+    ─────────────────────────────────────────
+    1. TeKaMoLo — Order of Adverbials
+    ─────────────────────────────────────────
+    When multiple adverbs/adverbial phrases appear, use this order:
+    Te = Temporal   (WHEN?)
+    Ka = Kausal     (WHY? / because of what?)
+    Mo = Modal      (HOW? / in what manner?)
+    Lo = Lokal      (WHERE?)
+
+    "Ich fahre [morgen] [wegen der Arbeit] [mit dem Zug] [nach Berlin]."
+    (I'm traveling [tomorrow] [because of work] [by train] [to Berlin].)
+
+    Memory: Te-Ka-Mo-Lo = "Tee? Kam? Mo? Lo?" — like a silly question.
+
+    Rule: Always time before manner before place (English also tends this way).
+    The most natural English order is actually similar: "tomorrow by train to Berlin"
+
+    ─────────────────────────────────────────
+    2. SATZKLAMMER (Sentence Bracket)
+    ─────────────────────────────────────────
+    Many German sentences have a BRACKET formed by:
+    - Conjugated verb at position 2 (LEFT bracket)
+    - Non-finite element at the END (RIGHT bracket)
+
+    Everything else is INSIDE the bracket.
+
+    Types of right bracket elements:
+    a) Separable prefix: "Ich mache [die Tür] auf."
+    b) Infinitive with modal: "Ich kann [gut] Deutsch sprechen."
+    c) Past participle: "Ich habe [gestern] gegessen."
+    d) Infinitive with würde: "Ich würde [gern] reisen."
+
+    Example with TeKaMoLo inside Satzklammer:
+    "Ich habe [gestern] [wegen Krankheit] [leider] [zu Hause] geblieben."
+    (I stayed [yesterday] [because of illness] [unfortunately] [at home].)
+    habe = left bracket, geblieben = right bracket
+  english_comparison: |
+    English word order for adverbs:
+    "I drove to Berlin yesterday by car." (place often comes before time in English)
+    German: "Ich bin gestern [Te] mit dem Auto [Mo] nach Berlin [Lo] gefahren."
+
+    English also tends toward time → manner → place, but it's more flexible.
+    German is stricter: TIME always before MANNER before PLACE.
+
+    The Satzklammer has no English equivalent — English verbs don't split.
+    "I am going to Berlin" — no split.
+    German: "Ich fahre [nach Berlin] → verb stays at position 2 (but for separable: Ich fahre nach Berlin → if fahren were separable, prefix at end)"
+
+    The key insight: German sentences are structured like a CONTAINER.
+    The conjugated verb and the non-finite element form the walls of the container.
+    All other information goes INSIDE the container.
+
+example_sentences:
+  - german: "Ich fahre morgen wegen eines Termins mit dem Bus in die Stadt."
+    english: "I am going to the city tomorrow for an appointment by bus."
+    breakdown_focus: "TeKaMoLo order: morgen(Te) + wegen(Ka) + mit dem Bus(Mo) + in die Stadt(Lo)"
+  - german: "Er hat gestern leider keine Zeit gehabt."
+    english: "Unfortunately he had no time yesterday."
+    breakdown_focus: "Satzklammer: hat (left bracket) ... gehabt (right bracket); gestern + leider inside"
+  - german: "Sie kann heute Abend leider nicht kommen."
+    english: "Unfortunately she cannot come this evening."
+    breakdown_focus: "Satzklammer: kann (left) ... kommen (right); heute Abend + leider + nicht inside"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "In the TeKaMoLo rule, which comes FIRST in a sentence?"
+      options: ["Manner (how)", "Place (where)", "Time (when)", "Reason (why)"]
+      correct_answer: "Time (when)"
+      correct_answer_index: 2
+      answer_explanation: "TeKaMoLo: Te=Temporal (time) always comes first, then Ka=Kausal (reason), then Mo=Modal (manner), then Lo=Lokal (place)."
+      grammar_rule_tested: "TeKaMoLo order — time first"
+      english_comparison: "English also tends: time first is natural, but German strictly follows Te-Ka-Mo-Lo."
+      hint: "TeKaMoLo: The first letter 'Te' stands for Temporal. What does Temporal mean?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Choose the CORRECT sentence order: 'Ich fahre ___ ___ ___.' (tomorrow / by car / to Munich)"
+      options: ["nach München morgen mit dem Auto", "morgen mit dem Auto nach München", "mit dem Auto morgen nach München", "nach München mit dem Auto morgen"]
+      correct_answer: "morgen mit dem Auto nach München"
+      correct_answer_index: 1
+      answer_explanation: "TeKaMoLo: morgen (Te-time) + mit dem Auto (Mo-manner) + nach München (Lo-place). Reason (Ka) is absent here."
+      grammar_rule_tested: "TeKaMoLo: time-manner-place order"
+      english_comparison: "English: I drive tomorrow by car to Munich (same order works naturally!). German strictly: Te-Mo-Lo."
+      hint: "Te (morgen = when) comes first. Mo (mit dem Auto = how) second. Lo (nach München = where) last."
+      points: 10
+    - type: "fill_blank"
+      question: "Ich habe das Buch gestern in der Bibliothek ___. (I read the book yesterday in the library.)"
+      context: "lesen = to read, past participle = gelesen; Satzklammer: habe = left bracket, what is the right bracket?"
+      options: null
+      correct_answer: "gelesen"
+      correct_answer_index: null
+      answer_explanation: "Satzklammer: habe (left bracket, position 2) ... gelesen (right bracket, at end). Perfekt: habe + past participle at end."
+      grammar_rule_tested: "Satzklammer with Perfekt"
+      english_comparison: "English: I read the book yesterday in the library. German: Ich habe das Buch gestern in der Bibliothek GELESEN (participle at end)."
+      hint: "Satzklammer: habe is the left bracket. What forms the right bracket in a Perfekt sentence?"
+      points: 10
+    - type: "translation"
+      question: "Translate: He can unfortunately not come tomorrow by bus."
+      context: "leider = unfortunately, können, morgen, mit dem Bus, kommen"
+      options: null
+      correct_answer: "Er kann morgen leider nicht mit dem Bus kommen."
+      correct_answer_index: null
+      answer_explanation: "Satzklammer: kann (left) ... kommen (right). Inside: morgen (Te) + leider (modal adverb) + nicht + mit dem Bus (Mo). TeKaMoLo: time before manner."
+      grammar_rule_tested: "Satzklammer with modal and TeKaMoLo inside"
+      english_comparison: "English: He unfortunately cannot come tomorrow by bus. German: Er kann morgen leider nicht mit dem Bus KOMMEN (kommen at end)."
+      hint: "Satzklammer: kann (pos. 2) and kommen (end). Inside: morgen (time first), leider, nicht, mit dem Bus (manner before end)."
+      points: 15

@@ -1,0 +1,108 @@
+id: "A2-GRM-011"
+level: "A2"
+category: "grammar"
+title: "Reflexive Verbs"
+prerequisites: ["A2-GRM-003"]
+estimated_minutes: 22
+tags: ["reflexive-verbs", "sich", "reflexive-pronouns", "accusative-reflexive", "dative-reflexive"]
+
+explanation:
+  concept: |
+    Reflexive verbs use a REFLEXIVE PRONOUN that refers back to the subject.
+    The pronoun "sich" is used for 3rd person (er/sie/es/sie/Sie).
+
+    ACCUSATIVE REFLEXIVE PRONOUNS:
+    ich wasche MICH   (I wash myself)
+    du wäschst DICH   (you wash yourself)
+    er/sie/es wäscht SICH  (he/she washes himself/herself)
+    wir waschen UNS   (we wash ourselves)
+    ihr wascht EUCH   (you all wash yourselves)
+    sie/Sie waschen SICH  (they/you-formal wash themselves)
+
+    COMMON REFLEXIVE VERBS (with accusative reflexive):
+    sich waschen       = to wash oneself
+    sich freuen        = to be happy/glad  "Ich freue mich."
+    sich erinnern an   = to remember       "Ich erinnere mich an sie."
+    sich setzen        = to sit down       "Setz dich!"
+    sich befinden      = to be located     "Das Hotel befindet sich hier."
+    sich entscheiden   = to decide         "Ich entscheide mich."
+    sich interessieren für = to be interested in
+
+    DATIVE REFLEXIVE PRONOUNS (when there is already an accusative object):
+    ich wasche mir die Hände   (I wash MY hands — hands = accusative, mir = dative)
+    du kaufst dir ein Auto     (you buy yourself a car)
+    er kauft sich ein Buch     (he buys himself a book — sich = dative for er)
+
+    When the sentence has a direct object (accusative), the reflexive pronoun
+    becomes DATIVE: mir/dir/sich/uns/euch/sich
+  english_comparison: |
+    English has reflexive pronouns: myself, yourself, himself, herself, itself, etc.
+    But English uses them MUCH LESS than German.
+
+    English: "I remember her" (no reflexive needed)
+    German: "Ich erinnere mich an sie" (reflexive 'mich' is required!)
+
+    Many German verbs are inherently reflexive — they ALWAYS need sich.
+    There's no equivalent in English: you just have to learn which verbs need it.
+
+    "sich freuen" — no English translation that shows the reflexive:
+    "Ich freue mich" = I am happy/glad (not "I gladden myself")
+
+    Easy memory rule: wenn 'sich' = accusative AND there's no other object.
+    wenn 'sich' = dative (= mir/dir) = there IS another accusative object.
+
+example_sentences:
+  - german: "Ich freue mich auf das Wochenende."
+    english: "I am looking forward to the weekend."
+    breakdown_focus: "sich freuen auf = to look forward to; mich = accusative reflexive for ich"
+  - german: "Er hat sich einen neuen Laptop gekauft."
+    english: "He bought himself a new laptop."
+    breakdown_focus: "sich = dative reflexive (einen neuen Laptop = accusative object exists)"
+  - german: "Erinnerst du dich an deinen ersten Tag?"
+    english: "Do you remember your first day?"
+    breakdown_focus: "sich erinnern an = to remember; dich = accusative reflexive for du"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Ich freue ___ sehr. (I am very happy.)"
+      options: ["mir", "mich", "sich", "mein"]
+      correct_answer: "mich"
+      correct_answer_index: 1
+      answer_explanation: "'sich freuen' is reflexive. For 'ich', the accusative reflexive pronoun = 'mich'. No other object here, so it's accusative."
+      grammar_rule_tested: "accusative reflexive pronoun mich for ich"
+      english_comparison: "English: I am glad/happy. German: Ich freue mich (reflexive required even though English doesn't use one)"
+      hint: "sich freuen: ich + accusative reflexive = ? (ich → mich for accusative)"
+      points: 10
+    - type: "multiple_choice"
+      question: "Er kauft ___ ein neues Fahrrad. (He buys himself a new bike.)"
+      options: ["sich", "ihn", "ihm", "er"]
+      correct_answer: "sich"
+      correct_answer_index: 0
+      answer_explanation: "'sich' is the reflexive pronoun for er/sie/es in BOTH accusative and dative. Here, 'ein neues Fahrrad' is the accusative object, so 'sich' = dative reflexive."
+      grammar_rule_tested: "dative reflexive sich when accusative object present"
+      english_comparison: "English: He buys HIMSELF a bike. German: Er kauft SICH ein Fahrrad (sich = dative reflexive)"
+      hint: "There is an accusative object (ein Fahrrad). So the reflexive is dative. For er/sie/es, dative reflexive = sich."
+      points: 10
+    - type: "fill_blank"
+      question: "Setz ___! (Sit down!) — Informal command to one person"
+      context: "sich setzen = to sit down; imperative = du form"
+      options: null
+      correct_answer: "dich"
+      correct_answer_index: null
+      answer_explanation: "Imperative of 'du': setz (no -e in spoken, -e optional). Reflexive for du = dich. 'Setz dich!' = Sit down! (informal)"
+      grammar_rule_tested: "reflexive dich in imperative"
+      english_comparison: "English: Sit down! German: Setz dich! (reflexive pronoun dich required)"
+      hint: "du form reflexive accusative = dich. Imperative of setzen for du = setz."
+      points: 10
+    - type: "translation"
+      question: "Translate: Do you (du) remember the trip to Germany?"
+      context: "sich erinnern an + accusative = to remember, Reise = trip (feminine), nach Deutschland = to Germany"
+      options: null
+      correct_answer: "Erinnerst du dich an die Reise nach Deutschland?"
+      correct_answer_index: null
+      answer_explanation: "sich erinnern an: du + accusative reflexive = dich. Question inversion: Erinnerst du dich. an + accusative: die Reise (feminine accusative = die)."
+      grammar_rule_tested: "sich erinnern an with reflexive in question"
+      english_comparison: "English: Do you remember the trip? German: Erinnerst du dich an die Reise? (reflexive dich required)"
+      hint: "sich erinnern an: erinnerst du dich (question form). an + die Reise (feminine, accusative after an)."
+      points: 15

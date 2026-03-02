@@ -1,0 +1,78 @@
+id: "A1-GRM-006"
+level: "A1"
+category: "grammar"
+title: "The Accusative Case — Direct Object"
+prerequisites: ["A1-GRM-004", "A1-GRM-005"]
+estimated_minutes: 20
+tags: ["accusative", "case", "direct-object", "articles"]
+
+explanation:
+  concept: |
+    The ACCUSATIVE case marks the DIRECT OBJECT — the person or thing that
+    DIRECTLY RECEIVES the action of the verb.
+
+    Question to find the accusative: "WHO or WHAT is the action done TO?"
+
+    For definite articles, only the MASCULINE article changes:
+    - Masculine: der → den  (this is the only change!)
+    - Feminine:  die → die  (no change)
+    - Neuter:    das → das  (no change)
+    - Plural:    die → die  (no change)
+
+    For indefinite articles:
+    - Masculine: ein → einen
+    - Feminine:  eine → eine
+    - Neuter:    ein → ein
+  english_comparison: |
+    English marks accusative on PRONOUNS only: he → him, she → her, they → them.
+    "He sees HIM" — "him" shows accusative.
+    German extends this to articles: "Er sieht DEN Mann" (not "der Mann").
+
+    Memory trick: Only masculine changes in accusative.
+    "The masculine takes the hit!" der → den.
+
+example_sentences:
+  - german: "Ich kaufe den Hund."
+    english: "I buy the dog."
+    breakdown_focus: "den Hund — masculine accusative (direct object)"
+  - german: "Sie liest das Buch."
+    english: "She reads the book."
+    breakdown_focus: "das Buch — neuter accusative (no change from nominative)"
+  - german: "Er trinkt die Milch."
+    english: "He drinks the milk."
+    breakdown_focus: "die Milch — feminine accusative (no change)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Ich sehe ___ Mann. (I see the man.)"
+      options: ["der", "die", "den", "das"]
+      correct_answer: "den"
+      correct_answer_index: 2
+      answer_explanation: "Mann is masculine. As the direct object (accusative), masculine der → den"
+      grammar_rule_tested: "accusative masculine article"
+      english_comparison: "English: I see THE man — German: Ich sehe DEN Mann (article changes for accusative)"
+      hint: "Mann is masculine. In accusative, what happens to masculine 'der'?"
+      points: 10
+    - type: "fill_blank"
+      question: "Er kauft ___ Katze. (He buys the cat.)"
+      context: "Katze = cat (feminine)"
+      options: null
+      correct_answer: "die"
+      correct_answer_index: null
+      answer_explanation: "Katze is feminine. Feminine accusative article = 'die' (no change from nominative)"
+      grammar_rule_tested: "accusative feminine article"
+      english_comparison: "English doesn't change articles — German feminine stays 'die' in accusative"
+      hint: "Katze is feminine. Does the feminine article change in accusative?"
+      points: 10
+    - type: "translation"
+      question: "Translate: I see the book."
+      context: "Buch = book (neuter)"
+      options: null
+      correct_answer: "Ich sehe das Buch."
+      correct_answer_index: null
+      answer_explanation: "Buch is neuter. Neuter accusative article = 'das' (no change). sehen = to see, ich sehe = I see"
+      grammar_rule_tested: "accusative neuter article"
+      english_comparison: "English: I see THE book — German: Ich sehe DAS Buch (neuter doesn't change)"
+      hint: "Buch is neuter. Neuter articles don't change in accusative. The verb sehen → ich sehe."
+      points: 15

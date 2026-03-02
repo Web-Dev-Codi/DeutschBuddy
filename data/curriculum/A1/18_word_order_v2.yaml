@@ -1,0 +1,100 @@
+id: "A1-GRM-018"
+level: "A1"
+category: "grammar"
+title: "V2 Word Order — Verb Always Second"
+prerequisites: ["A1-GRM-009"]
+estimated_minutes: 18
+tags: ["word-order", "V2", "verb-position", "inversion", "main-clause"]
+
+explanation:
+  concept: |
+    THE GOLDEN RULE of German main clauses:
+    The CONJUGATED VERB is ALWAYS in POSITION 2.
+
+    No matter what comes first (subject, time, place, adverb),
+    the verb always sits in position 2 — EVERYTHING else adjusts.
+
+    When something other than the subject starts the sentence,
+    the subject SWAPS with the verb (called "inversion"):
+
+    Normal order:   Ich  lerne  heute  Deutsch.
+                    (1)  (2)    time   object
+
+    Time-first:     Heute  lerne  ich   Deutsch.
+                    (1)    (2)    subj  object
+
+    Place-first:    In Berlin  wohne  ich   seit 2020.
+                    (1)        (2)    subj  time
+
+    Object-first:   Deutsch  lerne  ich   gern.
+                    (1)       (2)   subj  adverb
+
+    NEVER put the verb first in a statement (that makes it a yes/no question):
+    "Lernst du Deutsch?" = Do you learn German? (verb first = question!)
+  english_comparison: |
+    English is SVO (Subject-Verb-Object): "I eat pizza every day."
+    English DOESN'T invert when time comes first: "Every day I eat pizza." ✓
+    (verb stays after subject in English)
+
+    German DOES invert: "Jeden Tag esse ich Pizza."
+    (verb moves to stay in position 2, subject moves to position 3)
+
+    This is the most common word-order error for English speakers:
+    WRONG: Heute ich lerne Deutsch.
+    RIGHT: Heute lerne ich Deutsch. ← verb must be at position 2!
+
+example_sentences:
+  - german: "Morgen gehe ich ins Kino."
+    english: "Tomorrow I am going to the cinema."
+    breakdown_focus: "Morgen (1) gehe (2) ich — verb stays at position 2 even with time adverb first"
+  - german: "In Deutschland spricht man Deutsch."
+    english: "In Germany one speaks German."
+    breakdown_focus: "In Deutschland (1) spricht (2) man — place phrase first, verb stays position 2"
+  - german: "Das Buch lese ich gern."
+    english: "I like reading the book. (lit: The book I read gladly.)"
+    breakdown_focus: "Das Buch (1) lese (2) ich — object first, verb stays position 2"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Which word order is CORRECT? (Morgen = tomorrow, lernen = to learn)"
+      options: ["Morgen ich lerne Deutsch.", "Morgen lerne ich Deutsch.", "Morgen Deutsch lerne ich.", "Ich morgen lerne Deutsch."]
+      correct_answer: "Morgen lerne ich Deutsch."
+      correct_answer_index: 1
+      answer_explanation: "With 'Morgen' in position 1, the verb 'lerne' must be in position 2. The subject 'ich' moves to position 3."
+      grammar_rule_tested: "V2 word order with fronted time adverb"
+      english_comparison: "English: Tomorrow I learn German (verb stays after subject). German: Morgen LERNE ich (verb jumps to position 2)"
+      hint: "The verb MUST be at position 2. If Morgen is at position 1, where does the verb go?"
+      points: 10
+    - type: "fill_blank"
+      question: "Jeden Tag ___ sie ins Büro. (Every day she goes to the office.)"
+      context: "Jeden Tag = every day, gehen = to go, sie = she, ins Büro = to the office"
+      options: null
+      correct_answer: "geht"
+      correct_answer_index: null
+      answer_explanation: "Jeden Tag (1) + verb (2) + sie (3). The verb 'geht' must be in position 2. sie (she) + gehen = sie geht."
+      grammar_rule_tested: "V2 inversion with fronted time expression"
+      english_comparison: "English: Every day SHE GOES — verb after subject. German: Jeden Tag GEHT sie — verb before subject!"
+      hint: "Jeden Tag is at position 1. The verb must come at position 2. Conjugate gehen for sie."
+      points: 10
+    - type: "multiple_choice"
+      question: "What does it mean when the VERB comes in position 1 in German?"
+      options: ["It's a subordinate clause", "It's an emphatic statement", "It's a yes/no question", "It's a command (imperative)"]
+      correct_answer: "It's a yes/no question"
+      correct_answer_index: 2
+      answer_explanation: "Verb-first (V1) signals a yes/no question in German: 'Lernst du Deutsch?' = Are you learning German? (or it can be an imperative)"
+      grammar_rule_tested: "V1 = yes/no question"
+      english_comparison: "English: 'Do you learn German?' — uses auxiliary 'do'. German: 'Lernst du Deutsch?' — verb simply moves to position 1"
+      hint: "When the verb comes FIRST (not second), what type of sentence is it?"
+      points: 10
+    - type: "translation"
+      question: "Translate: In Berlin we eat a lot of currywurst."
+      context: "Berlin, essen = to eat, viel = a lot, Currywurst = currywurst (feminine)"
+      options: null
+      correct_answer: "In Berlin essen wir viel Currywurst."
+      correct_answer_index: null
+      answer_explanation: "In Berlin (1) essen (2) wir (3) — 'In Berlin' is fronted, so verb 'essen' must be at position 2. wir + essen = essen (wir ending = -en, same as infinitive)."
+      grammar_rule_tested: "V2 with fronted place phrase"
+      english_comparison: "English: In Berlin WE EAT — verb follows subject. German: In Berlin ESSEN wir — verb comes before subject!"
+      hint: "In Berlin is position 1. Verb must be at position 2. wir essen → essen wir (inversion)."
+      points: 15

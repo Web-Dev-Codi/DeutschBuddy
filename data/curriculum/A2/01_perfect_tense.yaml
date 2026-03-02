@@ -1,0 +1,106 @@
+id: "A2-GRM-001"
+level: "A2"
+category: "grammar"
+title: "Perfekt with haben: Past Tense for Conversations"
+prerequisites: ["A1-GRM-009", "A1-GRM-003"]
+estimated_minutes: 25
+tags: ["perfekt", "haben", "past-tense", "participle", "past-participle"]
+
+explanation:
+  concept: |
+    The PERFEKT (present perfect) is the most common past tense in SPOKEN German.
+    Use it for completed actions in conversation.
+
+    Structure: haben (conjugated) + PAST PARTICIPLE (at the end)
+
+    FORMING THE PAST PARTICIPLE:
+    REGULAR verbs: ge- + stem + -t
+      spielen → gespielt
+      lernen  → gelernt
+      kaufen  → gekauft
+      arbeiten → gearbeitet
+
+    IRREGULAR verbs: ge- + (changed) stem + -en (must memorize):
+      schreiben → geschrieben  (to write)
+      essen     → gegessen     (to eat)
+      trinken   → getrunken    (to drink)
+      schlafen  → geschlafen   (to sleep)
+      sehen     → gesehen      (to see)
+      lesen     → gelesen      (to read)
+      fahren    → gefahren     (to drive/travel)
+      sprechen  → gesprochen   (to speak)
+
+    SEPARABLE verbs: ge- goes BETWEEN prefix and stem:
+      aufmachen → aufgemacht   (auf + ge + macht)
+      anrufen   → angerufen    (an + ge + rufen)
+
+    VERBS ending in -ieren: NO ge- prefix:
+      studieren → studiert  (NOT gestudiert)
+      telefonieren → telefoniert
+  english_comparison: |
+    English present perfect: "I have played", "She has eaten"
+    German Perfekt: "Ich habe gespielt", "Sie hat gegessen"
+
+    However, German Perfekt also covers English SIMPLE PAST in conversation:
+    "I played yesterday" = "Ich habe gestern gespielt" (NOT "Ich spielte")
+    In spoken German, Perfekt replaces simple past for most verbs.
+
+    Exception: sein and haben almost always use simple past in speech:
+    "Ich war in Berlin" (NOT "Ich bin in Berlin gewesen" in most contexts)
+    "Er hatte keine Zeit" (NOT "Er hat keine Zeit gehabt")
+
+example_sentences:
+  - german: "Ich habe gestern Pizza gegessen."
+    english: "I ate pizza yesterday."
+    breakdown_focus: "habe (position 2) + gegessen (end) — irregular past participle"
+  - german: "Sie hat das Buch gelesen."
+    english: "She has read the book."
+    breakdown_focus: "hat (position 2) + gelesen (end) — irregular past participle of lesen"
+  - german: "Wir haben Deutsch gelernt."
+    english: "We learned / have learned German."
+    breakdown_focus: "haben + gelernt — regular past participle (ge- + stem + -t)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "What is the past participle of 'spielen' (to play)?"
+      options: ["gespielt", "gespielen", "spielte", "gespielt haben"]
+      correct_answer: "gespielt"
+      correct_answer_index: 0
+      answer_explanation: "Regular verb: ge- + spiel- + t = gespielt. For regular -en verbs, add ge- before the stem and -t after."
+      grammar_rule_tested: "regular past participle formation ge-...-t"
+      english_comparison: "English: played (just add -ed). German: ge-spiel-t (add ge- prefix and -t ending)"
+      hint: "spielen is regular. Formula: ge- + stem + -t. Stem of spielen = spiel."
+      points: 10
+    - type: "multiple_choice"
+      question: "Ich habe heute viel ___. (I worked a lot today.) — essen, schlafen, arbeiten, lernen"
+      options: ["gegessen", "geschlafen", "gearbeitet", "gelernt"]
+      correct_answer: "gearbeitet"
+      correct_answer_index: 2
+      answer_explanation: "arbeiten → gearbeitet. Note: stems ending in -t need an extra -e: ge + arbeit + et. The question asks about 'working' (arbeiten)."
+      grammar_rule_tested: "past participle of verbs with -t stem"
+      english_comparison: "English: worked. German: gearbeitet (extra -e inserted because stem ends in -t)"
+      hint: "The sentence says 'I worked a lot today'. Which participle comes from arbeiten (to work)?"
+      points: 10
+    - type: "fill_blank"
+      question: "Er ___ gestern angerufen. (He called yesterday.) — Complete with the correct form of haben."
+      context: "anrufen = to call (separable verb); past participle = angerufen"
+      options: null
+      correct_answer: "hat"
+      correct_answer_index: null
+      answer_explanation: "er/sie/es + haben = hat. The structure is: er HAT...angerufen. haben is the auxiliary (position 2), participle at end."
+      grammar_rule_tested: "haben conjugation for er in Perfekt"
+      english_comparison: "English: he HAS called. German: er HAT angerufen (hat = has for er/sie/es)"
+      hint: "er + haben = ? The third-person singular form of haben."
+      points: 10
+    - type: "translation"
+      question: "Translate: We have drunk coffee and eaten cake."
+      context: "trinken → getrunken, essen → gegessen, Kaffee = coffee (masculine), Kuchen = cake (masculine)"
+      options: null
+      correct_answer: "Wir haben Kaffee getrunken und Kuchen gegessen."
+      correct_answer_index: null
+      answer_explanation: "wir + haben = haben. Two past participles both go to the end: getrunken (irregular from trinken) and gegessen (irregular from essen)."
+      grammar_rule_tested: "Perfekt with two irregular participles"
+      english_comparison: "English: we have drunk coffee and eaten cake — same structure! German: Wir haben Kaffee getrunken und Kuchen gegessen."
+      hint: "wir + haben = haben. trinken → getrunken, essen → gegessen. Both participles go to the end."
+      points: 15

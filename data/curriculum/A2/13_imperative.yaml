@@ -1,0 +1,113 @@
+id: "A2-GRM-013"
+level: "A2"
+category: "grammar"
+title: "The Imperative — Commands and Requests"
+prerequisites: ["A1-GRM-009", "A1-GRM-005"]
+estimated_minutes: 20
+tags: ["imperative", "commands", "du-form", "ihr-form", "Sie-form", "requests"]
+
+explanation:
+  concept: |
+    German has THREE imperative forms depending on who you're addressing:
+
+    DU IMPERATIVE (informal singular):
+    Take the du-form and DROP du AND the -st ending:
+    spielen → du spielst → SPIEL! (or Spiele! — -e optional)
+    kommen → du kommst → KOMM!
+    gehen → du gehst → GEH!
+
+    Exception — stem-vowel changing verbs (e→i or e→ie):
+    lesen → du liest → LIES! (not Lee!)
+    sprechen → du sprichst → SPRICH! (not Sprech!)
+    BUT: no vowel change for a→ä, o→ö, u→ü:
+    fahren → du fährst → FAHR! (NOT Fähr!)
+
+    IHR IMPERATIVE (informal plural):
+    Same as the ihr-form but drop 'ihr':
+    spielen → ihr spielt → SPIELT!
+    kommen → ihr kommt → KOMMT!
+
+    SIE IMPERATIVE (formal, singular or plural):
+    Same as the Sie-form, just keep 'Sie' after the verb:
+    spielen → Sie spielen → SPIELEN Sie!
+    kommen → Sie kommen → KOMMEN Sie!
+
+    IRREGULAR IMPERATIVES:
+    sein → SEI! (du) / SEID! (ihr) / SEIEN Sie! (Sie)
+    haben → HAB! / HABT! / HABEN Sie!
+
+    SEPARABLE VERBS in imperative:
+    aufmachen → Mach die Tür auf! (prefix goes to end as usual)
+
+    Adding BITTE makes commands polite:
+    "Komm bitte her!" = Please come here!
+    "Setzen Sie sich bitte." = Please sit down.
+  english_comparison: |
+    English imperative is simple: just the verb base form for everyone.
+    "Come here!" / "Sit down!" — same for one person or many, formal or informal.
+
+    German has THREE different forms:
+    "Komm!" (to a friend) / "Kommt!" (to friends) / "Kommen Sie!" (to boss/stranger)
+
+    The formal Sie imperative is easy — just the infinitive + Sie:
+    "Spielen Sie!" — looks exactly like the statement "Sie spielen" but the
+    word order signals command (verb first).
+
+    A polite request with Konjunktiv II is even softer than imperative:
+    "Könnten Sie bitte...?" = Could you please...? (softer than "Kommen Sie!")
+
+example_sentences:
+  - german: "Lies das Buch! Es ist sehr interessant."
+    english: "Read the book! It is very interesting."
+    breakdown_focus: "Lies = du-imperative of lesen (e→ie change: liest → Lies!)"
+  - german: "Kommen Sie bitte herein."
+    english: "Please come in."
+    breakdown_focus: "Kommen Sie = formal imperative; herein = into here (direction)"
+  - german: "Seid ruhig, bitte!"
+    english: "Be quiet, please!"
+    breakdown_focus: "Seid = ihr-imperative of sein (irregular)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Form the 'du' imperative of 'kommen' (to come)."
+      options: ["Kommen!", "Kommst!", "Komm!", "Komme!"]
+      correct_answer: "Komm!"
+      correct_answer_index: 2
+      answer_explanation: "du imperative: take du form (kommst), drop du AND -st → Komm! (The final -e in 'Komme' is optional and old-fashioned for this verb)"
+      grammar_rule_tested: "du imperative formation"
+      english_comparison: "English: Come! (same form for everyone). German: Komm! (du form, -st dropped)"
+      hint: "du form of kommen = kommst. Drop 'du' and '-st'. What's left?"
+      points: 10
+    - type: "multiple_choice"
+      question: "What is the FORMAL (Sie) imperative of 'nehmen' (to take)?"
+      options: ["Nimm!", "Nehmt!", "Nehmen Sie!", "Nimmt!"]
+      correct_answer: "Nehmen Sie!"
+      correct_answer_index: 2
+      answer_explanation: "Sie imperative = infinitive form + Sie. nehmen + Sie = Nehmen Sie! The verb comes first (position 1 for commands)."
+      grammar_rule_tested: "Sie imperative formation"
+      english_comparison: "English: Take! (for everyone). German formal: Nehmen Sie! (infinitive + Sie)"
+      hint: "Sie imperative = ? + Sie. Use the infinitive form of the verb."
+      points: 10
+    - type: "fill_blank"
+      question: "___ ruhig! (Be quiet! — informal plural to a group)"
+      context: "sein = to be; ihr form needed"
+      options: null
+      correct_answer: "Seid"
+      correct_answer_index: null
+      answer_explanation: "ihr imperative of sein = SEID (irregular). sein's imperatives: Sei! (du), Seid! (ihr), Seien Sie! (Sie)"
+      grammar_rule_tested: "ihr imperative of sein = seid"
+      english_comparison: "English: Be quiet! (one form for all). German: Seid ruhig! (ihr = plural informal)"
+      hint: "ihr form of sein = ihr seid. Drop 'ihr' for the imperative: ___!"
+      points: 10
+    - type: "translation"
+      question: "Translate: Please open the window! (informal singular)"
+      context: "aufmachen = to open (separable), Fenster = window (neuter)"
+      options: null
+      correct_answer: "Mach das Fenster auf, bitte!"
+      correct_answer_index: null
+      answer_explanation: "aufmachen: du imperative = Mach! (drop du + -st from machst). Separable: prefix 'auf' goes to end. das Fenster = accusative (neuter). bitte = please (after verb or at end)."
+      grammar_rule_tested: "du imperative of separable verb"
+      english_comparison: "English: Open the window! German: Mach das Fenster auf! (separable: auf at end)"
+      hint: "aufmachen → du machst → Mach! Then auf goes to the end. Bitte = please."
+      points: 15

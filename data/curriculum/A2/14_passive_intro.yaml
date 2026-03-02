@@ -1,0 +1,110 @@
+id: "A2-GRM-014"
+level: "A2"
+category: "grammar"
+title: "Passive Voice — Vorgangspassiv"
+prerequisites: ["A2-GRM-001"]
+estimated_minutes: 22
+tags: ["passive", "werden", "vorgangspassiv", "past-participle", "von", "agent"]
+
+explanation:
+  concept: |
+    The VORGANGSPASSIV (process passive) describes an action being performed,
+    without necessarily saying WHO is doing it.
+
+    STRUCTURE: werden (conjugated) + PAST PARTICIPLE (at end)
+
+    PRESENT PASSIVE:
+    "Das Buch wird geschrieben." (The book is being written.)
+    "Die Tür wird geöffnet." (The door is being opened.)
+    "Die Häuser werden gebaut." (The houses are being built.)
+
+    Conjugation of werden (present):
+    ich werde  du wirst  er/sie/es wird  wir werden  ihr werdet  sie/Sie werden
+
+    PAST PASSIVE (Perfekt):
+    wurde + past participle OR ist/sind...worden (participle of werden)
+    "Das Buch wurde geschrieben." (The book was written — Präteritum)
+    "Das Buch ist geschrieben worden." (Perfekt passive)
+
+    Note: In passive Perfekt, werden's participle is WORDEN (not geworden!)
+
+    NAMING THE AGENT with von + dative:
+    "Das Buch wird von dem Autor geschrieben."
+    (The book is being written BY the author.)
+    "Das Haus wurde von den Arbeitern gebaut."
+    (The house was built BY the workers.)
+
+    IMPERSONAL PASSIVE (no subject):
+    "Es wird viel gesungen." (There is a lot of singing going on.)
+    "Hier wird Deutsch gesprochen." (German is spoken here.)
+  english_comparison: |
+    English passive: "is written", "was written", "is being built"
+    German passive: "wird geschrieben", "wurde geschrieben", "wird gebaut"
+
+    Very similar structure! Both use:
+    English: to be + past participle
+    German: werden + past participle
+
+    English "by" for the agent = German "von + dative":
+    "written BY the author" = "von dem Autor geschrieben"
+
+    KEY DIFFERENCE: German passive focuses on the PROCESS (Vorgangspassiv).
+    "Die Tür wird geöffnet." = The door is being opened (process happening).
+    There is also a Zustandspassiv (state passive) with sein:
+    "Die Tür ist geöffnet." = The door IS open (resulting state).
+
+example_sentences:
+  - german: "Das Auto wird repariert."
+    english: "The car is being repaired."
+    breakdown_focus: "wird (conjugated werden) + repariert (past participle at end)"
+  - german: "Das Haus wurde von einem Architekten entworfen."
+    english: "The house was designed by an architect."
+    breakdown_focus: "wurde (past passive) + von einem Architekten (agent, von + dative) + entworfen"
+  - german: "Hier wird kein Englisch gesprochen."
+    english: "No English is spoken here."
+    breakdown_focus: "impersonal passive; Hier = position 1, wird = position 2"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Das Fenster ___ geöffnet. (The window is being opened.) — Present passive"
+      options: ["ist", "hat", "wird", "wurde"]
+      correct_answer: "wird"
+      correct_answer_index: 2
+      answer_explanation: "Present passive = werden (conjugated) + past participle. das Fenster → singular neuter → wird. 'Das Fenster wird geöffnet.'"
+      grammar_rule_tested: "present passive with wird"
+      english_comparison: "English: The window IS being opened. German: Das Fenster WIRD geöffnet (wird = is being)"
+      hint: "Present passive auxiliary = werden. What is the form of werden for das Fenster (singular)?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Die Briefe ___ gestern geschrieben. (The letters were written yesterday.) — Past passive"
+      options: ["werden", "wurden", "sind", "haben"]
+      correct_answer: "wurden"
+      correct_answer_index: 1
+      answer_explanation: "Past passive uses Präteritum of werden = wurde/wurden. die Briefe is plural → wurden."
+      grammar_rule_tested: "past passive with wurden (plural)"
+      english_comparison: "English: The letters WERE written. German: Die Briefe WURDEN geschrieben."
+      hint: "Past passive = Präteritum of werden. Plural = wurden."
+      points: 10
+    - type: "fill_blank"
+      question: "Das Essen wird von meiner Mutter ___. (The food is being cooked by my mother.) — kochen = to cook, past participle = gekocht"
+      context: "von meiner Mutter = by my mother (von + dative)"
+      options: null
+      correct_answer: "gekocht"
+      correct_answer_index: null
+      answer_explanation: "Present passive: wird + past participle at end. kochen → gekocht. 'von meiner Mutter' = by my mother (agent)."
+      grammar_rule_tested: "present passive with agent von"
+      english_comparison: "English: The food is being cooked BY my mother. German: Das Essen wird von meiner Mutter GEKOCHT."
+      hint: "Passive structure: wird + past participle at end. Past participle of kochen = gekocht."
+      points: 10
+    - type: "translation"
+      question: "Translate: German is taught in this school."
+      context: "unterrichten = to teach, Schule = school (feminine), in dieser Schule = in this school"
+      options: null
+      correct_answer: "In dieser Schule wird Deutsch unterrichtet."
+      correct_answer_index: null
+      answer_explanation: "Passive: wird...unterrichtet. Impersonal/no agent. V2 rule: In dieser Schule (position 1), wird (position 2). Deutsch = subject (nominative). unterrichtet at end."
+      grammar_rule_tested: "passive sentence with V2 rule"
+      english_comparison: "English: German is taught. German: Deutsch wird unterrichtet (wird = is taught). Can front location."
+      hint: "Passive: wird + unterrichtet (at end). Put location first for emphasis. V2: wird in position 2."
+      points: 15

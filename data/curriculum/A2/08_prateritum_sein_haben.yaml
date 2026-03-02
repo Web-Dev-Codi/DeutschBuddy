@@ -1,0 +1,105 @@
+id: "A2-GRM-008"
+level: "A2"
+category: "grammar"
+title: "Präteritum of sein and haben"
+prerequisites: ["A2-GRM-001"]
+estimated_minutes: 18
+tags: ["prateritum", "simple-past", "sein", "haben", "war", "hatte", "spoken-german"]
+
+explanation:
+  concept: |
+    The PRÄTERITUM (simple past / narrative past) is normally used in WRITTEN German
+    (newspapers, novels). In SPOKEN German, Perfekt is used instead.
+
+    EXCEPTION: sein and haben always use Präteritum in spoken German!
+    (Using Perfekt for these sounds awkward and overly formal)
+
+    SEIN — Präteritum (war-):
+    ich war         wir waren
+    du warst        ihr wart
+    er/sie/es war   sie/Sie waren
+
+    HABEN — Präteritum (hatte-):
+    ich hatte        wir hatten
+    du hattest       ihr hattet
+    er/sie/es hatte  sie/Sie hatten
+
+    Usage examples:
+    "Ich war gestern in Berlin." (I was in Berlin yesterday.)
+    "Er hatte keine Zeit." (He had no time.)
+    "Wir waren sehr müde." (We were very tired.)
+    "Sie hatten ein Problem." (They had a problem.)
+
+    Also use Präteritum for modal verbs in narrative:
+    konnte (could), musste (had to), wollte (wanted to), sollte (was supposed to)
+    "Er konnte nicht kommen." (He couldn't come.)
+    "Ich musste arbeiten." (I had to work.)
+  english_comparison: |
+    English simple past: was/were, had — exactly parallel to German war/hatte!
+    "I was" = ich war
+    "she was" = sie war
+    "we were" = wir waren
+    "I had" = ich hatte
+    "they had" = sie hatten
+
+    This is one of the EASIEST parts of German grammar for English speakers
+    because the logic is identical — just learn the new words.
+
+    Don't mix up: "Ich bin gewesen" (Perfekt — sounds unnatural in speech)
+    Better: "Ich war" (simple, natural spoken German)
+
+example_sentences:
+  - german: "Wo warst du gestern Abend?"
+    english: "Where were you yesterday evening?"
+    breakdown_focus: "warst = Präteritum of sein for du (du + war + -st)"
+  - german: "Das Wetter war wunderschön."
+    english: "The weather was wonderful."
+    breakdown_focus: "war = Präteritum of sein for das Wetter (es/das → war)"
+  - german: "Wir hatten leider keine Reservierung."
+    english: "Unfortunately we had no reservation."
+    breakdown_focus: "hatten = Präteritum of haben for wir"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Ich ___ gestern sehr müde. (I was very tired yesterday.)"
+      options: ["habe", "war", "bin", "hatte"]
+      correct_answer: "war"
+      correct_answer_index: 1
+      answer_explanation: "'war' = Präteritum of sein for ich. In spoken German, always use 'war' (not 'bin gewesen') for 'I was'."
+      grammar_rule_tested: "war = Präteritum ich of sein"
+      english_comparison: "English: I WAS tired. German: Ich WAR müde. Perfect parallel!"
+      hint: "The Präteritum of sein for ich. English: I WAS → German ich ___?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Sie ___ keine Zeit für mich. (She had no time for me.)"
+      options: ["war", "hat", "hatte", "ist"]
+      correct_answer: "hatte"
+      correct_answer_index: 2
+      answer_explanation: "'hatte' = Präteritum of haben for sie/er/es. 'Sie hatte' = she had."
+      grammar_rule_tested: "hatte = Präteritum sie of haben"
+      english_comparison: "English: She HAD no time. German: Sie HATTE keine Zeit."
+      hint: "The Präteritum of haben for sie. English: she HAD → German sie ___?"
+      points: 10
+    - type: "fill_blank"
+      question: "Wir ___ früher ein Haus in Bayern. (We used to have a house in Bavaria.)"
+      context: "früher = in the past / used to; Haus = house (neuter), Bayern = Bavaria"
+      options: null
+      correct_answer: "hatten"
+      correct_answer_index: null
+      answer_explanation: "wir + haben Präteritum = hatten. 'Wir hatten' = we had."
+      grammar_rule_tested: "hatten = Präteritum wir of haben"
+      english_comparison: "English: We HAD / We used to have. German: Wir HATTEN."
+      hint: "Präteritum of haben for wir. haben stem = hatt-. wir ending = -en."
+      points: 10
+    - type: "translation"
+      question: "Translate: Were you (ihr) at the party? We were there too."
+      context: "Party = party (feminine), da = there, auch = too/also"
+      options: null
+      correct_answer: "Wart ihr auf der Party? Wir waren auch da."
+      correct_answer_index: null
+      answer_explanation: "ihr + sein Präteritum = wart. Question: Wart ihr? (V1 for yes/no question). wir + sein Präteritum = waren. auf der Party = dative location (auf + dative)."
+      grammar_rule_tested: "wart (ihr) and waren (wir) Präteritum of sein"
+      english_comparison: "English: Were YOU at the party? We were there. German: Wart IHR...? Wir WAREN..."
+      hint: "ihr + war- = wart. wir + war- = waren. Question: verb comes first."
+      points: 15

@@ -1,0 +1,96 @@
+id: "A1-GRM-015"
+level: "A1"
+category: "grammar"
+title: "Accusative Prepositions"
+prerequisites: ["A1-GRM-006"]
+estimated_minutes: 18
+tags: ["prepositions", "accusative", "durch", "für", "gegen", "ohne", "um"]
+
+explanation:
+  concept: |
+    Some prepositions ALWAYS take the ACCUSATIVE case.
+    You must know these by heart — there are only 5 common ones:
+
+    ACCUSATIVE PREPOSITIONS:
+    durch  = through       "durch den Park" (through the park)
+    für    = for           "für den Mann" (for the man)
+    gegen  = against       "gegen die Wand" (against the wall)
+    ohne   = without       "ohne einen Plan" (without a plan)
+    um     = around/at     "um den Tisch" (around the table) / "um 3 Uhr" (at 3 o'clock)
+
+    Memory trick: DOGFU — Durch, Ohne, Gegen, Für, Um (or just memorize the 5)
+
+    Since they take accusative, masculine articles change:
+    der → den:  durch DEN Park, für DEN Mann
+    But: feminine die → die (no change): für DIE Frau
+    And: neuter das → das (no change): durch DAS Fenster
+
+    Common uses of um:
+    - Direction: um den Block (around the block)
+    - Time: um drei Uhr (at three o'clock)
+  english_comparison: |
+    English prepositions do NOT change the article — there's no case change.
+    "through the park" — German must decide: which case? (accusative → den for masc.)
+
+    The 5 accusative prepositions cause errors because English speakers
+    naturally use the nominative form: "für der Mann" ✗
+    Remember: these 5 always demand accusative → "für DEN Mann" ✓
+
+    "für" means "for" — be careful:
+    "Das ist für dich" = That is for you. (accusative pronoun: dich, not du)
+
+example_sentences:
+  - german: "Ich kaufe Blumen für die Mutter."
+    english: "I buy flowers for the mother."
+    breakdown_focus: "für + die Mutter — feminine accusative, die stays die"
+  - german: "Er läuft durch den Wald."
+    english: "He runs through the forest."
+    breakdown_focus: "durch + den Wald — masculine accusative, der → den"
+  - german: "Sie geht nicht ohne einen Schlüssel aus."
+    english: "She doesn't go out without a key."
+    breakdown_focus: "ohne + einen Schlüssel — masculine accusative indefinite, ein → einen"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Das Geschenk ist für ___ Kinder. (The gift is for the children.)"
+      options: ["die", "der", "den", "dem"]
+      correct_answer: "die"
+      correct_answer_index: 0
+      answer_explanation: "für takes accusative. Kinder is plural. Plural accusative definite article = 'die' (no change from nominative plural)."
+      grammar_rule_tested: "für + accusative plural"
+      english_comparison: "English: for THE children — German: für DIE Kinder (plural accusative stays 'die')"
+      hint: "für takes accusative. Kinder is plural. What is the accusative plural definite article?"
+      points: 10
+    - type: "fill_blank"
+      question: "Wir gehen durch ___ Park. (We go through the park.)"
+      context: "Park = park (masculine)"
+      options: null
+      correct_answer: "den"
+      correct_answer_index: null
+      answer_explanation: "durch takes accusative. Park is masculine. Masculine accusative definite article = 'den' (der → den)."
+      grammar_rule_tested: "durch + accusative masculine"
+      english_comparison: "English: through THE park — German: durch DEN Park (masculine accusative changes der to den)"
+      hint: "durch takes accusative. Park is masculine. What happens to 'der' in accusative?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Which preposition is NOT an accusative preposition?"
+      options: ["für", "mit", "durch", "ohne"]
+      correct_answer: "mit"
+      correct_answer_index: 1
+      answer_explanation: "'mit' (with) is a DATIVE preposition. The accusative prepositions are: durch, für, gegen, ohne, um."
+      grammar_rule_tested: "identifying accusative vs dative prepositions"
+      english_comparison: "In English, 'with' and 'for' are just prepositions. In German, 'mit' takes dative but 'für' takes accusative."
+      hint: "The accusative prepositions are: durch, für, gegen, ohne, um. Which of these options is NOT in that list?"
+      points: 10
+    - type: "translation"
+      question: "Translate: I am going for a walk without a jacket."
+      context: "spazieren gehen = to go for a walk, Jacke = jacket (feminine)"
+      options: null
+      correct_answer: "Ich gehe ohne eine Jacke spazieren."
+      correct_answer_index: null
+      answer_explanation: "ohne takes accusative. Jacke is feminine. Feminine accusative indefinite = 'eine' (no change). spazieren gehen is separable: gehe...spazieren."
+      grammar_rule_tested: "ohne + accusative feminine"
+      english_comparison: "English: without a jacket — German: ohne eine Jacke (feminine, so eine stays eine)"
+      hint: "ohne takes accusative. Jacke is feminine. Feminine doesn't change: eine Jacke stays eine Jacke."
+      points: 15

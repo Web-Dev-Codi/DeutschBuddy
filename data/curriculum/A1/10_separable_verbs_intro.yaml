@@ -1,0 +1,99 @@
+id: "A1-GRM-010"
+level: "A1"
+category: "grammar"
+title: "Separable Verbs — The Split Prefix"
+prerequisites: ["A1-GRM-009"]
+estimated_minutes: 20
+tags: ["separable-verbs", "prefix", "verb-position", "phrasal-verbs"]
+
+explanation:
+  concept: |
+    Many German verbs have a PREFIX that SEPARATES from the verb and moves
+    to the END of the clause in a simple present-tense sentence.
+
+    Common separable prefixes: auf-, an-, ab-, aus-, mit-, vor-, zu-, ein-
+
+    Example: aufmachen (to open)
+    → The prefix "auf" separates and goes to the END:
+    "Ich mache die Tür auf." (I open the door.)
+    NOT: "Ich aufmache die Tür." ✗
+
+    More examples:
+    anfangen (to begin): Ich fange an. / Er fängt an.
+    aufhören (to stop/quit): Sie hört auf.
+    anrufen (to call/phone): Er ruft mich an.
+    mitkommen (to come along): Kommst du mit?
+    aufstehen (to get up): Ich stehe auf.
+    ausgehen (to go out): Wir gehen aus.
+
+    In the INFINITIVE: the prefix stays attached — aufmachen, anfangen
+    In a conjugated main clause: prefix goes to the END.
+  english_comparison: |
+    English has PHRASAL VERBS that work very similarly!
+    "to open up" → "I open the door up" (particle moves to end)
+    "to call up" → "I call him up" (same split!)
+
+    German separable verbs = German phrasal verbs.
+    The prefix is like the particle in English phrasal verbs.
+
+    English: "I give up" — the "up" moves to the end
+    German: "Ich gebe auf" — "auf" moves to the end
+
+    Key difference: German is ALWAYS split in a main clause.
+    English can sometimes keep them together: "I open the door" vs "I open up the door"
+
+example_sentences:
+  - german: "Er macht das Fenster auf."
+    english: "He opens the window."
+    breakdown_focus: "aufmachen → macht...auf (prefix 'auf' goes to end)"
+  - german: "Wann fängt der Film an?"
+    english: "When does the film begin?"
+    breakdown_focus: "anfangen → fängt...an (prefix 'an' at end, verb stays position 2)"
+  - german: "Ich rufe dich morgen an."
+    english: "I'll call you tomorrow."
+    breakdown_focus: "anrufen → rufe...an (prefix 'an' at end)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Ich ___ um 7 Uhr ___. (I get up at 7 o'clock.) — aufstehen"
+      options: ["aufstehe ... [nothing]", "stehe ... auf", "stehe auf ... [nothing]", "stehe ... aufstehen"]
+      correct_answer: "stehe ... auf"
+      correct_answer_index: 1
+      answer_explanation: "aufstehen is a separable verb. 'auf' splits off and goes to the end. Conjugate: ich stehe (stem+e), then 'auf' at the end."
+      grammar_rule_tested: "separable verb split in main clause"
+      english_comparison: "Like English 'I get up' — the 'up' part goes to the end"
+      hint: "aufstehen → auf + stehen. Conjugate 'stehen' for ich, then put 'auf' at the end."
+      points: 10
+    - type: "fill_blank"
+      question: "Er ruft seine Mutter ___. (He calls his mother.)"
+      context: "anrufen = to call by phone; ruft = he calls (conjugated form)"
+      options: null
+      correct_answer: "an"
+      correct_answer_index: null
+      answer_explanation: "anrufen is separable. 'an' splits off and goes to the end of the clause: Er ruft...an."
+      grammar_rule_tested: "separable prefix position"
+      english_comparison: "Like 'He calls his mother up' — the 'up' (an) goes to the end"
+      hint: "anrufen: the prefix is 'an'. Where does it go in a main clause?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Which sentence is CORRECT? (aufmachen = to open)"
+      options: ["Ich aufmache die Tür.", "Ich mache die Tür auf.", "Ich mache auf die Tür.", "Ich auf mache die Tür."]
+      correct_answer: "Ich mache die Tür auf."
+      correct_answer_index: 1
+      answer_explanation: "In a main clause, the conjugated verb goes to position 2 and the prefix 'auf' goes to the very end. The object 'die Tür' comes between them."
+      grammar_rule_tested: "separable verb structure: conjugated verb + object + prefix"
+      english_comparison: "Like 'I open the door up' — the prefix ends up after the object"
+      hint: "The verb goes to position 2, the prefix goes to the END. What comes in between?"
+      points: 10
+    - type: "translation"
+      question: "Translate: We are going out tonight."
+      context: "ausgehen = to go out, heute Abend = tonight"
+      options: null
+      correct_answer: "Wir gehen heute Abend aus."
+      correct_answer_index: null
+      answer_explanation: "ausgehen → aus + gehen. Conjugate: wir gehen. 'aus' goes to end. heute Abend (time phrase) goes before 'aus'."
+      grammar_rule_tested: "separable verb with time adverb"
+      english_comparison: "English: 'We're going out tonight' — German: 'Wir gehen heute Abend aus'"
+      hint: "ausgehen → gehen + aus at the end. ausgehen for wir = wir gehen...aus."
+      points: 15

@@ -1,0 +1,106 @@
+id: "A2-GRM-009"
+level: "A2"
+category: "grammar"
+title: "Relative Clauses and Relative Pronouns"
+prerequisites: ["A2-GRM-003", "A1-GRM-020"]
+estimated_minutes: 25
+tags: ["relative-clauses", "relative-pronouns", "der-die-das", "verb-final", "who", "which", "that"]
+
+explanation:
+  concept: |
+    A relative clause describes a noun. The relative pronoun must AGREE with
+    the noun it refers to in GENDER and NUMBER, but its CASE comes from its
+    role WITHIN the relative clause.
+
+    RELATIVE PRONOUNS (look like definite articles with some differences):
+
+              Masc    Fem     Neut    Plural
+    Nominative: der    die     das     die
+    Accusative: den    die     das     die
+    Dative:     dem    der     dem     denen  ← denen (plural dative, not den!)
+    Genitive:   dessen deren   dessen  deren
+
+    KEY RULE: The relative pronoun ALWAYS sends the verb to the END of the relative clause.
+
+    Example: "Das ist der Mann, der Deutsch spricht."
+    (That is the man WHO speaks German.)
+    - Mann = masculine → use masculine relative pronoun
+    - In the clause "who speaks German", 'who' is the subject → nominative → der
+
+    Example: "Das ist die Frau, die ich kenne."
+    (That is the woman WHOM I know.)
+    - Frau = feminine → feminine pronoun
+    - In the clause "whom I know", 'whom' is the object → accusative → die
+
+    Example: "Das ist das Kind, dem ich helfe."
+    (That is the child WHOM I am helping.)
+    - Kind = neuter → neuter pronoun
+    - In the clause, 'dem' = dative because helfen takes dative
+  english_comparison: |
+    English relative pronouns: who, whom, which, that
+    German uses der/die/das forms (matching the noun's gender).
+
+    English can omit the relative pronoun: "the man I know" (no 'that'/'whom')
+    German CANNOT omit it: "der Mann, den ich kenne" (den MUST be there)
+
+    English doesn't change for case: "the man who / the man that / the man whom"
+    German changes: der (nominative) vs den (accusative) vs dem (dative)
+
+    The COMMA before the relative clause is ALWAYS REQUIRED in German.
+    No exceptions — unlike English where the comma is optional.
+
+example_sentences:
+  - german: "Der Mann, der dort steht, ist mein Bruder."
+    english: "The man who is standing there is my brother."
+    breakdown_focus: "der Mann → der (masc nom); in clause: 'who stands' = subject → nominative → der"
+  - german: "Das Buch, das ich lese, ist sehr interessant."
+    english: "The book that I am reading is very interesting."
+    breakdown_focus: "das Buch → das (neut); in clause: 'that I read' = object → accusative → das (same as nominative for neut)"
+  - german: "Die Frau, der ich helfe, ist meine Nachbarin."
+    english: "The woman I am helping is my neighbor."
+    breakdown_focus: "die Frau → der (fem dative, because helfen takes dative)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Der Mann, ___ dort sitzt, ist mein Chef. (The man who is sitting there is my boss.) — Mann = masculine"
+      options: ["die", "das", "der", "den"]
+      correct_answer: "der"
+      correct_answer_index: 2
+      answer_explanation: "Mann is masculine. In the relative clause, 'who sits' = subject → nominative. Masculine nominative relative pronoun = 'der'."
+      grammar_rule_tested: "relative pronoun masculine nominative"
+      english_comparison: "English: the man WHO sits. German: der Mann, DER sitzt (masculine nominative)"
+      hint: "Mann = masculine. In the relative clause, 'who' is the subject (nominative). Masculine nominative = ?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Das Fahrrad, ___ ich kaufe, ist rot. (The bicycle that I am buying is red.) — Fahrrad = neuter"
+      options: ["der", "die", "das", "dem"]
+      correct_answer: "das"
+      correct_answer_index: 2
+      answer_explanation: "Fahrrad is neuter. In the relative clause, 'that I buy' — 'that' is the direct object → accusative. Neuter accusative relative pronoun = 'das' (same as nominative for neuter)."
+      grammar_rule_tested: "relative pronoun neuter accusative"
+      english_comparison: "English: the bicycle THAT I buy. German: das Fahrrad, DAS ich kaufe (neuter, accusative)"
+      hint: "Fahrrad = neuter. 'I buy it' — 'it' is the direct object (accusative). Neuter accusative = ?"
+      points: 10
+    - type: "fill_blank"
+      question: "Die Lehrerin, ___ ich vertraue, ist sehr nett. (The teacher whom I trust is very nice.)"
+      context: "vertrauen + dative = to trust; Lehrerin = feminine"
+      options: null
+      correct_answer: "der"
+      correct_answer_index: null
+      answer_explanation: "Lehrerin is feminine. 'vertrauen' takes dative. Feminine dative relative pronoun = 'der'."
+      grammar_rule_tested: "relative pronoun feminine dative"
+      english_comparison: "English: the teacher (whom) I trust. German: die Lehrerin, DER ich vertraue (feminine dative = der)"
+      hint: "Lehrerin = feminine. vertrauen takes dative. Feminine dative relative pronoun = der (same as feminine definite dative)"
+      points: 10
+    - type: "translation"
+      question: "Translate: The children who are playing in the garden are my neighbors' children."
+      context: "spielen = to play, Garten = garden (masculine), Nachbarn = neighbors"
+      options: null
+      correct_answer: "Die Kinder, die im Garten spielen, sind die Kinder meiner Nachbarn."
+      correct_answer_index: null
+      answer_explanation: "Kinder is plural. Plural nominative relative pronoun = die. Verb-final in relative clause: im Garten spielen. Main clause: sind (plural of sein)."
+      grammar_rule_tested: "relative pronoun plural nominative"
+      english_comparison: "English: the children WHO play. German: die Kinder, DIE spielen (plural nominative = die)"
+      hint: "Kinder = plural. Plural nominative relative pronoun = die (same as plural definite article)."
+      points: 15
