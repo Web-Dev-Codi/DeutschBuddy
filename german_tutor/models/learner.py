@@ -5,11 +5,13 @@ from typing import Optional
 
 from pydantic import BaseModel
 
+from german_tutor.models.lesson import CEFRLevel
+
 
 class Learner(BaseModel):
     id: Optional[int] = None
     name: str
-    current_level: str = "A1"
+    current_level: CEFRLevel = CEFRLevel.A1
     created_at: Optional[datetime] = None
     streak_days: int = 0
     last_session_date: Optional[datetime] = None

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from enum import Enum
-from typing import Optional
+from typing import Literal, Optional
 
 from pydantic import BaseModel
 
@@ -20,7 +20,7 @@ class LessonCategory(str, Enum):
 
 
 class QuizQuestion(BaseModel):
-    type: str  # multiple_choice | fill_blank | translation | reorder
+    type: Literal["multiple_choice", "fill_blank", "translation", "reorder"]
     question: str
     context: Optional[str] = None
     options: Optional[list[str]] = None
