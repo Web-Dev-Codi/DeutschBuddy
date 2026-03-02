@@ -1,0 +1,166 @@
+/* Import theme variables */
+
+Screen {
+    layout: grid;
+    grid-size: 2;
+    grid-columns: 22 1fr;
+}
+
+/* Navigation sidebar */
+#sidebar {
+    height: 100%;
+    background: $panel;
+    border-right: tall $primary;
+    padding: 1 2;
+}
+
+#sidebar .nav-label {
+    color: $text-muted;
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+#sidebar .nav-item {
+    padding: 0 1;
+    height: 3;
+}
+
+#sidebar .nav-item:focus {
+    background: $primary;
+    color: $text;
+}
+
+/* Main content area */
+#main-content {
+    height: 100%;
+    padding: 1 2;
+}
+
+/* Grammar explanation panel */
+GrammarPanelWidget {
+    border: round $primary;
+    padding: 1 2;
+    height: auto;
+    margin-bottom: 1;
+}
+
+/* Sentence breakdown */
+SentenceBreakdownWidget {
+    border: round $accent;
+    padding: 1 2;
+    height: auto;
+    margin-bottom: 1;
+}
+
+.german-sentence {
+    color: $warning;
+    text-style: bold;
+}
+
+.english-sentence {
+    color: $success;
+}
+
+/* Case color coding */
+.tag-nominative {
+    color: $error;
+    text-style: bold;
+}
+
+.tag-accusative {
+    color: $warning;
+}
+
+.tag-dative {
+    color: $accent;
+}
+
+.tag-genitive {
+    color: $success;
+}
+
+.tag-verb {
+    color: $secondary;
+    text-style: italic;
+}
+
+.tag-connector {
+    color: $text-muted;
+}
+
+/* CEFR Progress bar */
+CEFRProgressBar {
+    height: auto;
+    margin: 1 0;
+}
+
+/* Streak indicator */
+StreakIndicator {
+    height: 3;
+    color: $warning;
+    text-style: bold;
+}
+
+/* Quiz card */
+QuizCard {
+    border: round $primary;
+    padding: 1 2;
+    height: auto;
+    margin-bottom: 1;
+}
+
+.quiz-question {
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+.quiz-context {
+    color: $text-muted;
+    margin-bottom: 1;
+}
+
+.hint-text {
+    color: $accent;
+    margin-top: 1;
+}
+
+/* Buttons */
+.action-buttons {
+    layout: horizontal;
+    height: auto;
+    margin-top: 1;
+}
+
+.action-buttons Button {
+    margin-right: 1;
+}
+
+/* Loading indicator */
+.loading {
+    color: $text-muted;
+    text-style: italic;
+}
+
+/* Score display */
+.score-excellent {
+    color: $success;
+    text-style: bold;
+}
+
+.score-good {
+    color: $warning;
+    text-style: bold;
+}
+
+.score-needs-review {
+    color: $error;
+    text-style: bold;
+}
+
+/* Section headers */
+.section-header {
+    text-style: bold;
+    color: $primary;
+    margin-bottom: 1;
+    margin-top: 1;
+}
