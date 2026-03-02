@@ -30,7 +30,6 @@ class HomeScreen(Screen):
 
     BINDINGS = [
         ("l", "nav_lessons", "Lessons"),
-        ("q", "nav_quiz", "Quiz"),
         ("p", "nav_progress", "Progress"),
         ("r", "nav_review", "Review"),
         ("s", "nav_settings", "Settings"),

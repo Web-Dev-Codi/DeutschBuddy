@@ -230,7 +230,9 @@ class GermanTutorApp(App):
         self.run_worker(self._load_due_vocab_cards(), exclusive=True)
 
     def action_go_home(self) -> None:
-        """Pop all screens and return to the home dashboard."""
+        """Pop all screens above root, then push a fresh HomeScreen."""
+        while len(self.screen_stack) > 1:
+            self.pop_screen()
         self.run_worker(self._show_home(), exclusive=True)
 
     def action_show_help(self) -> None:

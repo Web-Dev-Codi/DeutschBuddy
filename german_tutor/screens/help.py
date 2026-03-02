@@ -3,7 +3,7 @@ from __future__ import annotations
 from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.screen import ModalScreen
-from textual.widgets import Button, DataTable, Footer, Label, Static
+from textual.widgets import Button, DataTable, Static
 
 
 class HelpScreen(ModalScreen):
@@ -41,6 +41,3 @@ class HelpScreen(ModalScreen):
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "help-close":
             self.dismiss()
-
-    def action_dismiss(self) -> None:
-        self.dismiss()
