@@ -1,10 +1,8 @@
 from __future__ import annotations
 
-import asyncio
 from datetime import datetime
 
-from textual.app import App, ComposeResult
-from textual.widgets import Footer, Header, Input, Label
+from textual.app import App
 
 from german_tutor.app_state import AppState
 from german_tutor.curriculum.cefr import CEFRProgressionEngine
@@ -17,7 +15,6 @@ from german_tutor.llm.client import OllamaClient
 from german_tutor.llm.curriculum_agent import CurriculumAgent
 from german_tutor.llm.quiz_agent import QuizAgent
 from german_tutor.llm.tutor_agent import TutorAgent
-from german_tutor.models.learner import Learner
 from german_tutor.screens.home import HomeScreen, NavRequest
 from german_tutor.screens.lesson import LessonScreen
 from german_tutor.screens.quiz import QuizScreen
@@ -127,6 +124,8 @@ class GermanTutorApp(App):
 
     async def _start_lesson(self) -> None:
         """Push LessonScreen for the recommended or first available lesson."""
+        if self._state is None:
+            return
         state = self._state
         lesson = self._get_current_lesson()
         if lesson is None:
@@ -142,6 +141,8 @@ class GermanTutorApp(App):
 
     async def _start_quiz(self) -> None:
         """Push QuizScreen and handle result."""
+        if self._state is None:
+            return
         state = self._state
         lesson = self._current_lesson or self._get_current_lesson()
         if lesson is None:
@@ -172,12 +173,16 @@ class GermanTutorApp(App):
             await self._start_quiz()
 
     async def _open_settings(self) -> None:
+        if self._state is None:
+            return
         state = self._state
         screen = SettingsScreen(ollama_client=state.ollama_client)
         await self.push_screen(screen)
 
     async def _open_review(self) -> None:
         """Open vocabulary review queue."""
+        if self._state is None:
+            return
         state = self._state
         due = await state.progress_repo.get_due_vocab_cards(
             state.current_learner.id, datetime.now()
