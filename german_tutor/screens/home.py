@@ -5,6 +5,12 @@ from textual.message import Message
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Label, Static
 
+from german_tutor.curriculum.spaced_repetition import (
+    CardState,
+    calculate_next_review,
+    score_to_quality,
+)
+from german_tutor.db.repositories.progress_repo import ProgressRepository
 from german_tutor.models.learner import Learner
 from german_tutor.models.lesson import LessonRecommendation
 from german_tutor.widgets.progress_bar import CEFRProgressBar
@@ -150,7 +156,7 @@ class VocabReviewScreen(Screen):
     def __init__(
         self,
         cards: list[dict],
-        progress_repo,
+        progress_repo: ProgressRepository,
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
@@ -159,6 +165,7 @@ class VocabReviewScreen(Screen):
         self._current_index: int = 0
         self._correct: int = 0
         self._answered: bool = False
+        self._advance_timer = None
 
     def compose(self) -> ComposeResult:
         yield Header()
@@ -227,16 +234,10 @@ class VocabReviewScreen(Screen):
         await self._update_sm2(card_data, is_correct)
 
         # Advance after a short delay
-        self.set_timer(1.5, self._advance_card)
+        self._advance_timer = self.set_timer(1.5, self._advance_card)
 
     async def _update_sm2(self, card_data: dict, is_correct: bool) -> None:
         """Apply SM-2 update and persist to DB."""
-        from german_tutor.curriculum.spaced_repetition import (
-            CardState,
-            calculate_next_review,
-            score_to_quality,
-        )
-
         quality = score_to_quality(100 if is_correct else 0)
         card = CardState(
             item_id=str(card_data["id"]),
@@ -253,8 +254,9 @@ class VocabReviewScreen(Screen):
                 reps=updated.repetitions,
                 next_review=updated.next_review,
             )
-        except Exception:
-            pass
+        except Exception as e:
+            self.app.log.error(f"SM-2 update failed for card {card_data['id']}: {e}")
+            self.app.notify("Could not save review progress", severity="warning")
 
     async def _advance_card(self) -> None:
         self._current_index += 1
@@ -271,6 +273,9 @@ class VocabReviewScreen(Screen):
         if event.button.id == "btn-submit":
             self.run_worker(self._submit_answer(), exclusive=True)
         elif event.button.id == "btn-skip":
+            if self._advance_timer is not None:
+                self._advance_timer.stop()
+                self._advance_timer = None
             self.run_worker(self._advance_card(), exclusive=True)
         elif event.button.id == "btn-done":
             self.action_quit_review()

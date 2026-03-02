@@ -118,7 +118,7 @@ class GermanTutorApp(App):
         elif dest == "settings":
             self.run_worker(self._open_settings(), exclusive=True)
         elif dest == "review":
-            self.run_worker(self._open_review(), exclusive=True)
+            self.run_worker(self._load_due_vocab_cards(), exclusive=True)
         elif dest in ("progress",):
             self.notify("Progress screen coming in a future update.")
 
@@ -179,8 +179,8 @@ class GermanTutorApp(App):
         screen = SettingsScreen(ollama_client=state.ollama_client)
         await self.push_screen(screen)
 
-    async def _open_review(self) -> None:
-        """Open vocabulary review queue."""
+    async def _load_due_vocab_cards(self) -> None:
+        """Worker: fetch due vocab cards then push VocabReviewScreen on the event loop."""
         if self._state is None:
             return
         state = self._state
@@ -190,9 +190,16 @@ class GermanTutorApp(App):
         if not due:
             self.notify("No vocabulary cards due for review today!")
             return
+        # Hand off to the event loop — push_screen_wait must not run inside a worker
+        self.call_after_refresh(self._push_review_screen, due)
+
+    async def _push_review_screen(self, due: list[dict]) -> None:
+        """Push VocabReviewScreen and handle the result on the event loop."""
+        if self._state is None:
+            return
         screen = VocabReviewScreen(
             cards=due,
-            progress_repo=state.progress_repo,
+            progress_repo=self._state.progress_repo,
         )
         result = await self.push_screen_wait(screen)
         if result is not None:
@@ -218,7 +225,7 @@ class GermanTutorApp(App):
     # ── Actions ───────────────────────────────────────────────────────────────
 
     def action_go_review(self) -> None:
-        self.run_worker(self._open_review(), exclusive=True)
+        self.run_worker(self._load_due_vocab_cards(), exclusive=True)
 
     def action_show_help(self) -> None:
         self.notify(

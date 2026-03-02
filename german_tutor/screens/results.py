@@ -168,8 +168,8 @@ class ResultsScreen(Screen):
                     await self.progress_repo.upsert_vocab_card(
                         self.learner.id, german, english, level
                     )
-                except Exception:
-                    pass
+                except Exception as e:
+                    self.app.log.error(f"Failed to upsert vocab card '{german}': {e}")
 
     def action_go_home(self) -> None:
         self.dismiss(None)
