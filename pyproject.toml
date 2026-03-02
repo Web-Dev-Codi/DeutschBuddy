@@ -19,7 +19,5 @@ german-tutor = "german_tutor.main:run"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.uv]
-dev-dependencies = [
-    "textual-dev>=0.1.0",
-]
+[dependency-groups]
+dev = ["textual-dev>=0.1.0"]

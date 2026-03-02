@@ -6,6 +6,7 @@ class GermanTutorApp(App):
     """Main GermanTutor Textual application."""
 
     TITLE = "GermanTutor"
+    CSS_PATH = "styles/main.tcss"
     BINDINGS = [("q", "quit", "Quit")]
 
     def compose(self) -> ComposeResult:
