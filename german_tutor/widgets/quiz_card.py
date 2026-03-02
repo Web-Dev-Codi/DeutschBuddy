@@ -95,6 +95,6 @@ class QuizCard(Widget):
         """Show post-submission feedback inline."""
         cls = "score-excellent" if is_correct else "score-needs-review"
         icon = "✓" if is_correct else "✗"
-        self.query_one("#hint-display", Static).update(
-            f"{icon} {feedback}", markup=False
-        )
+        hint = self.query_one("#hint-display", Static)
+        hint.set_classes(f"hint-text {cls}")
+        hint.update(f"{icon} {feedback}", markup=False)

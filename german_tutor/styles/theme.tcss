@@ -25,3 +25,8 @@ $nominative: #E74C3C;
 $accusative: #F39C12;
 $dative: #3498DB;
 $genitive: #27AE60;
+
+/* Semantic aliases used by main.tcss */
+$error: #E74C3C;
+$warning: #F39C12;
+$success: #27AE60;
