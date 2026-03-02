@@ -14,9 +14,12 @@ class CurriculumLoader:
         self.base_path = Path(data_path)
 
     def load_lesson(self, file_path: Path) -> Lesson:
-        with open(file_path, encoding="utf-8") as f:
-            data = yaml.safe_load(f)
-        return Lesson(**data)
+        try:
+            with open(file_path, encoding="utf-8") as f:
+                data = yaml.safe_load(f)
+            return Lesson(**data)
+        except Exception as exc:
+            raise ValueError(f"Failed to load lesson from {file_path}: {exc}") from exc
 
     def load_level(self, level: str) -> list[Lesson]:
         """Load all lessons for a CEFR level, sorted by filename."""
