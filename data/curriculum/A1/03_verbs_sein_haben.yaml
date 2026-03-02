@@ -1,0 +1,94 @@
+id: "A1-GRM-003"
+level: "A1"
+category: "grammar"
+title: "Essential Verbs: sein (to be) and haben (to have)"
+prerequisites: ["A1-GRM-002"]
+estimated_minutes: 20
+tags: ["verbs", "sein", "haben", "conjugation", "irregular"]
+
+explanation:
+  concept: |
+    'sein' (to be) and 'haben' (to have) are the two most important verbs in
+    German. They are IRREGULAR — their forms don't follow the standard pattern,
+    so each one must be memorised. They are used:
+    1. As main verbs: "I am tired", "I have a car"
+    2. As auxiliary (helper) verbs to form past tenses
+    
+    'sein' conjugation:
+    ich bin     (I am)
+    du bist     (you are)
+    er/sie/es ist  (he/she/it is)
+    wir sind    (we are)
+    ihr seid    (you all are)
+    sie/Sie sind  (they/you formal are)
+    
+    'haben' conjugation:
+    ich habe    (I have)
+    du hast     (you have)
+    er/sie/es hat  (he/she/it has)
+    wir haben   (we have)
+    ihr habt    (you all have)
+    sie/Sie haben  (they/you formal have)
+  english_comparison: |
+    English "to be": am/is/are — German: bin/bist/ist/sind/seid/sind
+    English "to have": have/has — German: habe/hast/hat/haben/habt/haben
+    
+    Both languages have irregular "to be" and "to have" — the irregularity
+    is similar but the FORMS are different. You must memorise both tables.
+
+example_sentences:
+  - german: "Ich bin müde."
+    english: "I am tired."
+    breakdown_focus: "ich bin — first person singular of sein"
+  - german: "Er hat ein Auto."
+    english: "He has a car."
+    breakdown_focus: "er hat — third person singular of haben"
+  - german: "Wir sind Studenten."
+    english: "We are students."
+    breakdown_focus: "wir sind — first person plural of sein"
+
+quiz:
+  questions:
+    - type: "fill_blank"
+      question: "Ich ___ müde. (I am tired.)"
+      context: null
+      options: null
+      correct_answer: "bin"
+      correct_answer_index: null
+      answer_explanation: "'sein' conjugated for 'ich' = 'bin'"
+      grammar_rule_tested: "sein conjugation — ich"
+      english_comparison: "English: I am — German: ich bin"
+      hint: "The verb is 'sein' (to be). What's the 'ich' form?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Er ___ ein Buch. (He has a book.)"
+      options: ["bin", "bist", "hat", "haben"]
+      correct_answer: "hat"
+      correct_answer_index: 2
+      answer_explanation: "'haben' conjugated for 'er' = 'hat'"
+      grammar_rule_tested: "haben conjugation — er/sie/es"
+      english_comparison: "English: he has — German: er hat"
+      hint: "The verb is 'haben' (to have). Which form goes with er/sie/es?"
+      points: 10
+    - type: "fill_blank"
+      question: "Wir ___ Studenten. (We are students.)"
+      context: null
+      options: null
+      correct_answer: "sind"
+      correct_answer_index: null
+      answer_explanation: "'sein' conjugated for 'wir' = 'sind'"
+      grammar_rule_tested: "sein conjugation — wir"
+      english_comparison: "English: we are — German: wir sind"
+      hint: "The verb is 'sein' (to be). What's the 'wir' form?"
+      points: 10
+    - type: "translation"
+      question: "Translate: She has a dog."
+      context: null
+      options: null
+      correct_answer: "Sie hat einen Hund."
+      correct_answer_index: null
+      answer_explanation: "sie hat = she has; einen Hund = a dog (accusative masculine — we'll cover this fully in lesson 6)"
+      grammar_rule_tested: "haben conjugation — sie"
+      english_comparison: "English: she has — German: sie hat"
+      hint: "Use the 'sie' (she) form of haben. The word for dog is 'Hund'."
+      points: 15

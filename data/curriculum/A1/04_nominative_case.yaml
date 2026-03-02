@@ -1,0 +1,81 @@
+id: "A1-GRM-004"
+level: "A1"
+category: "grammar"
+title: "The Nominative Case — The Subject"
+prerequisites: ["A1-GRM-002", "A1-GRM-003"]
+estimated_minutes: 15
+tags: ["nominative", "case", "subject", "articles", "pronouns"]
+
+explanation:
+  concept: |
+    German has a CASE system — the same noun changes its article depending on
+    the grammatical role it plays in the sentence.
+    
+    The NOMINATIVE case marks the SUBJECT — the person or thing DOING the action.
+    
+    Question to find the nominative: "WHO or WHAT is performing the action?"
+    
+    In the sentence "The dog bites the man":
+    - "The dog" is doing the biting → NOMINATIVE (der Hund)
+    - "The man" is being bitten → ACCUSATIVE (den Mann) — next lesson
+    
+    Nominative articles:
+    - Masculine: der / ein
+    - Feminine:  die / eine
+    - Neuter:    das / ein
+    - Plural:    die / —
+  english_comparison: |
+    English doesn't change "the" based on case. But English DOES change
+    pronouns based on case — you already know this:
+    - "He" (nominative subject) → "Him" (accusative object)
+    - "She" (nominative) → "Her" (object)
+    - "They" (nominative) → "Them" (object)
+    
+    German extends this same logic to articles, not just pronouns.
+    When you say "He runs", "he" is nominative.
+    When you say "Der Hund läuft", "der Hund" is nominative.
+
+example_sentences:
+  - german: "Der Hund schläft."
+    english: "The dog sleeps."
+    breakdown_focus: "der Hund = nominative masculine subject"
+  - german: "Die Lehrerin ist freundlich."
+    english: "The teacher (f) is friendly."
+    breakdown_focus: "die Lehrerin = nominative feminine subject"
+  - german: "Das Auto ist neu."
+    english: "The car is new."
+    breakdown_focus: "das Auto = nominative neuter subject"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Which word is the subject (nominative) in: 'Die Katze trinkt Milch.'?"
+      options: ["Die Katze", "trinkt", "Milch", "Die"]
+      correct_answer: "Die Katze"
+      correct_answer_index: 0
+      answer_explanation: "'Die Katze' is the subject — the cat is the one performing the drinking action"
+      grammar_rule_tested: "identifying the nominative subject"
+      english_comparison: "In 'The cat drinks milk', 'the cat' is the subject — same logic in German"
+      hint: "Ask: WHO is doing the action? WHO is drinking?"
+      points: 10
+    - type: "fill_blank"
+      question: "___ Lehrer erklärt die Aufgabe. (The teacher explains the task.)"
+      context: "Lehrer = teacher (masculine)"
+      options: null
+      correct_answer: "Der"
+      correct_answer_index: null
+      answer_explanation: "'Lehrer' is masculine → nominative masculine article = 'der'"
+      grammar_rule_tested: "nominative masculine article"
+      english_comparison: "English: 'The teacher' — German: 'Der Lehrer' (masculine noun)"
+      hint: "Lehrer (teacher, male) is masculine gender"
+      points: 10
+    - type: "multiple_choice"
+      question: "What is the nominative form for a feminine noun?"
+      options: ["der", "die", "das", "den"]
+      correct_answer: "die"
+      correct_answer_index: 1
+      answer_explanation: "Feminine nominative definite article = 'die'"
+      grammar_rule_tested: "nominative feminine article"
+      english_comparison: "English has no gender distinction — German feminine nouns use 'die' as subject"
+      hint: "Think of the article table: masculine=der, feminine=?, neuter=das"
+      points: 10

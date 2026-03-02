@@ -1,0 +1,82 @@
+id: "A1-GRM-005"
+level: "A1"
+category: "grammar"
+title: "Personal Pronouns — Nominative"
+prerequisites: ["A1-GRM-004"]
+estimated_minutes: 15
+tags: ["pronouns", "nominative", "ich", "du", "er-sie-es", "wir", "ihr", "sie"]
+
+explanation:
+  concept: |
+    Personal pronouns replace nouns. In the nominative (subject) case,
+    German has 6 basic pronouns:
+    
+    ich    = I
+    du     = you (singular, informal)
+    er     = he / it (masculine nouns)
+    sie    = she / it (feminine nouns)
+    es     = it (neuter nouns)
+    wir    = we
+    ihr    = you (plural, informal — like "y'all")
+    sie    = they
+    Sie    = you (formal, singular or plural) — always capitalised
+    
+    Important: 'sie' means BOTH 'she' and 'they'. Context (and verb form)
+    tells you which is meant.
+    Important: 'Sie' (capital S) = formal 'you' for adults you don't know well.
+  english_comparison: |
+    English: I, you, he, she, it, we, you (plural), they
+    German:  ich, du, er, sie, es, wir, ihr, sie
+    
+    Key differences:
+    1. German distinguishes 'du' (informal you) from 'Sie' (formal you)
+       — like French tu vs vous, or Spanish tú vs usted
+    2. 'er/sie/es' must match the GRAMMATICAL GENDER of the noun, not
+       the natural gender:
+       "das Mädchen" (the girl) → ES (neuter!) not sie
+    3. 'ihr' = you plural (informal) — English lost this distinction
+
+example_sentences:
+  - german: "Ich lerne Deutsch."
+    english: "I am learning German."
+    breakdown_focus: "ich = I (first person singular)"
+  - german: "Er ist Lehrer."
+    english: "He is a teacher."
+    breakdown_focus: "er = he (third person singular masculine)"
+  - german: "Sie sind sehr freundlich, Herr Müller."
+    english: "You are very friendly, Mr Müller. (formal)"
+    breakdown_focus: "Sie = formal you (capitalised)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "What is the formal German word for 'you' (when speaking to a stranger)?"
+      options: ["du", "ihr", "Sie", "es"]
+      correct_answer: "Sie"
+      correct_answer_index: 2
+      answer_explanation: "'Sie' (capital S) is the formal 'you' used with strangers, bosses, elderly people. 'du' is informal."
+      grammar_rule_tested: "formal vs informal pronouns"
+      english_comparison: "English lost the formal/informal distinction — German requires choosing based on social context"
+      hint: "Think of French 'vous' — what's the German equivalent for formal situations?"
+      points: 10
+    - type: "fill_blank"
+      question: "___ lerne Deutsch. (I am learning German.)"
+      context: null
+      options: null
+      correct_answer: "Ich"
+      correct_answer_index: null
+      answer_explanation: "First person singular pronoun = ich"
+      grammar_rule_tested: "ich = I"
+      english_comparison: "Note: 'ich' is NOT capitalised unless at the start of a sentence (unlike English 'I' which is always capital)"
+      hint: "What's the German word for 'I'?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Das Mädchen (the girl) is grammatically neuter. Which pronoun replaces it?"
+      options: ["sie (she)", "er (he)", "es (it)", "du (you)"]
+      correct_answer: "es (it)"
+      correct_answer_index: 2
+      answer_explanation: "'Mädchen' is grammatically NEUTER (das Mädchen), so the pronoun is 'es' even though a girl is biologically female. Grammatical gender ≠ natural gender in German."
+      grammar_rule_tested: "grammatical gender vs natural gender"
+      english_comparison: "In English, 'girl' = she (natural gender). In German, das Mädchen = es (grammatical gender wins)"
+      hint: "What's the article for Mädchen? das Mädchen → which pronoun matches 'das' gender?"
+      points: 10

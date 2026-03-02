@@ -1,0 +1,67 @@
+id: "A1-GRM-001"
+level: "A1"
+category: "vocabulary"
+title: "Greetings and Basic Phrases"
+prerequisites: []
+estimated_minutes: 10
+tags: ["greetings", "phrases", "social", "basics"]
+
+explanation:
+  concept: |
+    German greetings change depending on the time of day and how formal the
+    situation is. Unlike English where "hi" and "hello" work everywhere,
+    German has specific greetings for morning, afternoon, and evening.
+    Formal vs informal speech is marked by different pronouns: "Sie" (formal)
+    vs "du" (informal) — similar to how French uses "vous" vs "tu".
+  english_comparison: |
+    English: "Hello" works any time, any situation.
+    German: Time-specific greetings are expected in formal contexts.
+    
+    The formal/informal distinction is like the difference between:
+    "How do you do?" (formal) vs "Hey, how's it going?" (informal)
+
+example_sentences:
+  - german: "Guten Morgen! Wie geht es Ihnen?"
+    english: "Good morning! How are you? (formal)"
+    breakdown_focus: "formal greeting + formal pronoun Sie"
+  - german: "Hallo! Wie geht's dir?"
+    english: "Hello! How are you? (informal)"
+    breakdown_focus: "informal greeting + informal pronoun dir"
+  - german: "Auf Wiedersehen!"
+    english: "Goodbye! (formal, lit. 'until we see again')"
+    breakdown_focus: "formal farewell"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Which greeting is appropriate at 9am in a formal setting?"
+      options: ["Guten Morgen", "Guten Abend", "Gute Nacht", "Hallo"]
+      correct_answer: "Guten Morgen"
+      correct_answer_index: 0
+      answer_explanation: "Guten Morgen = Good Morning, used before noon in formal AND informal contexts"
+      grammar_rule_tested: "time-appropriate greetings"
+      english_comparison: "English 'Good morning' is the direct equivalent"
+      hint: "Think about what 'Morgen' means in German"
+      points: 10
+    - type: "translation"
+      question: "Translate: Goodbye (formal)"
+      context: "You are leaving a business meeting"
+      options: null
+      correct_answer: "Auf Wiedersehen"
+      correct_answer_index: null
+      answer_explanation: "Auf Wiedersehen literally means 'until we see again' — the formal German farewell"
+      grammar_rule_tested: "formal farewell phrases"
+      english_comparison: "English uses one word 'goodbye'; German has formal and informal versions"
+      hint: "Think of the word for 'again' in German: wieder"
+      points: 15
+    - type: "fill_blank"
+      question: "Complete: ___ Abend! (Good evening)"
+      context: null
+      options: null
+      correct_answer: "Guten"
+      correct_answer_index: null
+      answer_explanation: "Guten is the accusative form of 'gut' (good) — German adjectives change form based on case"
+      grammar_rule_tested: "adjective in greeting phrases"
+      english_comparison: "English 'good' never changes form. German 'gut' becomes 'Guten' in greetings (accusative context)"
+      hint: "The adjective 'gut' changes its ending in greetings"
+      points: 10

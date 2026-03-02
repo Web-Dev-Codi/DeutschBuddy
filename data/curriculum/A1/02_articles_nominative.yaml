@@ -1,0 +1,91 @@
+id: "A1-GRM-002"
+level: "A1"
+category: "grammar"
+title: "Definite Articles — Nominative Case"
+prerequisites: ["A1-GRM-001"]
+estimated_minutes: 15
+tags: ["articles", "nominative", "gender", "nouns", "der-die-das"]
+
+explanation:
+  concept: |
+    German nouns have THREE grammatical genders: masculine (der), feminine (die),
+    and neuter (das). EVERY noun has a fixed gender that must be memorised.
+    The article (the word for "the") changes based on this gender.
+    
+    In the nominative case (the subject of the sentence — whoever is DOING
+    the action), the definite articles are:
+    - Masculine: der  (der Hund = the dog)
+    - Feminine:  die  (die Katze = the cat)
+    - Neuter:    das  (das Buch = the book)
+    - Plural:    die  (die Hunde = the dogs)
+  english_comparison: |
+    In English, "the" is the same for every noun: the dog, the cat, the book.
+    German has THREE different words for "the" based on gender.
+    
+    Think of it like English "a" vs "an" — English speakers already change
+    the article based on sound (a car, an apple). German just extends this
+    logic to gender and case.
+  table:
+    title: "Nominative Articles (Subject of sentence)"
+    headers: ["Gender", "Definite (the)", "Indefinite (a/an)", "Example noun"]
+    rows:
+      - ["Masculine", "der", "ein", "der Hund (the dog)"]
+      - ["Feminine", "die", "eine", "die Katze (the cat)"]
+      - ["Neuter", "das", "ein", "das Buch (the book)"]
+      - ["Plural", "die", "—", "die Hunde (the dogs)"]
+
+example_sentences:
+  - german: "Der Mann liest ein Buch."
+    english: "The man reads a book."
+    breakdown_focus: "nominative masculine article 'der'"
+  - german: "Die Frau trinkt Kaffee."
+    english: "The woman drinks coffee."
+    breakdown_focus: "nominative feminine article 'die'"
+  - german: "Das Kind spielt im Garten."
+    english: "The child plays in the garden."
+    breakdown_focus: "nominative neuter article 'das'"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Which article is correct? ___ Hund ist groß. (The dog is big.)"
+      options: ["Der", "Die", "Das", "Den"]
+      correct_answer: "Der"
+      correct_answer_index: 0
+      answer_explanation: "'Hund' (dog) is masculine → nominative masculine article is 'der'"
+      grammar_rule_tested: "nominative masculine article"
+      english_comparison: "English uses 'the' for all — German requires gender-specific article"
+      hint: "Hund (dog) is masculine gender in German"
+      points: 10
+    - type: "fill_blank"
+      question: "Complete: ___ Frau trinkt Kaffee. (The woman drinks coffee.)"
+      context: null
+      options: null
+      correct_answer: "Die"
+      correct_answer_index: null
+      answer_explanation: "'Frau' (woman) is feminine → nominative feminine article is 'die'"
+      grammar_rule_tested: "nominative feminine article"
+      english_comparison: "English 'the woman' — German 'die Frau' because Frau is feminine"
+      hint: "Frau (woman) is feminine — what's the feminine article?"
+      points: 10
+    - type: "multiple_choice"
+      question: "Which article is correct? ___ Buch ist interessant. (The book is interesting.)"
+      options: ["Der", "Die", "Das", "Dem"]
+      correct_answer: "Das"
+      correct_answer_index: 2
+      answer_explanation: "'Buch' (book) is neuter → nominative neuter article is 'das'"
+      grammar_rule_tested: "nominative neuter article"
+      english_comparison: "English has no neuter article concept — German neuter uses 'das'"
+      hint: "Buch (book) is neuter gender in German"
+      points: 10
+    - type: "translation"
+      question: "Translate: The cat sleeps."
+      context: null
+      options: null
+      correct_answer: "Die Katze schläft."
+      correct_answer_index: null
+      answer_explanation: "Katze (cat) is feminine → die Katze. 'schläft' is the conjugated form of 'schlafen' for er/sie/es"
+      grammar_rule_tested: "nominative feminine article + verb conjugation"
+      english_comparison: "English: 'The cat sleeps' — German: 'Die Katze schläft' (same SVO order)"
+      hint: "Katze is feminine. The verb 'schlafen' (to sleep) conjugated for sie: schläft"
+      points: 15
