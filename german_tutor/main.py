@@ -15,6 +15,7 @@ from german_tutor.llm.client import OllamaClient
 from german_tutor.llm.curriculum_agent import CurriculumAgent
 from german_tutor.llm.quiz_agent import QuizAgent
 from german_tutor.llm.tutor_agent import TutorAgent
+from german_tutor.screens.help import HelpScreen
 from german_tutor.screens.home import HomeScreen, NavRequest, VocabReviewScreen
 from german_tutor.screens.lesson import LessonScreen
 from german_tutor.screens.quiz import QuizScreen
@@ -32,6 +33,7 @@ class GermanTutorApp(App):
     CSS_PATH = "styles/main.tcss"
     BINDINGS = [
         ("q", "quit", "Quit"),
+        ("h", "go_home", "Home"),
         ("ctrl+r", "go_review", "Review"),
         ("?", "show_help", "Help"),
     ]
@@ -227,13 +229,12 @@ class GermanTutorApp(App):
     def action_go_review(self) -> None:
         self.run_worker(self._load_due_vocab_cards(), exclusive=True)
 
+    def action_go_home(self) -> None:
+        """Pop all screens and return to the home dashboard."""
+        self.run_worker(self._show_home(), exclusive=True)
+
     def action_show_help(self) -> None:
-        self.notify(
-            "q=Quit  Ctrl+R=Review  ?=Help\n"
-            "In Home: l=Lessons  q=Quiz  r=Review  s=Settings",
-            title="Keyboard Shortcuts",
-            timeout=8,
-        )
+        self.push_screen(HelpScreen())
 
     # ── Teardown ──────────────────────────────────────────────────────────────
 

@@ -63,7 +63,7 @@ SentenceBreakdownWidget {
     color: $success;
 }
 
-/* Case color coding */
+/* Case color coding — bold for contrast on dark background */
 .tag-nominative {
     color: $error;
     text-style: bold;
@@ -71,14 +71,17 @@ SentenceBreakdownWidget {
 
 .tag-accusative {
     color: $warning;
+    text-style: bold;
 }
 
 .tag-dative {
     color: $accent;
+    text-style: bold;
 }
 
 .tag-genitive {
     color: $success;
+    text-style: bold;
 }
 
 .tag-verb {
@@ -165,4 +168,47 @@ QuizCard {
     color: $primary;
     margin-bottom: 1;
     margin-top: 1;
+}
+
+/* Help overlay modal */
+HelpScreen {
+    align: center middle;
+}
+
+#help-container {
+    width: 60;
+    height: auto;
+    background: $panel;
+    border: double $primary;
+    padding: 2 3;
+}
+
+#help-title {
+    text-style: bold;
+    color: $primary;
+    text-align: center;
+    margin-bottom: 1;
+}
+
+#help-table {
+    height: auto;
+    margin-bottom: 1;
+}
+
+#help-close {
+    dock: bottom;
+    width: 100%;
+    margin-top: 1;
+}
+
+/* Sidebar nav consistency */
+#sidebar .nav-item {
+    padding: 0 1;
+    height: 3;
+    width: 100%;
+}
+
+#sidebar .nav-item:hover {
+    background: $primary-darken-1;
+    color: $text;
 }
