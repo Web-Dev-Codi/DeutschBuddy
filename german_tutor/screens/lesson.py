@@ -7,7 +7,6 @@ from textual.widgets import Button, Footer, Header, LoadingIndicator, Static
 from german_tutor.models.learner import Learner
 from german_tutor.models.lesson import Lesson
 from german_tutor.widgets.grammar_panel import GrammarPanelWidget
-from german_tutor.widgets.sentence_tree import SentenceBreakdownWidget
 
 
 class LessonScreen(Screen):

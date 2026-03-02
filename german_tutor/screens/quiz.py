@@ -53,6 +53,23 @@ class QuizScreen(Screen):
             try:
                 result = await self.quiz_agent.generate_quiz(self.lesson, self.learner)
                 self._questions = result.get("questions", [])
+                # Create a DB session record
+                if self.progress_repo is not None and self.learner.id is not None:
+                    from german_tutor.models.session import QuizSession as QS
+                    from datetime import datetime
+
+                    new_session = QS(
+                        learner_id=self.learner.id,
+                        lesson_id=self.lesson.id,
+                        started_at=datetime.now(),
+                        total_questions=len(self._questions),
+                    )
+                    try:
+                        self._session_id = await self.progress_repo.create_session(
+                            new_session
+                        )
+                    except Exception:
+                        pass
                 if self._questions:
                     self.query_one("#quiz-status", Static).update(
                         f"Question 1 / {len(self._questions)}"
@@ -199,11 +216,11 @@ class QuizScreen(Screen):
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "btn-submit":
-            self.run_worker(self._submit_answer())
+            self.run_worker(self._submit_answer(), exclusive=True)
         elif event.button.id == "btn-hint":
-            self.run_worker(self._get_hint())
+            self.run_worker(self._get_hint(), exclusive=True)
         elif event.button.id == "btn-skip":
-            self.run_worker(self._advance_question())
+            self.run_worker(self._advance_question(), exclusive=True)
         elif event.button.id == "btn-quit":
             self.action_quit_quiz()
 

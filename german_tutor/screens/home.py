@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from textual.app import ComposeResult
+from textual.message import Message
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Label, Static
 
@@ -8,6 +9,13 @@ from german_tutor.models.learner import Learner
 from german_tutor.models.lesson import LessonRecommendation
 from german_tutor.widgets.progress_bar import CEFRProgressBar
 from german_tutor.widgets.streak_indicator import StreakIndicator
+
+
+# Simple message class for navigation requests
+class NavRequest(Message):
+    def __init__(self, destination: str) -> None:
+        super().__init__()
+        self.destination = destination
 
 
 class HomeScreen(Screen):
@@ -81,6 +89,7 @@ class HomeScreen(Screen):
                 yield Static(
                     "Loading recommendation...", id="rec-title", classes="loading"
                 )
+                yield Static("", id="rec-reason", classes="quiz-context")
 
             with Static(classes="action-buttons"):
                 yield Button("Start Quiz", id="btn-quiz", variant="primary")
@@ -109,6 +118,8 @@ class HomeScreen(Screen):
             self.action_nav_lessons()
         elif button_id == "nav-quiz":
             self.action_nav_quiz()
+        elif button_id == "nav-progress":
+            self.action_nav_progress()
         elif button_id == "nav-settings":
             self.action_nav_settings()
         elif button_id == "btn-quiz":
@@ -128,13 +139,3 @@ class HomeScreen(Screen):
             self.query_one("#rec-reason", Static).update(rec.reason)
         except Exception:
             pass
-
-
-# Simple message class for navigation requests
-from textual.message import Message
-
-
-class NavRequest(Message):
-    def __init__(self, destination: str) -> None:
-        super().__init__()
-        self.destination = destination
