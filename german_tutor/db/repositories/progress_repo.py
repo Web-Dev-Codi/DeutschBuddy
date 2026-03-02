@@ -113,6 +113,8 @@ class ProgressRepository:
         await self.db.commit()
 
     async def get_recent_sessions(self, learner_id: int, limit: int = 10) -> list[dict]:
+        # Note: llm_feedback values in returned dicts are raw JSON strings.
+        # Callers must json.loads() them if dict access is needed.
         async with self.db.execute(
             """
             SELECT qs.*, lp.mastery_score
@@ -155,7 +157,13 @@ class ProgressRepository:
             "SELECT * FROM quiz_responses WHERE session_id = ?", (session_id,)
         ) as cursor:
             rows = await cursor.fetchall()
-        return [QuizResponse(**dict(r)) for r in rows]
+        result = []
+        for r in rows:
+            d = dict(r)
+            if d.get("llm_evaluation"):
+                d["llm_evaluation"] = json.loads(d["llm_evaluation"])
+            result.append(QuizResponse(**d))
+        return result
 
     # ── Vocabulary Cards ───────────────────────────────────────────────────────
 
