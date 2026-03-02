@@ -156,6 +156,32 @@ class ResultsScreen(Screen):
             next_review=updated_card.next_review,
         )
         await self.progress_repo.upsert_lesson_progress(progress)
+        await self._update_streak()
+
+    async def _update_streak(self) -> None:
+        """Update learner streak after session save."""
+        from datetime import datetime
+        from german_tutor.curriculum.streak import calculate_streak
+
+        state = getattr(self.app, "_state", None)
+        if state is None:
+            return
+        learner_repo = getattr(state, "learner_repo", None)
+        if learner_repo is None:
+            return
+        if self.learner is None or self.learner.id is None:
+            return
+
+        new_streak = calculate_streak(
+            self.learner.last_session_date, self.learner.streak_days
+        )
+        now = datetime.now()
+        await learner_repo.update_streak(self.learner.id, new_streak, now)
+
+        # Update in-memory state so HomeScreen reflects the new streak
+        if state.current_learner is not None:
+            state.current_learner.streak_days = new_streak
+            state.current_learner.last_session_date = now
 
     async def _upsert_vocab_cards(self) -> None:
         """Extract vocabulary from lesson example sentences and upsert to DB."""
