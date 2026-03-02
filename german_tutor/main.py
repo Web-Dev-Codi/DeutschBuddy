@@ -15,7 +15,7 @@ from german_tutor.llm.client import OllamaClient
 from german_tutor.llm.curriculum_agent import CurriculumAgent
 from german_tutor.llm.quiz_agent import QuizAgent
 from german_tutor.llm.tutor_agent import TutorAgent
-from german_tutor.screens.home import HomeScreen, NavRequest
+from german_tutor.screens.home import HomeScreen, NavRequest, VocabReviewScreen
 from german_tutor.screens.lesson import LessonScreen
 from german_tutor.screens.quiz import QuizScreen
 from german_tutor.screens.results import ResultsScreen
@@ -190,8 +190,15 @@ class GermanTutorApp(App):
         if not due:
             self.notify("No vocabulary cards due for review today!")
             return
-        # For now, just notify — full vocab flashcard screen in Task 21
-        self.notify(f"{len(due)} cards due for review. Vocab screen coming soon.")
+        screen = VocabReviewScreen(
+            cards=due,
+            progress_repo=state.progress_repo,
+        )
+        result = await self.push_screen_wait(screen)
+        if result is not None:
+            correct = result.get("correct", 0)
+            total = result.get("total", 0)
+            self.notify(f"Review complete: {correct}/{total} correct.")
 
     def _get_current_lesson(self):
         """Get the first available lesson for the current learner."""

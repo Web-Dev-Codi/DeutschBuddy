@@ -109,6 +109,8 @@ class ResultsScreen(Screen):
 
                 # Update lesson progress with SM-2
                 await self._update_progress()
+                # Extract and save vocabulary cards from lesson
+                await self._upsert_vocab_cards()
             except Exception as exc:
                 self.query_one("#analysis-display", Static).update(
                     f"Analysis unavailable: {exc}"
@@ -154,6 +156,20 @@ class ResultsScreen(Screen):
             next_review=updated_card.next_review,
         )
         await self.progress_repo.upsert_lesson_progress(progress)
+
+    async def _upsert_vocab_cards(self) -> None:
+        """Extract vocabulary from lesson example sentences and upsert to DB."""
+        level = self.lesson.level.value
+        for entry in self.lesson.example_sentences:
+            german = entry.get("german", "").strip()
+            english = entry.get("english", "").strip()
+            if german and english:
+                try:
+                    await self.progress_repo.upsert_vocab_card(
+                        self.learner.id, german, english, level
+                    )
+                except Exception:
+                    pass
 
     def action_go_home(self) -> None:
         self.dismiss(None)
