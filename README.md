@@ -17,8 +17,8 @@ AI-powered German language tutor for the terminal.
 ### Installation
 
 ```bash
-git clone <repo>
-cd german-lang-tutor
+git clone https://github.com/Web-Dev-Codi/DeutschBuddy.git
+cd DeutschBuddy
 uv sync
 ```
 

@@ -1,4 +1,3 @@
-/* GermanTutor theme — dark terminal aesthetic */
 $primary: #4A90D9;
 $primary-darken-1: #3A7BC8;
 $primary-darken-2: #2A6AB7;
@@ -19,13 +18,11 @@ $surface: #1A1A2E;
 $text: #E8E8E8;
 $text-muted: #888888;
 
-/* Semantic colors for grammar case display */
 $nominative: #E74C3C;
 $accusative: #F39C12;
 $dative: #3498DB;
 $genitive: #27AE60;
 
-/* Semantic aliases */
 $error: #E74C3C;
 $warning: #F39C12;
 $success: #27AE60;
@@ -36,7 +33,6 @@ Screen {
     grid-columns: 22 1fr;
 }
 
-/* Navigation sidebar */
 #sidebar {
     height: 100%;
     background: $panel;
@@ -60,13 +56,11 @@ Screen {
     color: $text;
 }
 
-/* Main content area */
 #main-content {
     height: 100%;
     padding: 1 2;
 }
 
-/* Grammar explanation panel */
 GrammarPanelWidget {
     border: round $primary;
     padding: 1 2;
@@ -74,7 +68,6 @@ GrammarPanelWidget {
     margin-bottom: 1;
 }
 
-/* Sentence breakdown */
 SentenceBreakdownWidget {
     border: round $accent;
     padding: 1 2;
@@ -91,7 +84,6 @@ SentenceBreakdownWidget {
     color: $success;
 }
 
-/* Case color coding — bold for contrast on dark background */
 .tag-nominative {
     color: $error;
     text-style: bold;
@@ -121,20 +113,17 @@ SentenceBreakdownWidget {
     color: $text-muted;
 }
 
-/* CEFR Progress bar */
 CEFRProgressBar {
     height: auto;
     margin: 1 0;
 }
 
-/* Streak indicator */
 StreakIndicator {
     height: 3;
     color: $warning;
     text-style: bold;
 }
 
-/* Quiz card */
 QuizCard {
     border: round $primary;
     padding: 1 2;
@@ -157,7 +146,6 @@ QuizCard {
     margin-top: 1;
 }
 
-/* Buttons */
 .action-buttons {
     layout: horizontal;
     height: auto;
@@ -168,13 +156,11 @@ QuizCard {
     margin-right: 1;
 }
 
-/* Loading indicator */
 .loading {
     color: $text-muted;
     text-style: italic;
 }
 
-/* Score display */
 .score-excellent {
     color: $success;
     text-style: bold;
@@ -190,7 +176,6 @@ QuizCard {
     text-style: bold;
 }
 
-/* Section headers */
 .section-header {
     text-style: bold;
     color: $primary;
@@ -198,7 +183,6 @@ QuizCard {
     margin-top: 1;
 }
 
-/* Help overlay modal */
 HelpScreen {
     align: center middle;
 }
@@ -228,7 +212,6 @@ HelpScreen {
     margin-top: 1;
 }
 
-/* Sidebar nav consistency */
 #sidebar .nav-item {
     padding: 0 1;
     height: 3;
