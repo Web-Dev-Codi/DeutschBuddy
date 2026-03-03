@@ -133,6 +133,7 @@ class ProgressRepository:
     # ── Quiz Responses ─────────────────────────────────────────────────────────
 
     async def save_response(self, response: QuizResponse) -> None:
+        """Insert a quiz response row. Caller must commit the surrounding transaction."""
         await self.db.execute(
             """
             INSERT INTO quiz_responses
@@ -150,7 +151,7 @@ class ProgressRepository:
                 else None,
             ),
         )
-        await self.db.commit()
+        # No commit here — batched with complete_session
 
     async def get_session_responses(self, session_id: int) -> list[QuizResponse]:
         async with self.db.execute(
