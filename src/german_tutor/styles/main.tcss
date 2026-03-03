@@ -28,10 +28,14 @@ $warning: #F39C12;
 $success: #27AE60;
 
 Screen {
+    overflow-y: auto;
+}
+
+HomeScreen {
     layout: grid;
     grid-size: 2;
     grid-columns: 22 1fr;
-    overflow: auto
+    overflow: auto;
 }
 
 #sidebar {
