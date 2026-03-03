@@ -12,15 +12,6 @@ class SentenceBreakdownWidget(Widget):
     of each word's grammatical role, case, and English equivalent.
     """
 
-    DEFAULT_CSS = """
-    SentenceBreakdownWidget {
-        border: round $accent;
-        padding: 1 2;
-        height: auto;
-        margin-bottom: 1;
-    }
-    """
-
     def __init__(self, breakdown_data: dict, **kwargs) -> None:
         super().__init__(**kwargs)
         self.data = breakdown_data

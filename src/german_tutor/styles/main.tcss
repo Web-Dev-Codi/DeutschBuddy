@@ -10,7 +10,7 @@ $background: #1A1A2E;
 $background-darken-1: #16213E;
 $background-darken-2: #0F3460;
 
-$panel: #16213E;
+
 $panel-darken-1: #0F3460;
 
 $surface: #1A1A2E;
@@ -31,6 +31,7 @@ Screen {
     layout: grid;
     grid-size: 2;
     grid-columns: 22 1fr;
+    overflow: auto
 }
 
 #sidebar {
@@ -221,4 +222,8 @@ HelpScreen {
 #sidebar .nav-item:hover {
     background: $primary-darken-1;
     color: $text;
+}
+
+.quiz-reorder-words {
+    margin-bottom: 1;
 }

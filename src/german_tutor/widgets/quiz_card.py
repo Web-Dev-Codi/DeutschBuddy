@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from textual.app import ComposeResult
 from textual.widget import Widget
-from textual.widgets import Button, Input, Label, RadioButton, RadioSet, Static
+from textual.widgets import Button, Input, RadioButton, RadioSet, Static
 
 
 class QuizCard(Widget):
@@ -13,19 +13,6 @@ class QuizCard(Widget):
     - fill_blank: Text Input with the blank shown in the prompt
     - translation: Text Input with the English sentence as prompt
     - reorder: Shows numbered shuffled words; learner types the sequence
-    """
-
-    DEFAULT_CSS = """
-    QuizCard {
-        border: round $primary;
-        padding: 1 2;
-        height: auto;
-        margin-bottom: 1;
-    }
-    .quiz-question { text-style: bold; margin-bottom: 1; }
-    .quiz-context { color: $text-muted; margin-bottom: 1; }
-    .quiz-reorder-words { margin-bottom: 1; }
-    .hint-text { color: $accent; margin-top: 1; }
     """
 
     def __init__(self, question_data: dict, question_number: int, **kwargs) -> None:

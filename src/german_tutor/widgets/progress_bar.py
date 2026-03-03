@@ -8,13 +8,6 @@ from textual.widgets import ProgressBar, Static
 class CEFRProgressBar(Widget):
     """Shows CEFR level progress toward the next level."""
 
-    DEFAULT_CSS = """
-    CEFRProgressBar {
-        height: auto;
-        margin: 1 0;
-    }
-    """
-
     def __init__(
         self,
         current_level: str,

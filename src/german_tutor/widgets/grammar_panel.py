@@ -12,15 +12,6 @@ class GrammarPanelWidget(Widget):
     and an optional table of forms.
     """
 
-    DEFAULT_CSS = """
-    GrammarPanelWidget {
-        border: round $primary;
-        padding: 1 2;
-        height: auto;
-        margin-bottom: 1;
-    }
-    """
-
     def __init__(self, explanation: dict, **kwargs) -> None:
         super().__init__(**kwargs)
         self.explanation = explanation

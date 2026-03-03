@@ -8,14 +8,6 @@ from textual.widgets import Static
 class StreakIndicator(Widget):
     """Displays the learner's current daily streak."""
 
-    DEFAULT_CSS = """
-    StreakIndicator {
-        height: 3;
-        color: $warning;
-        text-style: bold;
-    }
-    """
-
     def __init__(self, streak_days: int, **kwargs) -> None:
         super().__init__(**kwargs)
         self.streak_days = streak_days

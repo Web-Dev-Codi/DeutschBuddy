@@ -38,6 +38,8 @@ class GermanTutorApp(App):
         ("?", "show_help", "Help"),
     ]
 
+    ALLOW_IN_MAXIMIZED_VIEW = None
+    
     def __init__(self) -> None:
         super().__init__()
         self._state: AppState | None = None
