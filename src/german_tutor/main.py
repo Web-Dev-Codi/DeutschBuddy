@@ -16,7 +16,8 @@ from german_tutor.llm.curriculum_agent import CurriculumAgent
 from german_tutor.llm.quiz_agent import QuizAgent
 from german_tutor.llm.tutor_agent import TutorAgent
 from german_tutor.screens.help import HelpScreen
-from german_tutor.screens.home import HomeScreen, NavRequest, VocabReviewScreen
+from german_tutor.screens.home import HomeScreen, NavRequest
+from german_tutor.screens.vocab_review import VocabReviewScreen
 from german_tutor.screens.lesson import LessonScreen
 from german_tutor.screens.quiz import QuizScreen
 from german_tutor.screens.results import ResultsScreen
