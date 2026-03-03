@@ -1,0 +1,85 @@
+id: "A1-GRM-024"
+level: "A1"
+category: "grammar"
+title: "Es gibt (+ Akkusativ) & Quantities"
+prerequisites: ["A1-GRM-006", "A1-GRM-007", "A1-GRM-022"]
+estimated_minutes: 12
+tags: ["existence", "accusative", "quantities", "kein", "articles"]
+
+explanation:
+  concept: |
+    Use the fixed expression "es gibt" to say that something exists/there is/are.
+    The noun after "es gibt" is in the ACCUSATIVE case. In the plural, the
+    indefinite article doesn't exist (zero article). Negation uses "kein/keine".
+
+    Patterns:
+    • Es gibt + Akkusativ: Es gibt einen Park in der Nähe.
+    • Plural + zero article: Es gibt Parks in der Nähe.
+    • Negation: Es gibt keine Busse heute.
+  english_comparison: |
+    English uses "there is/there are" with no case marking. German uses the
+    set phrase "es gibt" and marks the noun in the ACCUSATIVE. German also
+    drops the article in plural (zero article) and uses "kein/keine" for negation.
+
+example_sentences:
+  - german: "Es gibt einen Supermarkt hier."
+    english: "There is a supermarket here."
+    breakdown_focus: "Akkusativ singular masculine: einen Supermarkt"
+  - german: "Es gibt keine Tassen mehr."
+    english: "There are no cups left."
+    breakdown_focus: "Negation in plural → keine + Nomen"
+  - german: "Es gibt Konzerte im Sommer."
+    english: "There are concerts in summer."
+    breakdown_focus: "Plural with zero article after 'es gibt'"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Choose the correct sentence."
+      options:
+        - "Es gibt ein Park in der Nähe."
+        - "Es gibt einen Park in der Nähe."
+        - "Es gibt der Park in der Nähe."
+        - "Es gibt den Park in der Nähe."
+      correct_answer: "Es gibt einen Park in der Nähe."
+      correct_answer_index: 1
+      answer_explanation: "'es gibt' + Akkusativ → einen Park (masculine)."
+      grammar_rule_tested: "es gibt + Akkusativ"
+      english_comparison: "English doesn't show case here; German uses accusative after 'es gibt'."
+      hint: "Masculine accusative → -en"
+      points: 10
+
+    - type: "fill_blank"
+      question: "Es gibt ___ Bücher im Regal. (many)"
+      context: null
+      options: null
+      correct_answer: "viele"
+      correct_answer_index: null
+      answer_explanation: "Plural with quantity word → zero article (viele Bücher)."
+      grammar_rule_tested: "zero article in plural quantities"
+      english_comparison: "Like English 'many books' without 'the/a'; German always drops the article in plural counts."
+      hint: "Plural count → no article"
+      points: 10
+
+    - type: "multiple_choice"
+      question: "How do you negate correctly? — Es gibt ___ Milch mehr."
+      options: ["kein", "keine", "keinen", "nicht"]
+      correct_answer: "keine"
+      correct_answer_index: 1
+      answer_explanation: "Negating a plural mass/uncountable treated as plural here → 'keine Milch' (set phrase in shops: 'keine Milch mehr')."
+      grammar_rule_tested: "kein/keine with es gibt"
+      english_comparison: "English 'no milk' becomes 'keine Milch' in German."
+      hint: "Negate a noun → use kein/keine"
+      points: 10
+
+    - type: "translation"
+      question: "Translate: There are no trains today."
+      context: null
+      options: null
+      correct_answer: "Es gibt heute keine Züge."
+      correct_answer_index: null
+      answer_explanation: "'es gibt' + plural with negation → keine Züge; time adverb 'heute' can be placed mid‑clause."
+      grammar_rule_tested: "es gibt + plural negation"
+      english_comparison: "English 'there are no trains' → German 'Es gibt keine Züge'."
+      hint: "Plural negation → keine + Plural"
+      points: 10

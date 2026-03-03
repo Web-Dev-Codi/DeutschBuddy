@@ -1,0 +1,104 @@
+id: "A1-GRM-023"
+level: "A1"
+category: "grammar"
+title: "Two‑Way Prepositions — Motion (Akk) vs Location (Dat)"
+prerequisites: ["A1-GRM-014", "A1-GRM-015", "A1-GRM-016"]
+estimated_minutes: 18
+tags: ["prepositions", "cases", "accusative", "dative", "movement", "location", "wechselpräpositionen"]
+
+explanation:
+  concept: |
+    The “two‑way” (Wechsel‑) prepositions (an, auf, in, hinter, vor, über, unter,
+    neben, zwischen) take
+    • ACCUSATIVE when there is MOTION into/onto a place (answer to "Wohin?")
+    • DATIVE when it describes LOCATION at a place (answer to "Wo?")
+
+    Common verb pairs that help:
+    • legen/liegen (to lay/to lie)
+    • stellen/stehen (to place upright/to stand)
+    • hängen/hängen (to hang/to be hanging)
+
+    Examples:
+    • Ich stelle das Buch auf den Tisch. (motion → Akk)
+    • Das Buch liegt auf dem Tisch. (location → Dat)
+    • Wir gehen in die Stadt. (motion → Akk)
+    • Wir sind in der Stadt. (location → Dat)
+  english_comparison: |
+    English often uses the same preposition for motion and location ("on the
+    table" vs "onto the table"). German marks the difference with CASE:
+    motion → ACCUSATIVE, location → DATIVE. Ask yourself "Wohin?" (to where?)
+    vs "Wo?" (where?) to decide.
+
+example_sentences:
+  - german: "Ich stelle das Buch auf den Tisch."
+    english: "I put the book on(to) the table."
+    breakdown_focus: "motion → Akkusativ: auf den Tisch"
+  - german: "Das Buch liegt auf dem Tisch."
+    english: "The book is lying on the table."
+    breakdown_focus: "location → Dativ: auf dem Tisch"
+  - german: "Wir gehen in die Stadt."
+    english: "We are going into the city."
+    breakdown_focus: "motion → Akkusativ: in die Stadt"
+  - german: "Wir sind in der Stadt."
+    english: "We are in the city."
+    breakdown_focus: "location → Dativ: in der Stadt"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Ich hänge das Bild ___ die Wand. (motion)"
+      options: ["an die", "an der", "auf die", "in die"]
+      correct_answer: "an die"
+      correct_answer_index: 0
+      answer_explanation: "Motion (Wohin?) → Akkusativ: an die Wand."
+      grammar_rule_tested: "Wechselpräpositionen: Akkusativ bei Bewegung"
+      english_comparison: "English 'on the wall' vs 'onto the wall' — German marks motion with case."
+      hint: "Wohin? → Akkusativ"
+      points: 10
+
+    - type: "fill_blank"
+      question: "Das Bild hängt ___ der Wand. (location)"
+      context: null
+      options: null
+      correct_answer: "an der"
+      correct_answer_index: null
+      answer_explanation: "Location (Wo?) → Dativ: an der Wand."
+      grammar_rule_tested: "Wechselpräpositionen: Dativ bei Lage"
+      english_comparison: "English 'on the wall' = German Dative here."
+      hint: "Wo? → Dativ"
+      points: 10
+
+    - type: "multiple_choice"
+      question: "Wir sitzen ___ Tisch. (location)"
+      options: ["am", "auf dem", "in dem", "neben den"]
+      correct_answer: "am"
+      correct_answer_index: 0
+      answer_explanation: "Sitzen = location; 'am Tisch' = an + dem (Dativ)."
+      grammar_rule_tested: "fixed collocation + Dative location"
+      english_comparison: "English 'at the table' ≈ German 'am Tisch' (an dem)."
+      hint: "am = an + dem (Dativ)"
+      points: 10
+
+    - type: "translation"
+      question: "Translate: We are going into the park."
+      context: null
+      options: null
+      correct_answer: "Wir gehen in den Park."
+      correct_answer_index: null
+      answer_explanation: "Motion to destination → Akkusativ: in den Park."
+      grammar_rule_tested: "Akkusativ with motion"
+      english_comparison: "English 'into the park' aligns with motion → Akkusativ."
+      hint: "Wohin? in + den"
+      points: 10
+
+    - type: "fill_blank"
+      question: "Das Glas steht ___ Tisch. (location)"
+      context: null
+      options: null
+      correct_answer: "auf dem"
+      correct_answer_index: null
+      answer_explanation: "Standing (no motion) → Dativ: auf dem Tisch."
+      grammar_rule_tested: "Dativ with location"
+      english_comparison: "English 'on the table' = German Dative when static."
+      hint: "Wo? → auf dem"
+      points: 10

@@ -4,8 +4,8 @@ version = "0.1.0"
 
 [ollama]
 host = "http://localhost:11434"
-curriculum_model = "llama3.1:8b-instruct-q8_0"
-interaction_model = "mistral:instruct"
+curriculum_model = "qwen3:8b"
+interaction_model = "dolphin3:latest"
 num_ctx = 4096
 num_gpu = 1
 

@@ -1,0 +1,101 @@
+id: "A1-GRM-025"
+level: "A1"
+category: "grammar"
+title: "Telling Time & Dates — am / im / um"
+prerequisites: ["A1-GRM-013", "A1-GRM-014"]
+estimated_minutes: 18
+tags: ["time", "dates", "am", "im", "um", "dative", "word-order"]
+
+explanation:
+  concept: |
+    Core patterns for time and dates:
+
+    • um + Uhrzeit (clock time): um 7 Uhr, um halb acht
+    • am + Tag/Datum (days/dates/parts of day): am Montag, am 3. Mai, am Abend
+    • im + Monat/Jahr/Jahreszeit: im Juli, im Jahr 2024, im Winter
+
+    "halb" in German means 30 minutes BEFORE the next hour:
+    „halb fünf“ = 4:30 (not 5:30!)
+
+    Word order reminder: time elements often come early (Position 1),
+    the conjugated verb stays in Position 2.
+  english_comparison: |
+    English uses "at/on/in". German maps as:
+    • at → um (clock times)
+    • on → am (days, dates, parts of day)
+    • in → im (months, years, seasons)
+    Be careful: German "halb fünf" = 4:30, not 5:30.
+
+example_sentences:
+  - german: "Das Meeting ist am Montag um 9 Uhr."
+    english: "The meeting is on Monday at 9 o'clock."
+    breakdown_focus: "am + Wochentag; um + Uhrzeit"
+  - german: "Wir fahren im Juli nach Hamburg."
+    english: "We are going to Hamburg in July."
+    breakdown_focus: "im + Monat"
+  - german: "Der Kurs beginnt um halb acht."
+    english: "The course begins at half past seven (7:30)."
+    breakdown_focus: "um + halb (next hour − 30 min)"
+  - german: "Am Abend lese ich oft."
+    english: "I often read in the evening."
+    breakdown_focus: "Zeit am Satzanfang; Verb in Position 2"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "What time is 'halb fünf'?"
+      options: ["5:30", "4:30", "4:15", "5:15"]
+      correct_answer: "4:30"
+      correct_answer_index: 1
+      answer_explanation: "In German, 'halb fünf' = half BEFORE five → 4:30."
+      grammar_rule_tested: "meaning of 'halb' with times"
+      english_comparison: "English 'half past five' = 5:30; German 'halb fünf' = 4:30."
+      hint: "Think: next hour minus 30"
+      points: 10
+
+    - type: "fill_blank"
+      question: "Wir treffen uns ___ 7 Uhr."
+      context: null
+      options: null
+      correct_answer: "um"
+      correct_answer_index: null
+      answer_explanation: "um + Uhrzeit (clock times)."
+      grammar_rule_tested: "preposition with clock time"
+      english_comparison: "English uses 'at'; German uses 'um' for times."
+      hint: "Clock time → um"
+      points: 10
+
+    - type: "multiple_choice"
+      question: "Which is correct for a weekday? — ___ Freitag"
+      options: ["im", "am", "um", "an"]
+      correct_answer: "am"
+      correct_answer_index: 1
+      answer_explanation: "am + Tag/Wochentag."
+      grammar_rule_tested: "am with days/dates"
+      english_comparison: "English uses 'on Friday'; German uses 'am Freitag'."
+      hint: "Days → am"
+      points: 10
+
+    - type: "translation"
+      question: "Translate: The store opens at 9 o'clock on Saturday."
+      context: null
+      options: null
+      correct_answer: "Der Laden öffnet am Samstag um 9 Uhr."
+      correct_answer_index: null
+      answer_explanation: "am + Saturday; um + 9 Uhr."
+      grammar_rule_tested: "am vs um"
+      english_comparison: "'on Saturday' → am Samstag; 'at 9' → um 9 Uhr."
+      hint: "Day → am; time → um"
+      points: 10
+
+    - type: "fill_blank"
+      question: "Wir haben Ferien ___ August."
+      context: null
+      options: null
+      correct_answer: "im"
+      correct_answer_index: null
+      answer_explanation: "im + Monat/Jahr/Jahreszeit."
+      grammar_rule_tested: "im with months"
+      english_comparison: "English 'in August' → German 'im August'."
+      hint: "Months/years → im"
+      points: 10

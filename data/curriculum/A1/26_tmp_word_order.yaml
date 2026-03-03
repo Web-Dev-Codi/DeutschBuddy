@@ -1,0 +1,106 @@
+id: "A1-GRM-026"
+level: "A1"
+category: "grammar"
+title: "Time–Manner–Place (TMP) & Position of nicht/gern/auch"
+prerequisites: ["A1-GRM-018", "A1-GRM-008", "A1-GRM-011"]
+estimated_minutes: 15
+tags: ["word-order", "adverbs", "negation", "gern", "auch", "tmp"]
+
+explanation:
+  concept: |
+    The most common adverb order in German main clauses is: **Time – Manner – Place (TMP)**.
+    The conjugated verb stays in Position 2.
+
+    • Time (wann?): heute, morgen, am Abend, um 9 Uhr
+    • Manner (wie?): langsam, gern, mit dem Auto
+    • Place (wo/wohin?): in Berlin, nach Hause, im Büro
+
+    The words **nicht**, **gern**, and **auch** have preferred positions:
+    • **gern** comes before the verb or object it modifies: Ich koche gern.
+    • **auch** (also/too) comes before what it modifies: Ich esse auch Gemüse.
+    • **nicht** usually goes late in the clause; it precedes the element it negates:
+      Ich esse nicht gern Fleisch. (negates "gern")
+      Ich esse heute nicht im Restaurant. (negates the place)
+  english_comparison: |
+    English adverb order is flexible ("I often eat at home in the evening").
+    German prefers TMP and signals focus by the position of **nicht/gern/auch**.
+    Putting time first is very common (Position 1), but the verb must still be
+    in Position 2.
+
+example_sentences:
+  - german: "Heute koche ich mit Freunden zu Hause."
+    english: "Today I am cooking at home with friends."
+    breakdown_focus: "Time → Manner → Place; verb in Position 2 (koche)"
+  - german: "Ich trinke morgens gern Kaffee."
+    english: "I like to drink coffee in the mornings."
+    breakdown_focus: "gern before what is liked; time adverb 'morgens'"
+  - german: "Wir gehen heute nicht ins Kino."
+    english: "We are not going to the cinema today."
+    breakdown_focus: "nicht negates the place/time idea; TMP preserved"
+  - german: "Er arbeitet auch am Wochenende."
+    english: "He also works on the weekend."
+    breakdown_focus: "auch before the element it modifies (the time frame)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Choose the best TMP order: (I drive by car to Munich tomorrow)"
+      options:
+        - "Morgen fahre ich nach München mit dem Auto."
+        - "Ich fahre morgen mit dem Auto nach München."
+        - "Ich fahre mit dem Auto nach München morgen."
+        - "Ich fahre nach München morgen mit dem Auto."
+      correct_answer: "Ich fahre morgen mit dem Auto nach München."
+      correct_answer_index: 1
+      answer_explanation: "TMP → Time (morgen) – Manner (mit dem Auto) – Place (nach München)."
+      grammar_rule_tested: "TMP adverbial ordering"
+      english_comparison: "English allows multiple orders; German prefers TMP."
+      hint: "Think: Time → Manner → Place"
+      points: 10
+
+    - type: "fill_blank"
+      question: "Ich esse ___ Fleisch. (not)"
+      context: null
+      options: null
+      correct_answer: "nicht"
+      correct_answer_index: null
+      answer_explanation: "Simple clause negation uses 'nicht' before what is negated."
+      grammar_rule_tested: "placement of 'nicht'"
+      english_comparison: "English uses 'not/don't'; German 'nicht' placement signals scope."
+      hint: "Place 'nicht' late, before the negated element"
+      points: 10
+
+    - type: "multiple_choice"
+      question: "Where does 'gern' go? — Ich ___ koche."
+      options: ["koche gern", "gern koche", "koche nicht gern", "gern nicht"]
+      correct_answer: "koche gern"
+      correct_answer_index: 0
+      answer_explanation: "'gern' typically follows the verb it modifies: Ich koche gern."
+      grammar_rule_tested: "position of 'gern'"
+      english_comparison: "English uses 'like to ...'; German uses 'gern' with the verb."
+      hint: "Verb + gern"
+      points: 10
+
+    - type: "translation"
+      question: "Translate: We also work in the office today."
+      context: null
+      options: null
+      correct_answer: "Wir arbeiten heute auch im Büro."
+      correct_answer_index: null
+      answer_explanation: "Time (heute) early; 'auch' before the element it modifies (place)."
+      grammar_rule_tested: "TMP + 'auch' placement"
+      english_comparison: "English 'also' placement varies; in German it sits before the focused element."
+      hint: "Put 'auch' before the emphasized word/phrase"
+      points: 10
+
+    - type: "fill_blank"
+      question: "___ gehe ich mit dem Bus nach Hause. (Today)"
+      context: null
+      options: null
+      correct_answer: "Heute"
+      correct_answer_index: null
+      answer_explanation: "Time element can occupy Position 1; the verb must stay in Position 2."
+      grammar_rule_tested: "verb-second with fronted time adverbial"
+      english_comparison: "English can start with 'Today' too; German still enforces Verb‑second."
+      hint: "Start with time → keep verb in Pos. 2"
+      points: 10

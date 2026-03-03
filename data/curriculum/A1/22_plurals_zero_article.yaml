@@ -1,0 +1,109 @@
+id: "A1-GRM-022"
+level: "A1"
+category: "grammar"
+title: "Plurals & The Zero Article"
+prerequisites: ["A1-GRM-007", "A1-GRM-008"]
+estimated_minutes: 15
+tags: ["plurals", "articles", "kein", "quantities", "number"]
+
+explanation:
+  concept: |
+    German plurals are not formed with just one ending. Common patterns:
+
+    • -e (often with umlaut): der Hund → die Hunde; der Apfel → die Äpfel
+    • -er (always neuter nouns, + umlaut if possible): das Kind → die Kinder
+    • -n/-en (many feminine nouns): die Frau → die Frauen; die Blume → die Blumen
+    • -s (loanwords/abbreviations): das Auto → die Autos; das Café → die Cafés
+    • no ending (rare, marked in dictionaries): der Lehrer → die Lehrer
+
+    Plural articles: always "die" for all genders. Indefinite article has
+    NO plural form — this is called the ZERO ARTICLE. Negation uses "keine".
+
+    With numbers, German also uses the zero article:
+    "Ich habe zwei Bücher." (not: die/zwei die Bücher)
+  english_comparison: |
+    English mostly adds -s/-es for plurals and keeps the article system simple.
+    German has multiple plural patterns and requires you to memorize the plural
+    with the noun. Dictionaries mark gender + plural (e.g., der Tisch, -e).
+
+    English has "no" for negation ("no books"). German uses "kein/keine" and
+    has NO indefinite article in plural: "Bücher" (not *ein Bücher). With
+    numbers, English sometimes drops articles too — German does this ALWAYS in
+    plural counts.
+
+example_sentences:
+  - german: "Ich kaufe zwei Bücher."
+    english: "I am buying two books."
+    breakdown_focus: "zero article with numbers (zwei Bücher)"
+  - german: "Die Kinder spielen im Park."
+    english: "The children are playing in the park."
+    breakdown_focus: "das Kind → die Kinder (‑er plural)"
+  - german: "Wir haben keine Eier."
+    english: "We have no eggs."
+    breakdown_focus: "negation in plural → keine + Nomen"
+  - german: "Die Frauen warten auf den Bus."
+    english: "The women are waiting for the bus."
+    breakdown_focus: "die Frau → die Frauen (‑en plural)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Which is the correct plural? — das Buch"
+      options: ["die Buchs", "die Bücher", "die Büchern", "die Buche"]
+      correct_answer: "die Bücher"
+      correct_answer_index: 1
+      answer_explanation: "Neuter with -er plural + umlaut: das Buch → die Bücher."
+      grammar_rule_tested: "plural pattern -er with umlaut"
+      english_comparison: "English adds -s (books); German often changes the stem and article to die."
+      hint: "Think of 'Bücher' from common examples."
+      points: 10
+
+    - type: "fill_blank"
+      question: "Ich esse heute ___ Eier. (no)"
+      context: null
+      options: null
+      correct_answer: "keine"
+      correct_answer_index: null
+      answer_explanation: "Plural negation takes 'keine'."
+      grammar_rule_tested: "kein/keine in plural"
+      english_comparison: "English uses 'no eggs'; German uses 'keine Eier'."
+      hint: "Plural → -e on keine"
+      points: 10
+
+    - type: "multiple_choice"
+      question: "Choose the sentence with correct article usage."
+      options:
+        - "Ich habe die zwei Bücher."
+        - "Ich habe zwei die Bücher."
+        - "Ich habe zwei Bücher."
+        - "Ich habe ein Bücher."
+      correct_answer: "Ich habe zwei Bücher."
+      correct_answer_index: 2
+      answer_explanation: "With numbers, German uses zero article in plural: zwei Bücher."
+      grammar_rule_tested: "zero article with numbers"
+      english_comparison: "English also says 'two books' without an article; German follows this consistently."
+      hint: "Numbers → no article in plural"
+      points: 10
+
+    - type: "translation"
+      question: "Translate: We need new chairs."
+      context: null
+      options: null
+      correct_answer: "Wir brauchen neue Stühle."
+      correct_answer_index: null
+      answer_explanation: "der Stuhl → die Stühle (‑e + umlaut); zero article in plural."
+      grammar_rule_tested: "plural formation + zero article"
+      english_comparison: "English 'chairs' uses -s; German changes the stem and uses no article in plural."
+      hint: "Stuhl → Stühle"
+      points: 10
+
+    - type: "multiple_choice"
+      question: "Which plural form is correct? — die Frau"
+      options: ["die Fraue", "die Frauen", "die Fraus", "die Frauenn"]
+      correct_answer: "die Frauen"
+      correct_answer_index: 1
+      answer_explanation: "Many feminine nouns take -n/-en in plural: die Frau → die Frauen."
+      grammar_rule_tested: "feminine -n/-en plural"
+      english_comparison: "English just adds -s; German frequently uses -en for feminine nouns."
+      hint: "Feminine often → -en"
+      points: 10

@@ -1,0 +1,116 @@
+id: "A1-GRM-021"
+level: "A1"
+category: "grammar"
+title: "Possessive Adjectives — mein/dein/sein/ihr (Nom/Acc)"
+prerequisites: ["A1-GRM-005", "A1-GRM-006", "A1-GRM-007"]
+estimated_minutes: 15
+tags: ["possessives", "articles", "agreement", "case", "nominative", "accusative"]
+
+explanation:
+  concept: |
+    Possessive adjectives in German (mein, dein, sein, ihr, unser, euer, Ihr)
+    behave like articles: they must agree with the grammatical gender (m/f/n)
+    and number (sg/pl) of the NOUN they modify.
+
+    In the NOMINATIVE (subject) case, the base form is used (no ending on most
+    neuter/masculine nouns with zero‑article patterns), while in the ACCUSATIVE
+    (direct object) masculine nouns take an extra -en ending.
+
+    Examples:
+    - nominative: Mein Vater ist Arzt.  (subject masculine)
+    - accusative: Ich sehe meinen Vater. (direct object masculine → -en)
+
+    Common forms (short overview):
+    - ich → mein-
+    - du → dein-
+    - er → sein-
+    - sie (she) → ihr-
+    - es → sein-
+    - wir → unser-
+    - ihr (you pl.) → euer- (note spelling: eure in f/pl)
+    - Sie (formal) → Ihr-
+  english_comparison: |
+    English possessives (my, your, his, her, its, our, their) do NOT change for
+    the gender of the following noun. In German, the possessive agrees with the
+    NOUN: "mein Hund" (m), "meine Katze" (f), "mein Kind" (n), "meine Bücher" (pl).
+
+    Watch for the masculine ACCUSATIVE: English has no change, but German adds
+    -en: "I see my father" → "Ich sehe meinen Vater".
+
+example_sentences:
+  - german: "Mein Bruder wohnt in Berlin."
+    english: "My brother lives in Berlin."
+    breakdown_focus: "mein Bruder = nominative masculine subject"
+  - german: "Ich suche meine Schlüssel."
+    english: "I am looking for my keys."
+    breakdown_focus: "meine Schlüssel = accusative plural object (e ending)"
+  - german: "Sie besucht ihren Onkel."
+    english: "She is visiting her uncle."
+    breakdown_focus: "ihren Onkel = accusative masculine (‑en)"
+  - german: "Unsere Kinder sind müde."
+    english: "Our children are tired."
+    breakdown_focus: "unsere Kinder = nominative plural (‑e)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Which form is correct? — Ich sehe ___ Bruder."
+      options: ["mein", "meinen", "meinem", "meines"]
+      correct_answer: "meinen"
+      correct_answer_index: 1
+      answer_explanation: "Masculine accusative requires -en: Ich sehe meinen Bruder."
+      grammar_rule_tested: "possessive + masculine accusative"
+      english_comparison: "English 'my' never changes, but German adds -en for masculine direct objects."
+      hint: "Object + masculine → think -en"
+      points: 10
+
+    - type: "fill_blank"
+      question: "___ Mutter ist Ärztin. (my)"
+      context: null
+      options: null
+      correct_answer: "Meine"
+      correct_answer_index: null
+      answer_explanation: "Feminine nominative takes -e: meine Mutter."
+      grammar_rule_tested: "possessive + feminine nominative"
+      english_comparison: "English 'my mother' doesn't change; German adds -e with feminine nouns."
+      hint: "Feminine often ends with -e on possessives"
+      points: 10
+
+    - type: "translation"
+      question: "Translate: Our teacher (f) is very friendly."
+      context: null
+      options: null
+      correct_answer: "Unsere Lehrerin ist sehr freundlich."
+      correct_answer_index: null
+      answer_explanation: "Plural/owner 'wir' → unser-, feminine nominative → unsere Lehrerin."
+      grammar_rule_tested: "possessive agreement with feminine nominative"
+      english_comparison: "English 'our teacher' has no ending; German marks feminine with -e."
+      hint: "wir → unser-, feminine → -e"
+      points: 10
+
+    - type: "multiple_choice"
+      question: "Choose the correct sentence."
+      options:
+        - "Er kauft sein Schwester ein Buch."
+        - "Er kauft seiner Schwester ein Buch."
+        - "Er kauft seinen Schwester ein Buch."
+        - "Er kauft seiner Schwester einen Buch."
+      correct_answer: "Er kauft seiner Schwester ein Buch."
+      correct_answer_index: 1
+      answer_explanation: "Mit 'kaufen' → Dativ Empfänger (seiner Schwester), Akkusativ Sache (ein Buch)."
+      grammar_rule_tested: "case governance with possessive + dative feminine"
+      english_comparison: "English 'buy someone a book' hides cases; German marks the recipient in Dative."
+      hint: "Recipient = Dative; feminine Dative → -er"
+      points: 15
+
+    - type: "fill_blank"
+      question: "Wo ist ___ Auto? (her)"
+      context: null
+      options: null
+      correct_answer: "ihr"
+      correct_answer_index: null
+      answer_explanation: "Possessive 'ihr' = her (lowercase). Note: 'Ihr' (capital I) means formal 'your' — not used here."
+      grammar_rule_tested: "possessive 'ihr' (her)"
+      english_comparison: "English 'her car' maps to German 'ihr Auto' (lowercase). Formal 'your' is 'Ihr' (capitalized)."
+      hint: "Use lowercase 'ihr' for 'her'"
+      points: 15
