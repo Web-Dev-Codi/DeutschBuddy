@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+from functools import lru_cache
 from pathlib import Path
 
 import yaml
@@ -16,7 +17,8 @@ class CurriculumLoader:
 
     def __init__(self, data_path: str = "data/curriculum") -> None:
         self.base_path = Path(data_path)
-        self._cache: dict[str, list[Lesson]] | None = None
+        self._cache: dict[str, list[Lesson]] = {}
+        self._lesson_cache: dict[str, Lesson] = {}
 
     # ── Synchronous helpers (called from asyncio.to_thread) ──────────────────
 
@@ -40,30 +42,33 @@ class CurriculumLoader:
     # ── Public synchronous API (cache-backed after first load) ───────────────
 
     def load_lesson(self, file_path: Path) -> Lesson:
-        return self._load_lesson_sync(file_path)
+        file_path_str = str(file_path)
+        if file_path_str not in self._lesson_cache:
+            self._lesson_cache[file_path_str] = self._load_lesson_sync(file_path)
+        return self._lesson_cache[file_path_str]
 
     def load_level(self, level: str) -> list[Lesson]:
-        if self._cache is not None:
-            return self._cache.get(level, [])
-        # Cold path — only reached before first async load completes
+        if level in self._cache:
+            return self._cache[level]
         lessons = self._load_level_sync(level)
+        self._cache[level] = lessons
         return lessons
 
     def load_all(self) -> dict[str, list[Lesson]]:
-        if self._cache is not None:
+        if self._cache and all(level in self._cache for level in ["A1", "A2", "B1"]):
             return self._cache
         result = self._load_all_sync()
-        self._cache = result
+        self._cache.update(result)
         return result
 
     # ── Public async API ─────────────────────────────────────────────────────
 
     async def load_all_async(self) -> dict[str, list[Lesson]]:
         """Load all lessons off the event loop, caching the result."""
-        if self._cache is not None:
+        if self._cache and all(level in self._cache for level in ["A1", "A2", "B1"]):
             return self._cache
         result = await asyncio.to_thread(self._load_all_sync)
-        self._cache = result
+        self._cache.update(result)
         return result
 
     # ── Lookups ───────────────────────────────────────────────────────────────
@@ -79,13 +84,17 @@ class CurriculumLoader:
         """Get multiple lessons by their IDs. Returns empty list for unknown IDs."""
         if not lesson_ids:
             return []
-        
+
         all_lessons = []
         for lessons in self.load_all().values():
             all_lessons.extend(lessons)
-        
+
         # Create a dict for O(1) lookup
         lesson_dict = {lesson.id: lesson for lesson in all_lessons}
-        
+
         # Return lessons in the order requested, filtering out unknown IDs
-        return [lesson_dict[lesson_id] for lesson_id in lesson_ids if lesson_id in lesson_dict]
+        return [
+            lesson_dict[lesson_id]
+            for lesson_id in lesson_ids
+            if lesson_id in lesson_dict
+        ]
