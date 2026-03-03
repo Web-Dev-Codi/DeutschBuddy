@@ -163,11 +163,9 @@ class ResultsScreen(Screen):
         """Update learner streak after session save."""
         from german_tutor.curriculum.streak import calculate_streak
 
-        state = getattr(self.app, "_state", None)
-        if state is None:
-            return
-        learner_repo = getattr(state, "learner_repo", None)
-        if learner_repo is None:
+        try:
+            learner_repo = self.app.state.learner_repo
+        except RuntimeError:
             return
         if self.learner is None or self.learner.id is None:
             return

@@ -44,6 +44,13 @@ class GermanTutorApp(App):
         self._state: AppState | None = None
         self._current_lesson = None
 
+    @property
+    def state(self) -> AppState:
+        """Shared application state. Raises if accessed before on_mount completes."""
+        if self._state is None:
+            raise RuntimeError("AppState accessed before initialisation")
+        return self._state
+
     # ── Startup ──────────────────────────────────────────────────────────────
 
     async def on_mount(self) -> None:
