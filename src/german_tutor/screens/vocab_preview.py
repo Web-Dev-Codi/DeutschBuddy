@@ -113,7 +113,7 @@ class VocabPreviewScreen(Screen):
         if card['memory_trick']:
             display_text += f"\nMemory trick: {card['memory_trick']}"
         
-        display_text += f"\n\n[size=dim]Card {self._current_index + 1} / {len(self._vocab_cards)}[/size]"
+        display_text += f"\n\n[dim]Card {self._current_index + 1} / {len(self._vocab_cards)}[/dim]"
         
         self.query_one("#word-display", Static).update(display_text)
 
