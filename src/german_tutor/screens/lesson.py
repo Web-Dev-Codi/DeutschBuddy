@@ -3,6 +3,7 @@ from __future__ import annotations
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
+from textual.containers import VerticalScroll
 
 from german_tutor.models.learner import Learner
 from german_tutor.models.lesson import Lesson
@@ -19,12 +20,14 @@ class LessonScreen(Screen):
         lesson: Lesson,
         learner: Learner,
         tutor_agent=None,
+        curriculum_loader=None,
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
         self.lesson = lesson
         self.learner = learner
         self.tutor_agent = tutor_agent
+        self.curriculum_loader = curriculum_loader
         # Start with the lesson explanation as fallback
         self._explanation = lesson.explanation
         self._breakdowns: list[dict] = []
@@ -32,7 +35,7 @@ class LessonScreen(Screen):
 
     def compose(self) -> ComposeResult:
         yield Header()
-        with Static(id="main-content"):
+        with VerticalScroll(id="main-content"):
             yield Static(
                 f"{self.lesson.id} — {self.lesson.title}",
                 classes="section-header",
@@ -61,6 +64,7 @@ class LessonScreen(Screen):
 
             with Static(classes="action-buttons"):
                 yield Button("Start Quiz", id="btn-quiz", variant="primary")
+                yield Button("Next Lesson", id="btn-next-lesson", variant="default")
                 yield Button("Back", id="btn-back", variant="default")
 
         yield Footer()
@@ -99,3 +103,28 @@ class LessonScreen(Screen):
             self.action_go_back()
         elif event.button.id == "btn-quiz":
             self.action_start_quiz()
+        elif event.button.id == "btn-next-lesson":
+            self.action_next_lesson()
+
+    def action_next_lesson(self) -> None:
+        """Navigate to the next lesson in the curriculum."""
+        if self.curriculum_loader is None:
+            self.notify("Cannot navigate to next lesson: curriculum not available")
+            return
+        
+        try:
+            # Get all lessons for the current level
+            lessons = self.curriculum_loader.load_level(self.lesson.level.value)
+            # Find current lesson index
+            current_index = next((i for i, lesson in enumerate(lessons) if lesson.id == self.lesson.id), None)
+            
+            if current_index is not None and current_index < len(lessons) - 1:
+                # Navigate to next lesson
+                next_lesson = lessons[current_index + 1]
+                from german_tutor.screens.home import NavRequest
+                self.app.post_message(NavRequest("lesson", lesson_id=next_lesson.id))
+            else:
+                # No more lessons in this level
+                self.notify("This is the last lesson in this level!")
+        except Exception as exc:
+            self.notify(f"Error navigating to next lesson: {exc}")

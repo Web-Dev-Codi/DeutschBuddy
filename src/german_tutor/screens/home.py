@@ -13,9 +13,10 @@ from german_tutor.widgets.streak_indicator import StreakIndicator
 
 # Simple message class for navigation requests
 class NavRequest(Message):
-    def __init__(self, destination: str) -> None:
+    def __init__(self, destination: str, **kwargs) -> None:
         super().__init__()
         self.destination = destination
+        self.kwargs = kwargs
 
 
 class HomeScreen(Screen):

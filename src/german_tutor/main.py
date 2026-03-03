@@ -133,6 +133,9 @@ class GermanTutorApp(App):
             self.run_worker(self._start_quiz(), exclusive=True)
         elif dest == "lessons":
             self.run_worker(self._start_lesson(), exclusive=True)
+        elif dest == "lesson":
+            lesson_id = message.kwargs.get("lesson_id")
+            self.run_worker(self._start_lesson(lesson_id), exclusive=True)
         elif dest == "settings":
             self.run_worker(self._open_settings(), exclusive=True)
         elif dest == "review":
@@ -140,20 +143,38 @@ class GermanTutorApp(App):
         elif dest in ("progress",):
             self.notify("Progress screen coming in a future update.")
 
-    async def _start_lesson(self) -> None:
-        """Push LessonScreen for the recommended or first available lesson."""
+    async def _start_lesson(self, lesson_id: str | None = None) -> None:
+        """Push LessonScreen for the recommended or specified lesson."""
         if self._state is None:
             return
         state = self._state
-        lesson = self._get_current_lesson()
-        if lesson is None:
-            self.notify("No lesson available.", severity="warning")
-            return
+        
+        if lesson_id:
+            # Find the specific lesson by ID
+            lesson = None
+            for level in ["A1", "A2", "B1"]:
+                try:
+                    lessons = state.curriculum_loader.load_level(level)
+                    lesson = next((l for l in lessons if l.id == lesson_id), None)
+                    if lesson:
+                        break
+                except Exception:
+                    continue
+            if lesson is None:
+                self.notify(f"Lesson {lesson_id} not found.", severity="error")
+                return
+        else:
+            # Use the current/recommended lesson
+            lesson = self._get_current_lesson()
+            if lesson is None:
+                self.notify("No lesson available.", severity="warning")
+                return
         self._current_lesson = lesson
         screen = LessonScreen(
             lesson=lesson,
             learner=state.current_learner,
             tutor_agent=state.tutor_agent,
+            curriculum_loader=state.curriculum_loader,
         )
         await self.push_screen(screen)
 
