@@ -76,14 +76,22 @@ class GermanTutorApp(App):
         await self._show_home()
 
     async def _show_home(self) -> None:
-        """Build and push the HomeScreen."""
+        """Push HomeScreen immediately; load recommendation in the background."""
+        learner = self._state.current_learner
+        screen = HomeScreen(learner=learner, recommendation=None)
+        await self.push_screen(screen)
+        self.run_worker(
+            self._fetch_recommendation(screen),
+            exclusive=False,
+            name="recommendation",
+        )
+
+    async def _fetch_recommendation(self, screen: HomeScreen) -> None:
+        """Background worker: compute lesson recommendation and update HomeScreen."""
         state = self._state
         learner = state.current_learner
-
-        # Get recommendation asynchronously (best-effort)
-        recommendation = None
         try:
-            all_lessons = state.curriculum_loader.load_all()
+            all_lessons = await state.curriculum_loader.load_all_async()
             progress = await state.progress_repo.get_all_progress(learner.id)
             completed_ids = {p.lesson_id for p in progress}
             current_level_lessons = all_lessons.get(learner.current_level.value, [])
@@ -94,19 +102,18 @@ class GermanTutorApp(App):
             perf_history = await state.progress_repo.get_recent_sessions(
                 learner.id, limit=10
             )
-
-            if available or due_reviews:
-                recommendation = await state.curriculum_agent.recommend_next_lesson(
-                    learner=learner,
-                    performance_history=perf_history,
-                    available_lessons=available,
-                    due_reviews=due_reviews,
-                )
+            if not (available or due_reviews):
+                return
+            recommendation = await state.curriculum_agent.recommend_next_lesson(
+                learner=learner,
+                performance_history=perf_history,
+                available_lessons=available,
+                due_reviews=due_reviews,
+            )
+            if recommendation and screen.is_mounted:
+                screen.update_recommendation(recommendation)
         except Exception:
             pass  # Ollama may not be running — degrade gracefully
-
-        screen = HomeScreen(learner=learner, recommendation=recommendation)
-        await self.push_screen(screen)
 
     # ── Navigation ────────────────────────────────────────────────────────────
 
