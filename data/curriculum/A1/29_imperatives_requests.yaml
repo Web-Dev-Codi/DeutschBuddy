@@ -1,0 +1,103 @@
+id: "A1-GRM-029"
+level: "A1"
+category: "grammar"
+title: "Imperatives (du/ihr/Sie) & Polite Requests"
+prerequisites: ["A1-GRM-010", "A1-GRM-011"]
+estimated_minutes: 12
+tags: ["imperative", "politeness", "requests", "separable-verbs", "modal"]
+
+explanation:
+  concept: |
+    The imperative gives commands or requests. Forms:
+
+    • du‑Imperative (singular informal): drop the -st ending (often also drop du)
+      - du machst → Mach!  (Separable: Mach das Fenster auf!)
+    • ihr‑Imperative (plural informal): same as present ihr‑form (drop ihr)
+      - ihr macht → Macht die Tür zu!
+    • Sie‑Imperative (polite): **Verb + Sie**
+      - Machen Sie bitte das Fenster auf.
+
+    Polite alternatives (more common in real life):
+    • Können Sie bitte …?  /  Könntest du bitte …?
+  english_comparison: |
+    English uses bare imperatives ("Open the window!") or modal requests
+    ("Could you open the window?"). German has distinct forms for **du**, **ihr**
+    and **Sie**, plus modal request patterns for politeness.
+
+example_sentences:
+  - german: "Mach das Fenster auf, bitte."
+    english: "Open the window, please. (informal singular)"
+    breakdown_focus: "du‑imperative; separable prefix → aufmachen → Mach … auf"
+  - german: "Macht leise, Kinder!"
+    english: "Be quiet, kids! (informal plural)"
+    breakdown_focus: "ihr‑imperative without pronoun"
+  - german: "Machen Sie bitte die Tür zu."
+    english: "Please close the door. (polite)"
+    breakdown_focus: "Sie‑imperative: Verb + Sie"
+  - german: "Könnten Sie mir bitte helfen?"
+    english: "Could you please help me?"
+    breakdown_focus: "polite modal request"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Choose the correct du‑imperative: du wartest → ___!"
+      options: ["Wartest", "Warte", "Wart", "Warten"]
+      correct_answer: "Warte"
+      correct_answer_index: 1
+      answer_explanation: "du‑form drops -st → Warte!"
+      grammar_rule_tested: "du‑imperative formation"
+      english_comparison: "English uses 'Wait!'; German conjugation shows person/number distinctions."
+      hint: "Drop -st"
+      points: 10
+
+    - type: "fill_blank"
+      question: "___ leise, Kinder! (be)"
+      context: null
+      options: null
+      correct_answer: "Seid"
+      correct_answer_index: null
+      answer_explanation: "ihr‑imperative = present ihr‑form: seid (from sein)."
+      grammar_rule_tested: "ihr‑imperative irregular 'sein'"
+      english_comparison: "English 'Be' doesn't change; German uses ihr‑form 'seid'."
+      hint: "ihr‑form of sein"
+      points: 10
+
+    - type: "multiple_choice"
+      question: "Which is the correct polite form?"
+      options:
+        - "Bitte machen Sie das Fenster auf."
+        - "Bitte macht Sie das Fenster auf."
+        - "Bitte mach Sie das Fenster auf."
+        - "Bitte machen Sie auf das Fenster."
+      correct_answer: "Bitte machen Sie das Fenster auf."
+      correct_answer_index: 0
+      answer_explanation: "Sie‑imperative = Verb + Sie; object order like normal clause; separable 'aufmachen'."
+      grammar_rule_tested: "Sie‑imperative pattern"
+      english_comparison: "English 'Please open the window' ≈ German polite imperative."
+      hint: "Verb + Sie"
+      points: 10
+
+    - type: "translation"
+      question: "Translate: Close the door, please! (du)"
+      context: null
+      options: null
+      correct_answer: "Mach bitte die Tür zu!"
+      correct_answer_index: null
+      answer_explanation: "du‑imperative + separable zu‑machen; polite 'bitte' included."
+      grammar_rule_tested: "du‑imperative with separable verb"
+      english_comparison: "English imperative stays 'Close …'; German shows separable prefix at the end."
+      hint: "Mach … zu!"
+      points: 10
+
+    - type: "fill_blank"
+      question: "___ Sie mir bitte. (help)"
+      context: null
+      options: null
+      correct_answer: "Helfen"
+      correct_answer_index: null
+      answer_explanation: "Sie‑imperative uses the infinitive form + Sie: Helfen Sie …"
+      grammar_rule_tested: "Sie‑imperative formation"
+      english_comparison: "English 'Please help me' uses bare verb; German uses 'Helfen Sie …'"
+      hint: "Verb + Sie"
+      points: 10

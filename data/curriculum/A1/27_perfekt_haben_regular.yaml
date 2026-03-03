@@ -1,0 +1,107 @@
+id: "A1-GRM-027"
+level: "A1"
+category: "grammar"
+title: "Perfekt with haben — Regular Verbs"
+prerequisites: ["A1-GRM-009", "A1-GRM-018"]
+estimated_minutes: 18
+tags: ["perfekt", "haben", "past", "participles", "word-order", "regular-verbs"]
+
+explanation:
+  concept: |
+    The common spoken past in German is the **Perfekt** (present perfect):
+    **haben + Partizip II** (past participle) at the end of the clause.
+
+    Regular participles are formed with **ge- + stem + -t**:
+    - machen → **gemacht**
+    - lernen → **gelernt**
+    - spielen → **gespielt**
+
+    Word order: the participle goes to the **end**.
+    - Ich **habe** gestern viel **gelernt**.
+
+    Notes:
+    - Verbs with inseparable prefixes (be-, ver-, er-, zer-, ent-, ge-) **do not** take ge-: 
+      besuchen → **besucht**, verstehen → **verstanden** (irregular ending, but no ge- prefix)
+    - Separable prefixes split: **auf**machen → **aufgemacht** (ge between prefix and stem)
+  english_comparison: |
+    English often uses the simple past in speech ("I learned"), while German
+    prefers Perfekt ("Ich habe gelernt"). English present perfect ("I have learned")
+    is similar in form but used differently; in German the Perfekt is the default
+    spoken past for many verbs.
+
+example_sentences:
+  - german: "Ich habe gestern viel gelernt."
+    english: "I studied a lot yesterday."
+    breakdown_focus: "haben + Partizip II at clause end (gelernt)"
+  - german: "Wir haben am Abend gekocht."
+    english: "We cooked in the evening."
+    breakdown_focus: "Time early; participle at the end (gekocht)"
+  - german: "Er hat das Fenster aufgemacht."
+    english: "He opened the window."
+    breakdown_focus: "separable prefix → aufgemacht"
+  - german: "Sie hat ihre Freunde besucht."
+    english: "She visited her friends."
+    breakdown_focus: "inseparable prefix → besucht (no ge-)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Choose the correct participle: machen → ___"
+      options: ["gemacht", "gemachen", "gemachtet", "gemachte"]
+      correct_answer: "gemacht"
+      correct_answer_index: 0
+      answer_explanation: "Regular participle: ge- + stem + -t → gemacht."
+      grammar_rule_tested: "regular participle formation"
+      english_comparison: "English adds -ed; German uses ge-…-t."
+      hint: "Think ge- … -t"
+      points: 10
+
+    - type: "fill_blank"
+      question: "Ich habe gestern viel ____. (lernen)"
+      context: null
+      options: null
+      correct_answer: "gelernt"
+      correct_answer_index: null
+      answer_explanation: "lernen → gelernt (ge-…-t)."
+      grammar_rule_tested: "Perfekt with haben + participle"
+      english_comparison: "English 'learned' vs German 'habe gelernt'."
+      hint: "ge + lern + t"
+      points: 10
+
+    - type: "multiple_choice"
+      question: "Which sentence has correct word order?"
+      options:
+        - "Ich habe gemacht die Hausaufgaben."
+        - "Ich habe die Hausaufgaben gemacht."
+        - "Ich gemacht habe die Hausaufgaben."
+        - "Ich die Hausaufgaben habe gemacht."
+      correct_answer: "Ich habe die Hausaufgaben gemacht."
+      correct_answer_index: 1
+      answer_explanation: "Participle goes to clause end: … habe … gemacht."
+      grammar_rule_tested: "Perfekt word order"
+      english_comparison: "English places 'done' near the verb; German sends the participle to the end."
+      hint: "Participles live at the end"
+      points: 10
+
+    - type: "fill_blank"
+      question: "Er hat das Fenster ____. (aufmachen)"
+      context: null
+      options: null
+      correct_answer: "aufgemacht"
+      correct_answer_index: null
+      answer_explanation: "Separable prefixes wrap ge between prefix and stem: auf + ge + macht."
+      grammar_rule_tested: "separable prefix in Perfekt"
+      english_comparison: "English 'opened' stays one word; German shows prefix behavior."
+      hint: "auf + ge + macht"
+      points: 10
+
+    - type: "multiple_choice"
+      question: "Which form is correct? besuchen → ___"
+      options: ["gebesucht", "besucht", "besuchte", "ge besucht"]
+      correct_answer: "besucht"
+      correct_answer_index: 1
+      answer_explanation: "Inseparable prefix (be-) → no ge-: besucht."
+      grammar_rule_tested: "inseparable prefixes omit ge-"
+      english_comparison: "English doesn't mark prefixes; learn German prefix rules."
+      hint: "be-, ver-, er- → no ge-"
+      points: 10

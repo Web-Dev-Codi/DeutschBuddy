@@ -1,0 +1,102 @@
+id: "A1-GRM-030"
+level: "A1"
+category: "grammar"
+title: "Likes & Preferences — mögen vs gern/lieber/am liebsten"
+prerequisites: ["A1-GRM-011", "A1-GRM-009"]
+estimated_minutes: 15
+tags: ["preferences", "likes", "gern", "moegen", "comparatives", "adverbs"]
+
+explanation:
+  concept: |
+    There are two core ways to express liking in German:
+
+    1) **mögen + NOUN**
+       - Ich **mag** Kaffee. (I like coffee.)
+       - Sie **mag** Hunde nicht. (She doesn't like dogs.)
+
+    2) **gern + VERB** (placed near the verb it modifies)
+       - Ich **koche gern**. (I like to cook.)
+       - Wir **spielen gern** Fußball. (We like playing football.)
+
+    Preferences:
+    - **lieber** = rather/prefer (comparative of gern)
+      Ich trinke **lieber** Tee. (I prefer tea.)
+    - **am liebsten** = most of all (superlative of gern)
+      **Am liebsten** esse ich Pasta. (I like eating pasta most.)
+  english_comparison: |
+    English uses one verb "like" for both nouns and activities. German splits it:
+    **mögen** for NOUNS vs **gern** with a VERB. Preferences use **lieber** / **am liebsten**.
+
+example_sentences:
+  - german: "Ich mag Pizza."
+    english: "I like pizza."
+    breakdown_focus: "mögen + NOUN"
+  - german: "Ich schwimme gern."
+    english: "I like to swim."
+    breakdown_focus: "gern with the verb"
+  - german: "Ich trinke lieber Tee."
+    english: "I prefer tea."
+    breakdown_focus: "comparative preference: lieber"
+  - german: "Am liebsten esse ich Pasta."
+    english: "Most of all, I like eating pasta."
+    breakdown_focus: "superlative preference: am liebsten"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Choose the correct way to say: I like to swim."
+      options: ["Ich mag schwimmen.", "Ich schwimme gern.", "Ich gern schwimme.", "Ich schwimme lieber."]
+      correct_answer: "Ich schwimme gern."
+      correct_answer_index: 1
+      answer_explanation: "Use 'gern' with a verb: schwimme gern."
+      grammar_rule_tested: "gern with verbs"
+      english_comparison: "English uses 'like to …'; German uses 'gern' with the verb."
+      hint: "Verb + gern"
+      points: 10
+
+    - type: "fill_blank"
+      question: "Ich trinke ___ Tee. (prefer)"
+      context: null
+      options: null
+      correct_answer: "lieber"
+      correct_answer_index: null
+      answer_explanation: "'lieber' expresses preference over alternatives."
+      grammar_rule_tested: "comparative of gern"
+      english_comparison: "English 'prefer' maps to German adverb 'lieber'."
+      hint: "Rather = lieber"
+      points: 10
+
+    - type: "multiple_choice"
+      question: "Express liking for a NOUN: He likes coffee."
+      options: ["Er mag Kaffee.", "Er trinkt Kaffee gern.", "Er gern Kaffee.", "Er mag gerne Kaffee."]
+      correct_answer: "Er mag Kaffee."
+      correct_answer_index: 0
+      answer_explanation: "mögen + NOUN. 'Er trinkt Kaffee gern' means he likes DRINKING coffee (activity)."
+      grammar_rule_tested: "mögen with nouns vs gern with verbs"
+      english_comparison: "English 'likes coffee' is ambiguous; German distinguishes noun vs activity."
+      hint: "Noun → mögen"
+      points: 10
+
+    - type: "translation"
+      question: "Translate: We like to cook."
+      context: null
+      options: null
+      correct_answer: "Wir kochen gern."
+      correct_answer_index: null
+      answer_explanation: "Use 'gern' with a verb."
+      grammar_rule_tested: "gern with verb phrases"
+      english_comparison: "English 'like to cook' → German 'kochen gern'."
+      hint: "Verb + gern"
+      points: 10
+
+    - type: "fill_blank"
+      question: "___ esse ich Sushi. (most of all)"
+      context: null
+      options: null
+      correct_answer: "Am liebsten"
+      correct_answer_index: null
+      answer_explanation: "Superlative preference → am liebsten."
+      grammar_rule_tested: "superlative of gern"
+      english_comparison: "'most of all' maps to 'am liebsten'."
+      hint: "Top preference → am liebsten"
+      points: 10

@@ -1,0 +1,106 @@
+id: "A1-GRM-028"
+level: "A1"
+category: "grammar"
+title: "Perfekt with sein — Motion/State Change & Common Irregulars"
+prerequisites: ["A1-GRM-027", "A1-GRM-011"]
+estimated_minutes: 18
+tags: ["perfekt", "sein", "past", "motion", "state-change", "irregular-participles"]
+
+explanation:
+  concept: |
+    Some verbs form the Perfekt with **sein** instead of **haben** — typically
+    verbs of **motion** (gehen, kommen, fahren) or **state change** (aufwachen,
+    einschlafen, sterben, bleiben [exception: no motion but sein]).
+
+    Structure: **sein + Partizip II** (participle at the end)
+    - Ich **bin** nach Hause **gegangen**.
+    - Wir **sind** nach Berlin **gefahren**.
+
+    Common irregular participles:
+    - gehen → **gegangen**
+    - kommen → **gekommen**
+    - fahren → **gefahren**
+    - bleiben → **geblieben** (uses sein though no motion)
+    - sein → **gewesen**
+  english_comparison: |
+    English uses "went/has gone" etc. German selects **sein** for movement/
+    change-of-state verbs (and a few exceptions like *bleiben*). The participle
+    still goes to the clause **end**.
+
+example_sentences:
+  - german: "Ich bin nach Hause gegangen."
+    english: "I went home."
+    breakdown_focus: "sein + gegangen; participle at end"
+  - german: "Wir sind gestern nach Berlin gefahren."
+    english: "We went to Berlin yesterday."
+    breakdown_focus: "sein + gefahren; time early"
+  - german: "Er ist zu spät gekommen."
+    english: "He arrived late."
+    breakdown_focus: "sein + gekommen; adverb placement"
+  - german: "Sie ist in München geblieben."
+    english: "She stayed in Munich."
+    breakdown_focus: "sein + geblieben (exception)"
+
+quiz:
+  questions:
+    - type: "multiple_choice"
+      question: "Which auxiliary is correct for 'kommen' in Perfekt?"
+      options: ["haben", "sein", "werden", "sein/haben"]
+      correct_answer: "sein"
+      correct_answer_index: 1
+      answer_explanation: "Movement verb → Perfekt with sein: ist/sind … gekommen."
+      grammar_rule_tested: "auxiliary selection: sein"
+      english_comparison: "English does not change the auxiliary; German chooses sein for motion."
+      hint: "Movement → sein"
+      points: 10
+
+    - type: "fill_blank"
+      question: "Wir ___ gestern nach Hause ____. (gehen)"
+      context: null
+      options: null
+      correct_answer: "sind gegangen"
+      correct_answer_index: null
+      answer_explanation: "Perfekt with sein: sind gegangen; participle at end."
+      grammar_rule_tested: "Perfekt mit sein + irregular participle"
+      english_comparison: "'We went' → 'Wir sind … gegangen'."
+      hint: "sein + gegangen"
+      points: 10
+
+    - type: "multiple_choice"
+      question: "Choose the correct sentence."
+      options:
+        - "Ich bin gekommen spät."
+        - "Ich gekommen bin spät."
+        - "Ich bin spät gekommen."
+        - "Ich habe spät gekommen."
+      correct_answer: "Ich bin spät gekommen."
+      correct_answer_index: 2
+      answer_explanation: "Auxiliary before; participle at end: bin … gekommen."
+      grammar_rule_tested: "Perfekt word order with sein"
+      english_comparison: "English keeps 'come' near the verb; German sends participle to the end."
+      hint: "… bin … [participle]"
+      points: 10
+
+    - type: "translation"
+      question: "Translate: She stayed at home yesterday."
+      context: null
+      options: null
+      correct_answer: "Sie ist gestern zu Hause geblieben."
+      correct_answer_index: null
+      answer_explanation: "'bleiben' takes sein; time early; participle at the end."
+      grammar_rule_tested: "sein-verb + participle position"
+      english_comparison: "English 'stayed' → German 'ist … geblieben'."
+      hint: "bleiben → sein + geblieben"
+      points: 10
+
+    - type: "fill_blank"
+      question: "Er ___ spät ____. (kommen)"
+      context: null
+      options: null
+      correct_answer: "ist gekommen"
+      correct_answer_index: null
+      answer_explanation: "kommen → ist gekommen (sein + gekommen)."
+      grammar_rule_tested: "sein auxiliary selection"
+      english_comparison: "English 'came late' → 'ist spät gekommen'."
+      hint: "sein + gekommen"
+      points: 10
