@@ -57,6 +57,23 @@ class ProgressRepository:
             rows = await cursor.fetchall()
         return [LessonProgress(**dict(r)) for r in rows]
 
+    async def get_mastery_scores(self, learner_id: int, lesson_ids: list[str]) -> dict[str, float]:
+        """Get mastery scores for a list of lesson IDs. Returns 0.0 for missing lessons."""
+        if not lesson_ids:
+            return {}
+        
+        placeholders = ",".join("?" for _ in lesson_ids)
+        async with self.db.execute(
+            f"SELECT lesson_id, mastery_score FROM lesson_progress WHERE learner_id = ? AND lesson_id IN ({placeholders})",
+            (learner_id, *lesson_ids),
+        ) as cursor:
+            rows = await cursor.fetchall()
+        
+        # Convert to dict and fill missing with 0.0
+        result = {lesson_id: 0.0 for lesson_id in lesson_ids}
+        result.update({row[0]: row[1] for row in rows})
+        return result
+
     async def get_due_reviews(
         self, learner_id: int, today: datetime
     ) -> list[LessonProgress]:
@@ -210,6 +227,44 @@ class ProgressRepository:
             LIMIT ?
             """,
             (learner_id, today.isoformat(), limit),
+        ) as cursor:
+            rows = await cursor.fetchall()
+        return [dict(r) for r in rows]
+
+    async def get_today_session_minutes(self, learner_id: int) -> float:
+        """Get total minutes spent in quiz sessions today."""
+        async with self.db.execute(
+            """
+            SELECT SUM((julianday(completed_at) - julianday(started_at)) * 1440) as total_minutes
+            FROM quiz_sessions 
+            WHERE learner_id = ? 
+            AND date(completed_at) = date('now') 
+            AND completed_at IS NOT NULL
+            """,
+            (learner_id,),
+        ) as cursor:
+            row = await cursor.fetchone()
+        return float(row[0]) if row and row[0] is not None else 0.0
+
+    async def update_vocab_card_gender(self, card_id: int, gender: str) -> None:
+        """Update the gender field for a vocabulary card."""
+        await self.db.execute(
+            "UPDATE vocabulary_cards SET gender = ? WHERE id = ?",
+            (gender, card_id),
+        )
+        await self.db.commit()
+
+    async def get_cards_for_gender_drill(self, learner_id: int, limit: int = 20) -> list[dict]:
+        """Get vocabulary cards suitable for gender drill practice."""
+        async with self.db.execute(
+            """
+            SELECT * FROM vocabulary_cards 
+            WHERE learner_id = ? 
+            AND (german_word LIKE UPPER(substr(german_word, 1, 1)) || '%' OR gender IS NOT NULL)
+            ORDER BY next_review ASC
+            LIMIT ?
+            """,
+            (learner_id, limit),
         ) as cursor:
             rows = await cursor.fetchall()
         return [dict(r) for r in rows]

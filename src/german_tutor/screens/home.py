@@ -69,6 +69,7 @@ class HomeScreen(Screen):
                 percent=0.0,
                 id="cefr-bar",
             )
+            yield Static(id="daily-goal-bar", classes="daily-goal")
 
             if self.recommendation:
                 yield Static("Recommended Next Lesson", classes="section-header")
@@ -96,6 +97,30 @@ class HomeScreen(Screen):
                 yield Button("Next Lesson", id="btn-lesson", variant="success")
 
         yield Footer()
+
+    async def on_mount(self) -> None:
+        """Update daily goal display when screen mounts."""
+        self.run_worker(self._update_daily_goal(), exclusive=True)
+
+    async def _update_daily_goal(self) -> None:
+        """Update the daily goal progress display."""
+        try:
+            # Get progress repo from app state
+            if hasattr(self.app, '_state') and self.app._state:
+                minutes_today = await self.app._state.progress_repo.get_today_session_minutes(
+                    self.learner.id
+                )
+                goal = self.learner.daily_goal_minutes
+                
+                if minutes_today >= goal:
+                    display_text = f"Today: {minutes_today:.0f} / {goal} min ✓"
+                else:
+                    display_text = f"Today: {minutes_today:.0f} / {goal} min"
+                
+                self.query_one("#daily-goal-bar", Static).update(display_text)
+        except Exception:
+            # Fallback if anything goes wrong
+            self.query_one("#daily-goal-bar", Static).update("Today: 0 / 20 min")
 
     def action_nav_lessons(self) -> None:
         self.app.post_message(NavRequest("lessons"))

@@ -3,7 +3,7 @@ from __future__ import annotations
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
-from textual.containers import VerticalScroll
+from textual.containers import VerticalScroll, Horizontal
 
 from german_tutor.models.learner import Learner
 from german_tutor.models.lesson import Lesson
@@ -56,11 +56,13 @@ class LessonScreen(Screen):
 
             yield Static("Example Sentences", classes="section-header")
             for i, sent in enumerate(self.lesson.example_sentences[:3]):
-                yield Static(
-                    f"DE: {sent.get('german', '')}  |  EN: {sent.get('english', '')}",
-                    classes="german-sentence",
-                    id=f"sentence-{i}",
-                )
+                with Horizontal(classes="sentence-container"):
+                    yield Static(
+                        f"DE: {sent.get('german', '')}  |  EN: {sent.get('english', '')}",
+                        classes="german-sentence",
+                        id=f"sentence-{i}",
+                    )
+                    yield Button("Analyse", id=f"btn-analyse-{i}", variant="default")
 
             with Static(classes="action-buttons"):
                 yield Button("Start Quiz", id="btn-quiz", variant="primary")
@@ -105,6 +107,22 @@ class LessonScreen(Screen):
             self.action_start_quiz()
         elif event.button.id == "btn-next-lesson":
             self.action_next_lesson()
+        elif event.button.id and event.button.id.startswith("btn-analyse-"):
+            # Extract the sentence index from the button ID
+            try:
+                index = int(event.button.id.split("-")[-1])
+                if index < len(self.lesson.example_sentences):
+                    german_sentence = self.lesson.example_sentences[index].get('german', '')
+                    if german_sentence:
+                        from german_tutor.screens.breakdown import BreakdownScreen
+                        breakdown_screen = BreakdownScreen(
+                            sentence=german_sentence,
+                            cefr_level=self.learner.current_level.value,
+                            tutor_agent=self.tutor_agent
+                        )
+                        self.app.push_screen(breakdown_screen)
+            except (ValueError, IndexError):
+                pass  # Invalid button ID, ignore
 
     def action_next_lesson(self) -> None:
         """Navigate to the next lesson in the curriculum."""
@@ -113,12 +131,27 @@ class LessonScreen(Screen):
             return
         
         try:
-            # Get all lessons for the current level
-            lessons = self.curriculum_loader.load_level(self.lesson.level.value)
-            # Find current lesson index
-            current_index = next((i for i, lesson in enumerate(lessons) if lesson.id == self.lesson.id), None)
+            # Get the current lesson from the curriculum to ensure we have the right object
+            current_lesson = self.curriculum_loader.get_lesson_by_id(self.lesson.id)
+            if current_lesson is None:
+                self.notify(f"Could not find current lesson {self.lesson.id} in the curriculum!")
+                return
             
-            if current_index is not None and current_index < len(lessons) - 1:
+            # Get all lessons for the current level
+            lessons = self.curriculum_loader.load_level(current_lesson.level.value)
+            
+            # Find current lesson index
+            current_index = None
+            for i, lesson in enumerate(lessons):
+                if lesson.id == current_lesson.id:
+                    current_index = i
+                    break
+            
+            if current_index is None:
+                self.notify(f"Could not find current lesson {current_lesson.id} in the curriculum!")
+                return
+            
+            if current_index < len(lessons) - 1:
                 # Navigate to next lesson
                 next_lesson = lessons[current_index + 1]
                 from german_tutor.screens.home import NavRequest

@@ -74,3 +74,18 @@ class CurriculumLoader:
                 if lesson.id == lesson_id:
                     return lesson
         return None
+
+    def get_lessons_by_ids(self, lesson_ids: list[str]) -> list[Lesson]:
+        """Get multiple lessons by their IDs. Returns empty list for unknown IDs."""
+        if not lesson_ids:
+            return []
+        
+        all_lessons = []
+        for lessons in self.load_all().values():
+            all_lessons.extend(lessons)
+        
+        # Create a dict for O(1) lookup
+        lesson_dict = {lesson.id: lesson for lesson in all_lessons}
+        
+        # Return lessons in the order requested, filtering out unknown IDs
+        return [lesson_dict[lesson_id] for lesson_id in lesson_ids if lesson_id in lesson_dict]

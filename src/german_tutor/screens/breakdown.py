@@ -43,11 +43,12 @@ class BreakdownScreen(Screen):
                 self._breakdown = await self.tutor_agent.breakdown_sentence(
                     self.sentence, self.cefr_level
                 )
-                self.query_one("#breakdown-loading").remove()
+                loading = self.query_one("#breakdown-loading")
                 await self.mount(
                     SentenceBreakdownWidget(self._breakdown),
-                    after=self.query_one("#main-content").children[1],
+                    before=loading,
                 )
+                await loading.remove()
             except Exception as exc:
                 self.query_one("#breakdown-loading", Static).update(
                     f"Could not analyse sentence: {exc}"

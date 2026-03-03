@@ -59,3 +59,23 @@ class TutorAgent:
             },
         ]
         return await self.client.chat_json(model=self.model, messages=messages)
+
+    async def get_noun_gender(self, german_word: str, cefr_level: str) -> str:
+        """Get the gender of a German noun (der, die, das, or N/A)."""
+        try:
+            entry = await self.get_vocabulary_entry(german_word, cefr_level)
+            gender = entry.get("gender", "").strip().lower()
+            
+            # Normalize gender responses
+            if gender in ["der", "die", "das"]:
+                return gender
+            elif gender.startswith("der"):
+                return "der"
+            elif gender.startswith("die"):
+                return "die"
+            elif gender.startswith("das"):
+                return "das"
+            else:
+                return "N/A"
+        except Exception:
+            return "N/A"

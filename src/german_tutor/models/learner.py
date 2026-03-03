@@ -15,3 +15,4 @@ class Learner(BaseModel):
     created_at: Optional[datetime] = None
     streak_days: int = 0
     last_session_date: Optional[datetime] = None
+    daily_goal_minutes: int = 20

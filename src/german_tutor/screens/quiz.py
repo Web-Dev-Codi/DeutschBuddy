@@ -46,6 +46,7 @@ class QuizScreen(Screen):
                 yield Button("Submit", id="btn-submit", variant="primary")
                 yield Button("Hint", id="btn-hint", variant="default")
                 yield Button("Skip", id="btn-skip", variant="warning")
+                yield Button("Break it down", id="btn-breakdown", variant="default")
         yield Footer()
 
     async def on_mount(self) -> None:
@@ -93,6 +94,12 @@ class QuizScreen(Screen):
         self.query_one("#quiz-status", Static).update(
             f"Question {index + 1} / {len(self._questions)}"
         )
+        # Hide breakdown button on new question
+        try:
+            breakdown_btn = self.query_one("#btn-breakdown", Button)
+            breakdown_btn.display = False
+        except Exception:
+            pass
 
     async def _submit_answer(self) -> None:
         """Evaluate the current answer and advance to next question."""
@@ -162,6 +169,16 @@ class QuizScreen(Screen):
                     }
 
         card.show_feedback(is_correct, evaluation.get("feedback", ""))
+
+        # Show breakdown button for wrong answers if there's context
+        try:
+            breakdown_btn = self.query_one("#btn-breakdown", Button)
+            if not is_correct and q.get("context"):
+                breakdown_btn.display = True
+            else:
+                breakdown_btn.display = False
+        except Exception:
+            pass
 
         response = QuizResponse(
             session_id=self._session_id,
@@ -236,6 +253,20 @@ class QuizScreen(Screen):
         else:
             card.show_hint(q.get("hint", ""))
 
+    def _show_breakdown(self) -> None:
+        """Show breakdown screen for the current question's context."""
+        if self._current_index < len(self._questions):
+            q = self._questions[self._current_index]
+            context = q.get("context", "")
+            if context:
+                from german_tutor.screens.breakdown import BreakdownScreen
+                breakdown_screen = BreakdownScreen(
+                    sentence=context,
+                    cefr_level=self.learner.current_level.value,
+                    tutor_agent=self.app.state.tutor_agent if hasattr(self.app, 'state') else None
+                )
+                self.app.push_screen(breakdown_screen)
+
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "btn-submit":
             self.run_worker(self._submit_answer(), exclusive=True)
@@ -243,6 +274,8 @@ class QuizScreen(Screen):
             self.run_worker(self._get_hint(), exclusive=True)
         elif event.button.id == "btn-skip":
             self.run_worker(self._advance_question(), exclusive=True)
+        elif event.button.id == "btn-breakdown":
+            self._show_breakdown()
         elif event.button.id == "btn-quit":
             self.action_quit_quiz()
 

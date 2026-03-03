@@ -14,7 +14,7 @@ class LearnerRepository:
 
     async def create(self, name: str) -> Learner:
         async with self.db.execute(
-            "INSERT INTO learner (name) VALUES (?) RETURNING id, name, current_level, streak_days, last_session_date, created_at",
+            "INSERT INTO learner (name) VALUES (?) RETURNING id, name, current_level, streak_days, last_session_date, created_at, daily_goal_minutes",
             (name,),
         ) as cursor:
             row = await cursor.fetchone()
@@ -23,7 +23,7 @@ class LearnerRepository:
 
     async def get_by_id(self, learner_id: int) -> Learner | None:
         async with self.db.execute(
-            "SELECT id, name, current_level, streak_days, last_session_date, created_at FROM learner WHERE id = ?",
+            "SELECT id, name, current_level, streak_days, last_session_date, created_at, daily_goal_minutes FROM learner WHERE id = ?",
             (learner_id,),
         ) as cursor:
             row = await cursor.fetchone()
@@ -31,7 +31,7 @@ class LearnerRepository:
 
     async def get_first(self) -> Learner | None:
         async with self.db.execute(
-            "SELECT id, name, current_level, streak_days, last_session_date, created_at FROM learner LIMIT 1"
+            "SELECT id, name, current_level, streak_days, last_session_date, created_at, daily_goal_minutes FROM learner LIMIT 1"
         ) as cursor:
             row = await cursor.fetchone()
         return self._row_to_learner(row) if row else None
@@ -49,6 +49,14 @@ class LearnerRepository:
         await self.db.execute(
             "UPDATE learner SET streak_days = ?, last_session_date = ? WHERE id = ?",
             (streak, last_date.isoformat(), learner_id),
+        )
+        await self.db.commit()
+
+    async def update_goal(self, learner_id: int, daily_goal_minutes: int) -> None:
+        """Update the learner's daily goal in minutes."""
+        await self.db.execute(
+            "UPDATE learner SET daily_goal_minutes = ? WHERE id = ?",
+            (daily_goal_minutes, learner_id),
         )
         await self.db.commit()
 

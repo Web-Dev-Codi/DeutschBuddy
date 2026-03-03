@@ -111,6 +111,10 @@ class ResultsScreen(Screen):
 
                 # Update lesson progress with SM-2
                 await self._update_progress()
+                
+                # Check if daily goal was reached
+                await self._check_daily_goal()
+                
                 # Extract and save vocabulary cards from lesson
                 await self._upsert_vocab_cards()
             except Exception as exc:
@@ -183,9 +187,9 @@ class ResultsScreen(Screen):
         # Update both self.learner and state.current_learner so they stay consistent
         self.learner.streak_days = new_streak
         self.learner.last_session_date = now
-        if state.current_learner is not None:
-            state.current_learner.streak_days = new_streak
-            state.current_learner.last_session_date = now
+        if hasattr(self.app, '_state') and self.app._state and self.app._state.current_learner is not None:
+            self.app._state.current_learner.streak_days = new_streak
+            self.app._state.current_learner.last_session_date = now
 
     async def _upsert_vocab_cards(self) -> None:
         """Extract vocabulary from lesson example sentences and upsert to DB."""
@@ -200,6 +204,20 @@ class ResultsScreen(Screen):
                     )
                 except Exception as e:
                     self.app.log.error(f"Failed to upsert vocab card '{german}': {e}")
+
+    async def _check_daily_goal(self) -> None:
+        """Check if daily goal was reached and show notification."""
+        try:
+            minutes_today = await self.progress_repo.get_today_session_minutes(
+                self.learner.id
+            )
+            if minutes_today >= self.learner.daily_goal_minutes:
+                self.notify(
+                    "Daily goal reached! Great work.",
+                    title="Goal Complete"
+                )
+        except Exception as e:
+            self.app.log.error(f"Failed to check daily goal: {e}")
 
     def action_go_home(self) -> None:
         self.dismiss(None)

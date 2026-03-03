@@ -50,6 +50,13 @@ class SettingsScreen(Screen):
                 placeholder="mistral:7b-instruct",
             )
 
+            yield Static("Daily Goal (minutes)", classes="section-header")
+            yield Input(
+                value=str(self._config.get("daily_goal_minutes", 20)),
+                id="daily-goal-input",
+                placeholder="20",
+            )
+
             yield Static("", id="available-models-label", classes="quiz-context")
 
             with Static(classes="action-buttons"):
@@ -74,10 +81,18 @@ class SettingsScreen(Screen):
             )
 
     def _save_config(self) -> None:
-        """Write updated values back to settings.toml."""
+        """Write updated values back to settings.toml and update learner goal."""
         host = self.query_one("#host-input", Input).value.strip()
         curriculum = self.query_one("#curriculum-model-input", Input).value.strip()
         interaction = self.query_one("#interaction-model-input", Input).value.strip()
+        daily_goal_str = self.query_one("#daily-goal-input", Input).value.strip()
+
+        # Validate daily goal
+        try:
+            daily_goal = int(daily_goal_str) if daily_goal_str else 20
+            daily_goal = max(1, min(180, daily_goal))  # Reasonable bounds: 1 min to 3 hours
+        except ValueError:
+            daily_goal = 20
 
         config_path = Path("config/settings.toml")
         # Read raw content and do targeted replacements (tomllib is read-only)
@@ -96,7 +111,30 @@ class SettingsScreen(Screen):
         content = replace_value(content, "host", host)
         content = replace_value(content, "curriculum_model", curriculum)
         content = replace_value(content, "interaction_model", interaction)
+        
+        # Handle daily_goal_minutes - it might not exist yet
+        if "daily_goal_minutes" in content:
+            content = replace_value(content, "daily_goal_minutes", str(daily_goal))
+        else:
+            # Add it to the end of the file
+            content += f"\ndaily_goal_minutes = {daily_goal}\n"
+        
         config_path.write_text(content)
+
+        # Update learner's daily goal in database
+        if hasattr(self.app, '_state') and self.app._state and self.app._state.current_learner:
+            try:
+                import asyncio
+                asyncio.create_task(
+                    self.app._state.learner_repo.update_goal(
+                        self.app._state.current_learner.id, 
+                        daily_goal
+                    )
+                )
+                # Also update in-memory learner
+                self.app._state.current_learner.daily_goal_minutes = daily_goal
+            except Exception:
+                pass  # Silently fail if DB update fails
 
     def action_go_back(self) -> None:
         self.app.pop_screen()

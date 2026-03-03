@@ -2,11 +2,10 @@ from __future__ import annotations
 
 import aiosqlite
 
-SCHEMA_SQL = """
-CREATE TABLE IF NOT EXISTS schema_version (
-    version INTEGER PRIMARY KEY
-);
-
+# Migration definitions
+MIGRATIONS = {
+    1: """
+-- Migration v1: Create base tables (baseline for existing databases)
 CREATE TABLE IF NOT EXISTS learner (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
@@ -62,10 +61,47 @@ CREATE TABLE IF NOT EXISTS vocabulary_cards (
     next_review DATETIME,
     UNIQUE(learner_id, german_word)
 );
+""",
+    2: """
+-- Migration v2: Add daily goal minutes to learner table
+ALTER TABLE learner ADD COLUMN daily_goal_minutes INTEGER DEFAULT 20;
+""",
+    3: """
+-- Migration v3: Add gender column to vocabulary_cards for gender drills
+ALTER TABLE vocabulary_cards ADD COLUMN gender TEXT;
 """
+}
 
 
 async def run_migrations(db: aiosqlite.Connection) -> None:
-    """Create all tables if they don't exist. Idempotent."""
-    await db.executescript(SCHEMA_SQL)
-    await db.commit()
+    """Run migrations in order, checking version before each step."""
+    # Create schema_version table if it doesn't exist
+    await db.execute("""
+        CREATE TABLE IF NOT EXISTS schema_version (
+            version INTEGER PRIMARY KEY
+        )
+    """)
+    
+    # Get current version
+    cursor = await db.execute("SELECT MAX(version) FROM schema_version")
+    row = await cursor.fetchone()
+    current_version = row[0] if row and row[0] is not None else 0
+    
+    # Run migrations in order
+    for version in sorted(MIGRATIONS.keys()):
+        if version > current_version:
+            # Check if this specific version has already been applied
+            cursor = await db.execute("SELECT version FROM schema_version WHERE version = ?", (version,))
+            existing = await cursor.fetchone()
+            
+            if not existing:
+                # Apply migration
+                migration_sql = MIGRATIONS[version]
+                await db.executescript(migration_sql)
+                
+                # Record this version
+                await db.execute("INSERT INTO schema_version (version) VALUES (?)", (version,))
+                await db.commit()
+                print(f"Applied migration v{version}")
+            else:
+                print(f"Migration v{version} already applied, skipping")
