@@ -1,21 +1,16 @@
 from __future__ import annotations
 
 import json
-import tomllib
-from pathlib import Path
 from typing import AsyncGenerator
 
 import ollama
 
-
-def _load_config() -> dict:
-    with open(Path("config/settings.toml"), "rb") as f:
-        return tomllib.load(f)
+from german_tutor.config import get_config
 
 
 class OllamaClient:
     def __init__(self, host: str | None = None) -> None:
-        config = _load_config()
+        config = get_config()
         self.host = host or config["ollama"]["host"]
         self.curriculum_model: str = config["ollama"]["curriculum_model"]
         self.interaction_model: str = config["ollama"]["interaction_model"]

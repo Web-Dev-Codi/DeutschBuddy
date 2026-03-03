@@ -1,24 +1,18 @@
 from __future__ import annotations
 
-import tomllib
 from pathlib import Path
 
 import aiosqlite
 
+from german_tutor.config import get_config
+
 _db: aiosqlite.Connection | None = None
-
-
-def _load_db_path() -> str:
-    config_path = Path("config/settings.toml")
-    with open(config_path, "rb") as f:
-        config = tomllib.load(f)
-    return config["db"]["path"]
 
 
 async def get_db() -> aiosqlite.Connection:
     global _db
     if _db is None:
-        db_path = _load_db_path()
+        db_path = get_config()["db"]["path"]
         Path(db_path).parent.mkdir(parents=True, exist_ok=True)
         _db = await aiosqlite.connect(db_path)
         _db.row_factory = aiosqlite.Row

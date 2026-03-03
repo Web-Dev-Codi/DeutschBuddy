@@ -1,11 +1,10 @@
 from __future__ import annotations
 
-import tomllib
-from pathlib import Path
-
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Input, Label, Static
+
+from german_tutor.config import get_config
 
 
 class SettingsScreen(Screen):
@@ -17,12 +16,7 @@ class SettingsScreen(Screen):
         super().__init__(**kwargs)
         self.ollama_client = ollama_client
         self._available_models: list[str] = []
-        self._config = self._load_config()
-
-    def _load_config(self) -> dict:
-        config_path = Path("config/settings.toml")
-        with open(config_path, "rb") as f:
-            return tomllib.load(f)
+        self._config = get_config()
 
     def compose(self) -> ComposeResult:
         yield Header()
