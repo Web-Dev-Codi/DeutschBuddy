@@ -55,7 +55,6 @@ class QuizCard(Widget):
             )
 
         yield Static("", id="hint-display", classes="hint-text")
-        yield Button("Hint", id="hint-btn", variant="default")
 
     def get_answer(self) -> str | None:
         """Return the current user answer as a string, or None if empty."""
