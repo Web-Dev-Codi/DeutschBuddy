@@ -155,10 +155,11 @@ class GermanTutorApp(App):
             for level in ["A1", "A2", "B1"]:
                 try:
                     lessons = state.curriculum_loader.load_level(level)
-                    lesson = next((l for l in lessons if l.id == lesson_id), None)
+                    lesson = next((candidate for candidate in lessons if candidate.id == lesson_id), None)
                     if lesson:
                         break
-                except Exception:
+                except Exception as exc:
+                    self.notify(f"Error loading level {level}: {exc}")
                     continue
             if lesson is None:
                 self.notify(f"Lesson {lesson_id} not found.", severity="error")
@@ -169,34 +170,7 @@ class GermanTutorApp(App):
             if lesson is None:
                 self.notify("No lesson available.", severity="warning")
                 return
-        
-        # Check prerequisites
-        if lesson.prerequisites:
-            mastery_scores = await state.progress_repo.get_mastery_scores(
-                state.current_learner.id, lesson.prerequisites
-            )
-            
-            # Find first failing prerequisite
-            for prereq_id in lesson.prerequisites:
-                score = mastery_scores.get(prereq_id, 0.0)
-                if score < 0.70:
-                    # Get the prerequisite lesson for title
-                    prereq_lessons = state.curriculum_loader.get_lessons_by_ids([prereq_id])
-                    if prereq_lessons:
-                        prereq_title = prereq_lessons[0].title
-                        self.notify(
-                            f"Finish '{prereq_title}' first (mastery {score:.0%})",
-                            severity="warning"
-                        )
-                        # Redirect to the prerequisite lesson
-                        self.run_worker(self._start_lesson(prereq_id), exclusive=True)
-                    else:
-                        self.notify(
-                            f"Prerequisite lesson {prereq_id} not found (mastery {score:.0%})",
-                            severity="error"
-                        )
-                    return
-        
+
         self._current_lesson = lesson
         screen = LessonScreen(
             lesson=lesson,

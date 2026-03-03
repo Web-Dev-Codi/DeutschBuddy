@@ -155,9 +155,12 @@ class LessonScreen(Screen):
                 # Navigate to next lesson
                 next_lesson = lessons[current_index + 1]
                 from german_tutor.screens.home import NavRequest
+                self.notify(f"Attempting to navigate to: {next_lesson.id}")
                 self.app.post_message(NavRequest("lesson", lesson_id=next_lesson.id))
             else:
                 # No more lessons in this level
                 self.notify("This is the last lesson in this level!")
         except Exception as exc:
             self.notify(f"Error navigating to next lesson: {exc}")
+            import traceback
+            self.notify(f"Full error: {traceback.format_exc()}")
