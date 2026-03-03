@@ -32,12 +32,12 @@ class HomeScreen(Screen):
     def __init__(
         self,
         learner: Learner,
-        recommendation: LessonRecommendation | None = None,
+        current_lesson=None,
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
         self.learner = learner
-        self.recommendation = recommendation
+        self.current_lesson = current_lesson
 
     def compose(self) -> ComposeResult:
         yield Header()
@@ -71,26 +71,24 @@ class HomeScreen(Screen):
             )
             yield Static(id="daily-goal-bar", classes="daily-goal")
 
-            if self.recommendation:
-                yield Static("Recommended Next Lesson", classes="section-header")
+            if self.current_lesson:
+                yield Static("Continue Where You Left Off", classes="section-header")
                 yield Static(
-                    f"{self.recommendation.recommended_lesson_id} — {self.recommendation.lesson_title}",
-                    id="rec-title",
+                    f"{self.current_lesson.id} — {self.current_lesson.title}",
+                    id="current-lesson-title",
                 )
                 yield Static(
-                    self.recommendation.reason, id="rec-reason", classes="quiz-context"
+                    f"Level: {self.current_lesson.level.value} | {self.current_lesson.estimated_minutes} min",
+                    id="current-lesson-info",
+                    classes="quiz-context"
                 )
-                if self.recommendation.english_speaker_warning:
-                    yield Static(
-                        f"⚠  {self.recommendation.english_speaker_warning}",
-                        id="rec-warning",
-                        classes="hint-text",
-                    )
             else:
+                yield Static("Start Learning", classes="section-header")
                 yield Static(
-                    "Loading recommendation...", id="rec-title", classes="loading"
+                    "Choose your first lesson from the Lessons menu",
+                    id="no-lesson-message",
+                    classes="quiz-context"
                 )
-                yield Static("", id="rec-reason", classes="quiz-context")
 
             with Static(classes="action-buttons"):
                 yield Button("Start Quiz", id="btn-quiz", variant="primary")
@@ -150,17 +148,11 @@ class HomeScreen(Screen):
         elif button_id == "btn-quiz":
             self.action_nav_quiz()
         elif button_id == "btn-lesson":
-            self.action_nav_lessons()
+            if self.current_lesson:
+                # Navigate to current lesson
+                self.app.post_message(NavRequest("lesson", lesson_id=self.current_lesson.id))
+            else:
+                # No current lesson, go to lesson list
+                self.action_nav_lessons()
         elif button_id == "nav-review":
             self.action_nav_review()
-
-    def update_recommendation(self, rec: LessonRecommendation) -> None:
-        """Update recommendation display after async load."""
-        self.recommendation = rec
-        try:
-            self.query_one("#rec-title", Static).update(
-                f"{rec.recommended_lesson_id} — {rec.lesson_title}"
-            )
-            self.query_one("#rec-reason", Static).update(rec.reason)
-        except Exception:
-            pass

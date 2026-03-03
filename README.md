@@ -79,6 +79,42 @@ Ollama supports AMD GPUs via ROCm. To enable hardware acceleration on an RX 7800
 
    For an RX 7800 XT (16 GB VRAM), `llama3.1:8b` and `mistral:7b` will fully load on-device.
 
+## Architecture
+
+GermanTutor uses a **dual-layer curriculum system** that combines static content with dynamic AI guidance:
+
+### YAML Curriculum Files (Content Library)
+- **Location**: `data/curriculum/A1/`, `data/curriculum/A2/`, `data/curriculum/B1/`
+- **Purpose**: Store lesson content, grammar explanations, vocabulary, and examples
+- **Structure**: Each lesson file contains:
+  - Lesson metadata (ID, title, level, prerequisites)
+  - Grammar explanations and English comparisons
+  - Example sentences with translations
+  - Practice exercises and vocabulary lists
+- **Benefits**: Reliable, version-controlled content that can be reviewed and edited
+
+### AI Curriculum Agent (Learning Strategist)
+- **Purpose**: Make intelligent decisions about learning progression
+- **Responsibilities**:
+  - Analyze learner performance and mastery scores
+  - Recommend the optimal next lesson based on individual needs
+  - Determine when to advance between CEFR levels (A1 → A2 → B1)
+  - Provide personalized learning paths based on strengths and weaknesses
+- **Integration**: Works with the YAML content library but doesn't create content
+
+### How They Work Together
+1. **Learner completes a lesson/quiz** → Performance data is collected
+2. **AI analyzes progress** → Identifies knowledge gaps and strengths  
+3. **AI recommends specific lesson** → "Study A1-GRM-015 (Accusative Prepositions) because you're strong with nominative case"
+4. **YAML file provides content** → Static lesson content is loaded and displayed
+5. **Learner studies** → Cycle repeats with new performance data
+
+This separation ensures:
+- **Consistent, high-quality content** (YAML files)
+- **Personalized learning paths** (AI recommendations)
+- **Reliable offline capability** (YAML content works without AI)
+- **Adaptive difficulty** (AI adjusts pacing based on performance)
+
 ## Settings
 
 Open the Settings screen by pressing `s` on the home screen, or navigating to **Settings** in the sidebar.

@@ -72,25 +72,10 @@ class LessonScreen(Screen):
         yield Footer()
 
     async def on_mount(self) -> None:
-        """Try to enhance explanation with AI after the screen mounts."""
-        if self.tutor_agent is not None and not self._ai_enhancement_attempted:
-            self._ai_enhancement_attempted = True
-            try:
-                ai_explanation = await self.tutor_agent.explain_lesson(
-                    self.lesson, self.learner
-                )
-                # Replace the fallback explanation with AI-enhanced one
-                self._explanation = ai_explanation
-                # Update the grammar panel if it exists
-                try:
-                    grammar_panel = self.query_one("#grammar-panel", GrammarPanelWidget)
-                    grammar_panel.update_content(ai_explanation)
-                except Exception:
-                    # Panel might not exist yet, that's fine
-                    pass
-            except Exception as exc:
-                # Keep the fallback explanation, just log the error
-                print(f"Could not enhance with AI explanation: {exc}")
+        """Use static YAML explanation without AI enhancement."""
+        # The lesson explanation from YAML is already high-quality
+        # No need for AI enhancement - this eliminates unnecessary AI calls
+        pass
 
     def action_go_back(self) -> None:
         self.app.pop_screen()

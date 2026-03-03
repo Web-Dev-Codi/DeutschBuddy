@@ -50,36 +50,65 @@ class QuizScreen(Screen):
         yield Footer()
 
     async def on_mount(self) -> None:
-        if self.quiz_agent is not None:
-            try:
-                result = await self.quiz_agent.generate_quiz(self.lesson, self.learner)
-                self._questions = result.get("questions", [])
-                # Create a DB session record
-                if self.progress_repo is not None and self.learner.id is not None:
-                    from german_tutor.models.session import QuizSession as QS
-                    from datetime import datetime
+        # Use YAML quiz content directly instead of AI generation
+        try:
+            # Get quiz questions from YAML lesson data
+            if hasattr(self.lesson, 'quiz') and self.lesson.quiz and 'questions' in self.lesson.quiz:
+                self._questions = self.lesson.quiz['questions']
+            else:
+                # Fallback: create simple questions from example sentences if no quiz defined
+                self._questions = self._create_fallback_questions()
+            
+            # Create a DB session record
+            if self.progress_repo is not None and self.learner.id is not None:
+                from german_tutor.models.session import QuizSession as QS
+                from datetime import datetime
 
-                    new_session = QS(
-                        learner_id=self.learner.id,
-                        lesson_id=self.lesson.id,
-                        started_at=datetime.now(),
-                        total_questions=len(self._questions),
-                    )
-                    try:
-                        self._session_id = await self.progress_repo.create_session(
-                            new_session
-                        )
-                    except Exception:
-                        pass
-                if self._questions:
-                    self.query_one("#quiz-status", Static).update(
-                        f"Question 1 / {len(self._questions)}"
-                    )
-                    await self._show_question(0)
-            except Exception as exc:
-                self.query_one("#quiz-status", Static).update(
-                    f"Could not load quiz: {exc}"
+                new_session = QS(
+                    learner_id=self.learner.id,
+                    lesson_id=self.lesson.id,
+                    started_at=datetime.now(),
+                    total_questions=len(self._questions),
                 )
+                try:
+                    self._session_id = await self.progress_repo.create_session(
+                        new_session
+                    )
+                except Exception:
+                    pass
+            
+            if self._questions:
+                self.query_one("#quiz-status", Static).update(
+                    f"Question 1 / {len(self._questions)}"
+                )
+                await self._show_question(0)
+            else:
+                self.query_one("#quiz-status", Static).update(
+                    "No quiz questions available for this lesson."
+                )
+        except Exception as exc:
+            self.query_one("#quiz-status", Static).update(
+                f"Could not load quiz: {exc}"
+            )
+
+    def _create_fallback_questions(self) -> list[dict]:
+        """Create simple questions from example sentences if no quiz defined in YAML."""
+        questions = []
+        for i, sentence in enumerate(self.lesson.example_sentences[:5]):
+            german = sentence.get("german", "")
+            english = sentence.get("english", "")
+            if german and english:
+                questions.append({
+                    "type": "translation",
+                    "question": f"Translate: {german}",
+                    "correct_answer": english,
+                    "context": f"From example sentence {i+1}",
+                    "answer_explanation": f"This is the English translation of: {german}",
+                    "grammar_rule_tested": "translation",
+                    "hint": f"Think about the meaning of: {german.split()[0] if german.split() else german}",
+                    "points": 10
+                })
+        return questions
 
     async def _show_question(self, index: int) -> None:
         """Render the question at the given index."""
