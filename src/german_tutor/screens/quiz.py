@@ -111,14 +111,36 @@ class QuizScreen(Screen):
         is_correct = False
         evaluation: dict = {}
 
-        if q_type in ("multiple_choice", "reorder"):
-            # Evaluate locally
+        if q_type == "multiple_choice":
+            # Evaluate locally - both are strings
             is_correct = answer.strip().lower() == correct.strip().lower()
             evaluation = {
                 "is_correct": is_correct,
                 "score": 100 if is_correct else 0,
                 "feedback": "Correct!" if is_correct else f"The answer is: {correct}",
             }
+        elif q_type == "reorder":
+            # Evaluate locally - both are lists
+            try:
+                # Convert answer string to list of ints if it's a string
+                if isinstance(answer, str):
+                    answer_list = [int(x.strip()) for x in answer.split()]
+                else:
+                    answer_list = answer
+                
+                is_correct = answer_list == correct
+                evaluation = {
+                    "is_correct": is_correct,
+                    "score": 100 if is_correct else 0,
+                    "feedback": "Correct!" if is_correct else f"The correct order is: {correct}",
+                }
+            except (ValueError, AttributeError):
+                is_correct = False
+                evaluation = {
+                    "is_correct": False,
+                    "score": 0,
+                    "feedback": f"The correct order is: {correct}",
+                }
         else:
             # LLM evaluation
             if self.quiz_agent is not None:

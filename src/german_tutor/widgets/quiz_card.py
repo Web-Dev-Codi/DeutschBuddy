@@ -83,4 +83,4 @@ class QuizCard(Widget):
         icon = "✓" if is_correct else "✗"
         hint = self.query_one("#hint-display", Static)
         hint.set_classes(f"hint-text {cls}")
-        hint.update(f"{icon} {feedback}", markup=False)
+        hint.update(f"{icon} {feedback}")

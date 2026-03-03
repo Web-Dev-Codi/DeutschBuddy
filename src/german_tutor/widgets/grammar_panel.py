@@ -41,3 +41,11 @@ class GrammarPanelWidget(Widget):
             for row in table_data.get("rows", []):
                 table.add_row(*row)
             yield table
+
+    def update_content(self, explanation: dict) -> None:
+        """Update the explanation content and refresh the widget."""
+        self.explanation = explanation
+        self._remove_children()
+        # Re-compose with new content
+        for child in self.compose():
+            self.mount(child)

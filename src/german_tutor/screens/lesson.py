@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from textual.app import ComposeResult
 from textual.screen import Screen
-from textual.widgets import Button, Footer, Header, LoadingIndicator, Static
+from textual.widgets import Button, Footer, Header, Static
 
 from german_tutor.models.learner import Learner
 from german_tutor.models.lesson import Lesson
@@ -25,8 +25,10 @@ class LessonScreen(Screen):
         self.lesson = lesson
         self.learner = learner
         self.tutor_agent = tutor_agent
-        self._explanation: dict | None = None
+        # Start with the lesson explanation as fallback
+        self._explanation = lesson.explanation
         self._breakdowns: list[dict] = []
+        self._ai_enhancement_attempted = False
 
     def compose(self) -> ComposeResult:
         yield Header()
@@ -64,26 +66,25 @@ class LessonScreen(Screen):
         yield Footer()
 
     async def on_mount(self) -> None:
-        """Load AI explanation asynchronously after the screen mounts."""
-        if self.tutor_agent is not None:
+        """Try to enhance explanation with AI after the screen mounts."""
+        if self.tutor_agent is not None and not self._ai_enhancement_attempted:
+            self._ai_enhancement_attempted = True
             try:
-                self._explanation = await self.tutor_agent.explain_lesson(
+                ai_explanation = await self.tutor_agent.explain_lesson(
                     self.lesson, self.learner
                 )
-                # Replace loading indicator with actual explanation
-                loading = self.query_one("#grammar-loading", Static)
-                await self.mount(
-                    GrammarPanelWidget(self._explanation, id="grammar-panel"),
-                    before=loading,
-                )
-                await loading.remove()
-            except Exception as exc:
+                # Replace the fallback explanation with AI-enhanced one
+                self._explanation = ai_explanation
+                # Update the grammar panel if it exists
                 try:
-                    self.query_one("#grammar-loading", Static).update(
-                        f"Could not load explanation: {exc}"
-                    )
+                    grammar_panel = self.query_one("#grammar-panel", GrammarPanelWidget)
+                    grammar_panel.update_content(ai_explanation)
                 except Exception:
+                    # Panel might not exist yet, that's fine
                     pass
+            except Exception as exc:
+                # Keep the fallback explanation, just log the error
+                print(f"Could not enhance with AI explanation: {exc}")
 
     def action_go_back(self) -> None:
         self.app.pop_screen()

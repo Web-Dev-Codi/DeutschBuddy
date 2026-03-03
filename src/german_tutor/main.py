@@ -3,6 +3,7 @@ from __future__ import annotations
 from datetime import datetime
 
 from textual.app import App
+from textual.screen import Screen
 
 from german_tutor.app_state import AppState
 from german_tutor.curriculum.cefr import CEFRProgressionEngine
@@ -218,11 +219,16 @@ class GermanTutorApp(App):
             cards=due,
             progress_repo=self._state.progress_repo,
         )
-        result = await self.push_screen_wait(screen)
-        if result is not None:
-            correct = result.get("correct", 0)
-            total = result.get("total", 0)
-            self.notify(f"Review complete: {correct}/{total} correct.")
+        await self.push_screen(screen)
+
+    def on_screen_resume(self, screen: Screen) -> None:
+        """Handle screen dismissal results."""
+        if isinstance(screen, VocabReviewScreen):
+            result = screen.result
+            if result is not None:
+                correct = result.get("correct", 0)
+                total = result.get("total", 0)
+                self.notify(f"Review complete: {correct}/{total} correct.")
 
     def _get_current_lesson(self):
         """Get the first available lesson for the current learner."""
@@ -250,8 +256,8 @@ class GermanTutorApp(App):
             self.pop_screen()
         self.run_worker(self._show_home(), exclusive=True)
 
-    def action_show_help(self) -> None:
-        self.push_screen(HelpScreen())
+    async def action_show_help(self) -> None:
+        await self.push_screen(HelpScreen())
 
     # ── Teardown ──────────────────────────────────────────────────────────────
 
