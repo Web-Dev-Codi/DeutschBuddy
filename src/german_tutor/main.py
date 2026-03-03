@@ -85,44 +85,11 @@ class GermanTutorApp(App):
         await self._show_home()
 
     async def _show_home(self) -> None:
-        """Push HomeScreen immediately; load recommendation in the background."""
+        """Push HomeScreen with current lesson information."""
         learner = self._state.current_learner
-        screen = HomeScreen(learner=learner, recommendation=None)
+        current_lesson = self._get_current_lesson()  # Remove await
+        screen = HomeScreen(learner=learner, current_lesson=current_lesson)
         await self.push_screen(screen)
-        self.run_worker(
-            self._fetch_recommendation(screen),
-            exclusive=False,
-            name="recommendation",
-        )
-
-    async def _fetch_recommendation(self, screen: HomeScreen) -> None:
-        """Background worker: compute lesson recommendation and update HomeScreen."""
-        state = self._state
-        learner = state.current_learner
-        try:
-            all_lessons = await state.curriculum_loader.load_all_async()
-            progress = await state.progress_repo.get_all_progress(learner.id)
-            completed_ids = {p.lesson_id for p in progress}
-            current_level_lessons = all_lessons.get(learner.current_level.value, [])
-            available = [l for l in current_level_lessons if l.id not in completed_ids]
-            due_reviews = await state.progress_repo.get_due_reviews(
-                learner.id, datetime.now()
-            )
-            perf_history = await state.progress_repo.get_recent_sessions(
-                learner.id, limit=10
-            )
-            if not (available or due_reviews):
-                return
-            recommendation = await state.curriculum_agent.recommend_next_lesson(
-                learner=learner,
-                performance_history=perf_history,
-                available_lessons=available,
-                due_reviews=due_reviews,
-            )
-            if recommendation and screen.is_mounted:
-                screen.update_recommendation(recommendation)
-        except Exception:
-            pass  # Ollama may not be running — degrade gracefully
 
     # ── Navigation ────────────────────────────────────────────────────────────
 
@@ -172,6 +139,11 @@ class GermanTutorApp(App):
                 return
 
         self._current_lesson = lesson
+        
+        # Update learner's last lesson
+        await state.learner_repo.update_last_lesson(state.current_learner.id, lesson.id)
+        state.current_learner.last_lesson_id = lesson.id
+        
         screen = LessonScreen(
             lesson=lesson,
             learner=state.current_learner,
@@ -264,12 +236,23 @@ class GermanTutorApp(App):
                 self.notify(f"Review complete: {correct}/{total} correct.")
 
     def _get_current_lesson(self):
-        """Get the first available lesson for the current learner."""
+        """Get the learner's last lesson or first available lesson."""
         state = self._state
         if state is None:
             return None
         loader = state.curriculum_loader
         learner = state.current_learner
+        
+        # First try to get the learner's last lesson
+        if learner.last_lesson_id:
+            try:
+                lesson = loader.get_lesson_by_id(learner.last_lesson_id)
+                if lesson:
+                    return lesson
+            except Exception:
+                pass
+        
+        # Fallback to first available lesson
         try:
             lessons = loader.load_level(learner.current_level.value)
             if lessons:

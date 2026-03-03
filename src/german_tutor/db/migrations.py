@@ -69,6 +69,10 @@ ALTER TABLE learner ADD COLUMN daily_goal_minutes INTEGER DEFAULT 20;
     3: """
 -- Migration v3: Add gender column to vocabulary_cards for gender drills
 ALTER TABLE vocabulary_cards ADD COLUMN gender TEXT;
+""",
+    4: """
+-- Migration v4: Add last_lesson_id to learner table for continue where left off
+ALTER TABLE learner ADD COLUMN last_lesson_id TEXT;
 """
 }
 
