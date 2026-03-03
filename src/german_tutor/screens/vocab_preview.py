@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 from textual.app import ComposeResult
 from textual.screen import Screen
-from textual.widgets import Button, Footer, Header, Static
+from textual.widgets import Button, Footer, Header, Static, LoadingIndicator
 
 from german_tutor.models.lesson import Lesson
 
@@ -27,6 +27,12 @@ class VocabPreviewScreen(Screen):
                 "Review key vocabulary before starting the quiz",
                 classes="quiz-context",
             )
+            # Loading indicator and message
+            with Static(id="loading-container", classes="loading-container"):
+                yield LoadingIndicator(id="vocab-loading")
+                yield Static("AI is preparing your custom vocabulary list...", classes="loading-message")
+                yield Static("Please wait", classes="loading-submessage")
+            # Word display (hidden during loading)
             yield Static(id="word-display", classes="vocab-card")
             with Static(classes="action-buttons"):
                 yield Button("Previous", id="btn-prev", variant="default")
@@ -61,10 +67,19 @@ class VocabPreviewScreen(Screen):
                 if len(word) > 1:  # Skip single characters
                     try:
                         entry = await self.tutor_agent.get_vocabulary_entry(word, self.lesson.level.value)
+                        # Get English translation, fallback to memory trick as description
+                        english_translation = entry.get('english', '').strip()
+                        if not english_translation:
+                            # Use memory trick as descriptive explanation
+                            english_translation = entry.get('memory_trick', '').strip()
+                        if not english_translation:
+                            # Last resort - use the word itself
+                            english_translation = word
+                        
                         self._vocab_cards.append({
                             'word': word,
                             'gender': entry.get('gender', ''),
-                            'english': entry.get('english', ''),
+                            'english': english_translation,
                             'memory_trick': entry.get('memory_trick', '')
                         })
                     except Exception:
@@ -91,12 +106,21 @@ class VocabPreviewScreen(Screen):
 
     def _update_display(self) -> None:
         """Update the vocabulary display."""
+        loading_container = self.query_one("#loading-container", Static)
+        word_display = self.query_one("#word-display", Static)
+        
         if self._loading:
-            self.query_one("#word-display", Static).update("Loading vocabulary...")
+            # Show loading indicator, hide word display
+            loading_container.display = True
+            word_display.display = False
             return
         
+        # Hide loading indicator, show word display
+        loading_container.display = False
+        word_display.display = True
+        
         if not self._vocab_cards:
-            self.query_one("#word-display", Static).update("No vocabulary found.")
+            word_display.update("No vocabulary found.")
             return
         
         if self._current_index >= len(self._vocab_cards):
@@ -115,7 +139,7 @@ class VocabPreviewScreen(Screen):
         
         display_text += f"\n\n[dim]Card {self._current_index + 1} / {len(self._vocab_cards)}[/dim]"
         
-        self.query_one("#word-display", Static).update(display_text)
+        word_display.update(display_text)
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "btn-prev":
