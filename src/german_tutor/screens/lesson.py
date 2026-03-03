@@ -71,14 +71,12 @@ class LessonScreen(Screen):
                     self.lesson, self.learner
                 )
                 # Replace loading indicator with actual explanation
-                try:
-                    self.query_one("#grammar-loading").remove()
-                except Exception:
-                    pass
+                loading = self.query_one("#grammar-loading", Static)
                 await self.mount(
                     GrammarPanelWidget(self._explanation, id="grammar-panel"),
-                    after=self.query_one("#main-content").children[2],
+                    before=loading,
                 )
+                await loading.remove()
             except Exception as exc:
                 try:
                     self.query_one("#grammar-loading", Static).update(
