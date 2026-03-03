@@ -1,6 +1,19 @@
 # GermanTutor
 
-AI-powered German language tutor for the terminal.
+AI-powered German language tutor designed specifically for English speakers who want to learn German quickly and effectively.
+
+## Goal
+
+GermanTutor helps English speakers achieve conversational fluency in German through personalized, AI-driven lessons that adapt to your learning pace and style. The app focuses on practical language skills you'll actually use in real-world conversations.
+
+## How It Helps You Learn German Fast
+
+- **Personalized Learning Path**: The AI curriculum agent analyzes your performance and recommends lessons that target your specific weaknesses, ensuring you spend time on what you need most
+- **Spaced Repetition System**: Automatically schedules vocabulary and grammar reviews at optimal intervals to maximize retention
+- **CEFR-Aligned Curriculum**: Progress through structured levels (A1 → B1) with lessons designed for rapid progression
+- **Interactive Practice**: Engage in conversations, quizzes, and exercises that build practical communication skills
+- **Immediate Feedback**: Get instant corrections and explanations from AI tutors to reinforce proper grammar and vocabulary usage
+- **Focused on English Speakers**: Lessons specifically address common challenges English speakers face when learning German (cases, word order, gendered nouns)
 
 ## Quick Start
 
@@ -9,6 +22,7 @@ AI-powered German language tutor for the terminal.
 - Python 3.11+
 - [Ollama](https://ollama.ai) running locally
 - Required models:
+
   ```bash
   ollama pull llama3.1:8b-instruct
   ollama pull mistral:7b-instruct
@@ -33,25 +47,30 @@ uv run german-tutor
 Ollama supports AMD GPUs via ROCm. To enable hardware acceleration on an RX 7800 XT:
 
 1. **Install ROCm** (Ubuntu/Arch):
+
    ```bash
    # Ubuntu 22.04 / 24.04
    sudo apt install rocm-hip-sdk
    ```
+
    Follow [AMD's ROCm install guide](https://rocm.docs.amd.com/en/latest/deploy/linux/index.html) for your distro.
 
 2. **Verify GPU visibility:**
+
    ```bash
    rocm-smi
    ```
 
 3. **Run Ollama with ROCm:**
    Ollama detects ROCm automatically when `rocm` libraries are installed. Optionally force GPU selection:
+
    ```bash
    export HSA_OVERRIDE_GFX_VERSION=11.0.2   # RX 7800 XT (gfx1101 / RDNA3)
    ollama serve
    ```
 
 4. **Environment variables:**
+
    | Variable | Purpose |
    |----------|---------|
    | `HSA_OVERRIDE_GFX_VERSION` | Override GPU architecture string (use `11.0.2` for RX 7800 XT / gfx1101 RDNA3) |
