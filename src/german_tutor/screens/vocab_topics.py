@@ -5,7 +5,9 @@ from typing import Dict, List, Set
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
-from textual.containers import Center
+from textual.containers import Center, Vertical, Horizontal
+from textual.reactive import reactive
+from textual.message import Message
 
 from german_tutor.db.repositories.progress_repo import ProgressRepository
 from german_tutor.models.learner import Learner
@@ -127,7 +129,12 @@ class VocabFlashcardScreen(Screen):
         ("escape", "finish", "Done"),
         ("left", "prev", "Back"),
         ("right", "next", "Next"),
+        ("space", "flip_card", "Flip Card"),
     ]
+
+    class CardFlipped(Message):
+        """Message sent when the card is flipped."""
+        pass
 
     def __init__(
         self,
@@ -144,16 +151,19 @@ class VocabFlashcardScreen(Screen):
         self._index = 0
         self._seen: Set[int] = set()
         self._initial_progress = initial_progress or {}
+        self._showing_english = reactive(True)
 
     def compose(self) -> ComposeResult:
         yield Header()
-        with Static(id="main-content"):
+        with Vertical(id="main-content"):
             with Center():
                 yield Static(self.topic.title, classes="section-header")
                 yield Static("", id="topic-progress", classes="quiz-context")
-            with Center(id="flashcard", classes="flashcard"):
-                yield Static("", id="word-german", classes="flashcard-german")
-                yield Static("", id="word-english", classes="flashcard-english")
+            with Center(id="flashcard-container", classes="flashcard-container"):
+                with Vertical():
+                    with Horizontal(id="flashcard", classes="flashcard"):
+                        yield Static("", id="word-english")
+                        yield Static("", id="word-german")
             with Center(classes="action-buttons"):
                 yield Button("Back", id="btn-prev", variant="default")
                 yield Button("Next", id="btn-next", variant="primary")
@@ -163,6 +173,10 @@ class VocabFlashcardScreen(Screen):
     async def on_mount(self) -> None:
         self._hydrate_seen_from_progress()
         await self._show_card(self._index)
+        # Set up click handlers for flip functionality
+        self.query_one("#flashcard").on_click = self._flip_card
+        self.query_one("#word-english").on_click = self._flip_card
+        self.query_one("#word-german").on_click = self._flip_card
 
     def _hydrate_seen_from_progress(self) -> None:
         total = len(self.topic.words)
@@ -177,8 +191,15 @@ class VocabFlashcardScreen(Screen):
         index = max(0, min(index, total - 1))
         self._index = index
         word = self.topic.words[self._index]
+        
+        # Update both sides of the card
         self.query_one("#word-german", Static).update(word.german)
         self.query_one("#word-english", Static).update(word.english)
+        
+        # Reset to showing English side
+        self._showing_english = True
+        self._update_card_visibility()
+        
         self._mark_seen(index)
         await self._persist_progress()
         self._update_progress_label()
@@ -238,3 +259,25 @@ class VocabFlashcardScreen(Screen):
                 "completed_percent": percent,
             }
         )
+
+    def action_flip_card(self) -> None:
+        """Handle space bar to flip the card."""
+        self._flip_card(None)
+
+    def _flip_card(self, event) -> None:
+        """Flip the card to show the other side."""
+        self._showing_english = not self._showing_english
+        self._update_card_visibility()
+        self.post_message(self.CardFlipped())
+
+    def _update_card_visibility(self) -> None:
+        """Update visibility of card sides based on current state."""
+        english_elem = self.query_one("#word-english")
+        german_elem = self.query_one("#word-german")
+        
+        if self._showing_english:
+            english_elem.styles.visibility = "visible"
+            german_elem.styles.visibility = "hidden"
+        else:
+            english_elem.styles.visibility = "hidden"
+            german_elem.styles.visibility = "visible"

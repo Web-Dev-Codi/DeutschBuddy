@@ -276,9 +276,43 @@ VocabTopicsScreen {
 VocabFlashcardScreen {
     layout: vertical;
     padding: 1 2;
-    height: 50%;
-    width: 50%;
+    height: 100%;
+    layers: below above;
+}
+
+.flashcard-container {
+    content-align: center middle;
+    height: 100%;
+}
+
+.flashcard {
+    border: round $primary;
+    width: 60%;
+    height: 12;
+    margin: 1;
     align: center middle;
+}
+
+.flashcard-german,
+.flashcard-english {
+    width: 100%;
+    height: 22;
+    text-align: center;
+    align: center middle;
+}
+
+.flashcard-german {
+    border: round $nominative;
+    layer: below;
+    text-style: bold;
+    color: $text;
+}
+
+.flashcard-english {
+    border: round $accusative;
+    layer: above;
+    text-style: italic;
+    color: $text;
 }
 
 #topics-grid {
@@ -294,7 +328,7 @@ VocabFlashcardScreen {
 }
 
 #topic-header {
-   text-align: center;
+    text-align: center;
 }
 
 .topic-card {
@@ -321,33 +355,3 @@ VocabFlashcardScreen {
     border: round #888888;
 }
 
-.flashcard {
-    border: round $primary;
-    width: 50%;
-    padding: 1;
-    margin: 1;
-    text-align: center;
-    height: 12;
-}
-
-#word-german {
-    width: 50%;
-    height: 4;
-}
-
-#word-english {
-    width: 50%;
-    height: 4;
-}
-
-.flashcard-german {
-    text-style: bold;
-    color: $primary;
-    text-align: center;
-}
-
-.flashcard-english {
-    text-style: italic;
-    color: $primary;
-    text-align: center;
-}
