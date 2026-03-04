@@ -73,6 +73,20 @@ ALTER TABLE vocabulary_cards ADD COLUMN gender TEXT;
     4: """
 -- Migration v4: Add last_lesson_id to learner table for continue where left off
 ALTER TABLE learner ADD COLUMN last_lesson_id TEXT;
+""",
+    5: """
+-- Migration v5: Track vocabulary topic progress
+CREATE TABLE IF NOT EXISTS vocabulary_topic_progress (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    learner_id INTEGER REFERENCES learner(id),
+    topic_id TEXT NOT NULL,
+    topic_level TEXT,
+    total_words INTEGER NOT NULL,
+    words_seen INTEGER DEFAULT 0,
+    completed_percent REAL DEFAULT 0.0,
+    last_interacted_at DATETIME,
+    UNIQUE(learner_id, topic_id)
+);
 """
 }
 

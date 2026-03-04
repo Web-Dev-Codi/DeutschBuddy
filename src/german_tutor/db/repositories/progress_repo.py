@@ -268,3 +268,68 @@ class ProgressRepository:
         ) as cursor:
             rows = await cursor.fetchall()
         return [dict(r) for r in rows]
+
+    # ── Vocabulary Topic Progress ─────────────────────────────────────────────
+
+    async def upsert_vocab_topic_progress(
+        self,
+        learner_id: int,
+        topic_id: str,
+        topic_level: str,
+        total_words: int,
+        words_seen: int,
+        completed_percent: float,
+    ) -> None:
+        await self.db.execute(
+            """
+            INSERT INTO vocabulary_topic_progress
+                (learner_id, topic_id, topic_level, total_words, words_seen, completed_percent, last_interacted_at)
+            VALUES (?, ?, ?, ?, ?, ?, datetime('now'))
+            ON CONFLICT(learner_id, topic_id) DO UPDATE SET
+                total_words = excluded.total_words,
+                words_seen = excluded.words_seen,
+                completed_percent = excluded.completed_percent,
+                last_interacted_at = datetime('now')
+            """,
+            (
+                learner_id,
+                topic_id,
+                topic_level,
+                total_words,
+                words_seen,
+                completed_percent,
+            ),
+        )
+        await self.db.commit()
+
+    async def get_vocab_topic_progress_map(
+        self, learner_id: int, topic_ids: list[str]
+    ) -> dict[str, dict]:
+        if not topic_ids:
+            return {}
+        placeholders = ",".join("?" for _ in topic_ids)
+        async with self.db.execute(
+            f"""
+            SELECT * FROM vocabulary_topic_progress
+            WHERE learner_id = ? AND topic_id IN ({placeholders})
+            """,
+            (learner_id, *topic_ids),
+        ) as cursor:
+            rows = await cursor.fetchall()
+        return {row["topic_id"]: dict(row) for row in rows}
+
+    async def get_vocab_topic_summary(self, learner_id: int) -> dict[str, int]:
+        async with self.db.execute(
+            """
+            SELECT 
+                COUNT(*) as total,
+                SUM(CASE WHEN completed_percent >= 100 THEN 1 ELSE 0 END) as completed
+            FROM vocabulary_topic_progress
+            WHERE learner_id = ?
+            """,
+            (learner_id,),
+        ) as cursor:
+            row = await cursor.fetchone()
+        if row is None:
+            return {"total": 0, "completed": 0}
+        return {"total": row["total"], "completed": row["completed"] or 0}

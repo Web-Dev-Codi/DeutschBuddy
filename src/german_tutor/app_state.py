@@ -9,6 +9,7 @@ from german_tutor.llm.curriculum_agent import CurriculumAgent
 from german_tutor.llm.quiz_agent import QuizAgent
 from german_tutor.llm.tutor_agent import TutorAgent
 from german_tutor.models.learner import Learner
+from german_tutor.curriculum.vocab_loader import VocabLoader
 
 
 class AppState:
@@ -23,6 +24,7 @@ class AppState:
         learner_repo: LearnerRepository,
         progress_repo: ProgressRepository,
         curriculum_loader: CurriculumLoader,
+        vocab_loader: VocabLoader,
         curriculum_agent: CurriculumAgent,
         tutor_agent: TutorAgent,
         quiz_agent: QuizAgent,
@@ -33,6 +35,7 @@ class AppState:
         self.learner_repo = learner_repo
         self.progress_repo = progress_repo
         self.curriculum_loader = curriculum_loader
+        self.vocab_loader = vocab_loader
         self.curriculum_agent = curriculum_agent
         self.tutor_agent = tutor_agent
         self.quiz_agent = quiz_agent

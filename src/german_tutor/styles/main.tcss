@@ -265,3 +265,89 @@ VocabPreviewScreen {
     padding: 1 0;
     text-align: center;
 }
+
+VocabTopicsScreen {
+    layout: vertical;
+    padding: 1 2;
+    height: 100%;
+    align: center middle;
+}
+
+VocabFlashcardScreen {
+    layout: vertical;
+    padding: 1 2;
+    height: 50%;
+    width: 50%;
+    align: center middle;
+}
+
+#topics-grid {
+    layout: grid;
+    grid-gutter: 1 1;
+    grid-size: 3;
+    grid-columns: 1fr 1fr 1fr;
+    grid-rows: 33%;
+    padding: 1 0;
+    width: 80%;
+    min-height: 100%;
+    overflow-y: auto;
+}
+
+#topic-header {
+   text-align: center;
+}
+
+.topic-card {
+    height: 8;
+    width: 100%;
+    text-align: left;
+    padding: 1 1;
+    border: round $primary;
+}
+
+.topic-card:focus {
+    border: round $primary-darken-1;
+}
+
+.topic-card.success {
+    border: round $success;
+}
+
+.topic-card.primary {
+    border: round $primary;
+}
+
+.topic-card.default {
+    border: round #888888;
+}
+
+.flashcard {
+    border: round $primary;
+    width: 50%;
+    padding: 1;
+    margin: 1;
+    text-align: center;
+    height: 12;
+}
+
+#word-german {
+    width: 50%;
+    height: 4;
+}
+
+#word-english {
+    width: 50%;
+    height: 4;
+}
+
+.flashcard-german {
+    text-style: bold;
+    color: $primary;
+    text-align: center;
+}
+
+.flashcard-english {
+    text-style: italic;
+    color: $primary;
+    text-align: center;
+}

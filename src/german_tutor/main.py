@@ -1,13 +1,11 @@
 from __future__ import annotations
 
-from datetime import datetime
-
 from textual.app import App
-from textual.screen import Screen
 
 from german_tutor.app_state import AppState
 from german_tutor.curriculum.cefr import CEFRProgressionEngine
 from german_tutor.curriculum.loader import CurriculumLoader
+from german_tutor.curriculum.vocab_loader import VocabLoader
 from german_tutor.db.connection import close_db, get_db
 from german_tutor.db.migrations import run_migrations
 from german_tutor.db.repositories.learner_repo import LearnerRepository
@@ -18,7 +16,7 @@ from german_tutor.llm.quiz_agent import QuizAgent
 from german_tutor.llm.tutor_agent import TutorAgent
 from german_tutor.screens.help import HelpScreen
 from german_tutor.screens.home import HomeScreen, NavRequest
-from german_tutor.screens.vocab_review import VocabReviewScreen
+from german_tutor.screens.vocab_topics import VocabTopicsScreen
 from german_tutor.screens.lesson import LessonScreen
 from german_tutor.screens.quiz import QuizScreen
 from german_tutor.screens.results import ResultsScreen
@@ -63,12 +61,14 @@ class GermanTutorApp(App):
         learner_repo = LearnerRepository(db)
         progress_repo = ProgressRepository(db)
         loader = CurriculumLoader()
+        vocab_loader = VocabLoader()
 
         self._state = AppState(
             ollama_client=client,
             learner_repo=learner_repo,
             progress_repo=progress_repo,
             curriculum_loader=loader,
+            vocab_loader=vocab_loader,
             curriculum_agent=CurriculumAgent(client),
             tutor_agent=TutorAgent(client),
             quiz_agent=QuizAgent(client),
@@ -106,7 +106,7 @@ class GermanTutorApp(App):
         elif dest == "settings":
             self.run_worker(self._open_settings(), exclusive=True)
         elif dest == "review":
-            self.run_worker(self._load_due_vocab_cards(), exclusive=True)
+            self.run_worker(self._open_vocab_topics(), exclusive=True)
         elif dest in ("progress",):
             self.notify("Progress screen coming in a future update.")
 
@@ -202,38 +202,17 @@ class GermanTutorApp(App):
         screen = SettingsScreen(ollama_client=state.ollama_client)
         await self.push_screen(screen)
 
-    async def _load_due_vocab_cards(self) -> None:
-        """Worker: fetch due vocab cards then push VocabReviewScreen on the event loop."""
+    async def _open_vocab_topics(self) -> None:
+        """Show the vocabulary topics grid for the learner's current level."""
         if self._state is None:
             return
         state = self._state
-        due = await state.progress_repo.get_due_vocab_cards(
-            state.current_learner.id, datetime.now()
-        )
-        if not due:
-            self.notify("No vocabulary cards due for review today!")
-            return
-        # Hand off to the event loop — push_screen_wait must not run inside a worker
-        self.call_after_refresh(self._push_review_screen, due)
-
-    async def _push_review_screen(self, due: list[dict]) -> None:
-        """Push VocabReviewScreen and handle the result on the event loop."""
-        if self._state is None:
-            return
-        screen = VocabReviewScreen(
-            cards=due,
-            progress_repo=self._state.progress_repo,
+        screen = VocabTopicsScreen(
+            learner=state.current_learner,
+            vocab_loader=state.vocab_loader,
+            progress_repo=state.progress_repo,
         )
         await self.push_screen(screen)
-
-    def on_screen_resume(self, screen: Screen) -> None:
-        """Handle screen dismissal results."""
-        if isinstance(screen, VocabReviewScreen):
-            result = screen.result
-            if result is not None:
-                correct = result.get("correct", 0)
-                total = result.get("total", 0)
-                self.notify(f"Review complete: {correct}/{total} correct.")
 
     def _get_current_lesson(self):
         """Get the learner's last lesson or first available lesson."""
@@ -264,7 +243,7 @@ class GermanTutorApp(App):
     # ── Actions ───────────────────────────────────────────────────────────────
 
     def action_go_review(self) -> None:
-        self.run_worker(self._load_due_vocab_cards(), exclusive=True)
+        self.run_worker(self._open_vocab_topics(), exclusive=True)
 
     def action_go_home(self) -> None:
         """Pop all screens above root, then push a fresh HomeScreen."""
