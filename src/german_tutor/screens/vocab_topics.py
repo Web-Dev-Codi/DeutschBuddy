@@ -5,7 +5,7 @@ from typing import Dict, List, Set
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
-from textual.containers import Center, Vertical
+from textual.containers import Center
 from textual.reactive import reactive
 from textual.message import Message
 

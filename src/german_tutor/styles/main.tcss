@@ -317,7 +317,7 @@ VocabFlashcardScreen {
 
 #topics-grid {
     layout: grid;
-    grid-gutter: 1 1;
+    grid-gutter: 1;
     grid-size: 3;
     grid-columns: 1fr 1fr 1fr;
     grid-rows: 33%;
@@ -334,7 +334,7 @@ VocabFlashcardScreen {
 .topic-card {
     height: 8;
     width: 100%;
-    text-align: left;
+    text-align: center;
     padding: 1 1;
     border: round $primary;
 }
