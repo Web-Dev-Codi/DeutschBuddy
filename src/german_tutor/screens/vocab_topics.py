@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from re import S
 from typing import Dict, List, Set
 
 from textual.app import ComposeResult
@@ -42,6 +41,11 @@ class VocabTopicsScreen(Screen):
             with Center():
                 yield Static("Vocabulary Review", classes="section-header")
                 yield Static("", id="topics-summary", classes="quiz-context")
+                yield Button(
+                    "Reset Progress",
+                    id="btn-reset-vocab-topics",
+                    variant="error",
+                )
                 with Center():
                     yield Static(id="topics-grid")
         yield Footer()
@@ -100,9 +104,16 @@ class VocabTopicsScreen(Screen):
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         button_id = event.button.id or ""
+        if button_id == "btn-reset-vocab-topics":
+            self.run_worker(self._reset_all_topics(), exclusive=True)
+            return
         if button_id.startswith("topic-"):
             topic_id = button_id.removeprefix("topic-")
             self.run_worker(self._open_topic(topic_id), exclusive=True)
+
+    async def _reset_all_topics(self) -> None:
+        await self.progress_repo.reset_vocab_topic_progress(self.learner.id)
+        await self._load_and_render()
 
     async def _open_topic(self, topic_id: str) -> None:
         topic = next((t for t in self._topics if t.id == topic_id), None)

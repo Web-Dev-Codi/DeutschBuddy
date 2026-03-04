@@ -333,3 +333,10 @@ class ProgressRepository:
         if row is None:
             return {"total": 0, "completed": 0}
         return {"total": row["total"], "completed": row["completed"] or 0}
+
+    async def reset_vocab_topic_progress(self, learner_id: int) -> None:
+        await self.db.execute(
+            "DELETE FROM vocabulary_topic_progress WHERE learner_id = ?",
+            (learner_id,),
+        )
+        await self.db.commit()
