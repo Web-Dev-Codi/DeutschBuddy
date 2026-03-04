@@ -278,6 +278,7 @@ VocabFlashcardScreen {
     padding: 1 2;
     height: 100%;
     layers: below above;
+    align: center middle;
 }
 
 .flashcard-container {
@@ -297,6 +298,7 @@ VocabFlashcardScreen {
     width: 100%;
     height: 100%;
     text-align: center;
+    content-align: center middle;
     color: $text;
 }
 
