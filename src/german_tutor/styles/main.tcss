@@ -274,7 +274,7 @@ VocabTopicsScreen {
 }
 
 VocabFlashcardScreen {
-    layout: vertical;
+    layout: horizontal;
     padding: 1 2;
     height: 100%;
     layers: below above;
