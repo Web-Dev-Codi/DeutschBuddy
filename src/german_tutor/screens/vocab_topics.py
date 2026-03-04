@@ -276,8 +276,10 @@ class VocabFlashcardScreen(Screen):
         german_elem = self.query_one("#word-german")
         
         if self._showing_english:
-            english_elem.styles.visibility = "visible"
-            german_elem.styles.visibility = "hidden"
+            # English on top, German below
+            english_elem.styles.layer = "above"
+            german_elem.styles.layer = "below"
         else:
-            english_elem.styles.visibility = "hidden"
-            german_elem.styles.visibility = "visible"
+            # German on top, English below
+            english_elem.styles.layer = "below"
+            german_elem.styles.layer = "above"

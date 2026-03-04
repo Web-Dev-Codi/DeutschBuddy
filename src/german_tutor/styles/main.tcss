@@ -281,7 +281,6 @@ VocabFlashcardScreen {
 }
 
 .flashcard-container {
-    content-align: center middle;
     height: 100%;
 }
 
@@ -299,20 +298,20 @@ VocabFlashcardScreen {
     height: 22;
     text-align: center;
     align: center middle;
+    color: $text;
 }
 
 .flashcard-german {
     border: round $nominative;
-    layer: below;
     text-style: bold;
-    color: $text;
+    color: $primary;
+    layer: below;
 }
 
 .flashcard-english {
     border: round $accusative;
-    layer: above;
     text-style: italic;
-    color: $text;
+    layer: above;
 }
 
 #topics-grid {
