@@ -281,7 +281,8 @@ VocabFlashcardScreen {
 }
 
 .flashcard-container {
-    height: 100%;
+    border: round red;
+    height: auto;
 }
 
 .flashcard {
@@ -289,15 +290,13 @@ VocabFlashcardScreen {
     width: 60%;
     height: 12;
     margin: 1;
-    align: center middle;
 }
 
 .flashcard-german,
 .flashcard-english {
     width: 100%;
-    height: 22;
+    height: 100%;
     text-align: center;
-    align: center middle;
     color: $text;
 }
 

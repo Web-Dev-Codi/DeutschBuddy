@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+from re import S
 from typing import Dict, List, Set
 
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
-from textual.containers import Center, Vertical, Horizontal
+from textual.containers import Center, Vertical
 from textual.reactive import reactive
 from textual.message import Message
 
@@ -155,15 +156,13 @@ class VocabFlashcardScreen(Screen):
 
     def compose(self) -> ComposeResult:
         yield Header()
-        with Vertical(id="main-content"):
-            with Center():
-                yield Static(self.topic.title, classes="section-header")
-                yield Static("", id="topic-progress", classes="quiz-context")
+        with Static(id="main-content"):
+            yield Static(self.topic.title, classes="section-header")
+            yield Static("", id="topic-progress", classes="quiz-context")
             with Center(id="flashcard-container", classes="flashcard-container"):
-                with Vertical():
-                    with Horizontal(id="flashcard", classes="flashcard"):
-                        yield Static("", id="word-english")
-                        yield Static("", id="word-german")
+                with Static(id="flashcard", classes="flashcard"):
+                    yield Static("", id="word-english", classes="flashcard-english")
+                    yield Static("", id="word-german", classes="flashcard-german")
             with Center(classes="action-buttons"):
                 yield Button("Back", id="btn-prev", variant="default")
                 yield Button("Next", id="btn-next", variant="primary")
@@ -279,7 +278,11 @@ class VocabFlashcardScreen(Screen):
             # English on top, German below
             english_elem.styles.layer = "above"
             german_elem.styles.layer = "below"
+            english_elem.styles.visibility = "visible"
+            german_elem.styles.visibility = "hidden"
         else:
             # German on top, English below
             english_elem.styles.layer = "below"
             german_elem.styles.layer = "above"
+            english_elem.styles.visibility = "hidden"
+            german_elem.styles.visibility = "visible"
