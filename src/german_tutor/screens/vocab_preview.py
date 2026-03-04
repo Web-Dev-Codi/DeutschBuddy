@@ -11,6 +11,14 @@ from german_tutor.models.lesson import Lesson
 class VocabPreviewScreen(Screen):
     """Vocabulary preview screen that shows key words before a quiz."""
 
+    # Loading messages that will rotate
+    LOADING_MESSAGES = [
+        "AI is curating your personal vocabulary list...",
+        "Analyzing lesson content for key terms...",
+        "Generating custom memory aids for you...",
+        "Preparing tailored vocabulary examples..."
+    ]
+
     def __init__(self, lesson: Lesson, tutor_agent=None, **kwargs) -> None:
         super().__init__(**kwargs)
         self.lesson = lesson
@@ -18,10 +26,11 @@ class VocabPreviewScreen(Screen):
         self._vocab_cards: list[dict] = []
         self._current_index: int = 0
         self._loading: bool = True
+        self._loading_message_index: int = 0
 
     def compose(self) -> ComposeResult:
         yield Header()
-        with Static(id="main-content"):
+        with Static(id="vocab-preview-container"):
             yield Static(f"Vocabulary Preview — {self.lesson.title}", classes="section-header")
             yield Static(
                 "Review key vocabulary before starting the quiz",
@@ -30,7 +39,7 @@ class VocabPreviewScreen(Screen):
             # Loading indicator and message
             with Static(id="loading-container", classes="loading-container"):
                 yield LoadingIndicator(id="vocab-loading")
-                yield Static("AI is preparing your custom vocabulary list...", classes="loading-message")
+                yield Static("AI is curating your personal vocabulary list...", classes="loading-message")
                 yield Static("Please wait", classes="loading-submessage")
             # Word display (hidden during loading)
             yield Static(id="word-display", classes="vocab-card")
@@ -44,8 +53,19 @@ class VocabPreviewScreen(Screen):
         """Load vocabulary data in background."""
         self._update_display()
         
+        # Start cycling loading messages
+        self._cycle_loading_message()
+        
         # Start background worker to fetch vocabulary
         self.run_worker(self._load_vocabulary(), exclusive=True)
+
+    def _cycle_loading_message(self) -> None:
+        """Cycle through loading messages every 2 seconds."""
+        if self._loading:
+            self._loading_message_index = (self._loading_message_index + 1) % len(self.LOADING_MESSAGES)
+            self._update_display()
+            # Schedule next message change
+            self.set_timer(2.0, self._cycle_loading_message)
 
     async def _load_vocabulary(self) -> None:
         """Load vocabulary from lesson examples using tutor agent."""
@@ -67,28 +87,35 @@ class VocabPreviewScreen(Screen):
                 if len(word) > 1:  # Skip single characters
                     try:
                         entry = await self.tutor_agent.get_vocabulary_entry(word, self.lesson.level.value)
-                        # Get English translation, fallback to memory trick as description
+                        # Get English translation
                         english_translation = entry.get('english', '').strip()
                         if not english_translation:
-                            # Use memory trick as descriptive explanation
-                            english_translation = entry.get('memory_trick', '').strip()
-                        if not english_translation:
-                            # Last resort - use the word itself
                             english_translation = word
+                        
+                        # Get memory trick
+                        memory_trick = entry.get('memory_trick', '').strip()
+                        if not memory_trick:
+                            # Generate a simple memory trick if none provided
+                            memory_trick = f"Think of '{word}' as similar to '{english_translation}'"
+                        
+                        # Ensure English and Memory Trick are different
+                        if memory_trick.lower() == english_translation.lower():
+                            # Generate a different memory trick
+                            memory_trick = f"Remember '{word}' by thinking about: {english_translation} in context"
                         
                         self._vocab_cards.append({
                             'word': word,
                             'gender': entry.get('gender', ''),
                             'english': english_translation,
-                            'memory_trick': entry.get('memory_trick', '')
+                            'memory_trick': memory_trick
                         })
                     except Exception:
-                        # Fallback to basic info
+                        # Fallback to basic info with different memory trick
                         self._vocab_cards.append({
                             'word': word,
                             'gender': '',
                             'english': word,
-                            'memory_trick': ''
+                            'memory_trick': f"Practice saying '{word}' aloud to remember it"
                         })
         else:
             # Fallback when no tutor agent available
@@ -98,7 +125,7 @@ class VocabPreviewScreen(Screen):
                         'word': word,
                         'gender': '',
                         'english': word,
-                        'memory_trick': ''
+                        'memory_trick': f"Try to associate '{word}' with a mental image"
                     })
         
         self._loading = False
@@ -113,6 +140,11 @@ class VocabPreviewScreen(Screen):
             # Show loading indicator, hide word display
             loading_container.display = True
             word_display.display = False
+            
+            # Update loading message
+            current_message = self.LOADING_MESSAGES[self._loading_message_index]
+            loading_message = loading_container.query_one(".loading-message", Static)
+            loading_message.update(current_message)
             return
         
         # Hide loading indicator, show word display

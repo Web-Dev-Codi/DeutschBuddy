@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import time
+from datetime import datetime
+
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
@@ -13,7 +16,7 @@ from german_tutor.widgets.grammar_panel import GrammarPanelWidget
 class LessonScreen(Screen):
     """Displays a lesson with AI grammar explanation and sentence breakdowns."""
 
-    BINDINGS = [("escape", "go_back", "Back"), ("q", "start_quiz", "Quiz")]
+    BINDINGS = [("escape", "go_back", "Back")]
 
     def __init__(
         self,
@@ -32,6 +35,8 @@ class LessonScreen(Screen):
         self._explanation = lesson.explanation
         self._breakdowns: list[dict] = []
         self._ai_enhancement_attempted = False
+        self._lesson_start_time = time.time()
+        self._lesson_marked_complete = False
 
     def compose(self) -> ComposeResult:
         yield Header()
@@ -65,9 +70,8 @@ class LessonScreen(Screen):
                     yield Button("Analyse", id=f"btn-analyse-{i}", variant="default")
 
             with Static(classes="action-buttons"):
-                yield Button("Start Quiz", id="btn-quiz", variant="primary")
-                yield Button("Next Lesson", id="btn-next-lesson", variant="default")
-                yield Button("Back", id="btn-back", variant="default")
+                yield Button("Back", id="btn-back", variant="error")
+                yield Button("Next Lesson", id="btn-next-lesson", variant="success")
 
         yield Footer()
 
@@ -75,21 +79,47 @@ class LessonScreen(Screen):
         """Use static YAML explanation without AI enhancement."""
         # The lesson explanation from YAML is already high-quality
         # No need for AI enhancement - this eliminates unnecessary AI calls
-        pass
+        
+        # Start a timer to check for lesson completion after 1 minute
+        self.set_timer(60.0, self._check_lesson_completion)
 
     def action_go_back(self) -> None:
         self.app.pop_screen()
 
-    def action_start_quiz(self) -> None:
-        from german_tutor.screens.home import NavRequest
+    def _check_lesson_completion(self) -> None:
+        """Check if lesson has been active for more than 1 minute and mark as complete."""
+        if not self._lesson_marked_complete and hasattr(self.app, '_state') and self.app._state:
+            # Mark lesson as complete
+            self._lesson_marked_complete = True
+            
+            # Create lesson progress record
+            from german_tutor.models.lesson import LessonProgress
+            progress = LessonProgress(
+                learner_id=self.learner.id,
+                lesson_id=self.lesson.id,
+                completed_at=datetime.now(),
+                attempts=1,
+                last_score=1.0,  # Auto-complete gives full score
+                mastery_score=1.0,
+                next_review=None
+            )
+            
+            # Save progress in background
+            self.run_worker(self._save_lesson_progress(progress), exclusive=False)
+            
+            # Notify user with success coloring
+            self.notify(f"Lesson {self.lesson.id} marked as complete!", severity="success")
 
-        self.app.post_message(NavRequest("quiz"))
+    async def _save_lesson_progress(self, progress) -> None:
+        """Save lesson progress to database."""
+        try:
+            await self.app._state.progress_repo.upsert_lesson_progress(progress)
+        except Exception as e:
+            self.notify(f"Error saving progress: {e}", severity="error")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "btn-back":
             self.action_go_back()
-        elif event.button.id == "btn-quiz":
-            self.action_start_quiz()
         elif event.button.id == "btn-next-lesson":
             self.action_next_lesson()
         elif event.button.id and event.button.id.startswith("btn-analyse-"):

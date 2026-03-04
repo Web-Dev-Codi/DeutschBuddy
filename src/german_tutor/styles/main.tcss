@@ -231,3 +231,37 @@ HelpScreen {
 .quiz-reorder-words {
     margin-bottom: 1;
 }
+
+VocabPreviewScreen {
+    align: center middle;
+}
+
+#vocab-preview-container {
+    width: 80%;
+    height: auto;
+    background: $panel;
+    border: round $primary;
+    padding: 2 3;
+}
+
+.loading-container {
+    text-align: center;
+    padding: 2 0;
+}
+
+.loading-message {
+    color: $accent;
+    text-style: italic;
+    margin-top: 1;
+}
+
+.loading-submessage {
+    color: $text-muted;
+    margin-top: 1;
+}
+
+.vocab-card {
+    min-height: 10;
+    padding: 1 0;
+    text-align: center;
+}

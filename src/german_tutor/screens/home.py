@@ -97,8 +97,9 @@ class HomeScreen(Screen):
         yield Footer()
 
     async def on_mount(self) -> None:
-        """Update daily goal display when screen mounts."""
+        """Update daily goal display and progress bar when screen mounts."""
         self.run_worker(self._update_daily_goal(), exclusive=True)
+        self.run_worker(self._update_progress_bar(), exclusive=True)
 
     async def _update_daily_goal(self) -> None:
         """Update the daily goal progress display."""
@@ -119,6 +120,31 @@ class HomeScreen(Screen):
         except Exception:
             # Fallback if anything goes wrong
             self.query_one("#daily-goal-bar", Static).update("Today: 0 / 20 min")
+
+    async def _update_progress_bar(self) -> None:
+        """Update the CEFR progress bar based on completed lessons."""
+        try:
+            if hasattr(self.app, '_state') and self.app._state:
+                # Get all lessons for current level
+                lessons = self.app._state.curriculum_loader.load_level(self.learner.current_level.value)
+                lesson_ids = [lesson.id for lesson in lessons]
+                
+                # Get mastery scores for all lessons
+                mastery_scores = await self.app._state.progress_repo.get_mastery_scores(
+                    self.learner.id, lesson_ids
+                )
+                
+                # Calculate progress percentage
+                completed_lessons = sum(1 for score in mastery_scores.values() if score > 0)
+                total_lessons = len(lessons)
+                progress_percent = (completed_lessons / total_lessons * 100) if total_lessons > 0 else 0.0
+                
+                # Update progress bar
+                progress_bar = self.query_one("#cefr-bar", CEFRProgressBar)
+                progress_bar.update_progress(progress_percent)
+        except Exception as e:
+            # Fallback if anything goes wrong
+            pass
 
     def action_nav_lessons(self) -> None:
         self.app.post_message(NavRequest("lessons"))
