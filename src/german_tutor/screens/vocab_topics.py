@@ -144,6 +144,9 @@ class VocabFlashcardScreen(Screen):
         ("space", "flip_card", "Flip Card"),
     ]
 
+    BORDER_TITLE = "TESTInG"
+
+    BORDER_SUBTITLE = "Testing Subtitle"
     class CardFlipped(Message):
         """Message sent when the card is flipped."""
         pass
@@ -167,7 +170,7 @@ class VocabFlashcardScreen(Screen):
 
     def compose(self) -> ComposeResult:
         yield Header()
-        with Static(id="main-content"):
+        with Center(id="main-content"): 
             yield Static(self.topic.title, classes="section-header")
             yield Static("", id="topic-progress", classes="quiz-context")
             with Center(id="flashcard-container", classes="flashcard-container"):
