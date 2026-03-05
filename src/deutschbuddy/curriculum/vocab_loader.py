@@ -5,8 +5,8 @@ from typing import List
 
 import yaml
 
-from german_tutor.models.lesson import CEFRLevel
-from german_tutor.models.vocab import VocabTopic, VocabWord
+from deutschbuddy.models.lesson import CEFRLevel
+from deutschbuddy.models.vocab import VocabTopic, VocabWord
 
 
 class VocabLoader:

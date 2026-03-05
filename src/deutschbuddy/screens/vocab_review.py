@@ -1,17 +1,17 @@
-# src/german_tutor/screens/vocab_review.py
+# src/deutschbuddy/screens/vocab_review.py
 from __future__ import annotations
 
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
 
-from german_tutor.curriculum.spaced_repetition import (
+from deutschbuddy.curriculum.spaced_repetition import (
     CardState,
     calculate_next_review,
     score_to_quality,
 )
-from german_tutor.db.repositories.progress_repo import ProgressRepository
-from german_tutor.widgets.quiz_card import QuizCard
+from deutschbuddy.db.repositories.progress_repo import ProgressRepository
+from deutschbuddy.widgets.quiz_card import QuizCard
 
 
 class VocabReviewScreen(Screen):

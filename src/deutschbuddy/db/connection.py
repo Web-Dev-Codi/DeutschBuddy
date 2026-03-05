@@ -4,7 +4,7 @@ from pathlib import Path
 
 import aiosqlite
 
-from german_tutor.config import get_config
+from deutschbuddy.config import get_config
 
 _db: aiosqlite.Connection | None = None
 

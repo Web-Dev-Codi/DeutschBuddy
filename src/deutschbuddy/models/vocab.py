@@ -5,7 +5,7 @@ from typing import List
 
 from pydantic import BaseModel
 
-from german_tutor.models.lesson import CEFRLevel
+from deutschbuddy.models.lesson import CEFRLevel
 
 
 class VocabWord(BaseModel):

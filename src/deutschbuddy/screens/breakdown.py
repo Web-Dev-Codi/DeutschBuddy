@@ -4,7 +4,7 @@ from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
 
-from german_tutor.widgets.sentence_tree import SentenceBreakdownWidget
+from deutschbuddy.widgets.sentence_tree import SentenceBreakdownWidget
 
 
 class BreakdownScreen(Screen):

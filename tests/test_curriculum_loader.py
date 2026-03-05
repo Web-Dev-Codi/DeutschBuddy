@@ -5,8 +5,8 @@ from pathlib import Path
 from unittest.mock import patch, MagicMock
 import yaml
 
-from german_tutor.curriculum.loader import CurriculumLoader
-from german_tutor.models.lesson import Lesson
+from deutschbuddy.curriculum.loader import CurriculumLoader
+from deutschbuddy.models.lesson import Lesson
 
 
 class TestCurriculumLoaderLazyLoading:

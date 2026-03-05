@@ -4,8 +4,8 @@ from datetime import datetime
 
 import aiosqlite
 
-from german_tutor.models.learner import Learner
-from german_tutor.models.lesson import CEFRLevel
+from deutschbuddy.models.learner import Learner
+from deutschbuddy.models.lesson import CEFRLevel
 
 
 class LearnerRepository:

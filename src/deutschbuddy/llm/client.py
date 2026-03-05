@@ -6,7 +6,7 @@ from typing import AsyncGenerator
 
 import ollama
 
-from german_tutor.config import get_config
+from deutschbuddy.config import get_config
 
 
 class OllamaClient:

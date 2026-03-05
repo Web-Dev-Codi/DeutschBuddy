@@ -7,11 +7,11 @@ from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
 from textual.containers import Center
 
-from german_tutor.db.repositories.progress_repo import ProgressRepository
-from german_tutor.models.learner import Learner
-from german_tutor.models.vocab import VocabTopic
-from german_tutor.curriculum.vocab_loader import VocabLoader
-from german_tutor.widgets.vocab_card import VocabCard
+from deutschbuddy.db.repositories.progress_repo import ProgressRepository
+from deutschbuddy.models.learner import Learner
+from deutschbuddy.models.vocab import VocabTopic
+from deutschbuddy.curriculum.vocab_loader import VocabLoader
+from deutschbuddy.widgets.vocab_card import VocabCard
 
 
 class VocabTopicsScreen(Screen):

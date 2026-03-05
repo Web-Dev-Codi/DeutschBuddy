@@ -5,10 +5,10 @@ from textual.message import Message
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Label, Static
 
-from german_tutor.models.learner import Learner
-from german_tutor.models.lesson import LessonRecommendation
-from german_tutor.widgets.progress_bar import CEFRProgressBar
-from german_tutor.widgets.streak_indicator import StreakIndicator
+from deutschbuddy.models.learner import Learner
+from deutschbuddy.models.lesson import LessonRecommendation
+from deutschbuddy.widgets.progress_bar import CEFRProgressBar
+from deutschbuddy.widgets.streak_indicator import StreakIndicator
 
 
 # Simple message class for navigation requests

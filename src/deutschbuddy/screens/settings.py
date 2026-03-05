@@ -8,7 +8,7 @@ from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Input, Static
 
-from german_tutor.config import get_config
+from deutschbuddy.config import get_config
 
 
 _SETTINGS_PATH = Path(__file__).resolve().parents[3] / "config" / "settings.toml"

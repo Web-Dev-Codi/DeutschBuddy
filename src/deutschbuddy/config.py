@@ -1,4 +1,4 @@
-# src/german_tutor/config.py
+# src/deutschbuddy/config.py
 from __future__ import annotations
 
 import tomllib

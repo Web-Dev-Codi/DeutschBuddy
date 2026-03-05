@@ -8,9 +8,9 @@ from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
 from textual.containers import VerticalScroll, Horizontal
 
-from german_tutor.models.learner import Learner
-from german_tutor.models.lesson import Lesson, LessonCategory
-from german_tutor.widgets.grammar_panel import GrammarPanelWidget
+from deutschbuddy.models.learner import Learner
+from deutschbuddy.models.lesson import Lesson, LessonCategory
+from deutschbuddy.widgets.grammar_panel import GrammarPanelWidget
 
 
 class LessonScreen(Screen):
@@ -166,7 +166,7 @@ class LessonScreen(Screen):
 
             if current_index > 0:
                 previous_lesson = lessons[current_index - 1]
-                from german_tutor.screens.home import NavRequest
+                from deutschbuddy.screens.home import NavRequest
 
                 self.app.post_message(
                     NavRequest("lesson", lesson_id=previous_lesson.id)
@@ -184,7 +184,7 @@ class LessonScreen(Screen):
             self._lesson_marked_complete = True
             
             # Create lesson progress record
-            from german_tutor.models.lesson import LessonProgress
+            from deutschbuddy.models.lesson import LessonProgress
             progress = LessonProgress(
                 learner_id=self.learner.id,
                 lesson_id=self.lesson.id,
@@ -220,7 +220,7 @@ class LessonScreen(Screen):
                 if index < len(self.lesson.example_sentences):
                     german_sentence = self.lesson.example_sentences[index].get('german', '')
                     if german_sentence:
-                        from german_tutor.screens.breakdown import BreakdownScreen
+                        from deutschbuddy.screens.breakdown import BreakdownScreen
                         breakdown_screen = BreakdownScreen(
                             sentence=german_sentence,
                             cefr_level=self.learner.current_level.value,
@@ -260,7 +260,7 @@ class LessonScreen(Screen):
             if current_index < len(lessons) - 1:
                 # Navigate to next lesson
                 next_lesson = lessons[current_index + 1]
-                from german_tutor.screens.home import NavRequest
+                from deutschbuddy.screens.home import NavRequest
                 self.notify(f"Attempting to navigate to: {next_lesson.id}")
                 self.app.post_message(NavRequest("lesson", lesson_id=next_lesson.id))
             else:

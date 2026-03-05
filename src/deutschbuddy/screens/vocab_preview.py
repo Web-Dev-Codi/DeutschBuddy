@@ -6,7 +6,7 @@ from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static, LoadingIndicator
 
-from german_tutor.models.lesson import Lesson
+from deutschbuddy.models.lesson import Lesson
 
 
 class VocabPreviewScreen(Screen):

@@ -1,15 +1,15 @@
 from __future__ import annotations
 
-from german_tutor.curriculum.cefr import CEFRProgressionEngine
-from german_tutor.curriculum.loader import CurriculumLoader
-from german_tutor.db.repositories.learner_repo import LearnerRepository
-from german_tutor.db.repositories.progress_repo import ProgressRepository
-from german_tutor.llm.client import OllamaClient
-from german_tutor.llm.curriculum_agent import CurriculumAgent
-from german_tutor.llm.quiz_agent import QuizAgent
-from german_tutor.llm.tutor_agent import TutorAgent
-from german_tutor.models.learner import Learner
-from german_tutor.curriculum.vocab_loader import VocabLoader
+from deutschbuddy.curriculum.cefr import CEFRProgressionEngine
+from deutschbuddy.curriculum.loader import CurriculumLoader
+from deutschbuddy.db.repositories.learner_repo import LearnerRepository
+from deutschbuddy.db.repositories.progress_repo import ProgressRepository
+from deutschbuddy.llm.client import OllamaClient
+from deutschbuddy.llm.curriculum_agent import CurriculumAgent
+from deutschbuddy.llm.quiz_agent import QuizAgent
+from deutschbuddy.llm.tutor_agent import TutorAgent
+from deutschbuddy.models.learner import Learner
+from deutschbuddy.curriculum.vocab_loader import VocabLoader
 
 
 class AppState:

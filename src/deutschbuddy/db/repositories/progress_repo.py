@@ -5,8 +5,8 @@ from datetime import datetime
 
 import aiosqlite
 
-from german_tutor.models.lesson import LessonProgress
-from german_tutor.models.session import QuizResponse, QuizSession
+from deutschbuddy.models.lesson import LessonProgress
+from deutschbuddy.models.session import QuizResponse, QuizSession
 
 
 class ProgressRepository:

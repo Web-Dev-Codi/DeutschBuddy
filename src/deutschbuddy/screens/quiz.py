@@ -6,10 +6,10 @@ from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
 
-from german_tutor.models.learner import Learner
-from german_tutor.models.lesson import Lesson
-from german_tutor.models.session import QuizResponse, QuizSession
-from german_tutor.widgets.quiz_card import QuizCard
+from deutschbuddy.models.learner import Learner
+from deutschbuddy.models.lesson import Lesson
+from deutschbuddy.models.session import QuizResponse, QuizSession
+from deutschbuddy.widgets.quiz_card import QuizCard
 
 
 _MAX_FALLBACK_QUESTIONS = 5
@@ -66,7 +66,7 @@ class QuizScreen(Screen):
             
             # Create a DB session record
             if self.progress_repo is not None and self.learner.id is not None:
-                from german_tutor.models.session import QuizSession as QS
+                from deutschbuddy.models.session import QuizSession as QS
                 from datetime import datetime
 
                 new_session = QS(
@@ -291,7 +291,7 @@ class QuizScreen(Screen):
             q = self._questions[self._current_index]
             context = q.get("context", "")
             if context:
-                from german_tutor.screens.breakdown import BreakdownScreen
+                from deutschbuddy.screens.breakdown import BreakdownScreen
                 breakdown_screen = BreakdownScreen(
                     sentence=context,
                     cefr_level=self.learner.current_level.value,

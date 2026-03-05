@@ -1,8 +1,8 @@
 import yaml
 from pathlib import Path
 
-from german_tutor.curriculum.vocab_loader import VocabLoader
-from german_tutor.models.lesson import CEFRLevel
+from deutschbuddy.curriculum.vocab_loader import VocabLoader
+from deutschbuddy.models.lesson import CEFRLevel
 
 
 def test_load_level_parses_topics(tmp_path: Path):

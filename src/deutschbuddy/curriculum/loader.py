@@ -6,7 +6,7 @@ from pathlib import Path
 
 import yaml
 
-from german_tutor.models.lesson import Lesson
+from deutschbuddy.models.lesson import Lesson
 
 
 class CurriculumLoader:

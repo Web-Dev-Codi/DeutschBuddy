@@ -26,10 +26,10 @@ from deutschbuddy.screens.settings import SettingsScreen
 DEFAULT_LEARNER_NAME = "Learner"
 
 
-class DeutschBuddyApp(App):
-    """DeutschBuddy — AI-powered German language learning TUI."""
+class deutschbuddy(App):
+    """deutschbuddy — AI-powered German language learning TUI."""
 
-    TITLE = "DeutschBuddy"
+    TITLE = "deutschbuddy"
     CSS_PATH = "styles/main.tcss"
     BINDINGS = [
         ("q", "quit", "Quit"),
@@ -163,7 +163,7 @@ class DeutschBuddyApp(App):
             return
 
         # Show vocabulary preview first
-        from german_tutor.screens.vocab_preview import VocabPreviewScreen
+        from deutschbuddy.screens.vocab_preview import VocabPreviewScreen
         vocab_screen = VocabPreviewScreen(
             lesson=lesson,
             tutor_agent=state.tutor_agent
@@ -261,7 +261,7 @@ class DeutschBuddyApp(App):
 
 
 def run() -> None:
-    app = DeutschBuddyApp()
+    app = deutschbuddy()
     app.run()
 
 

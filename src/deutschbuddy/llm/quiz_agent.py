@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import json
 
-from german_tutor.llm.client import OllamaClient
-from german_tutor.llm.prompts import PROMPTS
-from german_tutor.models.learner import Learner
-from german_tutor.models.lesson import Lesson
+from deutschbuddy.llm.client import OllamaClient
+from deutschbuddy.llm.prompts import PROMPTS
+from deutschbuddy.models.learner import Learner
+from deutschbuddy.models.lesson import Lesson
 
 
 class QuizAgent:

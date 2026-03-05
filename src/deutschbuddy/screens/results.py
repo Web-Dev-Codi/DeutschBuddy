@@ -6,9 +6,9 @@ from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
 
-from german_tutor.models.learner import Learner
-from german_tutor.models.lesson import Lesson
-from german_tutor.models.session import QuizSession
+from deutschbuddy.models.learner import Learner
+from deutschbuddy.models.lesson import Lesson
+from deutschbuddy.models.session import QuizSession
 
 
 _GRADE_EXCELLENT_THRESHOLD = 85
@@ -128,12 +128,12 @@ class ResultsScreen(Screen):
 
     async def _update_progress(self) -> None:
         """Update mastery score and spaced repetition schedule."""
-        from german_tutor.curriculum.spaced_repetition import (
+        from deutschbuddy.curriculum.spaced_repetition import (
             CardState,
             calculate_next_review,
             score_to_quality,
         )
-        from german_tutor.models.lesson import LessonProgress
+        from deutschbuddy.models.lesson import LessonProgress
 
         score_pct = round(
             (self.session.correct_answers / (self.session.total_questions or 1)) * 100
@@ -170,7 +170,7 @@ class ResultsScreen(Screen):
 
     async def _update_streak(self) -> None:
         """Update learner streak after session save."""
-        from german_tutor.curriculum.streak import calculate_streak
+        from deutschbuddy.curriculum.streak import calculate_streak
 
         try:
             learner_repo = self.app.state.learner_repo
