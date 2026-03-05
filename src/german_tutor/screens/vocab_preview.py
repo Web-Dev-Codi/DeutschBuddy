@@ -90,10 +90,19 @@ class VocabPreviewScreen(Screen):
                             self.tutor_agent.get_vocabulary_entry(word, self.lesson.level.value),
                             timeout=10.0,
                         )
-                    english_translation = (entry.get('english', '') or '').strip()
+                    english_translation = (
+                        entry.get('english')
+                        or entry.get('english_translation')
+                        or ''
+                    ).strip()
                     if not english_translation:
                         english_translation = "Translation unavailable"
-                    memory_trick = (entry.get('memory_trick', '') or '').strip()
+
+                    memory_trick = (
+                        entry.get('memory_trick')
+                        or entry.get('memory_anchor')
+                        or ''
+                    ).strip()
                     if not memory_trick:
                         if english_translation != "Translation unavailable":
                             memory_trick = f"Think of '{word}' as similar to '{english_translation}'"
@@ -166,9 +175,9 @@ class VocabPreviewScreen(Screen):
         if card['gender']:
             display_text += f"Gender: {card['gender']}\n"
         display_text += f"English: {card['english']}\n"
-        if card['memory_trick']:
-            display_text += f"\nMemory trick: {card['memory_trick']}"
-        
+        if card.get('memory_trick'):
+            display_text += f"\nMemory hack: {card['memory_trick']}"
+
         display_text += f"\n\n[dim]Card {self._current_index + 1} / {len(self._vocab_cards)}[/dim]"
         
         word_display.update(display_text)

@@ -19,14 +19,15 @@ class ProgressRepository:
         await self.db.execute(
             """
             INSERT INTO lesson_progress
-                (learner_id, lesson_id, completed_at, attempts, last_score, mastery_score, next_review)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+                (learner_id, lesson_id, completed_at, attempts, last_score, mastery_score, next_review, ease_factor)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(learner_id, lesson_id) DO UPDATE SET
                 completed_at   = excluded.completed_at,
                 attempts       = lesson_progress.attempts + 1,
                 last_score     = excluded.last_score,
                 mastery_score  = excluded.mastery_score,
-                next_review    = excluded.next_review
+                next_review    = excluded.next_review,
+                ease_factor    = excluded.ease_factor
             """,
             (
                 progress.learner_id,
@@ -36,6 +37,7 @@ class ProgressRepository:
                 progress.last_score,
                 progress.mastery_score,
                 progress.next_review.isoformat() if progress.next_review else None,
+                progress.ease_factor,
             ),
         )
         await self.db.commit()
@@ -195,6 +197,23 @@ class ProgressRepository:
             ON CONFLICT(learner_id, german_word) DO NOTHING
             """,
             (learner_id, german, english, level),
+        )
+        await self.db.commit()
+
+    async def upsert_vocab_cards_bulk(
+        self,
+        learner_id: int,
+        entries: list[tuple[str, str, str]],
+    ) -> None:
+        if not entries:
+            return
+        await self.db.executemany(
+            """
+            INSERT INTO vocabulary_cards (learner_id, german_word, english_word, level)
+            VALUES (?, ?, ?, ?)
+            ON CONFLICT(learner_id, german_word) DO NOTHING
+            """,
+            [(learner_id, german, english, level) for (german, english, level) in entries],
         )
         await self.db.commit()
 

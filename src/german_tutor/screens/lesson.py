@@ -85,7 +85,49 @@ class LessonScreen(Screen):
         self._complete_timer = self.set_timer(60.0, self._check_lesson_completion)
 
     def action_go_back(self) -> None:
-        self.app.pop_screen()
+        """Navigate to the previous lesson in the curriculum, or home if none."""
+        if self.curriculum_loader is None:
+            # Fallback: if we have no curriculum, behave like a simple back
+            if hasattr(self.app, "_stack") and len(self.app._stack) > 1:
+                self.app.pop_screen()
+            else:
+                self.app.action_go_home()
+            return
+
+        try:
+            current_lesson = self.curriculum_loader.get_lesson_by_id(self.lesson.id)
+            if current_lesson is None:
+                self.notify(
+                    f"Could not find current lesson {self.lesson.id} in the curriculum!"
+                )
+                return
+
+            lessons = self.curriculum_loader.load_level(current_lesson.level.value)
+
+            current_index = None
+            for i, lesson in enumerate(lessons):
+                if lesson.id == current_lesson.id:
+                    current_index = i
+                    break
+
+            if current_index is None:
+                self.notify(
+                    f"Could not find current lesson {current_lesson.id} in the curriculum!"
+                )
+                return
+
+            if current_index > 0:
+                previous_lesson = lessons[current_index - 1]
+                from german_tutor.screens.home import NavRequest
+
+                self.app.post_message(
+                    NavRequest("lesson", lesson_id=previous_lesson.id)
+                )
+            else:
+                # This is the very first lesson in the level; go home
+                self.app.action_go_home()
+        except Exception as exc:
+            self.notify(f"Error navigating to previous lesson: {exc}")
 
     def _check_lesson_completion(self) -> None:
         """Check if lesson has been active for more than 1 minute and mark as complete."""

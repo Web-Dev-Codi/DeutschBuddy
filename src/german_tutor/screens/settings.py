@@ -11,6 +11,9 @@ from textual.widgets import Button, Footer, Header, Input, Static
 from german_tutor.config import get_config
 
 
+_SETTINGS_PATH = Path(__file__).resolve().parents[3] / "config" / "settings.toml"
+
+
 class SettingsScreen(Screen):
     """Model selection and Ollama host configuration."""
 
@@ -96,8 +99,7 @@ class SettingsScreen(Screen):
         except ValueError:
             daily_goal = 20
 
-        config_path = Path("config/settings.toml")
-        raw = config_path.read_text(encoding="utf-8")
+        raw = _SETTINGS_PATH.read_text(encoding="utf-8")
         data = parse(raw)
 
         # Ensure tables exist
@@ -112,22 +114,18 @@ class SettingsScreen(Screen):
         data["ollama"]["interaction_model"] = interaction  # type: ignore[index]
         data["daily_goal_minutes"] = daily_goal  # top-level present in current file
 
-        config_path.write_text(dumps(data), encoding="utf-8")
+        _SETTINGS_PATH.write_text(dumps(data), encoding="utf-8")
 
         # Update learner's daily goal in database
         if hasattr(self.app, '_state') and self.app._state and self.app._state.current_learner:
-            try:
-                import asyncio
-                asyncio.create_task(
-                    self.app._state.learner_repo.update_goal(
-                        self.app._state.current_learner.id, 
-                        daily_goal
-                    )
+            learner = self.app._state.current_learner
+            self.app.run_worker(
+                self.app._state.learner_repo.update_goal(
+                    learner.id,
+                    daily_goal,
                 )
-                # Also update in-memory learner
-                self.app._state.current_learner.daily_goal_minutes = daily_goal
-            except Exception:
-                pass  # Silently fail if DB update fails
+            )
+            learner.daily_goal_minutes = daily_goal
 
     def action_go_back(self) -> None:
         self.app.pop_screen()

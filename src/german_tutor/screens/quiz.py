@@ -12,6 +12,10 @@ from german_tutor.models.session import QuizResponse, QuizSession
 from german_tutor.widgets.quiz_card import QuizCard
 
 
+_MAX_FALLBACK_QUESTIONS = 5
+_ANSWER_ADVANCE_DELAY_SECS = 1.5
+
+
 class QuizScreen(Screen):
     """Full 10-question quiz flow with AI evaluation and progressive hints."""
 
@@ -95,7 +99,7 @@ class QuizScreen(Screen):
     def _create_fallback_questions(self) -> list[dict]:
         """Create simple questions from example sentences if no quiz defined in YAML."""
         questions = []
-        for i, sentence in enumerate(self.lesson.example_sentences[:5]):
+        for i, sentence in enumerate(self.lesson.example_sentences[:_MAX_FALLBACK_QUESTIONS]):
             german = sentence.get("german", "")
             english = sentence.get("english", "")
             if german and english:
@@ -221,7 +225,10 @@ class QuizScreen(Screen):
                 self.app.log.warning("Failed to save quiz response: %s", e)
 
         # Advance after short delay
-        self._advance_timer = self.set_timer(1.5, lambda: self.run_worker(self._advance_question(), exclusive=True))
+        self._advance_timer = self.set_timer(
+            _ANSWER_ADVANCE_DELAY_SECS,
+            lambda: self.run_worker(self._advance_question(), exclusive=True),
+        )
 
     async def _advance_question(self) -> None:
         self._current_index += 1

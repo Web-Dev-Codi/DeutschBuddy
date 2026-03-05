@@ -69,3 +69,4 @@ class LessonProgress(BaseModel):
     last_score: float = 0.0
     mastery_score: float = 0.0
     next_review: Optional[datetime] = None
+    ease_factor: float = 2.5

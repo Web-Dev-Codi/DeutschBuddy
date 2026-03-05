@@ -11,6 +11,11 @@ from german_tutor.models.lesson import Lesson
 from german_tutor.models.session import QuizSession
 
 
+_GRADE_EXCELLENT_THRESHOLD = 85
+_GRADE_GOOD_THRESHOLD = 60
+_HISTORY_LIMIT = 5
+
+
 class ResultsScreen(Screen):
     """Post-quiz analysis — shows score, AI coaching, and next lesson recommendations."""
 
@@ -41,9 +46,9 @@ class ResultsScreen(Screen):
             pct = round((correct / total) * 100)
             grade_class = (
                 "score-excellent"
-                if pct >= 85
+                if pct >= _GRADE_EXCELLENT_THRESHOLD
                 else "score-good"
-                if pct >= 60
+                if pct >= _GRADE_GOOD_THRESHOLD
                 else "score-needs-review"
             )
             yield Static(
@@ -68,59 +73,58 @@ class ResultsScreen(Screen):
         yield Footer()
 
     async def on_mount(self) -> None:
-        """Generate AI coaching report and update SM-2 after mounting."""
-        if self.curriculum_agent is not None and self.progress_repo is not None:
-            try:
-                # Build question breakdown for analysis
-                breakdown = []
-                for r in self.session.responses:
-                    breakdown.append(
-                        {
-                            "question_id": r.question_id,
-                            "is_correct": r.is_correct,
-                            "user_answer": r.user_answer,
-                            "evaluation": r.llm_evaluation or {},
-                        }
-                    )
-                session_results = {
-                    "lesson_title": self.lesson.title,
-                    "correct": self.session.correct_answers,
-                    "total": self.session.total_questions,
-                    "score_percent": round(
-                        (
-                            self.session.correct_answers
-                            / (self.session.total_questions or 1)
-                        )
-                        * 100,
-                        1,
-                    ),
-                }
-                history = await self.progress_repo.get_recent_sessions(
-                    self.learner.id, limit=5
-                )
-                self._analysis = (
-                    await self.curriculum_agent.generate_performance_analysis(
-                        learner=self.learner,
-                        session_results=session_results,
-                        question_breakdown=breakdown,
-                        history=history,
-                    )
-                )
-                coach_msg = self._analysis.get("coach_message", "")
-                self.query_one("#analysis-display", Static).update(coach_msg)
+        """Run persistence side effects before attempting AI analysis."""
+        if self.progress_repo is not None:
+            await self._update_progress()
+            await self._check_daily_goal()
+            await self._upsert_vocab_cards()
 
-                # Update lesson progress with SM-2
-                await self._update_progress()
-                
-                # Check if daily goal was reached
-                await self._check_daily_goal()
-                
-                # Extract and save vocabulary cards from lesson
-                await self._upsert_vocab_cards()
-            except Exception as exc:
-                self.query_one("#analysis-display", Static).update(
-                    f"Analysis unavailable: {exc}"
-                )
+        if (
+            self.curriculum_agent is not None
+            and self.progress_repo is not None
+        ):
+            await self._run_ai_analysis()
+
+    async def _run_ai_analysis(self) -> None:
+        """Fetch coaching report; failures only affect display."""
+        try:
+            breakdown = [
+                {
+                    "question_id": r.question_id,
+                    "is_correct": r.is_correct,
+                    "user_answer": r.user_answer,
+                    "evaluation": r.llm_evaluation or {},
+                }
+                for r in self.session.responses
+            ]
+            session_results = {
+                "lesson_title": self.lesson.title,
+                "correct": self.session.correct_answers,
+                "total": self.session.total_questions,
+                "score_percent": round(
+                    (
+                        self.session.correct_answers
+                        / (self.session.total_questions or 1)
+                    )
+                    * 100,
+                    1,
+                ),
+            }
+            history = await self.progress_repo.get_recent_sessions(
+                self.learner.id, limit=_HISTORY_LIMIT
+            )
+            self._analysis = await self.curriculum_agent.generate_performance_analysis(
+                learner=self.learner,
+                session_results=session_results,
+                question_breakdown=breakdown,
+                history=history,
+            )
+            coach_msg = self._analysis.get("coach_message", "")
+            self.query_one("#analysis-display", Static).update(coach_msg)
+        except Exception as exc:
+            self.query_one("#analysis-display", Static).update(
+                f"Analysis unavailable: {exc}"
+            )
 
     async def _update_progress(self) -> None:
         """Update mastery score and spaced repetition schedule."""
@@ -142,7 +146,7 @@ class ResultsScreen(Screen):
         if existing:
             card = CardState(
                 item_id=self.lesson.id,
-                ease_factor=2.5,
+                ease_factor=existing.ease_factor,
                 interval=1,
                 repetitions=existing.attempts,
             )
@@ -159,6 +163,7 @@ class ResultsScreen(Screen):
             last_score=self.session.score,
             mastery_score=min(1.0, self.session.score),
             next_review=updated_card.next_review,
+            ease_factor=updated_card.ease_factor,
         )
         await self.progress_repo.upsert_lesson_progress(progress)
         await self._update_streak()
@@ -194,16 +199,18 @@ class ResultsScreen(Screen):
     async def _upsert_vocab_cards(self) -> None:
         """Extract vocabulary from lesson example sentences and upsert to DB."""
         level = self.lesson.level.value
-        for entry in self.lesson.example_sentences:
-            german = entry.get("german", "").strip()
-            english = entry.get("english", "").strip()
-            if german and english:
-                try:
-                    await self.progress_repo.upsert_vocab_card(
-                        self.learner.id, german, english, level
-                    )
-                except Exception as e:
-                    self.app.log.error(f"Failed to upsert vocab card '{german}': {e}")
+        entries = [
+            (german, english, level)
+            for entry in self.lesson.example_sentences
+            if (german := entry.get("german", "").strip())
+            and (english := entry.get("english", "").strip())
+        ]
+        try:
+            await self.progress_repo.upsert_vocab_cards_bulk(
+                self.learner.id, entries
+            )
+        except Exception as e:
+            self.app.log.error(f"Failed to upsert vocab cards: {e}")
 
     async def _check_daily_goal(self) -> None:
         """Check if daily goal was reached and show notification."""

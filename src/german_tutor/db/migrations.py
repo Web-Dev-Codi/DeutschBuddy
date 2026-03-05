@@ -87,6 +87,10 @@ CREATE TABLE IF NOT EXISTS vocabulary_topic_progress (
     last_interacted_at DATETIME,
     UNIQUE(learner_id, topic_id)
 );
+""",
+    6: """
+-- Migration v6: Store ease_factor for SM-2 on lesson_progress
+ALTER TABLE lesson_progress ADD COLUMN ease_factor REAL DEFAULT 2.5;
 """
 }
 
