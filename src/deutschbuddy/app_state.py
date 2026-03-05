@@ -1,0 +1,43 @@
+from __future__ import annotations
+
+from deutschbuddy.curriculum.cefr import CEFRProgressionEngine
+from deutschbuddy.curriculum.loader import CurriculumLoader
+from deutschbuddy.db.repositories.learner_repo import LearnerRepository
+from deutschbuddy.db.repositories.progress_repo import ProgressRepository
+from deutschbuddy.llm.client import OllamaClient
+from deutschbuddy.llm.curriculum_agent import CurriculumAgent
+from deutschbuddy.llm.quiz_agent import QuizAgent
+from deutschbuddy.llm.tutor_agent import TutorAgent
+from deutschbuddy.models.learner import Learner
+from deutschbuddy.curriculum.vocab_loader import VocabLoader
+
+
+class AppState:
+    """Singleton holding all shared application resources.
+
+    Created once at startup and passed into screens that need it.
+    """
+
+    def __init__(
+        self,
+        ollama_client: OllamaClient,
+        learner_repo: LearnerRepository,
+        progress_repo: ProgressRepository,
+        curriculum_loader: CurriculumLoader,
+        vocab_loader: VocabLoader,
+        curriculum_agent: CurriculumAgent,
+        tutor_agent: TutorAgent,
+        quiz_agent: QuizAgent,
+        cefr_engine: CEFRProgressionEngine,
+        current_learner: Learner | None = None,
+    ) -> None:
+        self.ollama_client = ollama_client
+        self.learner_repo = learner_repo
+        self.progress_repo = progress_repo
+        self.curriculum_loader = curriculum_loader
+        self.vocab_loader = vocab_loader
+        self.curriculum_agent = curriculum_agent
+        self.tutor_agent = tutor_agent
+        self.quiz_agent = quiz_agent
+        self.cefr_engine = cefr_engine
+        self.current_learner = current_learner

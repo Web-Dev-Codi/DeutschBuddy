@@ -6,6 +6,12 @@ prerequisites: ["A1-GRM-009"]
 estimated_minutes: 20
 tags: ["separable-verbs", "prefix", "verb-position", "phrasal-verbs"]
 
+fundamentals:
+  parts_of_speech:
+    items:
+      - name: "Verb (Verb)"
+        note: "Expresses actions, states, or occurrences; separable verbs split prefixes to the end."
+
 explanation:
   concept: |
     Many German verbs have a PREFIX that SEPARATES from the verb and moves

@@ -6,6 +6,12 @@ prerequisites: ["A1-GRM-009"]
 estimated_minutes: 22
 tags: ["modal-verbs", "können", "müssen", "wollen", "infinitive", "verb-position"]
 
+fundamentals:
+  parts_of_speech:
+    items:
+      - name: "Verb (Verb)"
+        note: "Expresses actions, states, or occurrences; modals work with an infinitive at the end."
+
 explanation:
   concept: |
     Modal verbs express ABILITY, NECESSITY, or DESIRE. They work with a second

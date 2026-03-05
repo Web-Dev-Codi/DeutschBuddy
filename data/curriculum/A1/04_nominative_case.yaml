@@ -6,6 +6,14 @@ prerequisites: ["A1-GRM-002", "A1-GRM-003"]
 estimated_minutes: 15
 tags: ["nominative", "case", "subject", "articles", "pronouns"]
 
+fundamentals:
+  cases:
+    items:
+      - name: "Nominativ (Nominative)"
+        role: "Identifies the subject — who/what performs the action or is described."
+        example: "Der Hund bellt. — 'Der Hund' is the subject."
+        article_clue: "Subject case: der/die/das; plural: die."
+
 explanation:
   concept: |
     German has a CASE system — the same noun changes its article depending on

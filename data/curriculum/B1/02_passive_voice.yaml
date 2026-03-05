@@ -14,6 +14,18 @@ tags:
   - agent
   - konjunktiv
 
+fundamentals:
+  parts_of_speech:
+    items:
+      - name: "Verb (Verb)"
+        note: "Expresses actions, states, or occurrences; passive uses werden + past participle across all tenses."
+  clauses:
+    definition: |
+      Passive constructions shift focus from the agent to the action/receiver. The conjugated verb (werden) stays in position 2, with the past participle at the end.
+    notes:
+      - "Active: Der Mechaniker repariert das Auto."
+      - "Passive: Das Auto wird von dem Mechaniker repariert."
+
 explanation:
   concept: |
     The VORGANGSPASSIV (process passive) uses WERDEN + PAST PARTICIPLE.

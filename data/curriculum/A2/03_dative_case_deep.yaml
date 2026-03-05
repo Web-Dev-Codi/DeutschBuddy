@@ -6,6 +6,18 @@ prerequisites: ["A1-GRM-014", "A1-GRM-005"]
 estimated_minutes: 25
 tags: ["dative", "pronouns", "case-table", "mir", "dir", "ihm", "ihr"]
 
+fundamentals:
+  cases:
+    items:
+      - name: "Dativ (Dative)"
+        role: "Indicates the indirect object — to/for whom something is done; also used after certain prepositions."
+        example: "Ich gebe dem Hund Essen. — 'dem Hund' is the recipient."
+        article_clue: "Articles: dem (m/n), der (f), den (pl with -n on nouns)."
+  parts_of_speech:
+    items:
+      - name: "Pronomen (Pronoun)"
+        note: "Replaces nouns; declines for case and sometimes gender/number (e.g., mir/dir for dative)."
+
 explanation:
   concept: |
     FULL CASE TABLE for definite articles:

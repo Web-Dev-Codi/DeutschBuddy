@@ -6,6 +6,18 @@ prerequisites: ["A1-GRM-001"]
 estimated_minutes: 15
 tags: ["articles", "nominative", "gender", "nouns", "der-die-das"]
 
+fundamentals:
+  cases:
+    items:
+      - name: "Nominativ (Nominative)"
+        role: "Identifies the subject — who/what performs the action or is described."
+        example: "Der Hund bellt. — 'Der Hund' is the subject."
+        article_clue: "Subject case: der/die/das; plural: die."
+  parts_of_speech:
+    items:
+      - name: "Nomen (Noun)"
+        note: "Names people, places, things, ideas; capitalized in German."
+
 explanation:
   concept: |
     German nouns have THREE grammatical genders: masculine (der), feminine (die),

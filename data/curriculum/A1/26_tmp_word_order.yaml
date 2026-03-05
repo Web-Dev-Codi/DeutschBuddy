@@ -6,6 +6,14 @@ prerequisites: ["A1-GRM-018", "A1-GRM-008", "A1-GRM-011"]
 estimated_minutes: 15
 tags: ["word-order", "adverbs", "negation", "gern", "auch", "tmp"]
 
+fundamentals:
+  clauses:
+    definition: |
+      In main clauses, the conjugated verb stays in position 2 (V2). Common adverb order is Time–Manner–Place (TMP) when multiple adverbs appear.
+    notes:
+      - "TMP: Heute koche ich mit Freunden zu Hause."
+      - "Adverbs nicht/gern/auch have preferred positions near what they modify."
+
 explanation:
   concept: |
     The most common adverb order in German main clauses is: **Time – Manner – Place (TMP)**.

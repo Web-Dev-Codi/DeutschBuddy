@@ -6,6 +6,14 @@ prerequisites: ["A1-GRM-018"]
 estimated_minutes: 20
 tags: ["subordinate-clauses", "weil", "dass", "wenn", "verb-final", "word-order"]
 
+fundamentals:
+  clauses:
+    definition: |
+      A clause has a subject and a finite verb. German main clauses (Hauptsätze) place the conjugated verb in position 2 (V2). Subordinate clauses (Nebensätze) move the conjugated verb to the end.
+    notes:
+      - "Main clause (V2): Heute lernt er Deutsch."
+      - "Subordinate (verb-final): … weil er heute Deutsch lernt."
+
 explanation:
   concept: |
     In a SUBORDINATE (dependent) clause, the conjugated verb moves to the VERY END.

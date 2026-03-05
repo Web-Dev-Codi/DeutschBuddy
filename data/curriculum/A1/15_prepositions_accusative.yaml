@@ -6,6 +6,18 @@ prerequisites: ["A1-GRM-006"]
 estimated_minutes: 18
 tags: ["prepositions", "accusative", "durch", "für", "gegen", "ohne", "um"]
 
+fundamentals:
+  cases:
+    items:
+      - name: "Akkusativ (Accusative)"
+        role: "Marks the direct object; also required by certain prepositions."
+        example: "Ich sehe den Hund. — 'den Hund' receives the action."
+        article_clue: "Masculine der→den; feminine/plural die; neuter das."
+  parts_of_speech:
+    items:
+      - name: "Präposition (Preposition)"
+        note: "Shows relationships and often governs a specific case (accusative/dative)."
+
 explanation:
   concept: |
     Some prepositions ALWAYS take the ACCUSATIVE case.

@@ -6,6 +6,12 @@ prerequisites: ["A1-GRM-011"]
 estimated_minutes: 25
 tags: ["modal-verbs", "können", "müssen", "wollen", "sollen", "dürfen", "mögen", "konjunktiv-II", "möchte"]
 
+fundamentals:
+  parts_of_speech:
+    items:
+      - name: "Verb (Verb)"
+        note: "Expresses actions, states, or occurrences; modals work with an infinitive at the end and have Konjunktiv II forms for politeness/hypotheticals."
+
 explanation:
   concept: |
     The SIX MODAL VERBS:

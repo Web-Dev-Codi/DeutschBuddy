@@ -1,0 +1,394 @@
+$primary: #4A90D9;
+$primary-darken-1: #3A7BC8;
+$primary-darken-2: #2A6AB7;
+
+$secondary: #9B59B6;
+
+$accent: #3498DB;
+
+$background: #1A1A2E;
+$background-darken-1: #16213E;
+$background-darken-2: #0F3460;
+
+
+$panel-darken-1: #0F3460;
+
+$surface: #1A1A2E;
+
+$text: #E8E8E8;
+$text-muted: #888888;
+
+$nominative: #E74C3C;
+$accusative: #F39C12;
+$dative: #3498DB;
+$genitive: #27AE60;
+
+$error: #E74C3C;
+$warning: #F39C12;
+$success: #27AE60;
+
+Screen {
+    overflow-y: auto;
+}
+
+HomeScreen {
+    layout: grid;
+    grid-size: 2;
+    grid-columns: 22 1fr;
+    overflow: auto;
+}
+
+#sidebar {
+    height: 100%;
+    background: $panel;
+    border-right: tall $primary;
+    padding: 1 2;
+}
+
+#sidebar .nav-label {
+    color: $text-muted;
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+#sidebar .nav-item {
+    padding: 0 1;
+    height: 3;
+}
+
+#sidebar .nav-item:focus {
+    background: $primary;
+    color: $text;
+}
+
+#main-content {
+    height: 100%;
+    padding: 1 2;
+}
+
+GrammarPanelWidget {
+    border: round $primary;
+    padding: 1 2;
+    height: auto;
+    margin-bottom: 1;
+}
+
+SentenceBreakdownWidget {
+    border: round $accent;
+    padding: 1 2;
+    height: auto;
+    margin-bottom: 1;
+}
+
+.german-sentence {
+    color: $warning;
+    text-style: bold;
+}
+
+.english-sentence {
+    color: $success;
+}
+
+.tag-nominative {
+    color: $error;
+    text-style: bold;
+}
+
+.tag-accusative {
+    color: $warning;
+    text-style: bold;
+}
+
+.tag-dative {
+    color: $accent;
+    text-style: bold;
+}
+
+.tag-genitive {
+    color: $success;
+    text-style: bold;
+}
+
+.tag-verb {
+    color: $secondary;
+    text-style: italic;
+}
+
+.tag-connector {
+    color: $text-muted;
+}
+
+CEFRProgressBar {
+    height: auto;
+    margin: 1 0;
+}
+
+StreakIndicator {
+    height: 3;
+    color: $warning;
+    text-style: bold;
+}
+
+QuizCard {
+    border: round $primary;
+    padding: 1 2;
+    height: auto;
+    margin-bottom: 1;
+}
+
+.quiz-question {
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+.quiz-context {
+    color: $text-muted;
+    margin-bottom: 1;
+}
+
+.hint-text {
+    color: $accent;
+    margin-top: 1;
+}
+
+.action-buttons {
+    layout: horizontal;
+    height: auto;
+    margin-top: 1;
+}
+
+.action-buttons Button {
+    margin-right: 1;
+}
+
+.loading {
+    color: $text-muted;
+    text-style: italic;
+}
+
+.score-excellent {
+    color: $success;
+    text-style: bold;
+}
+
+.score-good {
+    color: $warning;
+    text-style: bold;
+}
+
+.score-needs-review {
+    color: $error;
+    text-style: bold;
+}
+
+.section-header {
+    text-style: bold;
+    color: $primary;
+    margin-bottom: 1;
+    margin-top: 1;
+}
+
+HelpScreen {
+    align: center middle;
+}
+
+#help-container {
+    width: 60;
+    height: auto;
+    background: $panel;
+    border: double $primary;
+    padding: 2 3;
+}
+
+#help-title {
+    text-style: bold;
+    color: $primary;
+    text-align: center;
+    margin-bottom: 1;
+}
+
+#help-table {
+    height: auto;
+    margin-bottom: 1;
+}
+
+#help-close {
+    width: 100%;
+    margin-top: 1;
+}
+
+#sidebar .nav-item {
+    padding: 0 1;
+    height: 3;
+    width: 100%;
+}
+
+#sidebar .nav-item:hover {
+    background: $primary-darken-1;
+    color: $text;
+}
+
+.quiz-reorder-words {
+    margin-bottom: 1;
+}
+
+VocabPreviewScreen {
+    align: center middle;
+}
+
+#vocab-preview-container {
+    width: 80%;
+    height: auto;
+    background: $panel;
+    border: round $primary;
+    padding: 2 3;
+}
+
+.loading-container {
+    text-align: center;
+    padding: 2 0;
+}
+
+.loading-message {
+    color: $accent;
+    text-style: italic;
+    margin-top: 1;
+}
+
+.loading-submessage {
+    color: $text-muted;
+    margin-top: 1;
+}
+
+.vocab-card {
+    min-height: 10;
+    padding: 1 0;
+    text-align: center;
+}
+
+VocabTopicsScreen {
+    layout: vertical;
+    padding: 1 2;
+    height: 100%;
+    align: center middle;
+}
+
+VocabFlashcardScreen {
+    layout: horizontal;
+    padding: 1 2;
+    height: 100%;
+    layers: below above;
+}
+
+.flashcard-container {
+    layout: grid;
+    grid-size: 1;
+    height: 1fr;
+    width: 1fr;
+    align: center middle;
+}
+
+.flashcard {
+    border: round $primary;
+    width: 33%;
+    height: auto;
+    margin: 1;
+}
+
+.flashcard-german,
+.flashcard-english {
+    width: 40;
+    height: 9;
+    padding: 1 2;
+    text-align: center;
+    content-align: center middle;
+    color: $text;
+}
+
+
+/* ── VocabCard widget styling ─────────────────────────────────────────── */
+VocabCard {
+    width: 100%;
+    height: auto;
+    padding: 1;
+    border: round $primary;
+    border-title-color: $primary;
+    border-subtitle-color: $accent;
+    align-horizontal: center;
+    align-vertical: middle;
+}
+
+.vocab-card {
+    width: 60%;
+    min-width: 52;
+    max-width: 72;
+    padding: 2;
+    border: round $panel;
+    background: $surface;
+    content-align: center middle;
+    align: center middle;
+    layout: vertical;
+}
+
+.card-face {
+    width: 100%;
+    min-height: 7;
+    padding: 1;
+    text-align: center;
+    content-align: center middle;
+    border: round $primary;
+    background: $panel;
+}
+
+.card-english {
+    text-style: bold;
+    color: $primary;
+    layer: above;
+}
+
+.card-german {
+    text-style: italic;
+    color: $text-primary;
+    layer: below;
+}
+
+#topics-grid {
+    layout: grid;
+    grid-gutter: 1;
+    grid-size: 4;
+    grid-columns: 1fr 1fr 1fr 1fr;
+    grid-rows: 25%;
+    padding: 1 0;
+    width: 80%;
+    height: 1fr;
+    overflow-y: auto;
+}
+
+#topic-header {
+    text-align: center;
+}
+
+.topic-card {
+    height: 8;
+    width: 100%;
+    text-align: center;
+    padding: 1 1;
+    border: round $primary;
+}
+
+.topic-card:focus {
+    border: round $primary-darken-1;
+}
+
+.topic-card.success {
+    border: round $success;
+}
+
+.topic-card.primary {
+    border: round $primary;
+}
+
+.topic-card.default {
+    border: round #888888;
+}
+

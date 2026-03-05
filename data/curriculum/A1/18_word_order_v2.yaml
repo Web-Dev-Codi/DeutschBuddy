@@ -6,6 +6,14 @@ prerequisites: ["A1-GRM-009"]
 estimated_minutes: 18
 tags: ["word-order", "V2", "verb-position", "inversion", "main-clause"]
 
+fundamentals:
+  clauses:
+    definition: |
+      A clause has a subject and a finite verb. In German MAIN clauses (Hauptsätze), the conjugated verb must be in POSITION 2 (V2), even if another element stands first.
+    notes:
+      - "V2 rule: Heute lerne ich Deutsch. (Verb at position 2)"
+      - "Fronting time/place/object moves the subject, not the verb."
+
 explanation:
   concept: |
     THE GOLDEN RULE of German main clauses:

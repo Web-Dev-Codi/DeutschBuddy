@@ -6,6 +6,12 @@ prerequisites: ["A1-GRM-009", "A1-GRM-003"]
 estimated_minutes: 25
 tags: ["perfekt", "haben", "past-tense", "participle", "past-participle"]
 
+fundamentals:
+  parts_of_speech:
+    items:
+      - name: "Verb (Verb)"
+        note: "Expresses actions, states, or occurrences; Perfekt uses auxiliary (haben/sein) + past participle at the end."
+
 explanation:
   concept: |
     The PERFEKT (present perfect) is the most common past tense in SPOKEN German.

@@ -6,6 +6,14 @@ prerequisites: ["A1-GRM-004", "A1-GRM-005"]
 estimated_minutes: 20
 tags: ["accusative", "case", "direct-object", "articles"]
 
+fundamentals:
+  cases:
+    items:
+      - name: "Akkusativ (Accusative)"
+        role: "Marks the direct object; also required by certain prepositions."
+        example: "Ich sehe den Hund. — 'den Hund' receives the action."
+        article_clue: "Masculine der→den; feminine/plural die; neuter das."
+
 explanation:
   concept: |
     The ACCUSATIVE case marks the DIRECT OBJECT — the person or thing that

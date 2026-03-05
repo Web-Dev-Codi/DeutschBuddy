@@ -1,6 +1,6 @@
 [app]
-name = "GermanTutor"
-version = "0.1.0"
+name = "deutschbuddy"
+version = "0.6.0"
 
 [ollama]
 host = "http://localhost:11434"
@@ -15,3 +15,5 @@ path = "data/db/learner.db"
 [curriculum]
 data_path = "data/curriculum"
 default_level = "A1"
+
+daily_goal_minutes = 50
