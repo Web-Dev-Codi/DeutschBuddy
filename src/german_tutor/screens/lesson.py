@@ -37,6 +37,7 @@ class LessonScreen(Screen):
         self._ai_enhancement_attempted = False
         self._lesson_start_time = time.time()
         self._lesson_marked_complete = False
+        self._complete_timer = None
 
     def compose(self) -> ComposeResult:
         yield Header()
@@ -81,7 +82,7 @@ class LessonScreen(Screen):
         # No need for AI enhancement - this eliminates unnecessary AI calls
         
         # Start a timer to check for lesson completion after 1 minute
-        self.set_timer(60.0, self._check_lesson_completion)
+        self._complete_timer = self.set_timer(60.0, self._check_lesson_completion)
 
     def action_go_back(self) -> None:
         self.app.pop_screen()
@@ -179,3 +180,8 @@ class LessonScreen(Screen):
             self.notify(f"Error navigating to next lesson: {exc}")
             import traceback
             self.notify(f"Full error: {traceback.format_exc()}")
+
+    def on_unmount(self) -> None:
+        if self._complete_timer is not None:
+            self._complete_timer.stop()
+            self._complete_timer = None

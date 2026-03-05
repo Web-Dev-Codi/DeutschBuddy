@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import re
 from textual.app import ComposeResult
 from textual.screen import Screen
@@ -70,67 +71,63 @@ class VocabPreviewScreen(Screen):
     async def _load_vocabulary(self) -> None:
         """Load vocabulary from lesson examples using tutor agent."""
         vocab_words = set()
-        
-        # Extract German words from example sentences
         for sent in self.lesson.example_sentences:
             german_text = sent.get('german', '')
-            # Simple word extraction - split on whitespace and punctuation
             words = re.findall(r'\b\w+\b', german_text)
             vocab_words.update(words)
-        
-        # Create vocab cards
+
         self._vocab_cards = []
-        
+
         if self.tutor_agent is not None:
-            # Try to get enhanced vocabulary entries
-            for word in sorted(vocab_words):
-                if len(word) > 1:  # Skip single characters
-                    try:
-                        entry = await self.tutor_agent.get_vocabulary_entry(word, self.lesson.level.value)
-                        # Get English translation
-                        english_translation = entry.get('english', '').strip()
-                        if not english_translation:
-                            english_translation = "Translation unavailable"
-                        
-                        # Get memory trick
-                        memory_trick = entry.get('memory_trick', '').strip()
-                        if not memory_trick:
-                            # Generate a simple memory trick if none provided
-                            if english_translation != "Translation unavailable":
-                                memory_trick = f"Think of '{word}' as similar to '{english_translation}'"
-                            else:
-                                memory_trick = f"Practice saying '{word}' aloud to remember it"
-                        
-                        # Ensure English and Memory Trick are different
-                        if memory_trick.lower() == english_translation.lower() or memory_trick == f"Think of '{word}' as similar to 'Translation unavailable'":
-                            # Generate a different memory trick
-                            memory_trick = f"Remember '{word}' by practicing it in context"
-                        
-                        self._vocab_cards.append({
-                            'word': word,
-                            'gender': entry.get('gender', ''),
-                            'english': english_translation,
-                            'memory_trick': memory_trick
-                        })
-                    except Exception:
-                        # Fallback to basic info with different memory trick
-                        self._vocab_cards.append({
-                            'word': word,
-                            'gender': '',
-                            'english': "Translation unavailable",
-                            'memory_trick': f"Practice saying '{word}' aloud to remember it"
-                        })
+            sem = asyncio.Semaphore(5)
+
+            async def fetch(word: str):
+                if len(word) <= 1:
+                    return None
+                try:
+                    async with sem:
+                        entry = await asyncio.wait_for(
+                            self.tutor_agent.get_vocabulary_entry(word, self.lesson.level.value),
+                            timeout=10.0,
+                        )
+                    english_translation = (entry.get('english', '') or '').strip()
+                    if not english_translation:
+                        english_translation = "Translation unavailable"
+                    memory_trick = (entry.get('memory_trick', '') or '').strip()
+                    if not memory_trick:
+                        if english_translation != "Translation unavailable":
+                            memory_trick = f"Think of '{word}' as similar to '{english_translation}'"
+                        else:
+                            memory_trick = f"Practice saying '{word}' aloud to remember it"
+                    if memory_trick.lower() == english_translation.lower() or memory_trick == f"Think of '{word}' as similar to 'Translation unavailable'":
+                        memory_trick = f"Remember '{word}' by practicing it in context"
+                    return {
+                        'word': word,
+                        'gender': entry.get('gender', ''),
+                        'english': english_translation,
+                        'memory_trick': memory_trick,
+                    }
+                except Exception:
+                    return {
+                        'word': word,
+                        'gender': '',
+                        'english': "Translation unavailable",
+                        'memory_trick': f"Practice saying '{word}' aloud to remember it",
+                    }
+
+            tasks = [asyncio.create_task(fetch(w)) for w in sorted(vocab_words)]
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+            self._vocab_cards = [r for r in results if isinstance(r, dict)]
         else:
-            # Fallback when no tutor agent available
             for word in sorted(vocab_words):
                 if len(word) > 1:
                     self._vocab_cards.append({
                         'word': word,
                         'gender': '',
                         'english': "Translation unavailable",
-                        'memory_trick': f"Try to associate '{word}' with a mental image"
+                        'memory_trick': f"Try to associate '{word}' with a mental image",
                     })
-        
+
         self._loading = False
         self._update_display()
 

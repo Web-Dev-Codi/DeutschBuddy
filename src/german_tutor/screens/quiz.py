@@ -4,7 +4,7 @@ from datetime import datetime
 
 from textual.app import ComposeResult
 from textual.screen import Screen
-from textual.widgets import Button, Footer, Header, ProgressBar, Static
+from textual.widgets import Button, Footer, Header, Static
 
 from german_tutor.models.learner import Learner
 from german_tutor.models.lesson import Lesson
@@ -35,6 +35,7 @@ class QuizScreen(Screen):
         self._responses: list[QuizResponse] = []
         self._session_id: int | None = None
         self._hint_level: int = 0
+        self._advance_timer = None
 
     def compose(self) -> ComposeResult:
         yield Header()
@@ -74,8 +75,8 @@ class QuizScreen(Screen):
                     self._session_id = await self.progress_repo.create_session(
                         new_session
                     )
-                except Exception:
-                    pass
+                except Exception as e:
+                    self.app.log.warning("Failed to create quiz session: %s", e)
             
             if self._questions:
                 self.query_one("#quiz-status", Static).update(
@@ -124,17 +125,15 @@ class QuizScreen(Screen):
             f"Question {index + 1} / {len(self._questions)}"
         )
         # Hide breakdown button on new question
-        try:
-            breakdown_btn = self.query_one("#btn-breakdown", Button)
-            breakdown_btn.display = False
-        except Exception:
-            pass
+        for b in self.query(Button):
+            if b.id == "btn-breakdown":
+                b.display = False
+                break
 
     async def _submit_answer(self) -> None:
         """Evaluate the current answer and advance to next question."""
-        try:
-            card = self.query_one(QuizCard)
-        except Exception:
+        card = next(iter(self.query(QuizCard)), None)
+        if card is None:
             return
 
         answer = card.get_answer()
@@ -189,7 +188,8 @@ class QuizScreen(Screen):
                         cefr_level=self.learner.current_level.value,
                     )
                     is_correct = evaluation.get("is_correct", False)
-                except Exception:
+                except Exception as e:
+                    self.app.log.warning("LLM evaluation failed, using fallback: %s", e)
                     is_correct = answer.strip().lower() == correct.strip().lower()
                     evaluation = {
                         "is_correct": is_correct,
@@ -200,14 +200,10 @@ class QuizScreen(Screen):
         card.show_feedback(is_correct, evaluation.get("feedback", ""))
 
         # Show breakdown button for wrong answers if there's context
-        try:
-            breakdown_btn = self.query_one("#btn-breakdown", Button)
-            if not is_correct and q.get("context"):
-                breakdown_btn.display = True
-            else:
-                breakdown_btn.display = False
-        except Exception:
-            pass
+        for b in self.query(Button):
+            if b.id == "btn-breakdown":
+                b.display = bool(not is_correct and q.get("context"))
+                break
 
         response = QuizResponse(
             session_id=self._session_id,
@@ -221,11 +217,11 @@ class QuizScreen(Screen):
         if self.progress_repo and self._session_id:
             try:
                 await self.progress_repo.save_response(response)
-            except Exception:
-                pass
+            except Exception as e:
+                self.app.log.warning("Failed to save quiz response: %s", e)
 
         # Advance after short delay
-        self.set_timer(1.5, self._advance_question)
+        self._advance_timer = self.set_timer(1.5, lambda: self.run_worker(self._advance_question(), exclusive=True))
 
     async def _advance_question(self) -> None:
         self._current_index += 1
@@ -244,8 +240,8 @@ class QuizScreen(Screen):
                 await self.progress_repo.complete_session(
                     self._session_id, correct, total, score, {}
                 )
-            except Exception:
-                pass
+            except Exception as e:
+                self.app.log.warning("Failed to complete quiz session: %s", e)
 
         session = QuizSession(
             id=self._session_id,
@@ -259,9 +255,8 @@ class QuizScreen(Screen):
         self.dismiss(session)
 
     async def _get_hint(self) -> None:
-        try:
-            card = self.query_one(QuizCard)
-        except Exception:
+        card = next(iter(self.query(QuizCard)), None)
+        if card is None:
             return
 
         self._hint_level = min(3, self._hint_level + 1)
@@ -277,7 +272,8 @@ class QuizScreen(Screen):
                     attempted_answer=card.get_answer() or "",
                 )
                 card.show_hint(hint_data.get("hint_text", ""))
-            except Exception:
+            except Exception as e:
+                self.app.log.warning("LLM hint failed, using fallback: %s", e)
                 card.show_hint(q.get("hint", ""))
         else:
             card.show_hint(q.get("hint", ""))
@@ -310,3 +306,8 @@ class QuizScreen(Screen):
 
     def action_quit_quiz(self) -> None:
         self.dismiss(None)
+
+    def on_unmount(self) -> None:
+        if self._advance_timer is not None:
+            self._advance_timer.stop()
+            self._advance_timer = None

@@ -74,9 +74,8 @@ class VocabReviewScreen(Screen):
         """Evaluate answer, show feedback, update SM-2."""
         if self._answered:
             return
-        try:
-            quiz_card = self.query_one(QuizCard)
-        except Exception:
+        quiz_card = next(iter(self.query(QuizCard)), None)
+        if quiz_card is None:
             return
 
         answer = quiz_card.get_answer()
@@ -100,7 +99,7 @@ class VocabReviewScreen(Screen):
         await self._update_sm2(card_data, is_correct)
 
         # Advance after a short delay
-        self._advance_timer = self.set_timer(1.5, self._advance_card)
+        self._advance_timer = self.set_timer(1.5, lambda: self.run_worker(self._advance_card(), exclusive=True))
 
     async def _update_sm2(self, card_data: dict, is_correct: bool) -> None:
         """Apply SM-2 update and persist to DB."""
@@ -148,3 +147,8 @@ class VocabReviewScreen(Screen):
 
     def action_quit_review(self) -> None:
         self.dismiss(None)
+
+    def on_unmount(self) -> None:
+        if self._advance_timer is not None:
+            self._advance_timer.stop()
+            self._advance_timer = None

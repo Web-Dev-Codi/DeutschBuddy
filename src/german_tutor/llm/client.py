@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import asyncio
 from typing import AsyncGenerator
 
 import ollama
@@ -22,10 +23,13 @@ class OllamaClient:
         messages: list[dict],
         format: str | None = None,
     ) -> ollama.Message:
-        response = await self._client.chat(
-            model=model,
-            messages=messages,
-            format=format,
+        response = await asyncio.wait_for(
+            self._client.chat(
+                model=model,
+                messages=messages,
+                format=format,
+            ),
+            timeout=30.0,
         )
         return response.message
 
@@ -38,7 +42,7 @@ class OllamaClient:
         self, model: str, messages: list[dict]
     ) -> AsyncGenerator[str, None]:
         """Stream tokens for real-time TUI display."""
-        async for chunk in await self._client.chat(
+        async for chunk in self._client.chat(
             model=model, messages=messages, stream=True
         ):
             if chunk.message.content:

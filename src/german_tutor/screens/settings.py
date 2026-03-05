@@ -2,9 +2,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from tomlkit import parse, dumps
+
 from textual.app import ComposeResult
 from textual.screen import Screen
-from textual.widgets import Button, Footer, Header, Input, Label, Static
+from textual.widgets import Button, Footer, Header, Input, Static
 
 from german_tutor.config import get_config
 
@@ -95,31 +97,22 @@ class SettingsScreen(Screen):
             daily_goal = 20
 
         config_path = Path("config/settings.toml")
-        # Read raw content and do targeted replacements (tomllib is read-only)
-        content = config_path.read_text()
+        raw = config_path.read_text(encoding="utf-8")
+        data = parse(raw)
 
-        def replace_value(text: str, key: str, new_val: str) -> str:
-            import re
+        # Ensure tables exist
+        if "ollama" not in data:
+            data.add("ollama", {})  # type: ignore[arg-type]
+        if "app" not in data:
+            data.add("app", {})  # type: ignore[arg-type]
 
-            return re.sub(
-                rf'^({key}\s*=\s*")[^"]*(")',
-                rf"\g<1>{new_val}\g<2>",
-                text,
-                flags=re.MULTILINE,
-            )
+        # Update values with roundtrip safety
+        data["ollama"]["host"] = host  # type: ignore[index]
+        data["ollama"]["curriculum_model"] = curriculum  # type: ignore[index]
+        data["ollama"]["interaction_model"] = interaction  # type: ignore[index]
+        data["daily_goal_minutes"] = daily_goal  # top-level present in current file
 
-        content = replace_value(content, "host", host)
-        content = replace_value(content, "curriculum_model", curriculum)
-        content = replace_value(content, "interaction_model", interaction)
-        
-        # Handle daily_goal_minutes - it might not exist yet
-        if "daily_goal_minutes" in content:
-            content = replace_value(content, "daily_goal_minutes", str(daily_goal))
-        else:
-            # Add it to the end of the file
-            content += f"\ndaily_goal_minutes = {daily_goal}\n"
-        
-        config_path.write_text(content)
+        config_path.write_text(dumps(data), encoding="utf-8")
 
         # Update learner's daily goal in database
         if hasattr(self.app, '_state') and self.app._state and self.app._state.current_learner:
