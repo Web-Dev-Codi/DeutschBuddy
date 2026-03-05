@@ -8,10 +8,7 @@
 
 *Achieve conversational fluency with personalized, AI-driven lessons that adapt to your learning pace*
 
-[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Ollama](https://img.shields.io/badge/Ollama-Local%20AI-000000?style=for-the-badge&logo=ollama&logoColor=white)](https://ollama.ai)
-[![CEFR A1→B1](https://img.shields.io/badge/CEFR-A1%E2%86%92B1-32A852?style=for-the-badge)](#cefr-levels)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://opensource.org/licenses/MIT) [![Ollama](https://img.shields.io/badge/Ollama-Local%20AI-000000?style=for-the-badge&logo=ollama&logoColor=white)](https://ollama.ai) [![CEFR A1→B1](https://img.shields.io/badge/CEFR-A1%E2%86%92B1-32A852?style=for-the-badge)](#cefr-levels)
 
 [Quick Start](#-quick-start) • [Features](#-features) • [Architecture](#-architecture) • [GPU Setup](#-gpu-setup-amd-rx-7800-xt--rocm) • [Examples](#-examples) • [Contributing](#-contributing)
 
@@ -33,6 +30,21 @@
 | Passive learning | **Interactive Practice** with conversations & quizzes |
 | Waiting for corrections | **Immediate AI Feedback** on grammar & vocabulary |
 | Struggling with German grammar | **English-Focused** lessons addressing common pain points |
+
+---
+
+## ⚠️ Disclaimer
+
+> **This project is highly experimental.** deutschbuddy is a work in progress and is being actively developed. You may encounter:
+>
+> - 🐛 Bugs and unexpected behavior
+> - 🔧 Incomplete features or changing functionality
+> - 📝 Evolving curriculum content
+> - 🔄 Frequent updates that may break existing workflows
+>
+> **Use at your own risk.** This app is intended for learning purposes and should not be considered a complete replacement for formal German language education or professional language tutoring.
+>
+> If you encounter issues or have suggestions, please [open an issue](https://github.com/Web-Dev-Codi/deutschbuddy/issues)!
 
 ---
 
