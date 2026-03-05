@@ -15,3 +15,5 @@ path = "data/db/learner.db"
 [curriculum]
 data_path = "data/curriculum"
 default_level = "A1"
+
+daily_goal_minutes = 50

@@ -19,8 +19,8 @@ class VocabCard(Widget):
 
     BINDINGS = [
         ("space", "flip", "Flip"),
-        ("left", "prev", "Previous"),
-        ("right", "next", "Next"),
+        ("left", "prev_card", "Previous"),
+        ("right", "next_card", "Next"),
     ]
 
     class PrevRequested(Message):
@@ -57,7 +57,7 @@ class VocabCard(Widget):
 
     def compose(self) -> ComposeResult:
         self.border_title = f"{self.title} — Card {self.index + 1}/{self.total}"
-        self.border_subtitle = ""
+        self.border_subtitle = "[@click=prev_card]← Prev[/]  [@click=next_card]Next →[/]"
 
         german = self.word.get("german") or self.word.get("word") or ""
         english = self.word.get("english") or ""
@@ -83,7 +83,7 @@ class VocabCard(Widget):
         if title is not None:
             self.title = title
         self.border_title = f"{self.title} — Card {self.index + 1}/{self.total}"
-        self.border_subtitle = ""
+        self.border_subtitle = "[@click=prev_card]← Prev[/]  [@click=next_card]Next →[/]"
 
         german = self.word.get("german") or self.word.get("word") or ""
         english = self.word.get("english") or ""
@@ -116,8 +116,8 @@ class VocabCard(Widget):
         self._update_faces()
         self.post_message(self.CardFlipped(self.showing_english))
 
-    def action_prev(self) -> None:
+    def action_prev_card(self) -> None:
         self.post_message(self.PrevRequested())
 
-    def action_next(self) -> None:
+    def action_next_card(self) -> None:
         self.post_message(self.NextRequested())
