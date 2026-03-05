@@ -6,6 +6,18 @@ prerequisites: ["A1-GRM-014"]
 estimated_minutes: 20
 tags: ["prepositions", "dative", "aus", "bei", "mit", "nach", "seit", "von", "zu", "contractions"]
 
+fundamentals:
+  cases:
+    items:
+      - name: "Dativ (Dative)"
+        role: "Indicates the indirect object; used after certain prepositions."
+        example: "Ich gebe dem Hund Essen. — 'dem Hund' is the recipient."
+        article_clue: "Articles: dem (m/n), der (f), den (pl with -n on nouns)."
+  parts_of_speech:
+    items:
+      - name: "Präposition (Preposition)"
+        note: "Shows relationships and often governs a specific case (dative/accusative)."
+
 explanation:
   concept: |
     DATIVE PREPOSITIONS (always take dative case):

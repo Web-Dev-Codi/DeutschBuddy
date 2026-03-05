@@ -45,6 +45,7 @@ class Lesson(BaseModel):
     prerequisites: list[str] = []
     estimated_minutes: int
     tags: list[str] = []
+    fundamentals: Optional[dict] = None
     explanation: dict
     example_sentences: list[dict] = []
     quiz: Optional[LessonQuiz] = None

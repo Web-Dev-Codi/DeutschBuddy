@@ -6,6 +6,14 @@ prerequisites: ["A1-GRM-006"]
 estimated_minutes: 22
 tags: ["dative", "case", "indirect-object", "articles", "prepositions"]
 
+fundamentals:
+  cases:
+    items:
+      - name: "Dativ (Dative)"
+        role: "Indicates the indirect object — to/for whom something is done."
+        example: "Ich gebe dem Hund Essen. — 'dem Hund' is the recipient."
+        article_clue: "Articles: dem (m/n), der (f), den (pl with -n on nouns)."
+
 explanation:
   concept: |
     The DATIVE case marks the INDIRECT OBJECT — the person or thing FOR WHOM

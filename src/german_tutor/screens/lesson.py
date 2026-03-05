@@ -9,7 +9,7 @@ from textual.widgets import Button, Footer, Header, Static
 from textual.containers import VerticalScroll, Horizontal
 
 from german_tutor.models.learner import Learner
-from german_tutor.models.lesson import Lesson
+from german_tutor.models.lesson import Lesson, LessonCategory
 from german_tutor.widgets.grammar_panel import GrammarPanelWidget
 
 
@@ -52,6 +52,54 @@ class LessonScreen(Screen):
                 f"~{self.lesson.estimated_minutes} min",
                 classes="quiz-context",
             )
+
+            # Optional fundamentals panel rendered above the explanation for grammar lessons
+            if self.lesson.category == LessonCategory.GRAMMAR and getattr(self.lesson, "fundamentals", None):
+                fund = self.lesson.fundamentals or {}
+                title = str(fund.get("title", "Grammar Fundamentals"))
+                lines: list[str] = []
+                # parts of speech
+                pos = fund.get("parts_of_speech") or {}
+                if isinstance(pos, dict):
+                    definition = pos.get("definition")
+                    if definition:
+                        lines.append(str(definition).strip())
+                    items = pos.get("items") or []
+                    for it in items:
+                        name = (it.get("name") if isinstance(it, dict) else None) or ""
+                        note = (it.get("note") if isinstance(it, dict) else None) or ""
+                        role = (it.get("role") if isinstance(it, dict) else None) or ""
+                        extra = note or role
+                        bullet = f"- {name}: {extra}" if extra else f"- {name}"
+                        if name:
+                            lines.append(bullet)
+                # cases
+                cases = fund.get("cases") or {}
+                if isinstance(cases, dict):
+                    definition = cases.get("definition")
+                    if definition:
+                        lines.append(str(definition).strip())
+                    items = cases.get("items") or []
+                    for it in items:
+                        name = (it.get("name") if isinstance(it, dict) else None) or ""
+                        role = (it.get("role") if isinstance(it, dict) else None) or ""
+                        article = (it.get("article_clue") if isinstance(it, dict) else None) or ""
+                        example = (it.get("example") if isinstance(it, dict) else None) or ""
+                        details = "; ".join([s for s in [role, article, example] if s])
+                        bullet = f"- {name}: {details}" if details else f"- {name}"
+                        if name:
+                            lines.append(bullet)
+                # clauses
+                clauses = fund.get("clauses") or {}
+                if isinstance(clauses, dict):
+                    definition = clauses.get("definition")
+                    if definition:
+                        lines.append(str(definition).strip())
+                    notes = clauses.get("notes") or []
+                    for note in notes:
+                        lines.append(f"- {str(note)}")
+                yield Static(title, classes="section-header")
+                yield Static("\n".join(lines), classes="quiz-context", id="fundamentals-panel")
 
             if self._explanation:
                 yield GrammarPanelWidget(self._explanation, id="grammar-panel")

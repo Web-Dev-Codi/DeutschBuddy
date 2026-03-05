@@ -6,6 +6,17 @@ prerequisites: ["A1-GRM-004"]
 estimated_minutes: 15
 tags: ["pronouns", "nominative", "ich", "du", "er-sie-es", "wir", "ihr", "sie"]
 
+fundamentals:
+  cases:
+    items:
+      - name: "Nominativ (Nominative)"
+        role: "Identifies the subject — who/what performs the action or is described."
+        example: "Der Hund bellt. — 'Der Hund' is the subject."
+  parts_of_speech:
+    items:
+      - name: "Pronomen (Pronoun)"
+        note: "Replaces nouns; declines for case and sometimes gender/number."
+
 explanation:
   concept: |
     Personal pronouns replace nouns. In the nominative (subject) case,

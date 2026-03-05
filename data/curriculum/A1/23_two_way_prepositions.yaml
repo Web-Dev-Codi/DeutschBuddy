@@ -6,6 +6,20 @@ prerequisites: ["A1-GRM-014", "A1-GRM-015", "A1-GRM-016"]
 estimated_minutes: 18
 tags: ["prepositions", "cases", "accusative", "dative", "movement", "location", "wechselpräpositionen"]
 
+fundamentals:
+  parts_of_speech:
+    items:
+      - name: "Präposition (Preposition)"
+        note: "Shows relationships; two‑way prepositions change case by motion (Akk) vs location (Dat)."
+  cases:
+    items:
+      - name: "Akkusativ (Accusative)"
+        role: "Used with motion towards a goal (Wohin?)."
+        example: "Ich stelle das Buch auf den Tisch. — motion → Akkusativ."
+      - name: "Dativ (Dative)"
+        role: "Used for static location (Wo?)."
+        example: "Das Buch liegt auf dem Tisch. — location → Dativ."
+
 explanation:
   concept: |
     The “two‑way” (Wechsel‑) prepositions (an, auf, in, hinter, vor, über, unter,
