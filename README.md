@@ -1,159 +1,332 @@
-# deutschbuddy
+<div align="center">
 
-AI-powered German language tutor designed specifically for English speakers who want to learn German quickly and effectively.
+![deutschbuddy Logo](https://img.shields.io/badge/🇩🇪-deutschbuddy-FFD700?style=for-the-badge&logo=german&logoColor=black)
 
-## Goal
+# 🎓 DeutschBuddy
 
-deutschbuddy helps English speakers achieve conversational fluency in German through personalized, AI-driven lessons that adapt to your learning pace and style. The app focuses on practical language skills you'll actually use in real-world conversations.
+**AI-Powered German Language Learning for English Speakers**
 
-## How It Helps You Learn German Fast
+*Achieve conversational fluency with personalized, AI-driven lessons that adapt to your learning pace*
 
-- **Personalized Learning Path**: The AI curriculum agent analyzes your performance and recommends lessons that target your specific weaknesses, ensuring you spend time on what you need most
-- **Spaced Repetition System**: Automatically schedules vocabulary and grammar reviews at optimal intervals to maximize retention
-- **CEFR-Aligned Curriculum**: Progress through structured levels (A1 → B1) with lessons designed for rapid progression
-- **Interactive Practice**: Engage in conversations, quizzes, and exercises that build practical communication skills
-- **Immediate Feedback**: Get instant corrections and explanations from AI tutors to reinforce proper grammar and vocabulary usage
-- **Focused on English Speakers**: Lessons specifically address common challenges English speakers face when learning German (cases, word order, gendered nouns)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Ollama](https://img.shields.io/badge/Ollama-Local%20AI-000000?style=for-the-badge&logo=ollama&logoColor=white)](https://ollama.ai)
+[![CEFR A1→B1](https://img.shields.io/badge/CEFR-A1%E2%86%92B1-32A852?style=for-the-badge)](#cefr-levels)
 
-## Quick Start
+[Quick Start](#-quick-start) • [Features](#-features) • [Architecture](#-architecture) • [GPU Setup](#-gpu-setup-amd-rx-7800-xt--rocm) • [Examples](#-examples) • [Contributing](#-contributing)
+
+</div>
+
+---
+
+## 📖 About
+
+**DeutschBuddy** helps English speakers achieve conversational fluency in German through personalized, AI-driven lessons that adapt to your learning pace and style. The app focuses on practical language skills you'll actually use in real-world conversations.
+
+### 🎯 Why DeutschBuddy?
+
+| Problem | DeutschBuddy Solution |
+|---------|----------------------|
+| Generic one-size-fits-all lessons | **Personalized Learning Path** adapted to your weaknesses |
+| Forgetting vocabulary quickly | **Spaced Repetition System** for optimal retention |
+| Unclear progression | **CEFR-Aligned Curriculum** (A1 → B1) |
+| Passive learning | **Interactive Practice** with conversations & quizzes |
+| Waiting for corrections | **Immediate AI Feedback** on grammar & vocabulary |
+| Struggling with German grammar | **English-Focused** lessons addressing common pain points |
+
+---
+
+## ✨ Features
+
+> 🧠 **AI-Powered Learning**
+
+- **Personalized Learning Path**: AI curriculum agent analyzes your performance and recommends lessons targeting your specific weaknesses
+- **Spaced Repetition System**: Automatically schedules vocabulary and grammar reviews at optimal intervals
+- **Dual-Layer Curriculum**: Static YAML content + dynamic AI guidance for reliable, adaptive learning
+
+> 📚 **Structured Content**
+
+- **CEFR-Aligned Levels**: Progress through A1 → A2 → B1 with confidence
+- **Grammar Explanations**: Clear explanations with English comparisons
+- **Practice Exercises**: Interactive quizzes and conversations with instant feedback
+
+> 🎮 **Interactive Interface**
+
+- **TUI Dashboard**: Beautiful terminal-based interface with keyboard navigation
+- **Progress Tracking**: Visual mastery scores and completion statistics
+- **Review Queue**: Targeted practice for vocabulary you're about to forget
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Python 3.11+
-- [Ollama](https://ollama.ai) running locally
-- Required models:
+```bash
+# Python 3.11+
+python --version  # Should be 3.11 or higher
 
-  ```bash
-  ollama pull llama3.1:8b-instruct
-  ollama pull mistral:7b-instruct
-  ```
+# Ollama (https://ollama.ai)
+ollama --version
+```
 
-### Installation
+### Setup
 
 ```bash
+# 1. Clone the repository
 git clone https://github.com/Web-Dev-Codi/deutschbuddy.git
 cd deutschbuddy
+
+# 2. Install dependencies with uv
 uv sync
+
+# 3. Pull required AI models
+ollama pull llama3.1:8b-instruct
+ollama pull mistral:7b-instruct
+
+# 4. Launch DeutschBuddy
+uv run deutschbuddy
 ```
 
-### Run
+<div align="center">
 
-```bash
-uv run german-tutor
+**Voilà!** 🎉 Press `l` to start your first lesson!
+
+</div>
+
+---
+
+## 🏗️ Architecture
+
+DeutschBuddy uses a **dual-layer curriculum system** combining static content with dynamic AI guidance:
+
 ```
-
-## GPU Setup (AMD RX 7800 XT / ROCm)
-
-Ollama supports AMD GPUs via ROCm. To enable hardware acceleration on an RX 7800 XT:
-
-1. **Install ROCm** (Ubuntu/Arch):
-
-   ```bash
-   # Ubuntu 22.04 / 24.04
-   sudo apt install rocm-hip-sdk
-   ```
-
-   Follow [AMD's ROCm install guide](https://rocm.docs.amd.com/en/latest/deploy/linux/index.html) for your distro.
-
-2. **Verify GPU visibility:**
-
-   ```bash
-   rocm-smi
-   ```
-
-3. **Run Ollama with ROCm:**
-   Ollama detects ROCm automatically when `rocm` libraries are installed. Optionally force GPU selection:
-
-   ```bash
-   export HSA_OVERRIDE_GFX_VERSION=11.0.2   # RX 7800 XT (gfx1101 / RDNA3)
-   ollama serve
-   ```
-
-4. **Environment variables:**
-
-   | Variable | Purpose |
-   |----------|---------|
-   | `HSA_OVERRIDE_GFX_VERSION` | Override GPU architecture string (use `11.0.2` for RX 7800 XT / gfx1101 RDNA3) |
-   | `OLLAMA_GPU_OVERHEAD` | Reserved VRAM in bytes (tune if OOM) |
-   | `OLLAMA_NUM_GPU` | Number of GPU layers to offload |
-
-   For an RX 7800 XT (16 GB VRAM), `llama3.1:8b` and `mistral:7b` will fully load on-device.
-
-## Architecture
-
-deutschbuddy uses a **dual-layer curriculum system** that combines static content with dynamic AI guidance:
+┌─────────────────────────────────────────────────────────────────┐
+│                       Learner completes lesson                  │
+│                              ↓                                   │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │              AI Curriculum Agent                        │   │
+│  │  • Analyzes performance  • Identifies knowledge gaps    │   │
+│  │  • Recommends next lesson • Adjusts difficulty          │   │
+│  └──────────────────────────────────────────────────────────┘   │
+│                              ↓                                   │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │           YAML Content Library                          │   │
+│  │  • A1/ • A2/ • B1/ lesson files                         │   │
+│  │  • Grammar • Vocabulary • Exercises                     │   │
+│  └─────────────────────────────────────────────────────────┘   │
+│                              ↓                                   │
+│                    Learner studies → Repeat                      │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ### YAML Curriculum Files (Content Library)
-- **Location**: `data/curriculum/A1/`, `data/curriculum/A2/`, `data/curriculum/B1/`
-- **Purpose**: Store lesson content, grammar explanations, vocabulary, and examples
-- **Structure**: Each lesson file contains:
-  - Lesson metadata (ID, title, level, prerequisites)
-  - Grammar explanations and English comparisons
-  - Example sentences with translations
-  - Practice exercises and vocabulary lists
-- **Benefits**: Reliable, version-controlled content that can be reviewed and edited
+
+| Location | Purpose |
+|----------|---------|
+| `data/curriculum/A1/` | Beginner: greetings, articles, present tense |
+| `data/curriculum/A2/` | Elementary: past tenses, modal verbs, cases |
+| `data/curriculum/B1/` | Intermediate: passive, Konjunktiv II, complex clauses |
 
 ### AI Curriculum Agent (Learning Strategist)
-- **Purpose**: Make intelligent decisions about learning progression
-- **Responsibilities**:
-  - Analyze learner performance and mastery scores
-  - Recommend the optimal next lesson based on individual needs
-  - Determine when to advance between CEFR levels (A1 → A2 → B1)
-  - Provide personalized learning paths based on strengths and weaknesses
-- **Integration**: Works with the YAML content library but doesn't create content
 
-### How They Work Together
-1. **Learner completes a lesson/quiz** → Performance data is collected
-2. **AI analyzes progress** → Identifies knowledge gaps and strengths  
-3. **AI recommends specific lesson** → "Study A1-GRM-015 (Accusative Prepositions) because you're strong with nominative case"
-4. **YAML file provides content** → Static lesson content is loaded and displayed
-5. **Learner studies** → Cycle repeats with new performance data
+**Responsibilities:**
+- 📊 Analyze learner performance and mastery scores
+- 🎯 Recommend optimal next lessons based on individual needs
+- 📈 Track CEFR level progression (A1 → A2 → B1)
+- 🔄 Provide personalized paths based on strengths/weaknesses
 
-This separation ensures:
-- **Consistent, high-quality content** (YAML files)
-- **Personalized learning paths** (AI recommendations)
-- **Reliable offline capability** (YAML content works without AI)
-- **Adaptive difficulty** (AI adjusts pacing based on performance)
+---
 
-## Settings
+## 🎮 Examples
 
-Open the Settings screen by pressing `s` on the home screen, or navigating to **Settings** in the sidebar.
+### Personalized Recommendation
 
-From there you can:
+```
+💡 Recommended Next Lesson: A1-GRM-015 (Accusative Prepositions)
 
-- **Curriculum model** — Ollama model used for lesson recommendations and CEFR progression (default: `llama3.1:8b-instruct`)
-- **Interaction model** — Ollama model used for quiz generation and tutoring (default: `mistral:7b-instruct`)
-- **Ollama host** — URL of your Ollama instance (default: `http://localhost:11434`)
+Why this lesson?
+• You've mastered nominative case (95% accuracy)
+• Accusative prepositions need practice (62% accuracy)
+• Builds on your existing knowledge
+```
 
-Settings are persisted to `config/settings.toml`.
+### Spaced Repetition Review
 
-## CEFR Levels
+```
+📋 Review Queue: 3 cards due
 
-deutschbuddy follows the Common European Framework of Reference for Languages:
+┌──────────────┬────────────────┬───────────────┐
+│ Word         │ Last Review    │ Next Review   │
+├──────────────┼────────────────┼───────────────┤
+│ der Apfel    │ 2 days ago     │ NOW           │
+│ sprechen     │ 5 days ago     │ NOW           │
+│ das Haus     │ 1 day ago      │ Tomorrow      │
+└──────────────┴────────────────┴───────────────┘
+```
 
-| Level | Description | Lessons |
-|-------|-------------|---------|
-| A1 | Beginner — basic greetings, definite/indefinite articles, simple present tense verbs | 20 lessons |
-| A2 | Elementary — past tenses (Perfekt), modal verbs, nominative/accusative cases | 15 lessons |
-| B1 | Intermediate — passive voice, Konjunktiv II, dative/genitive cases, complex clauses | 10 lessons |
+---
 
-Progress through levels is tracked automatically. The AI curriculum agent recommends lessons based on your performance history and spaced-repetition review schedule.
+## ⚙️ GPU Setup (AMD RX 7800 XT / ROCm)
 
-## Keyboard Shortcuts
+DeutschBuddy supports AMD GPUs via ROCm. To enable hardware acceleration:
+
+<details>
+<summary><b>📦 Step 1: Install ROCm</b> (click to expand)</summary>
+
+```bash
+# Ubuntu 22.04 / 24.04
+sudo apt install rocm-hip-sdk
+```
+
+> 📖 Follow [AMD's ROCm install guide](https://rocm.docs.amd.com/en/latest/deploy/linux/index.html) for your distro.
+
+</details>
+
+<details>
+<summary><b>✅ Step 2: Verify GPU</b> (click to expand)</summary>
+
+```bash
+rocm-smi
+```
+
+Expected output:
+```
+============================ ROCm System Management Interface ============================
+========================================= Concise Info =========================================
+Device  [Model : Revision]    Temp        Power     Partitions      SCLK    MCLK    Fans
+                        Perf
+          0   [0x7300 : x00]    45.0°C      N/A     N/A             2.0Ghz  2.0Ghz   N/A
+          1   [0x7300 : x00]    47.0°C      N/A     N/A             2.0Ghz  2.0Ghz   N/A
+===============================================================================================
+```
+
+</details>
+
+<details>
+<summary><b>🚀 Step 3: Run Ollama with ROCm</b> (click to expand)</summary>
+
+```bash
+# Override GPU architecture for RX 7800 XT (gfx1101 / RDNA3)
+export HSA_OVERRIDE_GFX_VERSION=11.0.2
+
+# Start Ollama server
+ollama serve
+```
+
+</details>
+
+### Environment Variables
+
+| Variable | Purpose | Recommended Value |
+|----------|---------|-------------------|
+| `HSA_OVERRIDE_GFX_VERSION` | Override GPU architecture | `11.0.2` (RX 7800 XT) |
+| `OLLAMA_GPU_OVERHEAD` | Reserved VRAM (bytes) | Tune if OOM |
+| `OLLAMA_NUM_GPU` | GPU layers to offload | Auto-detected |
+
+> 💡 **RX 7800 XT (16 GB VRAM)**: `llama3.1:8b` and `mistral:7b` will fully load on-device!
+
+---
+
+## 📊 CEFR Levels
+
+DeutschBuddy follows the **Common European Framework of Reference for Languages**:
+
+<div align="center">
+
+| Level | Badge | Description | Lessons |
+|-------|-------|-------------|---------|
+| **A1** | 🟢 | Beginner — greetings, articles, present tense | 20 lessons |
+| **A2** | 🟡 | Elementary — Perfekt, modals, cases | 15 lessons |
+| **B1** | 🔵 | Intermediate — passive, Konjunktiv II, complex clauses | 10 lessons |
+
+</div>
+
+---
+
+## ⌨️ Keyboard Shortcuts
+
+### Global
 
 | Key | Action |
 |-----|--------|
 | `q` | Quit |
-| `h` | Home (return to dashboard) |
-| `?` | Toggle help overlay |
-| `Ctrl+R` | Review queue (due vocabulary cards) |
-| `Escape` | Back / Close |
+| `h` | Home (dashboard) |
+| `?` | Toggle help |
+| `Ctrl+R` | Review queue |
+| `Esc` | Back / Close |
 
-**On the Home screen:**
+### Home Dashboard
 
 | Key | Action |
 |-----|--------|
-| `l` | Lessons |
-| `p` | Progress |
-| `r` | Review |
+| `l` | Start lesson |
+| `p` | View progress |
+| `r` | Review vocabulary |
 | `s` | Settings |
+
+---
+
+## 🔧 Settings
+
+Press `s` from home or navigate to **Settings** in the sidebar.
+
+| Setting | Description | Default |
+|---------|-------------|---------|
+| Curriculum model | AI for lesson recommendations | `llama3.1:8b-instruct` |
+| Interaction model | AI for quizzes & tutoring | `mistral:7b-instruct` |
+| Ollama host | Ollama instance URL | `http://localhost:11434` |
+
+Settings are persisted to `config/settings.toml`.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! 🎉
+
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
+3. **Commit** your changes: `git commit -m 'Add amazing feature'`
+4. **Push** to the branch: `git push origin feature/amazing-feature`
+5. **Open** a Pull Request
+
+### Development Setup
+
+```bash
+# Clone your fork
+git clone https://github.com/YOUR_USERNAME/deutschbuddy.git
+cd deutschbuddy
+
+# Install in dev mode
+uv sync --dev
+
+# Run tests (if available)
+uv run pytest
+```
+
+📖 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+---
+
+## 📚 Additional Resources
+
+- [CEFR Framework](https://www.coe.int/en/web/common-european-framework-reference-languages) - Official language proficiency levels
+- [Ollama Documentation](https://ollama.ai/help) - Local AI model management
+- [German Grammar Guide](https://www.germanwithlaura.com/) - supplementary learning
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+**Made with ❤️ for German learners everywhere**
+
+[⬆️ Back to top](#-deutschbuddy)
+
+</div>
