@@ -6,6 +6,12 @@ prerequisites: ["A1-GRM-002"]
 estimated_minutes: 20
 tags: ["verbs", "sein", "haben", "conjugation", "irregular"]
 
+fundamentals:
+  parts_of_speech:
+    items:
+      - name: "Verb (Verb)"
+        note: "Expresses actions, states, or occurrences; conjugates for person, number, tense."
+
 explanation:
   concept: |
     'sein' (to be) and 'haben' (to have) are the two most important verbs in

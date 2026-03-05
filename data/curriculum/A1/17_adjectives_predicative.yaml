@@ -6,6 +6,12 @@ prerequisites: ["A1-GRM-004"]
 estimated_minutes: 15
 tags: ["adjectives", "predicative", "sein", "werden", "bleiben", "no-endings"]
 
+fundamentals:
+  parts_of_speech:
+    items:
+      - name: "Adjektiv (Adjective)"
+        note: "Describes or modifies nouns; after sein/werden/bleiben it takes no endings (predicate)."
+
 explanation:
   concept: |
     German adjectives come in TWO types:

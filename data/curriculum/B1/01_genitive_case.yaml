@@ -13,6 +13,14 @@ tags:
   - der
   - declension
 
+fundamentals:
+  cases:
+    items:
+      - name: "Genitiv (Genitive)"
+        role: "Shows possession or association; used after certain prepositions and in formal writing."
+        example: "Das Buch des Mannes — the man's book (of the man)."
+        article_clue: "Articles: des (m/n), der (f), der (pl); nouns add -s/-es (m/n)."
+
 explanation:
   concept: |
     The GENITIVE CASE expresses possession and association (like English "'s" or "of").

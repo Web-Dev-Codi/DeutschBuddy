@@ -6,6 +6,22 @@ prerequisites: ["A1-GRM-017", "A1-GRM-006"]
 estimated_minutes: 28
 tags: ["adjectives", "declension", "endings", "attributive", "nominative", "accusative"]
 
+fundamentals:
+  parts_of_speech:
+    items:
+      - name: "Adjektiv (Adjective)"
+        note: "Describes or modifies nouns; takes endings when before a noun (attributive) based on case, gender, and article."
+  cases:
+    items:
+      - name: "Nominativ (Nominative)"
+        role: "Identifies the subject — who/what performs the action or is described."
+        example: "Der Hund bellt. — 'Der Hund' is the subject."
+        article_clue: "Subject case: der/die/das; plural: die."
+      - name: "Akkusativ (Accusative)"
+        role: "Marks the direct object; also required by certain prepositions."
+        example: "Ich sehe den Hund. — 'den Hund' receives the action."
+        article_clue: "Masculine der→den; feminine/plural die; neuter das."
+
 explanation:
   concept: |
     ATTRIBUTIVE adjectives (directly before a noun) MUST have endings.
