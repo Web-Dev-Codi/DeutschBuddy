@@ -1,6 +1,6 @@
 [app]
-name = "GermanTutor"
-version = "0.1.0"
+name = "DeutschBuddy"
+version = "0.6.0"
 
 [ollama]
 host = "http://localhost:11434"

@@ -2,34 +2,34 @@ from __future__ import annotations
 
 from textual.app import App
 
-from german_tutor.app_state import AppState
-from german_tutor.curriculum.cefr import CEFRProgressionEngine
-from german_tutor.curriculum.loader import CurriculumLoader
-from german_tutor.curriculum.vocab_loader import VocabLoader
-from german_tutor.db.connection import close_db, get_db
-from german_tutor.db.migrations import run_migrations
-from german_tutor.db.repositories.learner_repo import LearnerRepository
-from german_tutor.db.repositories.progress_repo import ProgressRepository
-from german_tutor.llm.client import OllamaClient
-from german_tutor.llm.curriculum_agent import CurriculumAgent
-from german_tutor.llm.quiz_agent import QuizAgent
-from german_tutor.llm.tutor_agent import TutorAgent
-from german_tutor.screens.help import HelpScreen
-from german_tutor.screens.home import HomeScreen, NavRequest
-from german_tutor.screens.vocab_topics import VocabTopicsScreen
-from german_tutor.screens.lesson import LessonScreen
-from german_tutor.screens.quiz import QuizScreen
-from german_tutor.screens.results import ResultsScreen
-from german_tutor.screens.settings import SettingsScreen
+from deutschbuddy.app_state import AppState
+from deutschbuddy.curriculum.cefr import CEFRProgressionEngine
+from deutschbuddy.curriculum.loader import CurriculumLoader
+from deutschbuddy.curriculum.vocab_loader import VocabLoader
+from deutschbuddy.db.connection import close_db, get_db
+from deutschbuddy.db.migrations import run_migrations
+from deutschbuddy.db.repositories.learner_repo import LearnerRepository
+from deutschbuddy.db.repositories.progress_repo import ProgressRepository
+from deutschbuddy.llm.client import OllamaClient
+from deutschbuddy.llm.curriculum_agent import CurriculumAgent
+from deutschbuddy.llm.quiz_agent import QuizAgent
+from deutschbuddy.llm.tutor_agent import TutorAgent
+from deutschbuddy.screens.help import HelpScreen
+from deutschbuddy.screens.home import HomeScreen, NavRequest
+from deutschbuddy.screens.vocab_topics import VocabTopicsScreen
+from deutschbuddy.screens.lesson import LessonScreen
+from deutschbuddy.screens.quiz import QuizScreen
+from deutschbuddy.screens.results import ResultsScreen
+from deutschbuddy.screens.settings import SettingsScreen
 
 
 DEFAULT_LEARNER_NAME = "Learner"
 
 
-class GermanTutorApp(App):
-    """GermanTutor — AI-powered German language learning TUI."""
+class DeutschBuddyApp(App):
+    """DeutschBuddy — AI-powered German language learning TUI."""
 
-    TITLE = "GermanTutor"
+    TITLE = "DeutschBuddy"
     CSS_PATH = "styles/main.tcss"
     BINDINGS = [
         ("q", "quit", "Quit"),
@@ -261,7 +261,7 @@ class GermanTutorApp(App):
 
 
 def run() -> None:
-    app = GermanTutorApp()
+    app = DeutschBuddyApp()
     app.run()
 
 
