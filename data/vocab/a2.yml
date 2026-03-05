@@ -1,0 +1,1363 @@
+topics:
+- id: personal-life-biography
+  title: Personal Life & Biography
+  level: A2
+  words:
+  - german: die Kindheit
+    english: childhood
+  - german: die Jugend
+    english: youth
+  - german: die Vergangenheit
+    english: the past
+  - german: die Erinnerung
+    english: memory / recollection
+  - german: das Erlebnis
+    english: experience / event
+  - german: das Ereignis
+    english: event / occurrence
+  - german: der Lebenslauf
+    english: CV / résumé
+  - german: die Biografie
+    english: biography
+  - german: geboren
+    english: born
+  - german: aufgewachsen
+    english: grown up
+  - german: umziehen
+    english: to move (house)
+  - german: der Umzug
+    english: the move
+  - german: heiraten
+    english: to get married
+  - german: die Hochzeit
+    english: wedding
+  - german: sich scheiden lassen
+    english: to get divorced
+  - german: die Scheidung
+    english: divorce
+  - german: der Abschluss
+    english: qualification / graduation
+  - german: die Ausbildung
+    english: vocational training / education
+  - german: das Studium
+    english: university studies
+  - german: anfangen
+    english: to begin / start
+  - german: aufhören
+    english: to stop / finish
+  - german: verbringen
+    english: to spend (time)
+  - german: damals
+    english: back then
+  - german: früher
+    english: in the past / previously
+  - german: als Kind
+    english: as a child
+- id: personality-character
+  title: Personality & Character
+  level: A2
+  words:
+  - german: die Persönlichkeit
+    english: personality
+  - german: der Charakter
+    english: character
+  - german: sympathisch
+    english: likeable / nice
+  - german: unsympathisch
+    english: unlikeable
+  - german: nett
+    english: kind / nice
+  - german: freundlich
+    english: friendly
+  - german: hilfsbereit
+    english: helpful
+  - german: ehrlich
+    english: honest
+  - german: unehrlich
+    english: dishonest
+  - german: zuverlässig
+    english: reliable
+  - german: unzuverlässig
+    english: unreliable
+  - german: pünktlich
+    english: punctual
+  - german: fleißig
+    english: hardworking / diligent
+  - german: faul
+    english: lazy
+  - german: neugierig
+    english: curious / nosy
+  - german: mutig
+    english: brave
+  - german: schüchtern
+    english: shy
+  - german: selbstbewusst
+    english: self-confident
+  - german: geduldig
+    english: patient
+  - german: ungeduldig
+    english: impatient
+  - german: lustig
+    english: funny
+  - german: humorvoll
+    english: humorous
+  - german: ernst
+    english: serious
+  - german: kreativ
+    english: creative
+  - german: intelligent
+    english: intelligent
+  - german: klug
+    english: clever / smart
+  - german: ruhig
+    english: calm / quiet
+  - german: nervös
+    english: nervous
+  - german: gestresst
+    english: stressed
+  - german: entspannt
+    english: relaxed
+  - german: offen
+    english: open / open-minded
+  - german: introvertiert
+    english: introverted
+  - german: extrovertiert
+    english: extroverted
+- id: appearance-extended
+  title: Appearance (Extended)
+  level: A2
+  words:
+  - german: die Größe
+    english: height / size
+  - german: das Gewicht
+    english: weight
+  - german: schlank
+    english: slim
+  - german: dünn
+    english: thin
+  - german: dick
+    english: fat / thick
+  - german: mittelgroß
+    english: medium height
+  - german: groß
+    english: tall
+  - german: klein
+    english: short / small
+  - german: die Haare
+    english: hair
+  - german: lockig
+    english: curly
+  - german: glatt
+    english: straight (hair)
+  - german: wellig
+    english: wavy
+  - german: kurz
+    english: short
+  - german: lang
+    english: long
+  - german: mittellang
+    english: medium length
+  - german: die Glatze
+    english: bald head
+  - german: blond
+    english: blonde
+  - german: brünett
+    english: brunette
+  - german: rothaarig
+    english: red-haired
+  - german: grau
+    english: grey
+  - german: die Augen
+    english: eyes
+  - german: blauäugig
+    english: blue-eyed
+  - german: die Brille
+    english: glasses
+  - german: der Bart
+    english: beard
+  - german: der Schnurrbart
+    english: moustache
+  - german: das Aussehen
+    english: appearance / looks
+  - german: attraktiv
+    english: attractive
+  - german: hübsch
+    english: pretty
+  - german: jung aussehen
+    english: to look young
+  - german: älter aussehen
+    english: to look older
+- id: relationships-social-life
+  title: Relationships & Social Life
+  level: A2
+  words:
+  - german: die Beziehung
+    english: relationship
+  - german: die Freundschaft
+    english: friendship
+  - german: die Partnerschaft
+    english: partnership
+  - german: kennenlernen
+    english: to get to know / meet
+  - german: sich verabreden
+    english: to make plans / arrange to meet
+  - german: die Verabredung
+    english: appointment / date
+  - german: einladen
+    english: to invite
+  - german: die Einladung
+    english: invitation
+  - german: ablehnen
+    english: to decline / reject
+  - german: annehmen
+    english: to accept
+  - german: sich treffen
+    english: to meet up
+  - german: zusammen
+    english: together
+  - german: gemeinsam
+    english: together / jointly
+  - german: die Nachbarin / der Nachbar
+    english: neighbour
+  - german: bekannt
+    english: acquainted / well-known
+  - german: der Bekannte / die Bekannte
+    english: acquaintance
+  - german: sich streiten
+    english: to argue
+  - german: der Streit
+    english: argument
+  - german: sich versöhnen
+    english: to make up / reconcile
+  - german: vertrauen
+    english: to trust
+  - german: das Vertrauen
+    english: trust
+  - german: unterstützen
+    english: to support
+  - german: die Unterstützung
+    english: support
+- id: home-neighbourhood-extended
+  title: Home & Neighbourhood (Extended)
+  level: A2
+  words:
+  - german: die Gegend
+    english: area / neighbourhood
+  - german: das Viertel
+    english: district / quarter
+  - german: die Innenstadt
+    english: city centre
+  - german: die Vorstadt
+    english: suburbs
+  - german: das Dorf
+    english: village
+  - german: die Gemeinde
+    english: municipality / community
+  - german: die Umgebung
+    english: surroundings
+  - german: in der Nähe
+    english: nearby
+  - german: weit entfernt
+    english: far away
+  - german: die Miete
+    english: rent
+  - german: der Vermieter / die Vermieterin
+    english: landlord / landlady
+  - german: der Mieter / die Mieterin
+    english: tenant
+  - german: der Mietvertrag
+    english: rental contract
+  - german: die Kaution
+    english: deposit
+  - german: die Nebenkosten
+    english: additional costs / utilities
+  - german: die Heizung
+    english: heating
+  - german: die Klimaanlage
+    english: air conditioning
+  - german: der Strom
+    english: electricity
+  - german: das Gas
+    english: gas
+  - german: das Wasser
+    english: water
+  - german: die Müllentsorgung
+    english: waste disposal
+  - german: der Aufzug
+    english: lift / elevator
+  - german: der Keller
+    english: cellar / basement
+  - german: der Dachboden
+    english: attic
+  - german: die Garage
+    english: garage
+  - german: der Parkplatz
+    english: parking space
+  - german: renovieren
+    english: to renovate
+  - german: die Renovierung
+    english: renovation
+  - german: einziehen
+    english: to move in
+  - german: ausziehen
+    english: to move out
+- id: daily-life-lifestyle
+  title: Daily Life & Lifestyle
+  level: A2
+  words:
+  - german: der Alltag
+    english: everyday life
+  - german: die Gewohnheit
+    english: habit
+  - german: die Routine
+    english: routine
+  - german: der Lebensstil
+    english: lifestyle
+  - german: gesund
+    english: healthy
+  - german: ungesund
+    english: unhealthy
+  - german: ausgewogen
+    english: balanced
+  - german: die Ernährung
+    english: diet / nutrition
+  - german: vegetarisch
+    english: vegetarian
+  - german: vegan
+    english: vegan
+  - german: der Stress
+    english: stress
+  - german: entspannen
+    english: to relax
+  - german: die Entspannung
+    english: relaxation
+  - german: schlafen gehen
+    english: to go to sleep
+  - german: aufwachen
+    english: to wake up
+  - german: duschen
+    english: to shower
+  - german: sich anziehen
+    english: to get dressed
+  - german: sich ausziehen
+    english: to get undressed
+  - german: frühstücken
+    english: to have breakfast
+  - german: zu Abend essen
+    english: to have dinner
+  - german: spazieren gehen
+    english: to go for a walk
+  - german: einkaufen gehen
+    english: to go shopping
+  - german: putzen
+    english: to clean
+  - german: aufräumen
+    english: to tidy up
+  - german: kochen
+    english: to cook
+  - german: bügeln
+    english: to iron
+  - german: waschen
+    english: to wash
+  - german: der Haushalt
+    english: household
+  - german: die Hausarbeit
+    english: housework
+- id: food-cooking-extended
+  title: Food & Cooking (Extended)
+  level: A2
+  words:
+  - german: das Rezept
+    english: recipe
+  - german: die Zutat / die Zutaten
+    english: ingredient / ingredients
+  - german: die Portion
+    english: portion
+  - german: die Menge
+    english: quantity / amount
+  - german: schneiden
+    english: to cut / chop
+  - german: hacken
+    english: to chop / mince
+  - german: braten
+    english: to fry / roast
+  - german: backen
+    english: to bake
+  - german: kochen
+    english: to boil / cook
+  - german: dämpfen
+    english: to steam
+  - german: rühren
+    english: to stir
+  - german: mischen
+    english: to mix
+  - german: der Topf
+    english: pot / saucepan
+  - german: die Pfanne
+    english: frying pan
+  - german: der Ofen
+    english: oven
+  - german: die Mikrowelle
+    english: microwave
+  - german: das Schneidebrett
+    english: chopping board
+  - german: das Messer
+    english: knife
+  - german: die Gabel
+    english: fork
+  - german: der Löffel
+    english: spoon
+  - german: der Teller
+    english: plate
+  - german: die Schüssel
+    english: bowl
+  - german: das Glas
+    english: glass
+  - german: die Tasse
+    english: cup / mug
+  - german: die Serviette
+    english: napkin
+  - german: würzig
+    english: spicy / flavourful
+  - german: süß
+    english: sweet
+  - german: sauer
+    english: sour
+  - german: bitter
+    english: bitter
+  - german: salzig
+    english: salty
+  - german: mild
+    english: mild
+  - german: scharf
+    english: hot / spicy
+  - german: frisch
+    english: fresh
+  - german: gefroren
+    english: frozen
+  - german: die Allergie
+    english: allergy
+  - german: laktosefrei
+    english: lactose-free
+  - german: glutenfrei
+    english: gluten-free
+  - german: bio
+    english: organic
+- id: shopping-services
+  title: Shopping & Services
+  level: A2
+  words:
+  - german: umtauschen
+    english: to exchange
+  - german: zurückgeben
+    english: to return (an item)
+  - german: die Quittung
+    english: receipt
+  - german: der Kassenbon
+    english: till receipt
+  - german: reklamieren
+    english: to complain / make a complaint
+  - german: die Reklamation
+    english: complaint
+  - german: der Mangel
+    english: defect / fault
+  - german: kaputt
+    english: broken
+  - german: beschädigt
+    english: damaged
+  - german: der Umtausch
+    english: exchange
+  - german: die Rückerstattung
+    english: refund
+  - german: der Rabatt
+    english: discount
+  - german: das Angebot
+    english: offer / deal
+  - german: der Ausverkauf
+    english: sale
+  - german: reduziert
+    english: reduced
+  - german: das Sonderangebot
+    english: special offer
+  - german: die Werbung
+    english: advertising / advert
+  - german: das Schaufenster
+    english: shop window
+  - german: die Schlange
+    english: queue
+  - german: warten
+    english: to wait
+  - german: das Paket
+    english: parcel / package
+  - german: das Päckchen
+    english: small parcel
+  - german: die Post
+    english: post / post office
+  - german: der Brief
+    english: letter
+  - german: die Briefmarke
+    english: stamp
+  - german: die Packung
+    english: packet / pack
+  - german: der Umschlag
+    english: envelope
+  - german: die Bank
+    english: bank
+  - german: das Konto
+    english: bank account
+  - german: die Überweisung
+    english: bank transfer
+  - german: abheben
+    english: to withdraw
+  - german: einzahlen
+    english: to deposit
+  - german: der Geldautomat
+    english: ATM / cash machine
+  - german: die Kreditkarte
+    english: credit card
+  - german: die EC-Karte
+    english: debit card
+  - german: bar bezahlen
+    english: to pay cash
+- id: health-wellbeing-extended
+  title: Health & Wellbeing (Extended)
+  level: A2
+  words:
+  - german: das Symptom
+    english: symptom
+  - german: die Diagnose
+    english: diagnosis
+  - german: das Rezept
+    english: prescription
+  - german: die Tablette
+    english: tablet / pill
+  - german: die Salbe
+    english: ointment / cream
+  - german: die Spritze
+    english: injection
+  - german: die Impfung
+    english: vaccination
+  - german: der Verband
+    english: bandage
+  - german: allergisch
+    english: allergic
+  - german: das Blut
+    english: blood
+  - german: der Blutdruck
+    english: blood pressure
+  - german: die Untersuchung
+    english: examination / check-up
+  - german: untersuchen
+    english: to examine
+  - german: sich erholen
+    english: to recover / recuperate
+  - german: die Erholung
+    english: recovery
+  - german: die Operation
+    english: operation / surgery
+  - german: operieren
+    english: to operate
+  - german: der Notfall
+    english: emergency
+  - german: der Krankenwagen
+    english: ambulance
+  - german: die Erste Hilfe
+    english: first aid
+  - german: die Versicherung
+    english: insurance
+  - german: die Krankenversicherung
+    english: health insurance
+  - german: krank sein
+    english: to be ill
+  - german: sich wohlfühlen
+    english: to feel well
+  - german: fit
+    english: fit
+  - german: erschöpft
+    english: exhausted
+  - german: die Schlaflosigkeit
+    english: insomnia
+  - german: einschlafen
+    english: to fall asleep
+  - german: ausschlafen
+    english: to sleep in / get enough sleep
+  - german: die Bewegung
+    english: exercise / movement
+  - german: sich bewegen
+    english: to move / exercise
+  - german: trainieren
+    english: to train / work out
+  - german: das Fitnessstudio
+    english: gym
+  - german: abnehmen
+    english: to lose weight
+  - german: zunehmen
+    english: to gain weight
+- id: work-career-extended
+  title: Work & Career (Extended)
+  level: A2
+  words:
+  - german: die Stelle
+    english: job / position
+  - german: die Vollzeitstelle
+    english: full-time position
+  - german: die Teilzeitstelle
+    english: part-time position
+  - german: der Vertrag
+    english: contract
+  - german: der Arbeitsvertrag
+    english: employment contract
+  - german: das Gehalt
+    english: salary (monthly)
+  - german: der Lohn
+    english: wage (hourly)
+  - german: die Gehaltserhöhung
+    english: pay rise
+  - german: die Überstunden
+    english: overtime
+  - german: die Pause
+    english: break
+  - german: der Urlaub
+    english: holiday / annual leave
+  - german: der Urlaubstag
+    english: holiday day
+  - german: kündigen
+    english: to resign / give notice
+  - german: die Kündigung
+    english: termination / resignation
+  - german: entlassen
+    english: to dismiss / fire
+  - german: die Bewerbung
+    english: job application
+  - german: sich bewerben
+    english: to apply
+  - german: das Vorstellungsgespräch
+    english: job interview
+  - german: der Lebenslauf
+    english: CV
+  - german: das Anschreiben
+    english: cover letter
+  - german: die Qualifikation
+    english: qualification
+  - german: die Erfahrung
+    english: experience
+  - german: die Fähigkeit
+    english: skill / ability
+  - german: der Kollege / die Kollegin
+    english: colleague
+  - german: der Vorgesetzte / die Vorgesetzte
+    english: superior / manager
+  - german: die Besprechung
+    english: meeting
+  - german: die Konferenz
+    english: conference
+  - german: das Projekt
+    english: project
+  - german: die Aufgabe
+    english: task
+  - german: der Auftrag
+    english: order / assignment
+  - german: erledigen
+    english: to complete / deal with
+  - german: zuständig sein für
+    english: to be responsible for
+  - german: selbstständig
+    english: self-employed / independent
+  - german: der Selbstständige
+    english: self-employed person
+  - german: das Homeoffice
+    english: working from home
+  - german: die Dienstreise
+    english: business trip
+- id: education
+  title: Education
+  level: A2
+  words:
+  - german: die Grundschule
+    english: primary school
+  - german: die Realschule
+    english: secondary school (intermediate)
+  - german: das Gymnasium
+    english: grammar school / high school
+  - german: die Gesamtschule
+    english: comprehensive school
+  - german: die Berufsschule
+    english: vocational school
+  - german: die Universität
+    english: university
+  - german: die Fachhochschule
+    english: university of applied sciences
+  - german: das Fach
+    english: school subject
+  - german: der Stundenplan
+    english: timetable
+  - german: die Note
+    english: grade / mark
+  - german: bestehen
+    english: to pass
+  - german: durchfallen
+    english: to fail
+  - german: das Zeugnis
+    english: school report / certificate
+  - german: das Diplom
+    english: diploma
+  - german: der Bachelor
+    english: bachelor's degree
+  - german: der Master
+    english: master's degree
+  - german: der Doktor
+    english: doctorate / PhD
+  - german: die Hausaufgaben
+    english: homework
+  - german: der Aufsatz
+    english: essay
+  - german: die Prüfung
+    english: exam
+  - german: die Klausur
+    english: written exam
+  - german: das Referat
+    english: presentation / report
+  - german: die Nachhilfe
+    english: tutoring / extra lessons
+  - german: der Stundenplan
+    english: class schedule
+  - german: das Klassenzimmer
+    english: classroom
+  - german: die Tafel
+    english: blackboard / whiteboard
+  - german: der Lehrer / die Lehrerin
+    english: teacher
+  - german: der Professor / die Professorin
+    english: professor
+  - german: der Schüler / die Schülerin
+    english: pupil
+  - german: der Student / die Studentin
+    english: student
+  - german: das Semester
+    english: semester
+  - german: die Vorlesung
+    english: lecture
+  - german: das Seminar
+    english: seminar
+  - german: die Bibliothek
+    english: library
+  - german: das Stipendium
+    english: scholarship
+  - german: sich anmelden
+    english: to register / enrol
+- id: travel-holidays
+  title: Travel & Holidays
+  level: A2
+  words:
+  - german: die Reise
+    english: journey / trip
+  - german: reisen
+    english: to travel
+  - german: der Urlaub
+    english: holiday / vacation
+  - german: buchen
+    english: to book
+  - german: die Buchung
+    english: booking
+  - german: das Hotel
+    english: hotel
+  - german: die Pension
+    english: guesthouse / B&B
+  - german: die Jugendherberge
+    english: youth hostel
+  - german: das Einzelzimmer
+    english: single room
+  - german: das Doppelzimmer
+    english: double room
+  - german: die Reservierung
+    english: reservation
+  - german: einchecken
+    english: to check in
+  - german: auschecken
+    english: to check out
+  - german: der Reisepass
+    english: passport
+  - german: das Visum
+    english: visa
+  - german: die Versicherung
+    english: insurance
+  - german: die Reiseversicherung
+    english: travel insurance
+  - german: der Koffer
+    english: suitcase
+  - german: der Rucksack
+    english: backpack
+  - german: packen
+    english: to pack
+  - german: die Sehenswürdigkeit
+    english: tourist attraction / sight
+  - german: besichtigen
+    english: to visit / tour (a sight)
+  - german: die Führung
+    english: guided tour
+  - german: der Reiseführer
+    english: travel guide (book or person)
+  - german: die Landkarte
+    english: map
+  - german: der Stadtplan
+    english: city map
+  - german: die Verspätung
+    english: delay
+  - german: der Anschluss
+    english: connection (transport)
+  - german: verpassen
+    english: to miss (a train/bus)
+  - german: die Panne
+    english: breakdown / mishap
+  - german: das Gepäck
+    english: luggage
+  - german: der Gepäckträger
+    english: porter / luggage rack
+  - german: verloren gehen
+    english: to get lost
+  - german: die Touristeninformation
+    english: tourist information
+  - german: die Unterkunft
+    english: accommodation
+  - german: übernachten
+    english: to stay overnight
+  - german: die Übernachtung
+    english: overnight stay
+  - german: der Strand
+    english: beach
+  - german: das Meer
+    english: sea
+  - german: das Gebirge
+    english: mountains
+  - german: die Landschaft
+    english: landscape / scenery
+  - german: das Ausland
+    english: abroad / foreign country
+  - german: im Ausland
+    english: abroad
+  - german: die Grenze
+    english: border
+- id: transport-extended
+  title: Transport (Extended)
+  level: A2
+  words:
+  - german: der Fahrplan
+    english: timetable / schedule
+  - german: die Abfahrt
+    english: departure
+  - german: die Ankunft
+    english: arrival
+  - german: abfahren
+    english: to depart
+  - german: ankommen
+    english: to arrive
+  - german: umsteigen
+    english: to change (trains/buses)
+  - german: der Umstieg
+    english: transfer / change
+  - german: die Verbindung
+    english: connection
+  - german: das Gleis
+    english: platform / track
+  - german: der Bahnsteig
+    english: platform
+  - german: der Schalter
+    english: ticket counter
+  - german: die Fahrkarte
+    english: ticket
+  - german: das Ticket
+    english: ticket
+  - german: die Monatskarte
+    english: monthly pass
+  - german: das Abo
+    english: subscription / season ticket
+  - german: die erste Klasse
+    english: first class
+  - german: die zweite Klasse
+    english: second class
+  - german: der Sitzplatz
+    english: seat
+  - german: reservieren
+    english: to reserve
+  - german: die Reservierung
+    english: reservation
+  - german: der Stau
+    english: traffic jam
+  - german: die Autobahn
+    english: motorway / highway
+  - german: die Bundesstraße
+    english: main road
+  - german: parken
+    english: to park
+  - german: der Parkplatz
+    english: car park / parking space
+  - german: das Parkticket
+    english: parking ticket
+  - german: tanken
+    english: to refuel
+  - german: die Tankstelle
+    english: petrol station
+  - german: der Führerschein
+    english: driving licence
+  - german: die Panne
+    english: breakdown
+  - german: der Unfall
+    english: accident
+  - german: die Werkstatt
+    english: garage / repair shop
+- id: weather-environment
+  title: Weather & Environment
+  level: A2
+  words:
+  - german: das Klima
+    english: climate
+  - german: die Klimazone
+    english: climate zone
+  - german: die Jahreszeit
+    english: season
+  - german: der Sturm
+    english: storm
+  - german: der Blitz
+    english: lightning
+  - german: der Donner
+    english: thunder
+  - german: das Hochwasser
+    english: flood
+  - german: die Überschwemmung
+    english: flooding
+  - german: die Dürre
+    english: drought
+  - german: der Frost
+    english: frost
+  - german: das Eis
+    english: ice
+  - german: glatt
+    english: icy / slippery
+  - german: der Regenschirm
+    english: umbrella
+  - german: der Regenmantel
+    english: raincoat
+  - german: die Wettervorhersage
+    english: weather forecast
+  - german: sich verändern
+    english: to change
+  - german: die Umwelt
+    english: environment
+  - german: die Natur
+    english: nature
+  - german: der Wald
+    english: forest
+  - german: der Fluss
+    english: river
+  - german: der See
+    english: lake
+  - german: das Meer
+    english: sea / ocean
+  - german: der Berg
+    english: mountain
+  - german: das Tal
+    english: valley
+  - german: die Wiese
+    english: meadow
+  - german: der Umweltschutz
+    english: environmental protection
+  - german: recyceln
+    english: to recycle
+  - german: der Müll
+    english: rubbish / waste
+  - german: die Mülltrennung
+    english: waste separation
+  - german: erneuerbare Energie
+    english: renewable energy
+  - german: der CO₂-Ausstoß
+    english: CO₂ emissions
+  - german: der Klimawandel
+    english: climate change
+- id: free-time-culture
+  title: Free Time & Culture
+  level: A2
+  words:
+  - german: die Freizeit
+    english: free time / leisure
+  - german: die Veranstaltung
+    english: event
+  - german: die Ausstellung
+    english: exhibition
+  - german: die Galerie
+    english: gallery
+  - german: das Festival
+    english: festival
+  - german: die Messe
+    english: trade fair / fair
+  - german: das Spektakel
+    english: spectacle / show
+  - german: empfehlen
+    english: to recommend
+  - german: die Empfehlung
+    english: recommendation
+  - german: der Eintritt
+    english: admission / entry
+  - german: die Eintrittskarte
+    english: entry ticket
+  - german: ausverkauft
+    english: sold out
+  - german: die Vorstellung
+    english: performance / show
+  - german: die Aufführung
+    english: performance / production
+  - german: der Regisseur / die Regisseurin
+    english: director (film/theatre)
+  - german: der Schauspieler / die Schauspielerin
+    english: actor / actress
+  - german: der Sänger / die Sängerin
+    english: singer
+  - german: das Album
+    english: album
+  - german: der Roman
+    english: novel
+  - german: der Autor / die Autorin
+    english: author
+  - german: das Genre
+    english: genre
+  - german: unterhalten
+    english: to entertain
+  - german: die Unterhaltung
+    english: entertainment
+  - german: langweilig
+    english: boring
+  - german: spannend
+    english: exciting / thrilling
+  - german: lustig
+    english: funny
+  - german: traurig
+    english: sad
+  - german: berührend
+    english: moving / touching
+  - german: empfehlenswert
+    english: worth recommending
+- id: celebrations-occasions
+  title: Celebrations & Occasions
+  level: A2
+  words:
+  - german: der Feiertag
+    english: public holiday
+  - german: das Fest
+    english: celebration / festival
+  - german: feiern
+    english: to celebrate
+  - german: die Party
+    english: party
+  - german: die Feier
+    english: celebration / ceremony
+  - german: einladen
+    english: to invite
+  - german: der Gast / die Gäste
+    english: guest / guests
+  - german: der Gastgeber / die Gastgeberin
+    english: host
+  - german: das Geschenk
+    english: gift / present
+  - german: schenken
+    english: to give (as a gift)
+  - german: das Geburtstagsgeschenk
+    english: birthday present
+  - german: die Kerze
+    english: candle
+  - german: der Kuchen
+    english: cake
+  - german: die Torte
+    english: gateau / layered cake
+  - german: anstoßen
+    english: to toast (with drinks)
+  - german: Prost!
+    english: Cheers!
+  - german: Herzlichen Glückwunsch!
+    english: Congratulations!
+  - german: Alles Gute!
+    english: All the best!
+  - german: Frohe Weihnachten!
+    english: Merry Christmas!
+  - german: Frohes neues Jahr!
+    english: Happy New Year!
+  - german: Frohe Ostern!
+    english: Happy Easter!
+  - german: Weihnachten
+    english: Christmas
+  - german: Silvester
+    english: New Year's Eve
+  - german: Neujahr
+    english: New Year's Day
+  - german: Ostern
+    english: Easter
+  - german: der Karneval / Fasching
+    english: carnival
+  - german: das Oktoberfest
+    english: Oktoberfest
+  - german: die Taufe
+    english: baptism / christening
+  - german: die Konfirmation
+    english: confirmation
+  - german: der Hochzeitstag
+    english: wedding anniversary
+- id: media-communication
+  title: Media & Communication
+  level: A2
+  words:
+  - german: die Medien
+    english: media
+  - german: die Zeitung
+    english: newspaper
+  - german: die Zeitschrift
+    english: magazine
+  - german: der Artikel
+    english: article
+  - german: die Schlagzeile
+    english: headline
+  - german: der Bericht
+    english: report
+  - german: das Interview
+    english: interview
+  - german: das Radio
+    english: radio
+  - german: das Fernsehen
+    english: television
+  - german: die Sendung
+    english: programme / broadcast
+  - german: die Nachrichten
+    english: news
+  - german: der Kanal
+    english: channel
+  - german: streamen
+    english: to stream
+  - german: herunterladen
+    english: to download
+  - german: hochladen
+    english: to upload
+  - german: das Internet
+    english: internet
+  - german: die Website
+    english: website
+  - german: die App
+    english: app
+  - german: soziale Medien
+    english: social media
+  - german: posten
+    english: to post
+  - german: kommentieren
+    english: to comment
+  - german: liken
+    english: to like
+  - german: folgen
+    english: to follow
+  - german: die Nachricht
+    english: message
+  - german: schicken
+    english: to send
+  - german: empfangen
+    english: to receive
+  - german: beantworten
+    english: to reply to / answer
+  - german: weiterleiten
+    english: to forward
+  - german: die E-Mail
+    english: email
+  - german: der Anhang
+    english: attachment
+  - german: das Passwort
+    english: password
+  - german: der Benutzername
+    english: username
+  - german: das Profil
+    english: profile
+  - german: das Netzwerk
+    english: network
+  - german: telefonieren
+    english: to talk on the phone
+  - german: das Gespräch
+    english: conversation / call
+  - german: die Voicemail
+    english: voicemail
+  - german: der Vertrag
+    english: contract (phone / internet)
+- id: money-finance
+  title: Money & Finance
+  level: A2
+  words:
+  - german: das Einkommen
+    english: income
+  - german: das Gehalt
+    english: salary
+  - german: die Ausgaben
+    english: expenses / expenditure
+  - german: die Einnahmen
+    english: income / earnings
+  - german: das Budget
+    english: budget
+  - german: sparen
+    english: to save
+  - german: die Ersparnisse
+    english: savings
+  - german: ausgeben
+    english: to spend
+  - german: die Schulden
+    english: debts
+  - german: schulden
+    english: to owe
+  - german: der Kredit
+    english: loan / credit
+  - german: die Rate
+    english: instalment
+  - german: die Steuer
+    english: tax
+  - german: die Mehrwertsteuer (MwSt.)
+    english: VAT
+  - german: der Kontoauszug
+    english: bank statement
+  - german: das Girokonto
+    english: current account
+  - german: das Sparkonto
+    english: savings account
+  - german: überweisen
+    english: to transfer
+  - german: der Betrag
+    english: amount
+  - german: die Quittung
+    english: receipt
+  - german: die Rechnung
+    english: invoice / bill
+  - german: bezahlbar
+    english: affordable
+  - german: leisten können
+    english: to be able to afford
+  - german: sich leisten
+    english: to afford
+  - german: kostenlos
+    english: free of charge
+  - german: umsonst
+    english: free / for nothing
+  - german: teuer
+    english: expensive
+  - german: preiswert
+    english: good value
+- id: grammar-vocabulary
+  title: Grammar Vocabulary
+  level: A2
+  words:
+  - german: die Vergangenheit
+    english: past
+  - german: die Gegenwart
+    english: present
+  - german: die Zukunft
+    english: future
+  - german: die Regel
+    english: rule
+  - german: die Ausnahme
+    english: exception
+  - german: der Satz
+    english: sentence
+  - german: das Verb
+    english: verb
+  - german: das Nomen / das Substantiv
+    english: noun
+  - german: das Adjektiv
+    english: adjective
+  - german: das Adverb
+    english: adverb
+  - german: die Präposition
+    english: preposition
+  - german: der Artikel
+    english: article
+  - german: der Fall / der Kasus
+    english: case
+  - german: der Nominativ
+    english: nominative
+  - german: der Akkusativ
+    english: accusative
+  - german: der Dativ
+    english: dative
+  - german: der Genitiv
+    english: genitive
+  - german: trennbar
+    english: separable
+  - german: reflexiv
+    english: reflexive
+  - german: regelmäßig
+    english: regular
+  - german: unregelmäßig
+    english: irregular
+  - german: die Konjugation
+    english: conjugation
+  - german: konjugieren
+    english: to conjugate
+  - german: die Deklination
+    english: declension
+  - german: deklinieren
+    english: to decline
+- id: useful-connectors-expressions
+  title: Useful Connectors & Expressions
+  level: A2
+  words:
+  - german: zuerst
+    english: first of all
+  - german: dann
+    english: then
+  - german: danach
+    english: after that
+  - german: anschließend
+    english: subsequently / afterwards
+  - german: schließlich
+    english: finally
+  - german: am Ende
+    english: in the end
+  - german: einerseits… andererseits
+    english: on the one hand… on the other hand
+  - german: außerdem
+    english: in addition / furthermore
+  - german: jedoch
+    english: however
+  - german: trotzdem
+    english: nevertheless / despite that
+  - german: obwohl
+    english: although
+  - german: deshalb / deswegen
+    english: therefore / that's why
+  - german: damit
+    english: so that / with that
+  - german: falls
+    english: in case / if
+  - german: sowohl… als auch
+    english: both… and
+  - german: entweder… oder
+    english: either… or
+  - german: weder… noch
+    english: neither… nor
+  - german: je… desto
+    english: the more… the more
+  - german: ungefähr
+    english: approximately
+  - german: etwa
+    english: approximately / roughly
+  - german: mindestens
+    english: at least
+  - german: höchstens
+    english: at most
+  - german: insgesamt
+    english: in total / overall
+  - german: meistens
+    english: mostly / usually
+  - german: normalerweise
+    english: normally
+  - german: eigentlich
+    english: actually / in fact
+  - german: übrigens
+    english: by the way
+  - german: leider
+    english: unfortunately
+  - german: zum Glück
+    english: luckily / fortunately
+  - german: natürlich
+    english: of course / naturally
+  - german: vielleicht
+    english: maybe / perhaps
+  - german: wahrscheinlich
+    english: probably

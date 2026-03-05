@@ -3,12 +3,13 @@ from __future__ import annotations
 from textual.app import ComposeResult
 from textual.message import Message
 from textual.screen import Screen
-from textual.widgets import Button, Footer, Header, Label, Static
+from textual.widgets import Button, Footer, Header, Static
 
 from deutschbuddy.models.learner import Learner
-from deutschbuddy.models.lesson import LessonRecommendation
+ 
 from deutschbuddy.widgets.progress_bar import CEFRProgressBar
 from deutschbuddy.widgets.streak_indicator import StreakIndicator
+from deutschbuddy.screens.level_select import LevelSelectScreen
 
 
 # Simple message class for navigation requests
@@ -50,10 +51,11 @@ class HomeScreen(Screen):
             yield Button("📊 Progress", id="nav-progress", classes="nav-item")
             yield Button("🔁 Review", id="nav-review", classes="nav-item")
             yield Button("⚙  Settings", id="nav-settings", classes="nav-item")
+            yield Button("🔄 Change Level", id="nav-change-level", classes="nav-item")
 
             yield Static("─" * 18, classes="text-muted")
             yield Static(
-                f"Level: {self.learner.current_level.value}", classes="section-header"
+                f"Level: {self.learner.current_level.value}", id="sidebar-level", classes="section-header"
             )
             yield StreakIndicator(self.learner.streak_days, id="streak")
 
@@ -142,7 +144,7 @@ class HomeScreen(Screen):
                 # Update progress bar
                 progress_bar = self.query_one("#cefr-bar", CEFRProgressBar)
                 progress_bar.update_progress(progress_percent)
-        except Exception as e:
+        except Exception:
             # Fallback if anything goes wrong
             pass
 
@@ -182,3 +184,52 @@ class HomeScreen(Screen):
                 self.action_nav_lessons()
         elif button_id == "nav-review":
             self.action_nav_review()
+        elif button_id == "nav-change-level":
+            # Open modal to change level
+            self.run_worker(self._change_level(), exclusive=True)
+
+    async def _change_level(self) -> None:
+        """Open level select modal, persist selection, refresh UI, and navigate."""
+        try:
+            current_level = self.learner.current_level
+            selected = await self.app.push_screen_wait(LevelSelectScreen(current=current_level))
+            if selected is None or selected == current_level:
+                return
+
+            # Persist to DB
+            if hasattr(self.app, '_state') and self.app._state and self.learner.id is not None:
+                try:
+                    await self.app._state.learner_repo.update_level(self.learner.id, selected)
+                    # Clear last lesson so the new level's first lesson is used
+                    await self.app._state.learner_repo.update_last_lesson(self.learner.id, None)
+                except Exception as exc:
+                    self.notify(f"Failed to update level: {exc}", severity="error")
+                    return
+
+            # Update in-memory state
+            self.learner.current_level = selected
+            self.learner.last_lesson_id = None
+            if hasattr(self.app, '_state') and self.app._state and self.app._state.current_learner is not None:
+                self.app._state.current_learner.current_level = selected
+                self.app._state.current_learner.last_lesson_id = None
+
+            # Refresh sidebar label
+            try:
+                self.query_one("#sidebar-level", Static).update(f"Level: {selected.value}")
+            except Exception:
+                pass
+
+            # Refresh CEFR progress bar label and progress
+            try:
+                bar = self.query_one("#cefr-bar", CEFRProgressBar)
+                bar.update_levels(selected.value, None)
+            except Exception:
+                pass
+            # Recompute percent based on new level
+            await self._update_progress_bar()
+
+            # Auto-navigate to recommended lesson for this level
+            self.app.post_message(NavRequest("lessons"))
+        except Exception:
+            # Silently ignore unexpected errors to avoid crashing the UI
+            pass
