@@ -90,18 +90,21 @@ class VocabPreviewScreen(Screen):
                         # Get English translation
                         english_translation = entry.get('english', '').strip()
                         if not english_translation:
-                            english_translation = word
+                            english_translation = "Translation unavailable"
                         
                         # Get memory trick
                         memory_trick = entry.get('memory_trick', '').strip()
                         if not memory_trick:
                             # Generate a simple memory trick if none provided
-                            memory_trick = f"Think of '{word}' as similar to '{english_translation}'"
+                            if english_translation != "Translation unavailable":
+                                memory_trick = f"Think of '{word}' as similar to '{english_translation}'"
+                            else:
+                                memory_trick = f"Practice saying '{word}' aloud to remember it"
                         
                         # Ensure English and Memory Trick are different
-                        if memory_trick.lower() == english_translation.lower():
+                        if memory_trick.lower() == english_translation.lower() or memory_trick == f"Think of '{word}' as similar to 'Translation unavailable'":
                             # Generate a different memory trick
-                            memory_trick = f"Remember '{word}' by thinking about: {english_translation} in context"
+                            memory_trick = f"Remember '{word}' by practicing it in context"
                         
                         self._vocab_cards.append({
                             'word': word,
@@ -114,7 +117,7 @@ class VocabPreviewScreen(Screen):
                         self._vocab_cards.append({
                             'word': word,
                             'gender': '',
-                            'english': word,
+                            'english': "Translation unavailable",
                             'memory_trick': f"Practice saying '{word}' aloud to remember it"
                         })
         else:
@@ -124,7 +127,7 @@ class VocabPreviewScreen(Screen):
                     self._vocab_cards.append({
                         'word': word,
                         'gender': '',
-                        'english': word,
+                        'english': "Translation unavailable",
                         'memory_trick': f"Try to associate '{word}' with a mental image"
                     })
         

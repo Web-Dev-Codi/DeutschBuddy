@@ -1,10 +1,10 @@
-# GermanTutor
+# DeutschBuddy
 
 AI-powered German language tutor designed specifically for English speakers who want to learn German quickly and effectively.
 
 ## Goal
 
-GermanTutor helps English speakers achieve conversational fluency in German through personalized, AI-driven lessons that adapt to your learning pace and style. The app focuses on practical language skills you'll actually use in real-world conversations.
+DeutschBuddy helps English speakers achieve conversational fluency in German through personalized, AI-driven lessons that adapt to your learning pace and style. The app focuses on practical language skills you'll actually use in real-world conversations.
 
 ## How It Helps You Learn German Fast
 
@@ -81,7 +81,7 @@ Ollama supports AMD GPUs via ROCm. To enable hardware acceleration on an RX 7800
 
 ## Architecture
 
-GermanTutor uses a **dual-layer curriculum system** that combines static content with dynamic AI guidance:
+DeutschBuddy uses a **dual-layer curriculum system** that combines static content with dynamic AI guidance:
 
 ### YAML Curriculum Files (Content Library)
 - **Location**: `data/curriculum/A1/`, `data/curriculum/A2/`, `data/curriculum/B1/`
@@ -129,7 +129,7 @@ Settings are persisted to `config/settings.toml`.
 
 ## CEFR Levels
 
-GermanTutor follows the Common European Framework of Reference for Languages:
+DeutschBuddy follows the Common European Framework of Reference for Languages:
 
 | Level | Description | Lessons |
 |-------|-------------|---------|

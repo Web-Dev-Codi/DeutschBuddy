@@ -283,10 +283,8 @@ VocabFlashcardScreen {
 .flashcard-container {
     layout: grid;
     grid-size: 1;
-    border: round red;
     height: 1fr;
     width: 1fr;
-    border: solid orange;
     align: center middle;
 }
 
@@ -307,17 +305,51 @@ VocabFlashcardScreen {
     color: $text;
 }
 
-.flashcard-german {
-    border: round $nominative;
-    text-style: bold;
-    color: $primary;
-    layer: below;
+
+/* ── VocabCard widget styling ─────────────────────────────────────────── */
+VocabCard {
+    width: 100%;
+    height: auto;
+    padding: 1;
+    border: round $primary;
+    border-title-color: $primary;
+    border-subtitle-color: $accent;
+    align-horizontal: center;
+    align-vertical: middle;
 }
 
-.flashcard-english {
-    border: round $accusative;
-    text-style: italic;
+.vocab-card {
+    width: 60%;
+    min-width: 52;
+    max-width: 72;
+    padding: 2;
+    border: round $panel;
+    background: $surface;
+    content-align: center middle;
+    align: center middle;
+    layout: vertical;
+}
+
+.card-face {
+    width: 100%;
+    min-height: 7;
+    padding: 1;
+    text-align: center;
+    content-align: center middle;
+    border: round $primary;
+    background: $panel;
+}
+
+.card-english {
+    text-style: bold;
+    color: $primary;
     layer: above;
+}
+
+.card-german {
+    text-style: italic;
+    color: $text-primary;
+    layer: below;
 }
 
 #topics-grid {
