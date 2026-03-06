@@ -46,12 +46,13 @@ class HomeScreen(Screen):
         # Sidebar navigation
         with Static(id="sidebar"):
             yield Static("Navigation", classes="nav-label")
+            yield Button("️ Voice Conversation", id="nav-conversation", classes="nav-item")
             yield Button("📚 Lessons", id="nav-lessons", classes="nav-item")
             yield Button("🧠 Quiz", id="nav-quiz", classes="nav-item")
             yield Button("📊 Progress", id="nav-progress", classes="nav-item")
-            yield Button("🔁 Review", id="nav-review", classes="nav-item")
+            yield Button("🔁 Vocab Review", id="nav-review", classes="nav-item")
             yield Button("⚙  Settings", id="nav-settings", classes="nav-item")
-            yield Button("🔄 Change Level", id="nav-change-level", classes="nav-item")
+            yield Button("🔄 Curriculum", id="nav-change-level", classes="nav-item")
 
             yield Static("─" * 18, classes="text-muted")
             yield Static(
@@ -160,6 +161,9 @@ class HomeScreen(Screen):
     def action_nav_review(self) -> None:
         self.app.post_message(NavRequest("review"))
 
+    def action_nav_conversation(self) -> None:
+        self.app.post_message(NavRequest("conversation"))
+
     def action_nav_settings(self) -> None:
         self.app.post_message(NavRequest("settings"))
 
@@ -184,6 +188,8 @@ class HomeScreen(Screen):
                 self.action_nav_lessons()
         elif button_id == "nav-review":
             self.action_nav_review()
+        elif button_id == "nav-conversation":
+            self.action_nav_conversation()
         elif button_id == "nav-change-level":
             # Open modal to change level
             self.run_worker(self._change_level(), exclusive=True)

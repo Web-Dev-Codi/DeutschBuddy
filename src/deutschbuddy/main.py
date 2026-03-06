@@ -10,7 +10,10 @@ from deutschbuddy.db.connection import close_db, get_db
 from deutschbuddy.db.migrations import run_migrations
 from deutschbuddy.db.repositories.learner_repo import LearnerRepository
 from deutschbuddy.db.repositories.progress_repo import ProgressRepository
+from deutschbuddy.audio.listener import AudioListener
+from deutschbuddy.audio.speaker import AudioSpeaker
 from deutschbuddy.llm.client import OllamaClient
+from deutschbuddy.llm.conversation_agent import ConversationAgent
 from deutschbuddy.llm.curriculum_agent import CurriculumAgent
 from deutschbuddy.llm.quiz_agent import QuizAgent
 from deutschbuddy.llm.tutor_agent import TutorAgent
@@ -21,6 +24,7 @@ from deutschbuddy.screens.lesson import LessonScreen
 from deutschbuddy.screens.quiz import QuizScreen
 from deutschbuddy.screens.results import ResultsScreen
 from deutschbuddy.screens.settings import SettingsScreen
+from deutschbuddy.screens.conversation import ConversationScreen
 
 
 DEFAULT_LEARNER_NAME = "Learner"
@@ -34,6 +38,7 @@ class deutschbuddy(App):
     BINDINGS = [
         ("q", "quit", "Quit"),
         ("h", "go_home", "Home"),
+        ("c", "go_conversation", "Conversation"),
         ("ctrl+r", "go_review", "Review"),
         ("?", "show_help", "Help"),
     ]
@@ -109,6 +114,8 @@ class deutschbuddy(App):
             self.run_worker(self._open_vocab_topics(), exclusive=True)
         elif dest in ("progress",):
             self.notify("Progress screen coming in a future update.")
+        elif dest == "conversation":
+            self.run_worker(self._start_conversation(), exclusive=True)
 
     async def _start_lesson(self, lesson_id: str | None = None) -> None:
         """Push LessonScreen for the recommended or specified lesson."""
@@ -240,10 +247,36 @@ class deutschbuddy(App):
             pass
         return None
 
+    async def _start_conversation(self) -> None:
+        """Initialize and show conversation screen."""
+        if self._state is None:
+            return
+        
+        state = self._state
+        
+        # Initialize audio components
+        listener = AudioListener(language="de-DE", model="tiny")
+        speaker = AudioSpeaker(voice="de-DE", rate=150)
+        agent = ConversationAgent(
+            state.ollama_client,
+            level=state.current_learner.current_level,
+        )
+        
+        screen = ConversationScreen(
+            listener=listener,
+            speaker=speaker,
+            conversation_agent=agent,
+        )
+        
+        await self.push_screen(screen)
+
     # ── Actions ───────────────────────────────────────────────────────────────
 
     def action_go_review(self) -> None:
         self.run_worker(self._open_vocab_topics(), exclusive=True)
+
+    def action_go_conversation(self) -> None:
+        self.run_worker(self._start_conversation(), exclusive=True)
 
     def action_go_home(self) -> None:
         """Pop all screens above root, then push a fresh HomeScreen."""
