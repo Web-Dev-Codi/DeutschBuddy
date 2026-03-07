@@ -5,6 +5,7 @@ from pathlib import Path
 from tomlkit import parse, dumps
 
 from textual.app import ComposeResult
+from textual.containers import VerticalScroll
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Input, Static
 
@@ -27,7 +28,7 @@ class SettingsScreen(Screen):
 
     def compose(self) -> ComposeResult:
         yield Header()
-        with Static(id="main-content"):
+        with VerticalScroll(id="main-content"):
             yield Static("Settings", classes="section-header")
             app_config = self._config.get("app", {})
             conversation_config = self._config.get("conversation", {})
