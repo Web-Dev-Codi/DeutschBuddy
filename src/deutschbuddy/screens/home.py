@@ -46,6 +46,7 @@ class HomeScreen(Screen):
         self.learner = learner
         self.current_lesson = current_lesson
         self._level_progress: tuple[int, int] = (0, 0)
+        self._stats_refresh_timer = None
 
     def compose(self) -> ComposeResult:
         yield Header()
@@ -84,12 +85,16 @@ class HomeScreen(Screen):
                     yield VocabPracticeWidget(id="widget-vocab", classes="home-widget home-widget-button")
                     yield ContinueLessonWidget(id="widget-continue", classes="home-widget home-widget-button")
                 
-                yield Static("Version 0.6.1 • Made with ❤️ and 🇩🇪 • © 2026 DeutschBuddy", id="home-footer", classes="home-footer")
+                yield Static("Version 0.6.1 • Made with ❤️ in 🇩🇪 • © 2026 DeutschBuddy", id="home-footer", classes="home-footer")
 
         yield Footer()
 
     async def on_mount(self) -> None:
         self.run_worker(self._load_home_content(), exclusive=True)
+        self._stats_refresh_timer = self.set_interval(
+            60.0,
+            lambda: self.run_worker(self._refresh_study_minutes(), exclusive=True),
+        )
 
     async def _load_home_content(self) -> None:
         if not hasattr(self.app, "_state") or not self.app._state:
@@ -98,7 +103,8 @@ class HomeScreen(Screen):
         state = self.app._state
         await self._update_progress_bar()
 
-        minutes_today = await state.progress_repo.get_today_session_minutes(self.learner.id)
+        minutes_today = await state.progress_repo.get_today_study_minutes(self.learner.id)
+        minutes_today = max(0.0, minutes_today)
         vocab_count = await state.progress_repo.count_vocab_cards(self.learner.id)
         latest_vocab_progress = await state.progress_repo.get_latest_vocab_topic_progress(
             self.learner.id
@@ -107,6 +113,21 @@ class HomeScreen(Screen):
         self._update_stats_widget(minutes_today=minutes_today, vocab_count=vocab_count)
         self._update_vocab_widget(latest_vocab_progress)
         self._update_continue_widget()
+
+    async def _refresh_study_minutes(self) -> None:
+        if not hasattr(self.app, "_state") or not self.app._state:
+            return
+
+        minutes_today = await self.app._state.progress_repo.get_today_study_minutes(
+            self.learner.id
+        )
+        widget = self.query_one("#stats-widget", StatsWidget)
+        widget.set_stats(
+            minutes_today=max(0.0, minutes_today),
+            lessons_completed=self._level_progress[0],
+            lessons_total=self._level_progress[1],
+            vocab_count=widget._vocab_count,
+        )
 
     async def _update_progress_bar(self) -> None:
         if not hasattr(self.app, "_state") or not self.app._state:
@@ -207,6 +228,11 @@ class HomeScreen(Screen):
             self.app.post_message(NavRequest("lesson", lesson_id=self.current_lesson.id))
             return
         self.action_nav_lessons()
+
+    def on_unmount(self) -> None:
+        if self._stats_refresh_timer is not None:
+            self._stats_refresh_timer.stop()
+            self._stats_refresh_timer = None
 
     async def _open_lesson_picker(self) -> None:
         if not hasattr(self.app, "_state") or not self.app._state:

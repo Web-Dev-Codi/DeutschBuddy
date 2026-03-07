@@ -14,8 +14,6 @@ class ProgressRepository:
     def __init__(self, db: aiosqlite.Connection) -> None:
         self.db = db
 
-    # ── Lesson Progress ────────────────────────────────────────────────────────
-
     async def upsert_lesson_progress(self, progress: LessonProgress) -> None:
         await self.db.execute(
             """
@@ -61,18 +59,16 @@ class ProgressRepository:
         return [LessonProgress(**dict(r)) for r in rows]
 
     async def get_mastery_scores(self, learner_id: int, lesson_ids: list[str]) -> dict[str, float]:
-        """Get mastery scores for a list of lesson IDs. Returns 0.0 for missing lessons."""
         if not lesson_ids:
             return {}
-        
+
         placeholders = ",".join("?" for _ in lesson_ids)
         async with self.db.execute(
             f"SELECT lesson_id, mastery_score FROM lesson_progress WHERE learner_id = ? AND lesson_id IN ({placeholders})",
             (learner_id, *lesson_ids),
         ) as cursor:
             rows = await cursor.fetchall()
-        
-        # Convert to dict and fill missing with 0.0
+
         result = {lesson_id: 0.0 for lesson_id in lesson_ids}
         result.update({row[0]: row[1] for row in rows})
         return result
@@ -86,8 +82,6 @@ class ProgressRepository:
         ) as cursor:
             rows = await cursor.fetchall()
         return [LessonProgress(**dict(r)) for r in rows]
-
-    # ── Quiz Sessions ──────────────────────────────────────────────────────────
 
     async def create_session(self, session: QuizSession) -> int:
         async with self.db.execute(
@@ -132,8 +126,6 @@ class ProgressRepository:
         await self.db.commit()
 
     async def get_recent_sessions(self, learner_id: int, limit: int = 10) -> list[dict]:
-        # Note: llm_feedback values in returned dicts are raw JSON strings.
-        # Callers must json.loads() them if dict access is needed.
         async with self.db.execute(
             """
             SELECT qs.*, lp.mastery_score
@@ -157,10 +149,7 @@ class ProgressRepository:
             row = await cursor.fetchone()
         return int(row[0]) if row and row[0] is not None else 0
 
-    # ── Quiz Responses ─────────────────────────────────────────────────────────
-
     async def save_response(self, response: QuizResponse) -> None:
-        """Insert a quiz response row. Caller must commit the surrounding transaction."""
         await self.db.execute(
             """
             INSERT INTO quiz_responses
@@ -178,7 +167,6 @@ class ProgressRepository:
                 else None,
             ),
         )
-        # No commit here — batched with complete_session
 
     async def get_session_responses(self, session_id: int) -> list[QuizResponse]:
         async with self.db.execute(
@@ -192,8 +180,6 @@ class ProgressRepository:
                 d["llm_evaluation"] = json.loads(d["llm_evaluation"])
             result.append(QuizResponse(**d))
         return result
-
-    # ── Vocabulary Cards ───────────────────────────────────────────────────────
 
     async def upsert_vocab_card(
         self, learner_id: int, german: str, english: str, level: str
@@ -258,14 +244,56 @@ class ProgressRepository:
             rows = await cursor.fetchall()
         return [dict(r) for r in rows]
 
-    async def get_today_session_minutes(self, learner_id: int) -> float:
-        """Get total minutes spent in quiz sessions today."""
+    async def start_app_study_session(self, learner_id: int) -> int:
         async with self.db.execute(
             """
-            SELECT SUM((julianday(completed_at) - julianday(started_at)) * 1440) as total_minutes
-            FROM quiz_sessions 
-            WHERE learner_id = ? 
-            AND date(completed_at) = date('now') 
+            INSERT INTO app_study_sessions (learner_id, started_at)
+            VALUES (?, datetime('now'))
+            """,
+            (learner_id,),
+        ) as cursor:
+            rowid = cursor.lastrowid
+        await self.db.commit()
+        return rowid  # type: ignore[return-value]
+
+    async def end_app_study_session(self, session_id: int) -> None:
+        await self.db.execute(
+            """
+            UPDATE app_study_sessions
+            SET ended_at = datetime('now')
+            WHERE id = ? AND ended_at IS NULL
+            """,
+            (session_id,),
+        )
+        await self.db.commit()
+
+    async def get_today_study_minutes(self, learner_id: int) -> float:
+        async with self.db.execute(
+            """
+            SELECT SUM(
+                MAX(
+                    0,
+                    (julianday(COALESCE(ended_at, datetime('now'))) - julianday(started_at)) * 1440
+                )
+            ) AS total_minutes
+            FROM app_study_sessions
+            WHERE learner_id = ?
+            AND date(started_at) = date('now')
+            """,
+            (learner_id,),
+        ) as cursor:
+            row = await cursor.fetchone()
+        return float(row[0]) if row and row[0] is not None else 0.0
+
+    async def get_today_session_minutes(self, learner_id: int) -> float:
+        async with self.db.execute(
+            """
+            SELECT SUM(
+                MAX(0, (julianday(completed_at) - julianday(started_at)) * 1440)
+            ) as total_minutes
+            FROM quiz_sessions
+            WHERE learner_id = ?
+            AND date(completed_at) = date('now')
             AND completed_at IS NOT NULL
             """,
             (learner_id,),
@@ -274,7 +302,6 @@ class ProgressRepository:
         return float(row[0]) if row and row[0] is not None else 0.0
 
     async def update_vocab_card_gender(self, card_id: int, gender: str) -> None:
-        """Update the gender field for a vocabulary card."""
         await self.db.execute(
             "UPDATE vocabulary_cards SET gender = ? WHERE id = ?",
             (gender, card_id),
@@ -282,11 +309,10 @@ class ProgressRepository:
         await self.db.commit()
 
     async def get_cards_for_gender_drill(self, learner_id: int, limit: int = 20) -> list[dict]:
-        """Get vocabulary cards suitable for gender drill practice."""
         async with self.db.execute(
             """
-            SELECT * FROM vocabulary_cards 
-            WHERE learner_id = ? 
+            SELECT * FROM vocabulary_cards
+            WHERE learner_id = ?
             AND (german_word LIKE UPPER(substr(german_word, 1, 1)) || '%' OR gender IS NOT NULL)
             ORDER BY next_review ASC
             LIMIT ?
@@ -295,8 +321,6 @@ class ProgressRepository:
         ) as cursor:
             rows = await cursor.fetchall()
         return [dict(r) for r in rows]
-
-    # ── Vocabulary Topic Progress ─────────────────────────────────────────────
 
     async def upsert_vocab_topic_progress(
         self,
@@ -365,7 +389,7 @@ class ProgressRepository:
     async def get_vocab_topic_summary(self, learner_id: int) -> dict[str, int]:
         async with self.db.execute(
             """
-            SELECT 
+            SELECT
                 COUNT(*) as total,
                 SUM(CASE WHEN completed_percent >= 100 THEN 1 ELSE 0 END) as completed
             FROM vocabulary_topic_progress

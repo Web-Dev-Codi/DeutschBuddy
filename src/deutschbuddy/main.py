@@ -55,6 +55,7 @@ class deutschbuddy(App):
         super().__init__()
         self._state: AppState | None = None
         self._current_lesson = None
+        self._study_session_id: int | None = None
 
     @property
     def state(self) -> AppState:
@@ -99,6 +100,7 @@ class deutschbuddy(App):
         if learner is None:
             learner = await learner_repo.create(DEFAULT_LEARNER_NAME)
         self._state.current_learner = learner
+        self._study_session_id = await progress_repo.start_app_study_session(learner.id)
 
         await self._show_home()
 
@@ -329,6 +331,9 @@ class deutschbuddy(App):
     # ── Teardown ──────────────────────────────────────────────────────────────
 
     async def on_unmount(self) -> None:
+        if self._state is not None and self._study_session_id is not None:
+            await self._state.progress_repo.end_app_study_session(self._study_session_id)
+            self._study_session_id = None
         await close_db()
 
 

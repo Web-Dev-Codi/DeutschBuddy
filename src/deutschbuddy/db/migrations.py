@@ -95,6 +95,15 @@ ALTER TABLE lesson_progress ADD COLUMN ease_factor REAL DEFAULT 2.5;
     7: """
 -- Migration v7: Store current vocab word index for home practice preview
 ALTER TABLE vocabulary_topic_progress ADD COLUMN current_word_index INTEGER DEFAULT 0;
+""",
+    8: """
+-- Migration v8: Track in-app study sessions for daily study time
+CREATE TABLE IF NOT EXISTS app_study_sessions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    learner_id INTEGER REFERENCES learner(id),
+    started_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    ended_at DATETIME
+);
 """
 }
 
