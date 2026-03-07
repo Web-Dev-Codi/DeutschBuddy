@@ -16,13 +16,15 @@ class StatsWidget(Widget):
         self._vocab_count: int = 0
 
     def compose(self) -> ComposeResult:
-        yield Static("Stats", classes="home-widget-title")
+        yield Static("", classes="home-widget-title")
         self._today_label = Static("Today", classes="home-widget-row")
         self._today_value = Static("0 min", classes="home-widget-row")
         self._lessons_label = Static("Lessons", classes="home-widget-row")
         self._lessons_value = Static("0/0", classes="home-widget-row")
         self._vocab_label = Static("Vocab", classes="home-widget-row")
         self._vocab_value = Static("0 words", classes="home-widget-row")
+        self.border_title = "Stats"
+        self.border_subtitle = "Today, Lessons, and Vocab"
         yield self._today_label
         yield self._today_value
         yield self._lessons_label

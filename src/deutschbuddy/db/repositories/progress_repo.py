@@ -117,12 +117,11 @@ class ProgressRepository:
         await self.db.execute(
             """
             UPDATE quiz_sessions
-            SET completed_at = ?, correct_answers = ?, total_questions = ?,
+            SET completed_at = datetime('now'), correct_answers = ?, total_questions = ?,
                 score = ?, llm_feedback = ?
             WHERE id = ?
             """,
             (
-                datetime.now().isoformat(),
                 correct,
                 total,
                 score,

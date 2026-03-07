@@ -165,8 +165,29 @@ HomeScreen {
     color: $accent;
     text-align: left;
     content-align: center middle;
-    padding: 1 2;
+    border: dashed rgb(0, 255, 0);
+    border-title-color: yellow;
+    border-subtitle-color: yellow;
+    margin-bottom: 1;
     height: auto;
+}
+
+#widget-vocab {
+    color: $accent;
+    text-align: left;
+    content-align: center middle;
+    border: dashed rgb(255, 94, 0);
+    border-title-color: rgb(0, 255, 0);
+    border-subtitle-color: rgb(0, 255, 0);
+}
+
+#widget-continue {
+    color: $accent;
+    text-align: left;
+    content-align: center middle;
+    border: dashed yellow;
+    border-title-color: rgb(255, 94, 0);
+    border-subtitle-color: rgb(255, 94, 0);
 }
 
 GrammarPanelWidget {

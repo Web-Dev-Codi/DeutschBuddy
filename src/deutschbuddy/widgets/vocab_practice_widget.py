@@ -24,13 +24,15 @@ class VocabPracticeWidget(Widget):
         self._topic_title: str | None = None
 
     def compose(self) -> ComposeResult:
-        yield Static("Practice Vocabulary", classes="home-widget-title")
+        yield Static("", classes="home-widget-title")
         self._word_line = Static("Start vocab practice", classes="home-widget-row")
         self._topic_line = Static("", classes="home-widget-row")
-        self._affordance = Static("Open practice", classes="home-widget-affordance")
+        self._affordance = Static("", classes="home-widget-affordance")
         yield self._word_line
         yield self._topic_line
         yield self._affordance
+        self.border_title = "Practice Vocabulary"
+        self.border_subtitle = "Open practice"
 
     def on_mount(self) -> None:
         container = self

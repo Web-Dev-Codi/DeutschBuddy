@@ -26,15 +26,17 @@ class ContinueLessonWidget(Widget):
         self._minutes: int | None = None
 
     def compose(self) -> ComposeResult:
-        yield Static("Continue Lesson", classes="home-widget-title")
+        yield Static("", classes="home-widget-title")
         self._line_id = Static("Choose your next lesson", classes="home-widget-row")
         self._line_title = Static("", classes="home-widget-row")
         self._line_meta = Static("", classes="home-widget-row")
-        self._affordance = Static("Open lessons", classes="home-widget-affordance")
+        self._affordance = Static("", classes="home-widget-affordance")
         yield self._line_id
         yield self._line_title
         yield self._line_meta
         yield self._affordance
+        self.border_title = "Continue Lesson"
+        self.border_subtitle = "Open lessons"
 
     def on_mount(self) -> None:
         self.can_focus = True
@@ -62,10 +64,10 @@ class ContinueLessonWidget(Widget):
             self._line_id.update(str(lesson_id))
             self._line_title.update(str(title))
             self._line_meta.update(f"{level} \u00B7 {minutes} min")
-            self._affordance.update("Open lesson")
+            self._affordance.update("")
             return
 
         self._line_id.update("Choose your next lesson")
         self._line_title.update("")
         self._line_meta.update("")
-        self._affordance.update("Open lessons")
+        self._affordance.update("")
