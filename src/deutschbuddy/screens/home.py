@@ -16,7 +16,7 @@ from deutschbuddy.widgets.streak_indicator import StreakIndicator
 from deutschbuddy.widgets.stats_widget import StatsWidget
 from deutschbuddy.widgets.vocab_practice_widget import VocabPracticeWidget
 from deutschbuddy.widgets.continue_widget import ContinueLessonWidget
-
+from deutschbuddy.widgets.logo_widget import LogoWidget
 
 # Simple message class for navigation requests
 class NavRequest(Message):
@@ -66,6 +66,7 @@ class HomeScreen(Screen):
 
         with Center(id="home-main-content"):
             with Static(id="home-shell"):
+                yield LogoWidget()
                 yield Static(f"Welcome {self.learner.name}", id="home-welcome")
                 yield Static(
                     f"Level: {self.learner.current_level.value}",
@@ -82,6 +83,8 @@ class HomeScreen(Screen):
                     yield StatsWidget(id="stats-widget", classes="home-widget")
                     yield VocabPracticeWidget(id="widget-vocab", classes="home-widget home-widget-button")
                     yield ContinueLessonWidget(id="widget-continue", classes="home-widget home-widget-button")
+                
+                yield Static("Version 0.6.1 • Made with ❤️ and 🇩🇪 • © 2026 DeutschBuddy", id="home-footer", classes="home-footer")
 
         yield Footer()
 
