@@ -6,11 +6,15 @@ from deutschbuddy.app_state import AppState
 from deutschbuddy.curriculum.cefr import CEFRProgressionEngine
 from deutschbuddy.curriculum.loader import CurriculumLoader
 from deutschbuddy.curriculum.vocab_loader import VocabLoader
+from deutschbuddy.config import get_config
 from deutschbuddy.db.connection import close_db, get_db
 from deutschbuddy.db.migrations import run_migrations
 from deutschbuddy.db.repositories.learner_repo import LearnerRepository
 from deutschbuddy.db.repositories.progress_repo import ProgressRepository
+from deutschbuddy.audio.listener import AudioListener
+from deutschbuddy.audio.speaker import AudioSpeaker
 from deutschbuddy.llm.client import OllamaClient
+from deutschbuddy.llm.conversation_agent import ConversationAgent
 from deutschbuddy.llm.curriculum_agent import CurriculumAgent
 from deutschbuddy.llm.quiz_agent import QuizAgent
 from deutschbuddy.llm.tutor_agent import TutorAgent
@@ -21,6 +25,13 @@ from deutschbuddy.screens.lesson import LessonScreen
 from deutschbuddy.screens.quiz import QuizScreen
 from deutschbuddy.screens.results import ResultsScreen
 from deutschbuddy.screens.settings import SettingsScreen
+from deutschbuddy.screens.conversation import ConversationScreen
+from deutschbuddy.voice_conversation import VoiceConversationSession
+from deutschbuddy.theme_manager import (
+    register_neon_themes,
+    load_saved_theme,
+    apply_theme,
+)
 
 
 DEFAULT_LEARNER_NAME = "Learner"
@@ -34,14 +45,17 @@ class deutschbuddy(App):
     BINDINGS = [
         ("q", "quit", "Quit"),
         ("h", "go_home", "Home"),
+        # ("c", "go_conversation", "Conversation"),
         ("ctrl+r", "go_review", "Review"),
         ("?", "show_help", "Help"),
+        ("t", "cycle_theme", "Theme"),
     ]
 
     def __init__(self) -> None:
         super().__init__()
         self._state: AppState | None = None
         self._current_lesson = None
+        self._study_session_id: int | None = None
 
     @property
     def state(self) -> AppState:
@@ -54,6 +68,11 @@ class deutschbuddy(App):
 
     async def on_mount(self) -> None:
         """Initialise DB, agents, and load/create the learner."""
+        register_neon_themes(self)
+
+        saved_theme = load_saved_theme()
+        apply_theme(self, saved_theme)
+
         db = await get_db()
         await run_migrations(db)
 
@@ -81,6 +100,7 @@ class deutschbuddy(App):
         if learner is None:
             learner = await learner_repo.create(DEFAULT_LEARNER_NAME)
         self._state.current_learner = learner
+        self._study_session_id = await progress_repo.start_app_study_session(learner.id)
 
         await self._show_home()
 
@@ -109,20 +129,29 @@ class deutschbuddy(App):
             self.run_worker(self._open_vocab_topics(), exclusive=True)
         elif dest in ("progress",):
             self.notify("Progress screen coming in a future update.")
+        elif dest == "conversation":
+            self.run_worker(self._start_conversation(), exclusive=True)
 
     async def _start_lesson(self, lesson_id: str | None = None) -> None:
         """Push LessonScreen for the recommended or specified lesson."""
         if self._state is None:
             return
         state = self._state
-        
+
         if lesson_id:
             # Find the specific lesson by ID
             lesson = None
             for level in ["A1", "A2", "B1"]:
                 try:
                     lessons = state.curriculum_loader.load_level(level)
-                    lesson = next((candidate for candidate in lessons if candidate.id == lesson_id), None)
+                    lesson = next(
+                        (
+                            candidate
+                            for candidate in lessons
+                            if candidate.id == lesson_id
+                        ),
+                        None,
+                    )
                     if lesson:
                         break
                 except Exception as exc:
@@ -139,11 +168,11 @@ class deutschbuddy(App):
                 return
 
         self._current_lesson = lesson
-        
+
         # Update learner's last lesson
         await state.learner_repo.update_last_lesson(state.current_learner.id, lesson.id)
         state.current_learner.last_lesson_id = lesson.id
-        
+
         screen = LessonScreen(
             lesson=lesson,
             learner=state.current_learner,
@@ -164,12 +193,10 @@ class deutschbuddy(App):
 
         # Show vocabulary preview first
         from deutschbuddy.screens.vocab_preview import VocabPreviewScreen
-        vocab_screen = VocabPreviewScreen(
-            lesson=lesson,
-            tutor_agent=state.tutor_agent
-        )
+
+        vocab_screen = VocabPreviewScreen(lesson=lesson, tutor_agent=state.tutor_agent)
         vocab_result = await self.push_screen_wait(vocab_screen)
-        
+
         # Only proceed with quiz if user confirmed (didn't dismiss)
         if vocab_result is True:
             screen = QuizScreen(
@@ -221,7 +248,7 @@ class deutschbuddy(App):
             return None
         loader = state.curriculum_loader
         learner = state.current_learner
-        
+
         # First try to get the learner's last lesson
         if learner.last_lesson_id:
             try:
@@ -230,7 +257,7 @@ class deutschbuddy(App):
                     return lesson
             except Exception:
                 pass
-        
+
         # Fallback to first available lesson
         try:
             lessons = loader.load_level(learner.current_level.value)
@@ -240,10 +267,44 @@ class deutschbuddy(App):
             pass
         return None
 
+    async def _start_conversation(self) -> None:
+        """Initialize and show conversation screen."""
+        if self._state is None:
+            return
+
+        state = self._state
+        conversation_config = get_config().get("conversation", {})
+
+        listener = AudioListener(
+            language=conversation_config.get("language", "de-DE"),
+            model=conversation_config.get("whisper_model", "tiny"),
+        )
+        speaker = AudioSpeaker(
+            voice=conversation_config.get("tts_voice", "de-DE"),
+            rate=int(conversation_config.get("tts_rate", 150)),
+        )
+        agent = ConversationAgent(
+            state.ollama_client,
+        )
+        session = VoiceConversationSession(
+            listener=listener,
+            speaker=speaker,
+            agent=agent,
+        )
+
+        screen = ConversationScreen(
+            session=session,
+        )
+
+        await self.push_screen(screen)
+
     # ── Actions ───────────────────────────────────────────────────────────────
 
     def action_go_review(self) -> None:
         self.run_worker(self._open_vocab_topics(), exclusive=True)
+
+    def action_go_conversation(self) -> None:
+        self.run_worker(self._start_conversation(), exclusive=True)
 
     def action_go_home(self) -> None:
         """Pop all screens above root, then push a fresh HomeScreen."""
@@ -251,12 +312,28 @@ class deutschbuddy(App):
             self.pop_screen()
         self.run_worker(self._show_home(), exclusive=True)
 
+    def action_cycle_theme(self) -> None:
+        """Cycle to the next available theme."""
+        current = self.theme
+        themes_list = list(self.available_themes.keys())
+        try:
+            current_idx = themes_list.index(current)
+            next_idx = (current_idx + 1) % len(themes_list)
+        except ValueError:
+            next_idx = 0
+        next_theme = themes_list[next_idx]
+        apply_theme(self, next_theme)
+        self.notify(f"Theme changed to {next_theme}", title="Theme")
+
     async def action_show_help(self) -> None:
         await self.push_screen(HelpScreen())
 
     # ── Teardown ──────────────────────────────────────────────────────────────
 
     async def on_unmount(self) -> None:
+        if self._state is not None and self._study_session_id is not None:
+            await self._state.progress_repo.end_app_study_session(self._study_session_id)
+            self._study_session_id = None
         await close_db()
 
 

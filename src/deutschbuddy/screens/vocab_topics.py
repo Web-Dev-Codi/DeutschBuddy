@@ -178,10 +178,10 @@ class VocabFlashcardScreen(Screen):
     def _hydrate_seen_from_progress(self) -> None:
         total = len(self.topic.words)
         prior_seen = int(self._initial_progress.get("words_seen") or 0)
+        stored_index = int(self._initial_progress.get("current_word_index") or 0)
         capped = min(prior_seen, total)
         self._seen = set(range(capped))
-        if capped > 0:
-            self._index = min(capped, total - 1)
+        self._index = min(stored_index, total - 1)
 
     async def _show_card(self, index: int) -> None:
         total = len(self.topic.words)
@@ -214,6 +214,7 @@ class VocabFlashcardScreen(Screen):
             total_words=total,
             words_seen=words_seen,
             completed_percent=percent,
+            current_word_index=self._index,
         )
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
@@ -235,6 +236,7 @@ class VocabFlashcardScreen(Screen):
                 "topic_id": self.topic.id,
                 "words_seen": words_seen,
                 "completed_percent": percent,
+                "current_word_index": self._index,
             }
         )
 

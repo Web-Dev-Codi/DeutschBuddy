@@ -1,31 +1,42 @@
-$primary: #4A90D9;
-$primary-darken-1: #3A7BC8;
-$primary-darken-2: #2A6AB7;
+$primary: $primary;
+$primary-darken-1: $primary;
+$primary-darken-2: $accent;
 
-$secondary: #9B59B6;
+$secondary: $secondary;
 
-$accent: #3498DB;
+$accent: $accent;
 
-$background: #1A1A2E;
-$background-darken-1: #16213E;
-$background-darken-2: #0F3460;
+$background: $background;
+$background-darken-1: $surface;
+$background-darken-2: $panel;
 
+$panel-darken-1: $panel;
 
-$panel-darken-1: #0F3460;
+$surface: $surface;
 
-$surface: #1A1A2E;
+$text: $foreground;
+$text-muted: $foreground 70%;
 
-$text: #E8E8E8;
-$text-muted: #888888;
+$interactive-border: $primary 60%;
+$interactive-hover-border: $primary;
+$interactive-hover-background: $surface;
+$interactive-hover-foreground: $foreground;
+$interactive-focus-border: $accent;
+$interactive-focus-background: $surface;
+$interactive-focus-foreground: $foreground;
+$list-hover-background: $surface;
+$list-hover-foreground: $foreground;
+$list-highlight-background: $accent;
+$list-highlight-foreground: $background;
 
-$nominative: #E74C3C;
-$accusative: #F39C12;
-$dative: #3498DB;
-$genitive: #27AE60;
+$nominative: $error;
+$accusative: $warning;
+$dative: $primary;
+$genitive: $success;
 
-$error: #E74C3C;
-$warning: #F39C12;
-$success: #27AE60;
+$error: $error;
+$warning: $warning;
+$success: $success;
 
 Screen {
     overflow-y: auto;
@@ -54,16 +65,142 @@ HomeScreen {
 #sidebar .nav-item {
     padding: 0 1;
     height: 3;
+    border: tall transparent;
 }
 
 #sidebar .nav-item:focus {
-    background: $primary;
-    color: $text;
+    background: $interactive-focus-background;
+    color: $interactive-focus-foreground;
+    border: tall $interactive-focus-border;
 }
 
 #main-content {
     height: 100%;
     padding: 1 2;
+}
+
+#home-main-content {
+    height: 100%;
+    width: 1fr;
+    padding: 1 2;
+    align: center middle;
+}
+
+#home-shell {
+    width: 100%;
+    max-width: 120;
+    height: auto;
+    align: center middle;
+    content-align: center middle;
+}
+
+#home-welcome {
+    text-style: bold;
+    color: $accent;
+    text-align: center;
+    margin-bottom: 1;
+}
+
+#home-level-display {
+    color: $primary;
+    text-style: bold;
+    text-align: center;
+    margin-bottom: 1;
+}
+
+#cefr-bar {
+    width: 100%;
+    align: center middle;
+    content-align: center middle;
+    margin-bottom: 3;
+    height: 3;
+}
+
+#home-widget-row {
+    width: 100%;
+    height: auto;
+}
+
+.home-widget {
+    width: 1fr;
+    height: 12;
+    margin: 0 1;
+    padding: 1 2;
+    border: round $primary;
+    background: $panel;
+    color: $text;
+    text-align: center;
+    content-align: center middle;
+}
+
+.home-widget-button {
+    height: 12;
+    text-align: left;
+    content-align: center middle;
+    padding: 1 2;
+}
+
+.home-widget-button:hover {
+    border: round $interactive-hover-border;
+    background: $interactive-hover-background;
+    color: $interactive-hover-foreground;
+}
+
+.home-widget-button:focus {
+    border: round $interactive-focus-border;
+    background: $interactive-focus-background;
+    color: $interactive-focus-foreground;
+}
+
+#home-widget-row, .home-widget-title, .home-widget-row, .home-widget-affordance {
+}
+
+# Ensure titles are aligned and visually consistent across widgets
+.home-widget-title {
+    text-style: bold;
+    text-align: center;
+    color: $accent;
+    margin-top: 0;
+    margin-bottom: 1;
+}
+
+.home-widget-row {
+    text-align: center;
+    color: $text;
+    margin: 0;
+}
+
+.home-widget-affordance {
+    text-align: center;
+    color: $primary;
+    margin-top: 1;
+}
+
+#stats-widget {
+    color: $text;
+    text-align: left;
+    content-align: center middle;
+    border: round $primary;
+    border-title-color: $primary;
+    border-subtitle-color: $primary;
+    margin-bottom: 1;
+    height: auto;
+}
+
+#widget-vocab {
+    color: $text;
+    text-align: left;
+    content-align: center middle;
+    border: round $primary;
+    border-title-color: $primary;
+    border-subtitle-color: $primary;
+}
+
+#widget-continue {
+    color: $text;
+    text-align: left;
+    content-align: center middle;
+    border: round $primary;
 }
 
 GrammarPanelWidget {
@@ -161,6 +298,20 @@ QuizCard {
     margin-right: 1;
 }
 
+#conversation-area {
+    height: 1fr;
+    border: round $primary;
+    padding: 1 2;
+    margin-top: 1;
+    background: $panel;
+}
+
+.conversation-transcript {
+    width: 100%;
+    height: auto;
+    color: $text;
+}
+
 .loading {
     color: $text-muted;
     text-style: italic;
@@ -217,6 +368,55 @@ HelpScreen {
     margin-top: 1;
 }
 
+LessonSelectScreen {
+    align: center middle;
+}
+
+#lesson-select-container {
+    width: 72;
+    height: auto;
+    max-height: 24;
+    background: $panel;
+    border: tall $secondary;
+    padding: 1 2;
+}
+
+#lesson-select-title {
+    color: $text;
+    text-style: bold;
+    text-align: center;
+}
+
+#lesson-select-subtitle {
+    color: $text-muted;
+    text-align: center;
+    margin-bottom: 1;
+}
+
+#lesson-option-list {
+    width: 100%;
+    height: 16;
+    background: $background-darken-1;
+    border: tall $secondary;
+    color: $text;
+}
+
+#lesson-option-list > .option-list--option {
+    color: $text;
+    background: transparent;
+}
+
+#lesson-option-list > .option-list--option-highlighted {
+    color: $list-highlight-foreground;
+    background: $list-highlight-background;
+    text-style: bold;
+}
+
+#lesson-option-list > .option-list--option-hover {
+    background: $list-hover-background;
+    color: $list-hover-foreground;
+}
+
 #sidebar .nav-item {
     padding: 0 1;
     height: 3;
@@ -224,12 +424,9 @@ HelpScreen {
 }
 
 #sidebar .nav-item:hover {
-    background: $primary-darken-1;
-    color: $text;
-}
-
-.quiz-reorder-words {
-    margin-bottom: 1;
+    background: $interactive-hover-background;
+    color: $interactive-hover-foreground;
+    border: tall $interactive-hover-border;
 }
 
 VocabPreviewScreen {
@@ -305,7 +502,6 @@ VocabFlashcardScreen {
     color: $text;
 }
 
-
 /* ── VocabCard widget styling ─────────────────────────────────────────── */
 VocabCard {
     width: 100%;
@@ -348,7 +544,7 @@ VocabCard {
 
 .card-german {
     text-style: italic;
-    color: $text-primary;
+    color: $text;
     layer: below;
 }
 
@@ -377,7 +573,9 @@ VocabCard {
 }
 
 .topic-card:focus {
-    border: round $primary-darken-1;
+    border: round $interactive-focus-border;
+    background: $interactive-focus-background;
+    color: $interactive-focus-foreground;
 }
 
 .topic-card.success {
@@ -389,6 +587,37 @@ VocabCard {
 }
 
 .topic-card.default {
-    border: round #888888;
+    border: round $interactive-border;
 }
 
+/* Logo Widget Styles */
+LogoWidget {
+    height: auto;
+    max-height: 18;
+    margin-bottom: 0;
+}
+
+#logo {
+    text-align: center;
+    color: $primary;
+    text-style: bold;
+    margin: 1 0;
+}
+
+.tagline {
+    text-align: center;
+    color: $accent;
+    text-style: italic;
+    margin-bottom: 1;
+}
+
+#home-shell {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.home-footer {
+    text-align: center;
+    color: $text-muted;
+    margin-top: 7;
+}

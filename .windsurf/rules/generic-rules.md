@@ -20,3 +20,5 @@ RULES — follow these without exception:
 7. **Code comments only when non-obvious.** Do not add comments that restate what the code clearly does.
 
 8. **Ask before assuming scope.** If a request is ambiguous, ask one clarifying question rather than making broad assumptions and writing excess code.
+
+9. **Research explanations thoroughly.** When explaining concepts, provide comprehensive and accurate information. Use context7 and web search to ensure your explanations are correct and up-to-date.

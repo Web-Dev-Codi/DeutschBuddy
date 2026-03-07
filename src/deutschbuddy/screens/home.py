@@ -1,16 +1,22 @@
 from __future__ import annotations
 
+from typing import Any
+
 from textual.app import ComposeResult
+from textual.containers import Center, Horizontal
 from textual.message import Message
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
 
 from deutschbuddy.models.learner import Learner
- 
+from deutschbuddy.screens.lesson_select import LessonSelectScreen
+from deutschbuddy.screens.level_select import LevelSelectScreen
 from deutschbuddy.widgets.progress_bar import CEFRProgressBar
 from deutschbuddy.widgets.streak_indicator import StreakIndicator
-from deutschbuddy.screens.level_select import LevelSelectScreen
-
+from deutschbuddy.widgets.stats_widget import StatsWidget
+from deutschbuddy.widgets.vocab_practice_widget import VocabPracticeWidget
+from deutschbuddy.widgets.continue_widget import ContinueLessonWidget
+from deutschbuddy.widgets.logo_widget import LogoWidget
 
 # Simple message class for navigation requests
 class NavRequest(Message):
@@ -39,19 +45,19 @@ class HomeScreen(Screen):
         super().__init__(**kwargs)
         self.learner = learner
         self.current_lesson = current_lesson
+        self._level_progress: tuple[int, int] = (0, 0)
+        self._stats_refresh_timer = None
 
     def compose(self) -> ComposeResult:
         yield Header()
 
-        # Sidebar navigation
         with Static(id="sidebar"):
             yield Static("Navigation", classes="nav-label")
             yield Button("📚 Lessons", id="nav-lessons", classes="nav-item")
             yield Button("🧠 Quiz", id="nav-quiz", classes="nav-item")
             yield Button("📊 Progress", id="nav-progress", classes="nav-item")
-            yield Button("🔁 Review", id="nav-review", classes="nav-item")
             yield Button("⚙  Settings", id="nav-settings", classes="nav-item")
-            yield Button("🔄 Change Level", id="nav-change-level", classes="nav-item")
+            yield Button("🔄 Curriculum", id="nav-change-level", classes="nav-item")
 
             yield Static("─" * 18, classes="text-muted")
             yield Static(
@@ -59,97 +65,139 @@ class HomeScreen(Screen):
             )
             yield StreakIndicator(self.learner.streak_days, id="streak")
 
-        # Main content
-        with Static(id="main-content"):
-            yield Static(
-                f"Welcome, {self.learner.name}!",
-                classes="section-header",
-            )
-            yield CEFRProgressBar(
-                current_level=self.learner.current_level.value,
-                next_level=None,
-                percent=0.0,
-                id="cefr-bar",
-            )
-            yield Static(id="daily-goal-bar", classes="daily-goal")
-
-            if self.current_lesson:
-                yield Static("Continue Where You Left Off", classes="section-header")
+        with Center(id="home-main-content"):
+            with Static(id="home-shell"):
+                yield LogoWidget()
+                yield Static(f"Welcome {self.learner.name}", id="home-welcome")
                 yield Static(
-                    f"{self.current_lesson.id} — {self.current_lesson.title}",
-                    id="current-lesson-title",
+                    f"Level: {self.learner.current_level.value}",
+                    id="home-level-display",
                 )
-                yield Static(
-                    f"Level: {self.current_lesson.level.value} | {self.current_lesson.estimated_minutes} min",
-                    id="current-lesson-info",
-                    classes="quiz-context"
+                yield CEFRProgressBar(
+                    current_level=self.learner.current_level.value,
+                    next_level=None,
+                    percent=0.0,
+                    show_label=False,
+                    id="cefr-bar",
                 )
-            else:
-                yield Static("Start Learning", classes="section-header")
-                yield Static(
-                    "Choose your first lesson from the Lessons menu",
-                    id="no-lesson-message",
-                    classes="quiz-context"
-                )
-
-            with Static(classes="action-buttons"):
-                yield Button("Start Quiz", id="btn-quiz", variant="primary")
-                yield Button("Next Lesson", id="btn-lesson", variant="success")
+                with Horizontal(id="home-widget-row"):
+                    yield StatsWidget(id="stats-widget", classes="home-widget")
+                    yield VocabPracticeWidget(id="widget-vocab", classes="home-widget home-widget-button")
+                    yield ContinueLessonWidget(id="widget-continue", classes="home-widget home-widget-button")
+                
+                yield Static("Version 0.6.1 • Made with ❤️ in 🇩🇪 • © 2026 DeutschBuddy", id="home-footer", classes="home-footer")
 
         yield Footer()
 
     async def on_mount(self) -> None:
-        """Update daily goal display and progress bar when screen mounts."""
-        self.run_worker(self._update_daily_goal(), exclusive=True)
-        self.run_worker(self._update_progress_bar(), exclusive=True)
+        self.run_worker(self._load_home_content(), exclusive=True)
+        self._stats_refresh_timer = self.set_interval(
+            60.0,
+            lambda: self.run_worker(self._refresh_study_minutes(), exclusive=True),
+        )
 
-    async def _update_daily_goal(self) -> None:
-        """Update the daily goal progress display."""
-        try:
-            # Get progress repo from app state
-            if hasattr(self.app, '_state') and self.app._state:
-                minutes_today = await self.app._state.progress_repo.get_today_session_minutes(
-                    self.learner.id
-                )
-                goal = self.learner.daily_goal_minutes
-                
-                if minutes_today >= goal:
-                    display_text = f"Today: {minutes_today:.0f} / {goal} min ✓"
-                else:
-                    display_text = f"Today: {minutes_today:.0f} / {goal} min"
-                
-                self.query_one("#daily-goal-bar", Static).update(display_text)
-        except Exception:
-            # Fallback if anything goes wrong
-            self.query_one("#daily-goal-bar", Static).update("Today: 0 / 20 min")
+    async def _load_home_content(self) -> None:
+        await self.refresh_dashboard()
+
+    async def refresh_dashboard(self) -> None:
+        if not hasattr(self.app, "_state") or not self.app._state:
+            return
+
+        state = self.app._state
+        await self._update_progress_bar()
+
+        minutes_today = await state.progress_repo.get_today_study_minutes(self.learner.id)
+        minutes_today = max(0.0, minutes_today)
+        vocab_count = await state.progress_repo.get_studied_vocab_word_count(self.learner.id)
+        latest_vocab_progress = await state.progress_repo.get_latest_vocab_topic_progress(
+            self.learner.id
+        )
+
+        self._update_stats_widget(minutes_today=minutes_today, vocab_count=vocab_count)
+        self._update_vocab_widget(latest_vocab_progress)
+        self._update_continue_widget()
+        self.query_one("#streak", StreakIndicator).update_streak(self.learner.streak_days)
+
+    async def _refresh_study_minutes(self) -> None:
+        if not hasattr(self.app, "_state") or not self.app._state:
+            return
+
+        minutes_today = await self.app._state.progress_repo.get_today_study_minutes(
+            self.learner.id
+        )
+        vocab_count = await self.app._state.progress_repo.get_studied_vocab_word_count(
+            self.learner.id
+        )
+        widget = self.query_one("#stats-widget", StatsWidget)
+        widget.set_stats(
+            minutes_today=max(0.0, minutes_today),
+            lessons_completed=self._level_progress[0],
+            lessons_total=self._level_progress[1],
+            vocab_count=vocab_count,
+        )
 
     async def _update_progress_bar(self) -> None:
-        """Update the CEFR progress bar based on completed lessons."""
-        try:
-            if hasattr(self.app, '_state') and self.app._state:
-                # Get all lessons for current level
-                lessons = self.app._state.curriculum_loader.load_level(self.learner.current_level.value)
-                lesson_ids = [lesson.id for lesson in lessons]
-                
-                # Get mastery scores for all lessons
-                mastery_scores = await self.app._state.progress_repo.get_mastery_scores(
-                    self.learner.id, lesson_ids
-                )
-                
-                # Calculate progress percentage
-                completed_lessons = sum(1 for score in mastery_scores.values() if score > 0)
-                total_lessons = len(lessons)
-                progress_percent = (completed_lessons / total_lessons * 100) if total_lessons > 0 else 0.0
-                
-                # Update progress bar
-                progress_bar = self.query_one("#cefr-bar", CEFRProgressBar)
-                progress_bar.update_progress(progress_percent)
-        except Exception:
-            # Fallback if anything goes wrong
-            pass
+        if not hasattr(self.app, "_state") or not self.app._state:
+            return
+
+        lessons = self.app._state.curriculum_loader.load_level(
+            self.learner.current_level.value
+        )
+        lesson_ids = [lesson.id for lesson in lessons]
+        mastery_scores = await self.app._state.progress_repo.get_mastery_scores(
+            self.learner.id,
+            lesson_ids,
+        )
+        completed_lessons = sum(1 for score in mastery_scores.values() if score > 0)
+        total_lessons = len(lessons)
+        self._level_progress = (completed_lessons, total_lessons)
+        progress_percent = (
+            completed_lessons / total_lessons * 100 if total_lessons > 0 else 0.0
+        )
+        self.query_one("#cefr-bar", CEFRProgressBar).update_progress(progress_percent)
+
+    def _update_stats_widget(self, *, minutes_today: float, vocab_count: int) -> None:
+        completed_lessons, total_lessons = self._level_progress
+        widget = self.query_one("#stats-widget", StatsWidget)
+        widget.set_stats(
+            minutes_today=minutes_today,
+            lessons_completed=completed_lessons,
+            lessons_total=total_lessons,
+            vocab_count=vocab_count,
+        )
+
+    def _update_vocab_widget(self, latest_vocab_progress: dict[str, Any] | None) -> None:
+        widget = self.query_one("#widget-vocab", VocabPracticeWidget)
+        if not hasattr(self.app, "_state") or not self.app._state or not latest_vocab_progress:
+            widget.set_preview(german=None, topic_title=None)
+            return
+
+        topic_level = latest_vocab_progress.get("topic_level") or self.learner.current_level.value
+        topic_id = latest_vocab_progress.get("topic_id")
+        topic = self.app._state.vocab_loader.get_topic(topic_level, topic_id)
+        if topic is None or not topic.words:
+            widget.set_preview(german=None, topic_title=None)
+            return
+
+        current_index = int(latest_vocab_progress.get("current_word_index") or 0)
+        next_index = min(current_index + 1, len(topic.words) - 1)
+        next_word = topic.words[next_index]
+        widget.set_preview(german=next_word.german, topic_title=topic.title)
+
+    def _update_continue_widget(self) -> None:
+        widget = self.query_one("#widget-continue", ContinueLessonWidget)
+        if self.current_lesson:
+            widget.set_lesson(
+                lesson_id=self.current_lesson.id,
+                title=self.current_lesson.title,
+                level=self.current_lesson.level.value,
+                minutes=int(self.current_lesson.estimated_minutes or 0),
+            )
+            return
+        widget.set_lesson(lesson_id=None, title=None, level=None, minutes=None)
 
     def action_nav_lessons(self) -> None:
-        self.app.post_message(NavRequest("lessons"))
+        self.run_worker(self._open_lesson_picker(), exclusive=True)
 
     def action_nav_quiz(self) -> None:
         self.app.post_message(NavRequest("quiz"))
@@ -159,6 +207,9 @@ class HomeScreen(Screen):
 
     def action_nav_review(self) -> None:
         self.app.post_message(NavRequest("review"))
+
+    def action_nav_conversation(self) -> None:
+        self.app.post_message(NavRequest("conversation"))
 
     def action_nav_settings(self) -> None:
         self.app.post_message(NavRequest("settings"))
@@ -173,63 +224,79 @@ class HomeScreen(Screen):
             self.action_nav_progress()
         elif button_id == "nav-settings":
             self.action_nav_settings()
-        elif button_id == "btn-quiz":
-            self.action_nav_quiz()
-        elif button_id == "btn-lesson":
-            if self.current_lesson:
-                # Navigate to current lesson
-                self.app.post_message(NavRequest("lesson", lesson_id=self.current_lesson.id))
-            else:
-                # No current lesson, go to lesson list
-                self.action_nav_lessons()
-        elif button_id == "nav-review":
-            self.action_nav_review()
         elif button_id == "nav-change-level":
-            # Open modal to change level
             self.run_worker(self._change_level(), exclusive=True)
 
+    def on_vocab_practice_widget_open_requested(self, _msg: VocabPracticeWidget.OpenRequested) -> None:
+        self.action_nav_review()
+
+    def on_continue_lesson_widget_open_requested(self, _msg: ContinueLessonWidget.OpenRequested) -> None:
+        if self.current_lesson:
+            self.app.post_message(NavRequest("lesson", lesson_id=self.current_lesson.id))
+            return
+        self.action_nav_lessons()
+
+    def on_unmount(self) -> None:
+        if self._stats_refresh_timer is not None:
+            self._stats_refresh_timer.stop()
+            self._stats_refresh_timer = None
+
+    async def _open_lesson_picker(self) -> None:
+        if not hasattr(self.app, "_state") or not self.app._state:
+            return
+
+        lessons = self.app._state.curriculum_loader.load_level(self.learner.current_level.value)
+        if not lessons:
+            self.notify(
+                f"No lessons available for {self.learner.current_level.value}.",
+                severity="warning",
+            )
+            return
+
+        selected_lesson_id = await self.app.push_screen_wait(
+            LessonSelectScreen(
+                level=self.learner.current_level.value,
+                lessons=lessons,
+            )
+        )
+        if selected_lesson_id is None:
+            return
+
+        self.app.post_message(NavRequest("lesson", lesson_id=selected_lesson_id))
+
     async def _change_level(self) -> None:
-        """Open level select modal, persist selection, refresh UI, and navigate."""
         try:
             current_level = self.learner.current_level
             selected = await self.app.push_screen_wait(LevelSelectScreen(current=current_level))
             if selected is None or selected == current_level:
                 return
 
-            # Persist to DB
             if hasattr(self.app, '_state') and self.app._state and self.learner.id is not None:
                 try:
                     await self.app._state.learner_repo.update_level(self.learner.id, selected)
-                    # Clear last lesson so the new level's first lesson is used
                     await self.app._state.learner_repo.update_last_lesson(self.learner.id, None)
                 except Exception as exc:
                     self.notify(f"Failed to update level: {exc}", severity="error")
                     return
 
-            # Update in-memory state
             self.learner.current_level = selected
             self.learner.last_lesson_id = None
+            self.current_lesson = None
             if hasattr(self.app, '_state') and self.app._state and self.app._state.current_learner is not None:
                 self.app._state.current_learner.current_level = selected
                 self.app._state.current_learner.last_lesson_id = None
 
-            # Refresh sidebar label
             try:
                 self.query_one("#sidebar-level", Static).update(f"Level: {selected.value}")
+                self.query_one("#home-level-display", Static).update(f"Level: {selected.value}")
             except Exception:
                 pass
 
-            # Refresh CEFR progress bar label and progress
             try:
                 bar = self.query_one("#cefr-bar", CEFRProgressBar)
                 bar.update_levels(selected.value, None)
             except Exception:
                 pass
-            # Recompute percent based on new level
-            await self._update_progress_bar()
-
-            # Auto-navigate to recommended lesson for this level
-            self.app.post_message(NavRequest("lessons"))
+            await self._load_home_content()
         except Exception:
-            # Silently ignore unexpected errors to avoid crashing the UI
             pass
