@@ -3,6 +3,9 @@ name = "deutschbuddy"
 version = "0.6.0"
 daily_goal_minutes = 50
 
+[learner-name]
+name = "Brian"
+
 [ollama]
 host = "http://localhost:11434"
 curriculum_model = "qwen3:8b"

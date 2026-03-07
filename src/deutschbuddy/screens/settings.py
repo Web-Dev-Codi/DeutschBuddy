@@ -40,6 +40,13 @@ class SettingsScreen(Screen):
                 placeholder="http://localhost:11434",
             )
 
+            yield Static("Learner's Name", classes="section-header")
+            yield Input(
+                value=self._config["learner-name"]["name"],
+                id="learner-name-input",
+                placeholder="Enter your name",
+            )
+
             yield Static("Curriculum Model", classes="section-header")
             yield Input(
                 value=self._config["ollama"].get(
@@ -119,7 +126,7 @@ class SettingsScreen(Screen):
             )
 
     def _save_config(self) -> None:
-        """Write updated values back to settings.toml and update learner goal."""
+        """Write updated values back to settings.toml and update learner goal/name."""
         host = self.query_one("#host-input", Input).value.strip()
         curriculum = self.query_one("#curriculum-model-input", Input).value.strip()
         interaction = self.query_one("#interaction-model-input", Input).value.strip()
@@ -128,6 +135,7 @@ class SettingsScreen(Screen):
         conversation_whisper = self.query_one("#conversation-whisper-input", Input).value.strip()
         conversation_voice = self.query_one("#conversation-voice-input", Input).value.strip()
         conversation_rate_str = self.query_one("#conversation-rate-input", Input).value.strip()
+        learner_name = self.query_one("#learner-name-input", Input).value.strip()
 
         try:
             daily_goal = int(daily_goal_str) if daily_goal_str else 20
@@ -150,6 +158,8 @@ class SettingsScreen(Screen):
             data.add("app", {})  # type: ignore[arg-type]
         if "conversation" not in data:
             data.add("conversation", {})  # type: ignore[arg-type]
+        if "learner-name" not in data:
+            data.add("learner-name", {})  # type: ignore[arg-type]
 
         data["ollama"]["host"] = host  # type: ignore[index]
         data["ollama"]["curriculum_model"] = curriculum  # type: ignore[index]
@@ -159,6 +169,7 @@ class SettingsScreen(Screen):
         data["conversation"]["whisper_model"] = conversation_whisper or "tiny"  # type: ignore[index]
         data["conversation"]["tts_voice"] = conversation_voice or "de-DE"  # type: ignore[index]
         data["conversation"]["tts_rate"] = conversation_rate  # type: ignore[index]
+        data["learner-name"]["name"] = learner_name or "Learner"  # type: ignore[index]
 
         _SETTINGS_PATH.write_text(dumps(data), encoding="utf-8")
 
@@ -171,6 +182,14 @@ class SettingsScreen(Screen):
                 )
             )
             learner.daily_goal_minutes = daily_goal
+            if learner_name and learner_name != learner.name:
+                self.app.run_worker(
+                    self.app._state.learner_repo.update_name(
+                        learner.id,
+                        learner_name,
+                    )
+                )
+                learner.name = learner_name
 
     def action_go_back(self) -> None:
         self.app.pop_screen()

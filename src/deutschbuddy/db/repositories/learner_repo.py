@@ -68,6 +68,14 @@ class LearnerRepository:
         )
         await self.db.commit()
 
+    async def update_name(self, learner_id: int, name: str) -> None:
+        """Update the learner's name."""
+        await self.db.execute(
+            "UPDATE learner SET name = ? WHERE id = ?",
+            (name, learner_id),
+        )
+        await self.db.commit()
+
     def _row_to_learner(self, row: aiosqlite.Row) -> Learner:
         d = dict(row)
         d["current_level"] = CEFRLevel(d["current_level"])

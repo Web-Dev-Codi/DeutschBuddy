@@ -165,7 +165,7 @@ HomeScreen {
     color: $accent;
     text-align: left;
     content-align: center middle;
-    border: dashed rgb(0, 255, 0);
+    border: round rgb(0, 255, 0);
     border-title-color: yellow;
     border-subtitle-color: yellow;
     margin-bottom: 1;
@@ -176,7 +176,7 @@ HomeScreen {
     color: $accent;
     text-align: left;
     content-align: center middle;
-    border: dashed rgb(255, 94, 0);
+    border: round rgb(255, 94, 0);
     border-title-color: rgb(0, 255, 0);
     border-subtitle-color: rgb(0, 255, 0);
 }
@@ -185,7 +185,7 @@ HomeScreen {
     color: $accent;
     text-align: left;
     content-align: center middle;
-    border: dashed yellow;
+    border: round yellow;
     border-title-color: rgb(255, 94, 0);
     border-subtitle-color: rgb(255, 94, 0);
 }
