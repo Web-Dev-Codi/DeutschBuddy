@@ -9,6 +9,7 @@ from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
 
 from deutschbuddy.models.learner import Learner
+from deutschbuddy.screens.lesson_select import LessonSelectScreen
 from deutschbuddy.screens.level_select import LevelSelectScreen
 from deutschbuddy.widgets.progress_bar import CEFRProgressBar
 from deutschbuddy.widgets.streak_indicator import StreakIndicator
@@ -165,7 +166,7 @@ class HomeScreen(Screen):
         widget.set_lesson(lesson_id=None, title=None, level=None, minutes=None)
 
     def action_nav_lessons(self) -> None:
-        self.app.post_message(NavRequest("lessons"))
+        self.run_worker(self._open_lesson_picker(), exclusive=True)
 
     def action_nav_quiz(self) -> None:
         self.app.post_message(NavRequest("quiz"))
@@ -203,6 +204,29 @@ class HomeScreen(Screen):
             self.app.post_message(NavRequest("lesson", lesson_id=self.current_lesson.id))
             return
         self.action_nav_lessons()
+
+    async def _open_lesson_picker(self) -> None:
+        if not hasattr(self.app, "_state") or not self.app._state:
+            return
+
+        lessons = self.app._state.curriculum_loader.load_level(self.learner.current_level.value)
+        if not lessons:
+            self.notify(
+                f"No lessons available for {self.learner.current_level.value}.",
+                severity="warning",
+            )
+            return
+
+        selected_lesson_id = await self.app.push_screen_wait(
+            LessonSelectScreen(
+                level=self.learner.current_level.value,
+                lessons=lessons,
+            )
+        )
+        if selected_lesson_id is None:
+            return
+
+        self.app.post_message(NavRequest("lesson", lesson_id=selected_lesson_id))
 
     async def _change_level(self) -> None:
         try:
