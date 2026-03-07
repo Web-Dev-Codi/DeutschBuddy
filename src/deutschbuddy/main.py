@@ -27,6 +27,11 @@ from deutschbuddy.screens.results import ResultsScreen
 from deutschbuddy.screens.settings import SettingsScreen
 from deutschbuddy.screens.conversation import ConversationScreen
 from deutschbuddy.voice_conversation import VoiceConversationSession
+from deutschbuddy.theme_manager import (
+    register_neon_themes,
+    load_saved_theme,
+    apply_theme,
+)
 
 
 DEFAULT_LEARNER_NAME = "Learner"
@@ -40,9 +45,10 @@ class deutschbuddy(App):
     BINDINGS = [
         ("q", "quit", "Quit"),
         ("h", "go_home", "Home"),
-        #("c", "go_conversation", "Conversation"),
+        # ("c", "go_conversation", "Conversation"),
         ("ctrl+r", "go_review", "Review"),
         ("?", "show_help", "Help"),
+        ("t", "cycle_theme", "Theme"),
     ]
 
     def __init__(self) -> None:
@@ -61,6 +67,11 @@ class deutschbuddy(App):
 
     async def on_mount(self) -> None:
         """Initialise DB, agents, and load/create the learner."""
+        register_neon_themes(self)
+
+        saved_theme = load_saved_theme()
+        apply_theme(self, saved_theme)
+
         db = await get_db()
         await run_migrations(db)
 
@@ -124,14 +135,21 @@ class deutschbuddy(App):
         if self._state is None:
             return
         state = self._state
-        
+
         if lesson_id:
             # Find the specific lesson by ID
             lesson = None
             for level in ["A1", "A2", "B1"]:
                 try:
                     lessons = state.curriculum_loader.load_level(level)
-                    lesson = next((candidate for candidate in lessons if candidate.id == lesson_id), None)
+                    lesson = next(
+                        (
+                            candidate
+                            for candidate in lessons
+                            if candidate.id == lesson_id
+                        ),
+                        None,
+                    )
                     if lesson:
                         break
                 except Exception as exc:
@@ -148,11 +166,11 @@ class deutschbuddy(App):
                 return
 
         self._current_lesson = lesson
-        
+
         # Update learner's last lesson
         await state.learner_repo.update_last_lesson(state.current_learner.id, lesson.id)
         state.current_learner.last_lesson_id = lesson.id
-        
+
         screen = LessonScreen(
             lesson=lesson,
             learner=state.current_learner,
@@ -173,12 +191,10 @@ class deutschbuddy(App):
 
         # Show vocabulary preview first
         from deutschbuddy.screens.vocab_preview import VocabPreviewScreen
-        vocab_screen = VocabPreviewScreen(
-            lesson=lesson,
-            tutor_agent=state.tutor_agent
-        )
+
+        vocab_screen = VocabPreviewScreen(lesson=lesson, tutor_agent=state.tutor_agent)
         vocab_result = await self.push_screen_wait(vocab_screen)
-        
+
         # Only proceed with quiz if user confirmed (didn't dismiss)
         if vocab_result is True:
             screen = QuizScreen(
@@ -230,7 +246,7 @@ class deutschbuddy(App):
             return None
         loader = state.curriculum_loader
         learner = state.current_learner
-        
+
         # First try to get the learner's last lesson
         if learner.last_lesson_id:
             try:
@@ -239,7 +255,7 @@ class deutschbuddy(App):
                     return lesson
             except Exception:
                 pass
-        
+
         # Fallback to first available lesson
         try:
             lessons = loader.load_level(learner.current_level.value)
@@ -293,6 +309,19 @@ class deutschbuddy(App):
         while len(self.screen_stack) > 1:
             self.pop_screen()
         self.run_worker(self._show_home(), exclusive=True)
+
+    def action_cycle_theme(self) -> None:
+        """Cycle to the next available theme."""
+        current = self.theme
+        themes_list = list(self.available_themes.keys())
+        try:
+            current_idx = themes_list.index(current)
+            next_idx = (current_idx + 1) % len(themes_list)
+        except ValueError:
+            next_idx = 0
+        next_theme = themes_list[next_idx]
+        apply_theme(self, next_theme)
+        self.notify(f"Theme changed to {next_theme}", title="Theme")
 
     async def action_show_help(self) -> None:
         await self.push_screen(HelpScreen())

@@ -7,9 +7,10 @@ from tomlkit import parse, dumps
 from textual.app import ComposeResult
 from textual.containers import VerticalScroll
 from textual.screen import Screen
-from textual.widgets import Button, Footer, Header, Input, Static
+from textual.widgets import Button, Footer, Header, Input, Static, Select
 
 from deutschbuddy.config import get_config
+from deutschbuddy.theme_manager import THEME_CHOICES, apply_theme
 
 
 _SETTINGS_PATH = Path(__file__).resolve().parents[3] / "config" / "settings.toml"
@@ -25,11 +26,24 @@ class SettingsScreen(Screen):
         self.ollama_client = ollama_client
         self._available_models: list[str] = []
         self._config = get_config()
+        self._current_theme = ""
 
     def compose(self) -> ComposeResult:
         yield Header()
         with VerticalScroll(id="main-content"):
             yield Static("Settings", classes="section-header")
+
+            yield Static("Theme", classes="section-header")
+            theme_options = [(name, key) for key, name in THEME_CHOICES.items()]
+            yield Select(
+                options=theme_options,
+                value=self.app.theme
+                if self.app.theme in THEME_CHOICES
+                else "neon_cyberpunk",
+                id="theme-select",
+                prompt="Select a theme...",
+            )
+
             app_config = self._config.get("app", {})
             conversation_config = self._config.get("conversation", {})
 
@@ -67,7 +81,11 @@ class SettingsScreen(Screen):
 
             yield Static("Daily Goal (minutes)", classes="section-header")
             yield Input(
-                value=str(app_config.get("daily_goal_minutes", self._config.get("daily_goal_minutes", 20))),
+                value=str(
+                    app_config.get(
+                        "daily_goal_minutes", self._config.get("daily_goal_minutes", 20)
+                    )
+                ),
                 id="daily-goal-input",
                 placeholder="20",
             )
@@ -75,7 +93,10 @@ class SettingsScreen(Screen):
             yield Static("Conversation Model", classes="section-header")
             yield Input(
                 value=conversation_config.get(
-                    "model", self._config["ollama"].get("interaction_model", "mistral:7b-instruct")
+                    "model",
+                    self._config["ollama"].get(
+                        "interaction_model", "mistral:7b-instruct"
+                    ),
                 ),
                 id="conversation-model-input",
                 placeholder="mistral:7b-instruct",
@@ -112,6 +133,9 @@ class SettingsScreen(Screen):
         yield Footer()
 
     async def on_mount(self) -> None:
+        self._current_theme = (
+            self.app.theme if self.app.theme in THEME_CHOICES else "neon_cyberpunk"
+        )
         if self.ollama_client is not None:
             await self._refresh_models()
 
@@ -131,10 +155,18 @@ class SettingsScreen(Screen):
         curriculum = self.query_one("#curriculum-model-input", Input).value.strip()
         interaction = self.query_one("#interaction-model-input", Input).value.strip()
         daily_goal_str = self.query_one("#daily-goal-input", Input).value.strip()
-        conversation_model = self.query_one("#conversation-model-input", Input).value.strip()
-        conversation_whisper = self.query_one("#conversation-whisper-input", Input).value.strip()
-        conversation_voice = self.query_one("#conversation-voice-input", Input).value.strip()
-        conversation_rate_str = self.query_one("#conversation-rate-input", Input).value.strip()
+        conversation_model = self.query_one(
+            "#conversation-model-input", Input
+        ).value.strip()
+        conversation_whisper = self.query_one(
+            "#conversation-whisper-input", Input
+        ).value.strip()
+        conversation_voice = self.query_one(
+            "#conversation-voice-input", Input
+        ).value.strip()
+        conversation_rate_str = self.query_one(
+            "#conversation-rate-input", Input
+        ).value.strip()
         learner_name = self.query_one("#learner-name-input", Input).value.strip()
 
         try:
@@ -144,7 +176,9 @@ class SettingsScreen(Screen):
             daily_goal = 20
 
         try:
-            conversation_rate = int(conversation_rate_str) if conversation_rate_str else 150
+            conversation_rate = (
+                int(conversation_rate_str) if conversation_rate_str else 150
+            )
             conversation_rate = max(80, min(260, conversation_rate))
         except ValueError:
             conversation_rate = 150
@@ -173,7 +207,11 @@ class SettingsScreen(Screen):
 
         _SETTINGS_PATH.write_text(dumps(data), encoding="utf-8")
 
-        if hasattr(self.app, '_state') and self.app._state and self.app._state.current_learner:
+        if (
+            hasattr(self.app, "_state")
+            and self.app._state
+            and self.app._state.current_learner
+        ):
             learner = self.app._state.current_learner
             self.app.run_worker(
                 self.app._state.learner_repo.update_goal(
@@ -199,6 +237,20 @@ class SettingsScreen(Screen):
             self.action_go_back()
         elif event.button.id == "btn-save":
             self._save_config()
+            self._save_theme()
             self.notify("Settings saved. Restart to apply.", title="Saved")
         elif event.button.id == "btn-refresh":
             self.run_worker(self._refresh_models())
+
+    def on_select_changed(self, event: Select.Changed) -> None:
+        """Handle theme selection change."""
+        if event.select.id == "theme-select":
+            theme_name = event.value
+            if theme_name and theme_name != Select.BLANK:
+                self._current_theme = theme_name
+
+    def _save_theme(self) -> None:
+        """Save the selected theme."""
+        if self._current_theme and self._current_theme != Select.BLANK:
+            apply_theme(self.app, self._current_theme)
+            self.notify(f"Theme changed to {self._current_theme}", title="Theme")
