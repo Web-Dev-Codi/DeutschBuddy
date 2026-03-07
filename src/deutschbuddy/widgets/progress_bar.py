@@ -13,18 +13,21 @@ class CEFRProgressBar(Widget):
         current_level: str,
         next_level: str | None,
         percent: float,
+        show_label: bool = True,
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
         self.current_level = current_level
         self.next_level = next_level
         self.percent = percent
+        self.show_label = show_label
 
     def compose(self) -> ComposeResult:
-        label = f"Level: {self.current_level}"
-        if self.next_level:
-            label += f"  →  {self.next_level}"
-        yield Static(label, id="cefr-label", classes="section-header")
+        if self.show_label:
+            label = f"Level: {self.current_level}"
+            if self.next_level:
+                label += f"  →  {self.next_level}"
+            yield Static(label, id="cefr-label", classes="section-header")
         bar = ProgressBar(total=100, show_eta=False)
         bar.advance(self.percent)
         yield bar
@@ -37,6 +40,8 @@ class CEFRProgressBar(Widget):
         """Update the displayed levels label without remounting the widget."""
         self.current_level = current_level
         self.next_level = next_level
+        if not self.show_label:
+            return
         label = f"Level: {self.current_level}"
         if self.next_level:
             label += f"  →  {self.next_level}"

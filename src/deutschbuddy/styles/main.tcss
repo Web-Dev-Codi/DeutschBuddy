@@ -66,6 +66,85 @@ HomeScreen {
     padding: 1 2;
 }
 
+#home-main-content {
+    height: 100%;
+    width: 1fr;
+    padding: 1 2;
+    align: center middle;
+}
+
+#home-shell {
+    width: 100%;
+    max-width: 120;
+    height: auto;
+    align: center middle;
+    content-align: center middle;
+}
+
+#home-welcome {
+    text-style: bold;
+    color: $accent;
+    text-align: center;
+    margin-bottom: 1;
+    text-size: 300%;
+}
+
+#home-level-display {
+    color: $primary;
+    text-style: bold;
+    text-align: center;
+    margin-bottom: 1;
+    text-size: 300%;
+}
+
+#cefr-bar {
+    width: 60;
+    margin-bottom: 3;
+    height: 3;
+    align: center middle;
+}
+
+#home-widget-row {
+    width: 100%;
+    height: auto;
+}
+
+.home-widget {
+    width: 1fr;
+    height: 12;
+    margin: 0 1;
+    padding: 1 2;
+    border: round $primary;
+    background: $panel;
+    color: $accent;
+    text-align: center;
+    content-align: center middle;
+}
+
+.home-widget-button {
+    height: 12;
+    text-align: left;
+    content-align: top left;
+    padding: 1 2;
+}
+
+.home-widget-button:hover {
+    border: round $primary-darken-1;
+    background: $background-darken-1;
+}
+
+.home-widget-button:focus {
+    border: round $accent;
+    background: $background-darken-1;
+}
+
+#stats-widget {
+    color: $accent;
+    text-align: left;
+    content-align: top left;
+    padding: 1 2;
+}
+
 GrammarPanelWidget {
     border: round $primary;
     padding: 1 2;

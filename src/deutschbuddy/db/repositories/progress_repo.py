@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from datetime import datetime
+from typing import Any
 
 import aiosqlite
 
@@ -148,6 +149,14 @@ class ProgressRepository:
         ) as cursor:
             rows = await cursor.fetchall()
         return [dict(r) for r in rows]
+
+    async def count_vocab_cards(self, learner_id: int) -> int:
+        async with self.db.execute(
+            "SELECT COUNT(*) FROM vocabulary_cards WHERE learner_id = ?",
+            (learner_id,),
+        ) as cursor:
+            row = await cursor.fetchone()
+        return int(row[0]) if row and row[0] is not None else 0
 
     # ── Quiz Responses ─────────────────────────────────────────────────────────
 
@@ -298,16 +307,18 @@ class ProgressRepository:
         total_words: int,
         words_seen: int,
         completed_percent: float,
+        current_word_index: int,
     ) -> None:
         await self.db.execute(
             """
             INSERT INTO vocabulary_topic_progress
-                (learner_id, topic_id, topic_level, total_words, words_seen, completed_percent, last_interacted_at)
-            VALUES (?, ?, ?, ?, ?, ?, datetime('now'))
+                (learner_id, topic_id, topic_level, total_words, words_seen, completed_percent, current_word_index, last_interacted_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))
             ON CONFLICT(learner_id, topic_id) DO UPDATE SET
                 total_words = excluded.total_words,
                 words_seen = excluded.words_seen,
                 completed_percent = excluded.completed_percent,
+                current_word_index = excluded.current_word_index,
                 last_interacted_at = datetime('now')
             """,
             (
@@ -317,6 +328,7 @@ class ProgressRepository:
                 total_words,
                 words_seen,
                 completed_percent,
+                current_word_index,
             ),
         )
         await self.db.commit()
@@ -336,6 +348,20 @@ class ProgressRepository:
         ) as cursor:
             rows = await cursor.fetchall()
         return {row["topic_id"]: dict(row) for row in rows}
+
+    async def get_latest_vocab_topic_progress(self, learner_id: int) -> dict[str, Any] | None:
+        async with self.db.execute(
+            """
+            SELECT *
+            FROM vocabulary_topic_progress
+            WHERE learner_id = ?
+            ORDER BY datetime(last_interacted_at) DESC
+            LIMIT 1
+            """,
+            (learner_id,),
+        ) as cursor:
+            row = await cursor.fetchone()
+        return dict(row) if row else None
 
     async def get_vocab_topic_summary(self, learner_id: int) -> dict[str, int]:
         async with self.db.execute(

@@ -91,6 +91,10 @@ CREATE TABLE IF NOT EXISTS vocabulary_topic_progress (
     6: """
 -- Migration v6: Store ease_factor for SM-2 on lesson_progress
 ALTER TABLE lesson_progress ADD COLUMN ease_factor REAL DEFAULT 2.5;
+""",
+    7: """
+-- Migration v7: Store current vocab word index for home practice preview
+ALTER TABLE vocabulary_topic_progress ADD COLUMN current_word_index INTEGER DEFAULT 0;
 """
 }
 
