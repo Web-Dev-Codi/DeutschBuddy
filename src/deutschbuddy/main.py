@@ -6,6 +6,7 @@ from deutschbuddy.app_state import AppState
 from deutschbuddy.curriculum.cefr import CEFRProgressionEngine
 from deutschbuddy.curriculum.loader import CurriculumLoader
 from deutschbuddy.curriculum.vocab_loader import VocabLoader
+from deutschbuddy.config import get_config
 from deutschbuddy.db.connection import close_db, get_db
 from deutschbuddy.db.migrations import run_migrations
 from deutschbuddy.db.repositories.learner_repo import LearnerRepository
@@ -25,6 +26,7 @@ from deutschbuddy.screens.quiz import QuizScreen
 from deutschbuddy.screens.results import ResultsScreen
 from deutschbuddy.screens.settings import SettingsScreen
 from deutschbuddy.screens.conversation import ConversationScreen
+from deutschbuddy.voice_conversation import VoiceConversationSession
 
 
 DEFAULT_LEARNER_NAME = "Learner"
@@ -251,23 +253,31 @@ class deutschbuddy(App):
         """Initialize and show conversation screen."""
         if self._state is None:
             return
-        
+
         state = self._state
-        
-        # Initialize audio components
-        listener = AudioListener(language="de-DE", model="tiny")
-        speaker = AudioSpeaker(voice="de-DE", rate=150)
+        conversation_config = get_config().get("conversation", {})
+
+        listener = AudioListener(
+            language=conversation_config.get("language", "de-DE"),
+            model=conversation_config.get("whisper_model", "tiny"),
+        )
+        speaker = AudioSpeaker(
+            voice=conversation_config.get("tts_voice", "de-DE"),
+            rate=int(conversation_config.get("tts_rate", 150)),
+        )
         agent = ConversationAgent(
             state.ollama_client,
-            level=state.current_learner.current_level,
         )
-        
-        screen = ConversationScreen(
+        session = VoiceConversationSession(
             listener=listener,
             speaker=speaker,
-            conversation_agent=agent,
+            agent=agent,
         )
-        
+
+        screen = ConversationScreen(
+            session=session,
+        )
+
         await self.push_screen(screen)
 
     # ── Actions ───────────────────────────────────────────────────────────────

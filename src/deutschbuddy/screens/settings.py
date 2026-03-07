@@ -29,6 +29,8 @@ class SettingsScreen(Screen):
         yield Header()
         with Static(id="main-content"):
             yield Static("Settings", classes="section-header")
+            app_config = self._config.get("app", {})
+            conversation_config = self._config.get("conversation", {})
 
             yield Static("Ollama Host URL", classes="section-header")
             yield Input(
@@ -57,9 +59,39 @@ class SettingsScreen(Screen):
 
             yield Static("Daily Goal (minutes)", classes="section-header")
             yield Input(
-                value=str(self._config.get("daily_goal_minutes", 20)),
+                value=str(app_config.get("daily_goal_minutes", self._config.get("daily_goal_minutes", 20))),
                 id="daily-goal-input",
                 placeholder="20",
+            )
+
+            yield Static("Conversation Model", classes="section-header")
+            yield Input(
+                value=conversation_config.get(
+                    "model", self._config["ollama"].get("interaction_model", "mistral:7b-instruct")
+                ),
+                id="conversation-model-input",
+                placeholder="mistral:7b-instruct",
+            )
+
+            yield Static("Conversation Whisper Model", classes="section-header")
+            yield Input(
+                value=conversation_config.get("whisper_model", "tiny"),
+                id="conversation-whisper-input",
+                placeholder="tiny",
+            )
+
+            yield Static("Conversation Voice", classes="section-header")
+            yield Input(
+                value=conversation_config.get("tts_voice", "de-DE"),
+                id="conversation-voice-input",
+                placeholder="de-DE",
+            )
+
+            yield Static("Conversation Speech Rate", classes="section-header")
+            yield Input(
+                value=str(conversation_config.get("tts_rate", 150)),
+                id="conversation-rate-input",
+                placeholder="150",
             )
 
             yield Static("", id="available-models-label", classes="quiz-context")
@@ -91,32 +123,44 @@ class SettingsScreen(Screen):
         curriculum = self.query_one("#curriculum-model-input", Input).value.strip()
         interaction = self.query_one("#interaction-model-input", Input).value.strip()
         daily_goal_str = self.query_one("#daily-goal-input", Input).value.strip()
+        conversation_model = self.query_one("#conversation-model-input", Input).value.strip()
+        conversation_whisper = self.query_one("#conversation-whisper-input", Input).value.strip()
+        conversation_voice = self.query_one("#conversation-voice-input", Input).value.strip()
+        conversation_rate_str = self.query_one("#conversation-rate-input", Input).value.strip()
 
-        # Validate daily goal
         try:
             daily_goal = int(daily_goal_str) if daily_goal_str else 20
-            daily_goal = max(1, min(180, daily_goal))  # Reasonable bounds: 1 min to 3 hours
+            daily_goal = max(1, min(180, daily_goal))
         except ValueError:
             daily_goal = 20
+
+        try:
+            conversation_rate = int(conversation_rate_str) if conversation_rate_str else 150
+            conversation_rate = max(80, min(260, conversation_rate))
+        except ValueError:
+            conversation_rate = 150
 
         raw = _SETTINGS_PATH.read_text(encoding="utf-8")
         data = parse(raw)
 
-        # Ensure tables exist
         if "ollama" not in data:
             data.add("ollama", {})  # type: ignore[arg-type]
         if "app" not in data:
             data.add("app", {})  # type: ignore[arg-type]
+        if "conversation" not in data:
+            data.add("conversation", {})  # type: ignore[arg-type]
 
-        # Update values with roundtrip safety
         data["ollama"]["host"] = host  # type: ignore[index]
         data["ollama"]["curriculum_model"] = curriculum  # type: ignore[index]
         data["ollama"]["interaction_model"] = interaction  # type: ignore[index]
-        data["daily_goal_minutes"] = daily_goal  # top-level present in current file
+        data["app"]["daily_goal_minutes"] = daily_goal  # type: ignore[index]
+        data["conversation"]["model"] = conversation_model or interaction  # type: ignore[index]
+        data["conversation"]["whisper_model"] = conversation_whisper or "tiny"  # type: ignore[index]
+        data["conversation"]["tts_voice"] = conversation_voice or "de-DE"  # type: ignore[index]
+        data["conversation"]["tts_rate"] = conversation_rate  # type: ignore[index]
 
         _SETTINGS_PATH.write_text(dumps(data), encoding="utf-8")
 
-        # Update learner's daily goal in database
         if hasattr(self.app, '_state') and self.app._state and self.app._state.current_learner:
             learner = self.app._state.current_learner
             self.app.run_worker(

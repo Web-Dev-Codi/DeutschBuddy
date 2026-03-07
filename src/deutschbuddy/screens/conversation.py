@@ -2,119 +2,133 @@
 
 from __future__ import annotations
 
-import asyncio
 from textual.app import ComposeResult
+from textual.containers import VerticalScroll
 from textual.screen import Screen
-from textual.widgets import Button, Footer, Header, Static
 from textual.binding import Binding
+from textual.widgets import Button, Footer, Header, Static
 
-from deutschbuddy.audio.listener import AudioListener
-from deutschbuddy.audio.speaker import AudioSpeaker
-from deutschbuddy.llm.conversation_agent import ConversationAgent
-from deutschbuddy.models.lesson import CEFRLevel
+from deutschbuddy.voice_conversation import ConversationTurn, VoiceConversationSession
 
 
 class ConversationScreen(Screen):
     """Main conversation interface with push-to-talk."""
-    
+
     BINDINGS = [
-        Binding("space", "hold_to_talk", "Hold to Talk", show=False),
-        Binding("l", "change_level", "Level"),
-        Binding("m", "change_mode", "Mode"),
-        Binding("t", "toggle_transcript", "Transcript"),
-        Binding("q", "quit", "Quit"),
+        Binding("space", "capture_turn", "Speak", show=False),
+        Binding("s", "start_conversation", "Start"),
+        Binding("x", "stop_conversation", "Stop"),
         Binding("escape", "close", "Close"),
     ]
-    
+
     def __init__(
         self,
-        listener: AudioListener,
-        speaker: AudioSpeaker,
-        conversation_agent: ConversationAgent,
+        session: VoiceConversationSession,
     ):
-        """Initialize conversation screen.
-        
-        Args:
-            listener: Audio listener for STT
-            speaker: Audio speaker for TTS
-            conversation_agent: Conversation agent for AI responses
-        """
         super().__init__()
-        self.listener = listener
-        self.speaker = speaker
-        self.agent = conversation_agent
-        self.is_recording = False
-        self.transcript_visible = True
-        self.conversation_history: list[tuple[str, str]] = []
-        
+        self.session = session
+        self.is_busy = False
+        self.conversation_history: list[ConversationTurn] = []
+
     def compose(self) -> ComposeResult:
-        """Compose the conversation UI."""
         yield Header()
-        
-        # Status bar
         yield Static(id="status-bar", classes="status-bar")
-        
-        # Main conversation area
-        with Static(id="conversation-area"):
-            # AI response area
-            yield Static(id="ai-response", classes="response-area")
-            
-            # User input area
-            yield Static(id="user-input", classes="input-area")
-        
-        # Record button (more reliable than space key detection)
-        yield Button("🎤 RECORD", id="record-btn", variant="primary")
-        
-        # Instructions
-        yield Static("🎤 Drücken Sie LEERTASTE oder RECORD zum Sprechen", id="instructions")
-        
+
+        with VerticalScroll(id="conversation-area"):
+            yield Static(id="conversation-transcript", classes="conversation-transcript")
+
+        with Static(classes="action-buttons"):
+            yield Button("Start Conversation", id="start-btn", variant="success")
+            yield Button("Speak", id="speak-btn", variant="primary")
+            yield Button("Stop", id="stop-btn", variant="error")
+
+        yield Static(
+            "Starten Sie das Gespräch und drücken Sie dann LEERTASTE oder Speak.",
+            id="instructions",
+            classes="quiz-context",
+        )
+
         yield Footer()
-        
+
     def on_mount(self) -> None:
-        """Initialize audio on mount."""
-        try:
-            self.listener.calibrate()
-            self._update_status()
-        except Exception as e:
-            self.notify(f"Audio initialization error: {e}", severity="error")
-            self._update_status("Audio Error")
-        
-    def action_hold_to_talk(self) -> None:
-        """Handle push-to-talk interaction."""
-        if self.is_recording:
+        self._update_status("Gestoppt")
+        self._render_transcript()
+        self._update_controls()
+
+    def on_unmount(self) -> None:
+        self.session.stop()
+
+    def action_start_conversation(self) -> None:
+        if self.is_busy or self.session.is_active:
             return
-        
-        self.is_recording = True
-        self._update_status("Aufnahme...")
-        
-        # Process in worker thread
-        self.run_worker(self._process_speech(), exclusive=True)
-        
-    async def _process_speech(self) -> None:
-        """Worker task: Listen → Transcribe → Query AI → Speak."""
+        self.run_worker(self._start_session(), exclusive=True)
+
+    def action_capture_turn(self) -> None:
+        if self.is_busy:
+            return
+        if not self.session.is_active:
+            self.notify("Starten Sie zuerst das Gespräch.", severity="warning")
+            return
+        self.run_worker(self._process_turn(), exclusive=True)
+
+    def action_stop_conversation(self) -> None:
+        self.session.stop()
+        self._update_status("Gestoppt")
+        self._update_controls()
+
+    async def _start_session(self) -> None:
+        self.is_busy = True
+        self._update_status("Starte...")
+        self._update_controls()
         try:
-            # Step 1: Listen
-            self._update_status("Hören...")
-            user_text = await asyncio.to_thread(self.listener.listen, timeout=5)
-            
-            # Step 2: Display transcript
-            self._update_user_text(user_text)
-            
-            # Step 3: Query AI
-            self._update_status("Denken...")
-            ai_response = await self.agent.chat(user_text)
-            
-            # Step 4: Speak response
-            self._update_status("Sprechen...")
-            await asyncio.to_thread(self.speaker.speak, ai_response)
-            
-            # Step 5: Update display
-            self._update_ai_text(ai_response)
+            greeting = await self.session.start()
+            if not self.session.is_active:
+                self._update_status("Gestoppt")
+                return
+            self.conversation_history.clear()
+            if greeting:
+                self._append_turn("assistant", greeting)
             self._update_status("Bereit")
-            
-            # Add to conversation history
-            self.conversation_history.append((user_text, ai_response))
-            
+        except Exception as e:
+            self.session.stop()
+            self.notify(f"Fehler: {e}", severity="error")
+            self._update_status("Fehler")
+        finally:
+            self.is_busy = False
+            self._update_controls()
+
+    async def _process_turn(self) -> None:
+        self.is_busy = True
+        self._update_controls()
+        try:
+            self._update_status("Hören...")
+            user_text = await self.session.listen()
+            if not self.session.is_active:
+                self._update_status("Gestoppt")
+                return
+
+            cleaned_user_text = user_text.strip()
+            if not cleaned_user_text:
+                self._update_status("Bereit")
+                return
+
+            self._append_turn("user", cleaned_user_text)
+            self._update_status("Denken...")
+            ai_response = await self.session.respond(cleaned_user_text)
+            if not self.session.is_active:
+                self._update_status("Gestoppt")
+                return
+
+            if ai_response:
+                self._append_turn("assistant", ai_response)
+
+            self._update_status("Sprechen...")
+            await self.session.speak(ai_response)
+
+            if self.session.is_active:
+                self._update_status("Bereit")
+            else:
+                self._update_status("Gestoppt")
         except TimeoutError:
             self.notify("Keine Sprache erkannt - versuchen Sie es erneut", severity="warning")
             self._update_status("Bereit")
@@ -124,70 +138,56 @@ class ConversationScreen(Screen):
         except Exception as e:
             self.notify(f"Fehler: {e}", severity="error")
             self._update_status("Fehler")
-        
         finally:
-            self.is_recording = False
-        
+            self.is_busy = False
+            self._update_controls()
+
     def _update_status(self, text: str = "Bereit") -> None:
-        """Update status bar."""
         try:
             status = self.query_one("#status-bar", Static)
-            level = self.agent.level.value
-            status.update(f"Level: {level} | {text}")
-        except Exception:
-            pass  # Widget might not be ready yet
-    
-    def _update_user_text(self, text: str) -> None:
-        """Update user transcript."""
-        try:
-            widget = self.query_one("#user-input", Static)
-            widget.update(f"🗣️ Sie: {text}")
+            status.update(f"Freies Gespräch | {text}")
         except Exception:
             pass
-    
-    def _update_ai_text(self, text: str) -> None:
-        """Update AI response."""
+
+    def _append_turn(self, role: str, text: str) -> None:
+        if not text.strip():
+            return
+        self.conversation_history.append(ConversationTurn(role=role, text=text.strip()))
+        self._render_transcript()
+
+    def _render_transcript(self) -> None:
         try:
-            widget = self.query_one("#ai-response", Static)
-            widget.update(f"🤖 AI: {text}")
+            widget = self.query_one("#conversation-transcript", Static)
+            if not self.conversation_history:
+                widget.update("Noch kein Gespräch gestartet.")
+                return
+
+            lines: list[str] = []
+            for turn in self.conversation_history:
+                speaker = "Sie" if turn.role == "user" else "DeutschBuddy"
+                prefix = "🗣️" if turn.role == "user" else "🤖"
+                lines.append(f"{prefix} {speaker}: {turn.text}")
+                lines.append("")
+            widget.update("\n".join(lines).strip())
         except Exception:
             pass
-        
-    def action_change_level(self) -> None:
-        """Cycle through CEFR levels."""
-        levels = [CEFRLevel.A1, CEFRLevel.A2, CEFRLevel.B1]
-        current_idx = levels.index(self.agent.level)
-        next_idx = (current_idx + 1) % len(levels)
-        self.agent.set_level(levels[next_idx])
-        self.set_speaker_rate_for_level(levels[next_idx])
-        self.notify(f"Level: {levels[next_idx].value}")
-        self._update_status()
-    
-    def set_speaker_rate_for_level(self, level: CEFRLevel) -> None:
-        """Adjust TTS rate based on level."""
-        rates = {CEFRLevel.A1: 120, CEFRLevel.A2: 150, CEFRLevel.B1: 170}
-        self.speaker.set_rate(rates[level])
-        
-    def action_change_mode(self) -> None:
-        """Cycle through conversation modes."""
-        # Placeholder for future mode functionality
-        self.notify("Mode change not implemented yet")
-        
-    def action_toggle_transcript(self) -> None:
-        """Show/hide conversation transcript."""
-        self.transcript_visible = not self.transcript_visible
+
+    def _update_controls(self) -> None:
         try:
-            conversation_area = self.query_one("#conversation-area", Static)
-            if self.transcript_visible:
-                conversation_area.display = True
-                self.notify("Transcript visible")
-            else:
-                conversation_area.display = False
-                self.notify("Transcript hidden")
+            start_button = self.query_one("#start-btn", Button)
+            speak_button = self.query_one("#speak-btn", Button)
+            stop_button = self.query_one("#stop-btn", Button)
+
+            start_button.disabled = self.session.is_active or self.is_busy
+            speak_button.disabled = (not self.session.is_active) or self.is_busy
+            stop_button.disabled = not self.session.is_active
         except Exception:
             pass
-    
+
     def on_button_pressed(self, event: Button.Pressed) -> None:
-        """Handle button presses."""
-        if event.button.id == "record-btn":
-            self.action_hold_to_talk()
+        if event.button.id == "start-btn":
+            self.action_start_conversation()
+        elif event.button.id == "speak-btn":
+            self.action_capture_turn()
+        elif event.button.id == "stop-btn":
+            self.action_stop_conversation()

@@ -26,6 +26,10 @@ class AudioSpeaker:
         """
         self.engine.say(text)
         self.engine.runAndWait()
+
+    def stop(self) -> None:
+        """Stop any in-progress speech playback."""
+        self.engine.stop()
         
     def get_available_voices(self) -> list[dict]:
         """Get list of available TTS voices.
@@ -56,16 +60,23 @@ class AudioSpeaker:
         """Configure German voice from espeak-ng."""
         voices = self.engine.getProperty('voices')
         german_voice = None
-        
+
+        preferred_voice = self.voice.lower()
         for voice in voices:
-            # Check for German language codes or German in name
-            if (voice.languages and 
-                any('de' in str(lang).lower() for lang in voice.languages)):
+            if preferred_voice in str(voice.id).lower() or preferred_voice in voice.name.lower():
                 german_voice = voice.id
                 break
-            elif 'german' in voice.name.lower() or 'deutsch' in voice.name.lower():
-                german_voice = voice.id
-                break
+
+        if german_voice is None:
+            for voice in voices:
+                # Check for German language codes or German in name
+                if (voice.languages and 
+                    any('de' in str(lang).lower() for lang in voice.languages)):
+                    german_voice = voice.id
+                    break
+                elif 'german' in voice.name.lower() or 'deutsch' in voice.name.lower():
+                    german_voice = voice.id
+                    break
         
         if german_voice:
             self.engine.setProperty('voice', german_voice)

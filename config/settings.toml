@@ -1,6 +1,7 @@
 [app]
 name = "deutschbuddy"
 version = "0.6.0"
+daily_goal_minutes = 50
 
 [ollama]
 host = "http://localhost:11434"
@@ -16,4 +17,13 @@ path = "data/db/learner.db"
 data_path = "data/curriculum"
 default_level = "A1"
 
-daily_goal_minutes = 50
+[conversation]
+language = "de-DE"
+model = "dolphin3:latest"
+system_prompt = "Du bist ein freundlicher Gesprächspartner für freie Gespräche auf Deutsch. Antworte immer auf natürlichem Deutsch. Bleibe gesprächig, freundlich und locker. Gib keine Korrekturen, keine Bewertungen, keine Lektionserklärungen und kein Coaching, außer die Nutzerin oder der Nutzer bittet ausdrücklich darum. Wenn es gut passt, stelle genau eine kurze Anschlussfrage, damit das Gespräch weitergeht."
+greeting = "Hallo! Wir können jetzt frei auf Deutsch sprechen. Womit möchtest du anfangen?"
+whisper_model = "tiny"
+tts_voice = "de-DE"
+tts_rate = 150
+listen_timeout = 5
+calibration_duration = 1.0

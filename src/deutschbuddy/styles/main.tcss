@@ -161,6 +161,20 @@ QuizCard {
     margin-right: 1;
 }
 
+#conversation-area {
+    height: 1fr;
+    border: round $primary;
+    padding: 1 2;
+    margin-top: 1;
+    background: $panel;
+}
+
+.conversation-transcript {
+    width: 100%;
+    height: auto;
+    color: $text;
+}
+
 .loading {
     color: $text-muted;
     text-style: italic;
