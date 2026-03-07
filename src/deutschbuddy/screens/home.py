@@ -85,7 +85,7 @@ class HomeScreen(Screen):
                     yield VocabPracticeWidget(id="widget-vocab", classes="home-widget home-widget-button")
                     yield ContinueLessonWidget(id="widget-continue", classes="home-widget home-widget-button")
                 
-                yield Static("Version 0.6.1 • Made with ❤️ in 🇩🇪 • © 2026 DeutschBuddy", id="home-footer", classes="home-footer")
+                yield Static("Version 0.6.5-beta • Made with ❤️ in 🇩🇪 • © 2026 DeutschBuddy", id="home-footer", classes="home-footer")
 
         yield Footer()
 
