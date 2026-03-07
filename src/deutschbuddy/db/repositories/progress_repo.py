@@ -149,6 +149,18 @@ class ProgressRepository:
             row = await cursor.fetchone()
         return int(row[0]) if row and row[0] is not None else 0
 
+    async def get_studied_vocab_word_count(self, learner_id: int) -> int:
+        async with self.db.execute(
+            """
+            SELECT SUM(words_seen)
+            FROM vocabulary_topic_progress
+            WHERE learner_id = ?
+            """,
+            (learner_id,),
+        ) as cursor:
+            row = await cursor.fetchone()
+        return int(row[0]) if row and row[0] is not None else 0
+
     async def save_response(self, response: QuizResponse) -> None:
         await self.db.execute(
             """
@@ -405,6 +417,40 @@ class ProgressRepository:
     async def reset_vocab_topic_progress(self, learner_id: int) -> None:
         await self.db.execute(
             "DELETE FROM vocabulary_topic_progress WHERE learner_id = ?",
+            (learner_id,),
+        )
+        await self.db.commit()
+
+    async def reset_all_progress(self, learner_id: int) -> None:
+        await self.db.execute(
+            "DELETE FROM quiz_responses WHERE session_id IN (SELECT id FROM quiz_sessions WHERE learner_id = ?)",
+            (learner_id,),
+        )
+        await self.db.execute(
+            "DELETE FROM quiz_sessions WHERE learner_id = ?",
+            (learner_id,),
+        )
+        await self.db.execute(
+            "DELETE FROM lesson_progress WHERE learner_id = ?",
+            (learner_id,),
+        )
+        await self.db.execute(
+            "DELETE FROM vocabulary_topic_progress WHERE learner_id = ?",
+            (learner_id,),
+        )
+        await self.db.execute(
+            "DELETE FROM app_study_sessions WHERE learner_id = ?",
+            (learner_id,),
+        )
+        await self.db.execute(
+            """
+            UPDATE vocabulary_cards
+            SET ease_factor = 2.5,
+                interval_days = 1,
+                repetitions = 0,
+                next_review = NULL
+            WHERE learner_id = ?
+            """,
             (learner_id,),
         )
         await self.db.commit()

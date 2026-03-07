@@ -127,6 +127,7 @@ class SettingsScreen(Screen):
 
             with Static(classes="action-buttons"):
                 yield Button("Save", id="btn-save", variant="primary")
+                yield Button("Reset Curriculum", id="btn-reset-curriculum", variant="error")
                 yield Button("Refresh Models", id="btn-refresh", variant="default")
                 yield Button("Back", id="btn-back", variant="default")
 
@@ -232,6 +233,44 @@ class SettingsScreen(Screen):
     def action_go_back(self) -> None:
         self.app.pop_screen()
 
+    async def _reset_curriculum(self) -> None:
+        if (
+            not hasattr(self.app, "_state")
+            or not self.app._state
+            or not self.app._state.current_learner
+        ):
+            return
+
+        learner = self.app._state.current_learner
+        progress_repo = self.app._state.progress_repo
+        learner_repo = self.app._state.learner_repo
+
+        if hasattr(self.app, "_study_session_id") and self.app._study_session_id is not None:
+            await progress_repo.end_app_study_session(self.app._study_session_id)
+            self.app._study_session_id = None
+
+        await progress_repo.reset_all_progress(learner.id)
+        await learner_repo.reset_progress_fields(learner.id)
+
+        learner.streak_days = 0
+        learner.last_session_date = None
+        learner.last_lesson_id = None
+
+        if hasattr(self.app, "_current_lesson"):
+            self.app._current_lesson = None
+
+        self.app._study_session_id = await progress_repo.start_app_study_session(learner.id)
+
+        home_screen = next(
+            (screen for screen in self.app.screen_stack if screen.__class__.__name__ == "HomeScreen"),
+            None,
+        )
+        if home_screen is not None and hasattr(home_screen, "current_lesson"):
+            home_screen.current_lesson = None
+            await home_screen.refresh_dashboard()
+
+        self.notify("Curriculum progress reset.", title="Reset")
+
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "btn-back":
             self.action_go_back()
@@ -239,6 +278,8 @@ class SettingsScreen(Screen):
             self._save_config()
             self._save_theme()
             self.notify("Settings saved. Restart to apply.", title="Saved")
+        elif event.button.id == "btn-reset-curriculum":
+            self.run_worker(self._reset_curriculum(), exclusive=True)
         elif event.button.id == "btn-refresh":
             self.run_worker(self._refresh_models())
 

@@ -97,6 +97,9 @@ class HomeScreen(Screen):
         )
 
     async def _load_home_content(self) -> None:
+        await self.refresh_dashboard()
+
+    async def refresh_dashboard(self) -> None:
         if not hasattr(self.app, "_state") or not self.app._state:
             return
 
@@ -105,7 +108,7 @@ class HomeScreen(Screen):
 
         minutes_today = await state.progress_repo.get_today_study_minutes(self.learner.id)
         minutes_today = max(0.0, minutes_today)
-        vocab_count = await state.progress_repo.count_vocab_cards(self.learner.id)
+        vocab_count = await state.progress_repo.get_studied_vocab_word_count(self.learner.id)
         latest_vocab_progress = await state.progress_repo.get_latest_vocab_topic_progress(
             self.learner.id
         )
@@ -113,6 +116,7 @@ class HomeScreen(Screen):
         self._update_stats_widget(minutes_today=minutes_today, vocab_count=vocab_count)
         self._update_vocab_widget(latest_vocab_progress)
         self._update_continue_widget()
+        self.query_one("#streak", StreakIndicator).update_streak(self.learner.streak_days)
 
     async def _refresh_study_minutes(self) -> None:
         if not hasattr(self.app, "_state") or not self.app._state:
@@ -121,12 +125,15 @@ class HomeScreen(Screen):
         minutes_today = await self.app._state.progress_repo.get_today_study_minutes(
             self.learner.id
         )
+        vocab_count = await self.app._state.progress_repo.get_studied_vocab_word_count(
+            self.learner.id
+        )
         widget = self.query_one("#stats-widget", StatsWidget)
         widget.set_stats(
             minutes_today=max(0.0, minutes_today),
             lessons_completed=self._level_progress[0],
             lessons_total=self._level_progress[1],
-            vocab_count=widget._vocab_count,
+            vocab_count=vocab_count,
         )
 
     async def _update_progress_bar(self) -> None:
