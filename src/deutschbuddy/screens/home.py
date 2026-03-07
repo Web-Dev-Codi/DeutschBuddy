@@ -46,7 +46,7 @@ class HomeScreen(Screen):
         # Sidebar navigation
         with Static(id="sidebar"):
             yield Static("Navigation", classes="nav-label")
-            yield Button("️ Voice Conversation", id="nav-conversation", classes="nav-item")
+           # yield Button("️ Voice Conversation", id="nav-conversation", classes="nav-item")
             yield Button("📚 Lessons", id="nav-lessons", classes="nav-item")
             yield Button("🧠 Quiz", id="nav-quiz", classes="nav-item")
             yield Button("📊 Progress", id="nav-progress", classes="nav-item")

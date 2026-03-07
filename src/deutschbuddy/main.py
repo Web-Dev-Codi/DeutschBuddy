@@ -40,7 +40,7 @@ class deutschbuddy(App):
     BINDINGS = [
         ("q", "quit", "Quit"),
         ("h", "go_home", "Home"),
-        ("c", "go_conversation", "Conversation"),
+        #("c", "go_conversation", "Conversation"),
         ("ctrl+r", "go_review", "Review"),
         ("?", "show_help", "Help"),
     ]
