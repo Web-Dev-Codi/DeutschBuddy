@@ -137,6 +137,30 @@ HomeScreen {
     background: $background-darken-1;
 }
 
+#home-widget-row, .home-widget-title, .home-widget-row, .home-widget-affordance {
+}
+
+# Ensure titles are aligned and visually consistent across widgets
+.home-widget-title {
+    text-style: bold;
+    text-align: center;
+    color: $accent;
+    margin-top: 0;
+    margin-bottom: 1;
+}
+
+.home-widget-row {
+    text-align: center;
+    color: $text;
+    margin: 0;
+}
+
+.home-widget-affordance {
+    text-align: center;
+    color: $primary;
+    margin-top: 1;
+}
+
 #stats-widget {
     color: $accent;
     text-align: left;

@@ -12,6 +12,9 @@ from deutschbuddy.models.learner import Learner
 from deutschbuddy.screens.level_select import LevelSelectScreen
 from deutschbuddy.widgets.progress_bar import CEFRProgressBar
 from deutschbuddy.widgets.streak_indicator import StreakIndicator
+from deutschbuddy.widgets.stats_widget import StatsWidget
+from deutschbuddy.widgets.vocab_practice_widget import VocabPracticeWidget
+from deutschbuddy.widgets.continue_widget import ContinueLessonWidget
 
 
 # Simple message class for navigation requests
@@ -75,17 +78,9 @@ class HomeScreen(Screen):
                     id="cefr-bar",
                 )
                 with Horizontal(id="home-widget-row"):
-                    yield Static(id="stats-widget", classes="home-widget")
-                    yield Button(
-                        "Practice Vocabulary\n\nStart vocab practice\n\nOpen practice",
-                        id="widget-vocab",
-                        classes="home-widget home-widget-button",
-                    )
-                    yield Button(
-                        "Continue Lesson\n\nChoose your next lesson\n\nOpen lessons",
-                        id="widget-continue",
-                        classes="home-widget home-widget-button",
-                    )
+                    yield StatsWidget(id="stats-widget", classes="home-widget")
+                    yield VocabPracticeWidget(id="widget-vocab", classes="home-widget home-widget-button")
+                    yield ContinueLessonWidget(id="widget-continue", classes="home-widget home-widget-button")
 
         yield Footer()
 
@@ -131,49 +126,43 @@ class HomeScreen(Screen):
 
     def _update_stats_widget(self, *, minutes_today: float, vocab_count: int) -> None:
         completed_lessons, total_lessons = self._level_progress
-        stats_text = (
-            "Stats\n\n"
-            f"Today\n{minutes_today:.0f} min\n\n"
-            f"Lessons\n{completed_lessons}/{total_lessons}\n\n"
-            f"Vocab\n{vocab_count} words"
+        widget = self.query_one("#stats-widget", StatsWidget)
+        widget.set_stats(
+            minutes_today=minutes_today,
+            lessons_completed=completed_lessons,
+            lessons_total=total_lessons,
+            vocab_count=vocab_count,
         )
-        self.query_one("#stats-widget", Static).update(stats_text)
 
     def _update_vocab_widget(self, latest_vocab_progress: dict[str, Any] | None) -> None:
-        button = self.query_one("#widget-vocab", Button)
+        widget = self.query_one("#widget-vocab", VocabPracticeWidget)
         if not hasattr(self.app, "_state") or not self.app._state or not latest_vocab_progress:
-            button.label = "Practice Vocabulary\n\nStart vocab practice\n\nOpen practice"
+            widget.set_preview(german=None, topic_title=None)
             return
 
         topic_level = latest_vocab_progress.get("topic_level") or self.learner.current_level.value
         topic_id = latest_vocab_progress.get("topic_id")
         topic = self.app._state.vocab_loader.get_topic(topic_level, topic_id)
         if topic is None or not topic.words:
-            button.label = "Practice Vocabulary\n\nStart vocab practice\n\nOpen practice"
+            widget.set_preview(german=None, topic_title=None)
             return
 
         current_index = int(latest_vocab_progress.get("current_word_index") or 0)
         next_index = min(current_index + 1, len(topic.words) - 1)
         next_word = topic.words[next_index]
-        button.label = (
-            "Practice Vocabulary\n\n"
-            f"{next_word.german}\n"
-            f"{topic.title}\n\n"
-            "Open practice"
-        )
+        widget.set_preview(german=next_word.german, topic_title=topic.title)
 
     def _update_continue_widget(self) -> None:
-        button = self.query_one("#widget-continue", Button)
+        widget = self.query_one("#widget-continue", ContinueLessonWidget)
         if self.current_lesson:
-            button.label = (
-                "Continue Lesson\n\n"
-                f"{self.current_lesson.id}\n"
-                f"{self.current_lesson.title}\n"
-                f"{self.current_lesson.level.value} · {self.current_lesson.estimated_minutes} min"
+            widget.set_lesson(
+                lesson_id=self.current_lesson.id,
+                title=self.current_lesson.title,
+                level=self.current_lesson.level.value,
+                minutes=int(self.current_lesson.estimated_minutes or 0),
             )
             return
-
-        button.label = "Continue Lesson\n\nChoose your next lesson\n\nOpen lessons"
+        widget.set_lesson(lesson_id=None, title=None, level=None, minutes=None)
 
     def action_nav_lessons(self) -> None:
         self.app.post_message(NavRequest("lessons"))
@@ -203,15 +192,17 @@ class HomeScreen(Screen):
             self.action_nav_progress()
         elif button_id == "nav-settings":
             self.action_nav_settings()
-        elif button_id == "widget-vocab":
-            self.action_nav_review()
-        elif button_id == "widget-continue":
-            if self.current_lesson:
-                self.app.post_message(NavRequest("lesson", lesson_id=self.current_lesson.id))
-            else:
-                self.action_nav_lessons()
         elif button_id == "nav-change-level":
             self.run_worker(self._change_level(), exclusive=True)
+
+    def on_vocab_practice_widget_open_requested(self, _msg: VocabPracticeWidget.OpenRequested) -> None:
+        self.action_nav_review()
+
+    def on_continue_lesson_widget_open_requested(self, _msg: ContinueLessonWidget.OpenRequested) -> None:
+        if self.current_lesson:
+            self.app.post_message(NavRequest("lesson", lesson_id=self.current_lesson.id))
+            return
+        self.action_nav_lessons()
 
     async def _change_level(self) -> None:
         try:
