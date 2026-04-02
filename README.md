@@ -143,6 +143,7 @@ DeutschBuddy uses a **dual-layer curriculum system** combining static content wi
 ### AI Curriculum Agent (Learning Strategist)
 
 **Responsibilities:**
+
 - 📊 Analyze learner performance and mastery scores
 - 🎯 Recommend optimal next lessons based on individual needs
 - 📈 Track CEFR level progression (A1 → A2 → B1)
@@ -179,64 +180,160 @@ Why this lesson?
 
 ---
 
-## ⚙️ GPU Setup (AMD RX 7800 XT / ROCm)
+## ⚙️ GPU Setup on Linux (NVIDIA / AMD / Intel)
 
-DeutschBuddy supports AMD GPUs via ROCm. To enable hardware acceleration:
+DeutschBuddy uses Ollama for local model inference, so Linux GPU
+acceleration depends on the backend Ollama supports for your hardware:
+
+- **NVIDIA**: CUDA backend, Compute Capability **5.0+**, driver **531+**
+- **AMD**: ROCm backend for supported Radeon / Radeon Pro / Instinct GPUs
+- **Intel**: Vulkan backend on Linux, currently **experimental** in Ollama
+- **Fallback**: CPU mode if no supported GPU backend is available
+
+### Linux Distro Coverage
+
+The app is not limited to Ubuntu or Arch. It can run with GPU
+acceleration on the major Linux distro families as long as the correct
+vendor drivers and runtime libraries are installed:
+
+- **Ubuntu / Debian**: Ubuntu 22.04+, Debian 12+, with Ollama plus
+  vendor CUDA / ROCm / Vulkan packages
+- **Fedora / RHEL**: Fedora, RHEL, Rocky, AlmaLinux, with Ollama plus
+  vendor driver repositories or distro packages
+- **Arch-based**: Arch, Manjaro, EndeavourOS, with current GPU drivers
+  and Vulkan utilities
+- **openSUSE**: Tumbleweed and Leap, with Ollama plus vendor drivers
+  and Vulkan utilities
+- **Other Linux distros**: any modern systemd-based distro with the
+  matching kernel driver, userspace runtime, and `ollama serve`
 
 <details>
-<summary><b>📦 Step 1: Install ROCm</b> (click to expand)</summary>
+<summary><b>📦 Step 1: Install Ollama on Linux</b> (click to expand)</summary>
 
 ```bash
-# Ubuntu 22.04 / 24.04
-sudo apt install rocm-hip-sdk
+curl -fsSL https://ollama.com/install.sh | sh
+ollama -v
 ```
-
-> 📖 Follow [AMD's ROCm install guide](https://rocm.docs.amd.com/en/latest/deploy/linux/index.html) for your distro.
 
 </details>
 
 <details>
-<summary><b>✅ Step 2: Verify GPU</b> (click to expand)</summary>
+<summary><b>🟩 NVIDIA GPUs (CUDA)</b> (click to expand)</summary>
+
+Install the current NVIDIA driver / CUDA stack for your distro, then
+verify detection:
+
+```bash
+nvidia-smi
+ollama serve
+```
+
+- Ollama supports NVIDIA GPUs with **Compute Capability 5.0+**
+- Recommended if you have GeForce RTX, RTX A-series, Quadro RTX,
+  Tesla, or newer supported cards
+- If you have multiple NVIDIA GPUs, you can limit visibility with
+  `CUDA_VISIBLE_DEVICES`
+
+> 📖 NVIDIA CUDA downloads: [developer.nvidia.com/cuda-downloads](https://developer.nvidia.com/cuda-downloads)
+
+</details>
+
+<details>
+<summary><b>🟥 AMD GPUs (ROCm)</b> (click to expand)</summary>
+
+Install ROCm for your distro, then verify detection:
 
 ```bash
 rocm-smi
+ollama serve
 ```
 
-Expected output:
+- Best path for supported AMD Radeon RX, Radeon Pro, and Instinct GPUs
+  on Linux
+- If your GPU is close to a supported ROCm target but not recognized,
+  you can try an override
+
+Example for an RX 7800 XT:
+
+```bash
+export HSA_OVERRIDE_GFX_VERSION=11.0.2
+ollama serve
 ```
-============================ ROCm System Management Interface ============================
-========================================= Concise Info =========================================
-Device  [Model : Revision]    Temp        Power     Partitions      SCLK    MCLK    Fans
-                        Perf
-          0   [0x7300 : x00]    45.0°C      N/A     N/A             2.0Ghz  2.0Ghz   N/A
-          1   [0x7300 : x00]    47.0°C      N/A     N/A             2.0Ghz  2.0Ghz   N/A
-===============================================================================================
-```
+
+> 📖 AMD ROCm Linux install guide: [rocm.docs.amd.com](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/tutorial/quick-start.html)
 
 </details>
 
 <details>
-<summary><b>🚀 Step 3: Run Ollama with ROCm</b> (click to expand)</summary>
+<summary><b>🟦 Intel GPUs and additional Vulkan-capable GPUs</b> (click to expand)</summary>
+
+On Linux, Ollama also has **experimental Vulkan support**, which is
+the most relevant path for Intel GPUs and some additional AMD setups.
+
+Install your distro's Vulkan driver stack and verification tools, then
+run:
 
 ```bash
-# Override GPU architecture for RX 7800 XT (gfx1101 / RDNA3)
-export HSA_OVERRIDE_GFX_VERSION=11.0.2
-
-# Start Ollama server
+export OLLAMA_VULKAN=1
+vulkaninfo --summary
 ollama serve
+```
+
+- Best fit for Intel Arc and other Linux systems where Vulkan is the
+  available acceleration path
+- Vulkan support in Ollama is still experimental, so stability may
+  vary more than CUDA or ROCm
+- If you need to restrict Vulkan devices, use
+  `GGML_VK_VISIBLE_DEVICES`
+
+> 📖 Intel Linux GPU docs: [dgpu-docs.intel.com](https://dgpu-docs.intel.com/driver/client/overview.html)
+
+</details>
+
+<details>
+<summary><b>✅ Step 2: Verify your backend</b> (click to expand)</summary>
+
+Use the command that matches your GPU vendor:
+
+```bash
+# NVIDIA
+nvidia-smi
+
+# AMD
+rocm-smi
+
+# Intel / Vulkan
+vulkaninfo --summary
 ```
 
 </details>
 
 ### Environment Variables
 
-| Variable | Purpose | Recommended Value |
-|----------|---------|-------------------|
-| `HSA_OVERRIDE_GFX_VERSION` | Override GPU architecture | `11.0.2` (RX 7800 XT) |
-| `OLLAMA_GPU_OVERHEAD` | Reserved VRAM (bytes) | Tune if OOM |
-| `OLLAMA_NUM_GPU` | GPU layers to offload | Auto-detected |
+- **`CUDA_VISIBLE_DEVICES`**: limit NVIDIA GPUs visible to Ollama
+- **`ROCR_VISIBLE_DEVICES`**: limit AMD GPUs visible to Ollama
+- **`HSA_OVERRIDE_GFX_VERSION`**: override AMD GFX target for
+  unsupported-but-similar AMD GPUs
+- **`OLLAMA_VULKAN`**: enable Vulkan backend
+- **`GGML_VK_VISIBLE_DEVICES`**: limit Vulkan-visible GPUs
+- **`OLLAMA_GPU_OVERHEAD`**: reserve VRAM headroom if you hit OOM
+- **`OLLAMA_NUM_GPU`**: control GPU offload, though auto-detection is
+  usually fine
 
-> 💡 **RX 7800 XT (16 GB VRAM)**: `llama3.1:8b` and `mistral:7b` will fully load on-device!
+### Linux Notes
+
+- **NVIDIA**: if GPU detection breaks after suspend/resume, reloading
+  `nvidia_uvm` may help
+- **AMD**: on some distros, the `ollama` user may need access to the
+  `render` group
+- **Intel / Vulkan**: install both Vulkan drivers and `vulkaninfo`
+  tooling for your distro
+- **All vendors**: if GPU setup is incomplete, Ollama will still run on
+  CPU
+
+> 💡 **16 GB VRAM class GPUs** such as the RX 7800 XT or RTX 4070
+> Ti-class cards are usually a strong fit for `llama3.1:8b` and
+> `mistral:7b` locally.
 
 ---
 
