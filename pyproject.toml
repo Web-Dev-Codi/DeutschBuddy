@@ -8,7 +8,7 @@ version = "0.6.5"
 description = "AI-powered German language TUI for English speakers"
 requires-python = ">=3.11"
 dependencies = [
-  "textual>=8.0.2",
+  "textual>=8.2.1",
   "ollama>=0.6.1",
   "aiosqlite>=0.22.1",
   "pydantic>=2.12.5",
@@ -23,6 +23,9 @@ voice = [
   "PyAudio>=0.2.14",
   "pyttsx3>=2.99",
   "openai-whisper>=20250625",
+  "piper-tts>=1.2.0",
+  "pygame>=2.6.0",
+  "beautifulsoup4>=4.12.0",
 ]
 
 [project.scripts]

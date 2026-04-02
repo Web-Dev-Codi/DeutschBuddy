@@ -21,6 +21,7 @@ class VocabCard(Widget):
         ("space", "flip", "Flip"),
         ("left", "prev_card", "Previous"),
         ("right", "next_card", "Next"),
+        ("r", "replay", "Replay"),
     ]
 
     class PrevRequested(Message):
@@ -35,6 +36,9 @@ class VocabCard(Widget):
         def __init__(self, showing_english: bool) -> None:
             super().__init__()
             self.showing_english = showing_english
+
+    class ReplayRequested(Message):
+        """Message indicating user wants to replay pronunciation."""
 
     showing_english: reactive[bool] = reactive(True)
 
@@ -121,3 +125,7 @@ class VocabCard(Widget):
 
     def action_next_card(self) -> None:
         self.post_message(self.NextRequested())
+
+    def action_replay(self) -> None:
+        """Replay pronunciation of the current German word."""
+        self.post_message(self.ReplayRequested())
