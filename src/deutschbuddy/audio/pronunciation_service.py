@@ -2,12 +2,17 @@
 
 from __future__ import annotations
 
+import importlib.util
+import logging
 import threading
 from pathlib import Path
 from typing import Callable
 
 from deutschbuddy.audio.audio_player import AudioPlayer
 from deutschbuddy.audio.wiktionary_client import WiktionaryClient
+
+
+LOGGER = logging.getLogger(__name__)
 
 
 class PronunciationService:
@@ -39,6 +44,7 @@ class PronunciationService:
 
         self._current_word: str | None = None
         self._lock = threading.Lock()
+        self._last_error: str | None = None
 
     def play_pronunciation(
         self,
@@ -56,6 +62,12 @@ class PronunciationService:
             False if all sources failed
         """
         if not word or not word.strip():
+            self._last_error = "No word was provided for pronunciation"
+            return False
+
+        if not self._player.is_available():
+            self._last_error = self._player.last_error() or "Audio playback backend unavailable"
+            LOGGER.warning("%s", self._last_error)
             return False
 
         word = word.strip()
@@ -64,12 +76,22 @@ class PronunciationService:
             self._stop_current()
             self._current_word = word
 
+        audio_path = self._get_cached_path(word)
+        if audio_path.exists():
+            return self._play_file(audio_path, on_complete)
+
+        if not self._can_fetch_or_synthesize():
+            self._last_error = "No pronunciation source is available"
+            LOGGER.warning("%s", self._last_error)
+            return False
+
         threading.Thread(
             target=self._fetch_and_play,
             args=(word, on_complete),
             daemon=True,
         ).start()
 
+        self._last_error = None
         return True
 
     def replay(self, on_complete: Callable[[], None] | None = None) -> bool:
@@ -99,6 +121,11 @@ class PronunciationService:
         """Check if pronunciation is currently playing."""
         return self._player.is_playing()
 
+    def last_error(self) -> str | None:
+        if self._last_error:
+            return self._last_error
+        return self._player.last_error()
+
     def _stop_current(self) -> None:
         """Stop current playback internally (must hold lock)."""
         self._player.stop()
@@ -120,15 +147,19 @@ class PronunciationService:
             self._play_file(audio_path, on_complete)
             return
 
-        audio_path = self._wiktionary.fetch_audio(word)
-        if audio_path and audio_path.exists():
-            self._play_file(audio_path, on_complete)
-            return
+        if self._wiktionary.is_available():
+            audio_path = self._wiktionary.fetch_audio(word)
+            if audio_path and audio_path.exists():
+                self._play_file(audio_path, on_complete)
+                return
 
         audio_path = self._synthesize_with_piper(word)
         if audio_path and audio_path.exists():
             self._play_file(audio_path, on_complete)
             return
+
+        self._last_error = f"No pronunciation audio found for '{word}'"
+        LOGGER.info("%s", self._last_error)
 
     def _play_cached_or_fetch(
         self,
@@ -144,17 +175,27 @@ class PronunciationService:
         Returns:
             True if playback started, False otherwise
         """
+        if not self._player.is_available():
+            self._last_error = self._player.last_error() or "Audio playback backend unavailable"
+            LOGGER.warning("%s", self._last_error)
+            return False
+
         audio_path = self._get_cached_path(word)
 
         if audio_path.exists():
-            self._play_file(audio_path, on_complete)
-            return True
+            return self._play_file(audio_path, on_complete)
+
+        if not self._can_fetch_or_synthesize():
+            self._last_error = f"No pronunciation source is available for '{word}'"
+            LOGGER.warning("%s", self._last_error)
+            return False
 
         threading.Thread(
             target=self._fetch_and_play,
             args=(word, on_complete),
             daemon=True,
         ).start()
+        self._last_error = None
         return True
 
     def _get_cached_path(self, word: str) -> Path:
@@ -170,7 +211,7 @@ class PronunciationService:
         """
         safe_word = "".join(c if c.isalnum() or c == "-" else "_" for c in word.lower())
 
-        for ext in [".ogg", ".wav", ".mp3"]:
+        for ext in [".ogg", ".oga", ".wav", ".mp3"]:
             path = self.cache_dir / f"{safe_word}{ext}"
             if path.exists():
                 return path
@@ -181,7 +222,7 @@ class PronunciationService:
         self,
         audio_path: Path,
         on_complete: Callable[[], None] | None = None,
-    ) -> None:
+    ) -> bool:
         """Play an audio file through the player.
 
         Args:
@@ -192,7 +233,20 @@ class PronunciationService:
             if on_complete:
                 on_complete()
 
-        self._player.play(audio_path, wrapped_callback)
+        started = self._player.play(audio_path, wrapped_callback)
+        if not started:
+            self._last_error = self._player.last_error() or f"Failed to play audio file: {audio_path}"
+            LOGGER.warning("%s", self._last_error)
+            return False
+
+        self._last_error = None
+        return True
+
+    def _can_fetch_or_synthesize(self) -> bool:
+        return self._wiktionary.is_available() or self._has_piper()
+
+    def _has_piper(self) -> bool:
+        return importlib.util.find_spec("piper") is not None
 
     def _synthesize_with_piper(self, word: str) -> Path | None:
         """Synthesize pronunciation using Piper TTS.
