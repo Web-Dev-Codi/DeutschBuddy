@@ -8,22 +8,24 @@ version = "0.6.5"
 description = "AI-powered German language TUI for English speakers"
 requires-python = ">=3.11"
 dependencies = [
-  "textual>=8.0.2",
+  "textual>=8.2.1",
   "ollama>=0.6.1",
   "aiosqlite>=0.22.1",
   "pydantic>=2.12.5",
   "pyyaml>=6.0.3",
   "rich>=14.3.3",
   "tomlkit>=0.13.2",
-]
-
-[project.optional-dependencies]
-voice = [
-  "SpeechRecognition>=3.14.5",
+  "SpeechRecognition>=3.15.2",
   "PyAudio>=0.2.14",
   "pyttsx3>=2.99",
   "openai-whisper>=20250625",
+  "piper-tts>=1.4.1",
+  "pygame>=2.6.1",
+  "mwclient>=0.11.0",
 ]
+
+[project.optional-dependencies]
+voice = []
 
 [project.scripts]
 deutschbuddy = "deutschbuddy.main:run"
@@ -33,7 +35,7 @@ dev = [
   "textual-dev>=1.8.0",
   "pytest>=9.0.2",
   "pytest-asyncio>=0.21.0",
-  "SpeechRecognition>=3.14.5",
+  "SpeechRecognition>=3.15.2",
   "PyAudio>=0.2.14",
   "pyttsx3>=2.99",
   "openai-whisper>=20250625",

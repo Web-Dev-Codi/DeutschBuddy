@@ -7,6 +7,7 @@ from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Static
 from textual.containers import Center
 
+from deutschbuddy.audio.pronunciation_service import PronunciationService
 from deutschbuddy.db.repositories.progress_repo import ProgressRepository
 from deutschbuddy.models.learner import Learner
 from deutschbuddy.models.vocab import VocabTopic
@@ -155,6 +156,7 @@ class VocabFlashcardScreen(Screen):
         self._index = 0
         self._seen: Set[int] = set()
         self._initial_progress = initial_progress or {}
+        self._pronunciation: PronunciationService | None = None
 
     def compose(self) -> ComposeResult:
         yield Header()
@@ -173,6 +175,7 @@ class VocabFlashcardScreen(Screen):
 
     async def on_mount(self) -> None:
         self._hydrate_seen_from_progress()
+        self._pronunciation = PronunciationService()
         await self._show_card(self._index)
 
     def _hydrate_seen_from_progress(self) -> None:
@@ -225,6 +228,8 @@ class VocabFlashcardScreen(Screen):
         new_index = self._index + delta
         total = len(self.topic.words)
         new_index = max(0, min(new_index, total - 1))
+        if self._pronunciation:
+            self._pronunciation.stop()
         await self._show_card(new_index)
 
     def action_finish(self) -> None:
@@ -245,3 +250,21 @@ class VocabFlashcardScreen(Screen):
 
     def on_vocab_card_next_requested(self, _event: VocabCard.NextRequested) -> None:
         self.run_worker(self._advance(1), exclusive=True)
+
+    def on_vocab_card_card_flipped(self, event: VocabCard.CardFlipped) -> None:
+        """Auto-play pronunciation when card flips to German side."""
+        if not event.showing_english and self._pronunciation:
+            word = self.topic.words[self._index]
+            german_word = word.german if hasattr(word, "german") else word.model_dump().get("german", "")
+            if german_word:
+                self._pronunciation.play_pronunciation(german_word)
+
+    def on_vocab_card_replay_requested(self, _event: VocabCard.ReplayRequested) -> None:
+        """Replay pronunciation of current German word."""
+        if self._pronunciation:
+            self._pronunciation.replay()
+
+    def on_unmount(self) -> None:
+        """Clean up pronunciation service on exit."""
+        if self._pronunciation:
+            self._pronunciation.stop()
